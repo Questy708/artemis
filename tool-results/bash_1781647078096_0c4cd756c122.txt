@@ -1,0 +1,957 @@
+=== src/app/api/subscribe/route.ts ===
+import { NextResponse } from 'next/server';
+import { db } from '@/lib/db';
+import { verifyAdminAuth } from '@/lib/admin-auth';
+
+// POST /api/subscribe — add a newsletter subscriber
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+    const { email, source } = body;
+
+    if (!email) {
+      return NextResponse.json(
+        { error: 'Email is required' },
+        { status: 400 }
+      );
+    }
+
+    // Upsert: if email exists and was unsubscribed, reactivate
+    const subscriber = await db.subscriber.upsert({
+      where: { email },
+      update: { active: true, source: source || null },
+      create: {
+        email,
+        source: source || null,
+        active: true,
+      },
+    });
+
+    return NextResponse.json({
+      success: true,
+      id: subscriber.id,
+      message: 'You have been subscribed to the Artemis newsletter.',
+    });
+  } catch (error) {
+    console.error('Subscribe error:', error);
+    return NextResponse.json(
+      { error: 'Failed to subscribe' },
+      { status: 500 }
+    );
+  }
+}
+
+// GET /api/subscribe — list subscribers (admin only)
+export async function GET(request: Request) {
+  const isAuth = await verifyAdminAuth(request);
+  if (!isAuth) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  try {
+    const subscribers = await db.subscriber.findMany({
+      where: { active: true },
+      orderBy: { createdAt: 'desc' },
+      take: 200,
+    });
+    return NextResponse.json({ subscribers });
+  } catch (error) {
+    console.error('Subscriber fetch error:', error);
+    return NextResponse.json(
+      { error: 'Failed to fetch subscribers' },
+      { status: 500 }
+    );
+  }
+}
+
+=== src/app/api/contact/route.ts ===
+import { NextResponse } from 'next/server';
+import { db } from '@/lib/db';
+import { verifyAdminAuth } from '@/lib/admin-auth';
+
+// POST /api/contact — submit a contact/enquiry message
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+    const { name, email, subject, area, message } = body;
+
+    if (!name || !email || !message) {
+      return NextResponse.json(
+        { error: 'Name, email, and message are required' },
+        { status: 400 }
+      );
+    }
+
+    const contact = await db.contactMessage.create({
+      data: {
+        name,
+        email,
+        subject: subject || null,
+        area: area || null,
+        message,
+      },
+    });
+
+    return NextResponse.json({
+      success: true,
+      id: contact.id,
+      message: 'Thank you for your enquiry. We will get back to you shortly.',
+    });
+  } catch (error) {
+    console.error('Contact form error:', error);
+    return NextResponse.json(
+      { error: 'Failed to submit message' },
+      { status: 500 }
+    );
+  }
+}
+
+// GET /api/contact — list contact messages (admin only)
+export async function GET(request: Request) {
+  const isAuth = await verifyAdminAuth(request);
+  if (!isAuth) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  try {
+    const messages = await db.contactMessage.findMany({
+      orderBy: { createdAt: 'desc' },
+      take: 100,
+    });
+    return NextResponse.json({ messages });
+  } catch (error) {
+    console.error('Contact fetch error:', error);
+    return NextResponse.json(
+      { error: 'Failed to fetch messages' },
+      { status: 500 }
+    );
+  }
+}
+
+// PATCH /api/contact — mark a message as read (admin only)
+export async function PATCH(request: Request) {
+  const isAuth = await verifyAdminAuth(request);
+  if (!isAuth) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  try {
+    const body = await request.json();
+    const { id, read } = body;
+
+    if (!id) {
+      return NextResponse.json(
+        { error: 'Message ID is required' },
+        { status: 400 }
+      );
+    }
+
+    const updated = await db.contactMessage.update({
+      where: { id },
+      data: { read: read !== undefined ? read : true },
+    });
+
+    return NextResponse.json({ success: true, message: updated });
+  } catch (error) {
+    console.error('Contact update error:', error);
+    return NextResponse.json(
+      { error: 'Failed to update message' },
+      { status: 500 }
+    );
+  }
+}
+
+=== src/app/api/campaign/route.ts ===
+import { NextResponse } from 'next/server';
+
+// GET /api/campaign — fetch the active founding campaign with milestones, perks, events
+export async function GET() {
+  try {
+    // Return campaign data — in production this would come from the database
+    // For now, using rich static data that can be seeded later
+    const campaign = {
+      id: 'founding-campaign',
+      slug: 'founding-campaign',
+      title: 'Building the Future of Knowledge',
+      subtitle: 'The Artemis Founding Campaign',
+      goalAmount: 100000000,
+      raisedAmount: 2100000,
+      donorCount: 342,
+      currency: 'USD',
+      phase: 'public_launch',
+      milestones: [
+        { id: 'm1', title: 'Digital Foundation', targetAmount: 5000000, isReached: true, description: 'Core platform, secure infrastructure, and global access layer — deployed and operational across 3 continents.' },
+        { id: 'm2', title: 'First Residential Hub', targetAmount: 15000000, isReached: false, description: 'Geneva — the first physical node with residential colleges, faculty offices, and a dedicated research wing.' },
+        { id: 'm3', title: 'Inaugural Cohort', targetAmount: 30000000, isReached: false, description: 'Full scholarship fund for 500 students across multiple nodes with dedicated faculty and mentorship networks.' },
+        { id: 'm4', title: 'Research Endowment', targetAmount: 55000000, isReached: false, description: 'Perpetual endowment for ten flagship research institutes with 20-year operational runway.' },
+        { id: 'm5', title: 'Ten-Node Network', targetAmount: 75000000, isReached: false, description: 'Ten nodes on six continents — a planetary university with borderless access to knowledge.' },
+        { id: 'm6', title: 'Global Scale', targetAmount: 100000000, isReached: false, description: 'Complete the founding campaign — 2,000 students, 200 faculty, and perpetual independence for centuries.' },
+      ],
+      perks: [
+        { id: 'p1', title: 'Founding Cipher', description: 'A unique cryptographic token permanently recording your contribution on the Artemis ledger. Your name, encrypted, becomes part of the university\'s foundation.', minAmount: 25, category: 'digital', icon: 'Hash' },
+        { id: 'p2', title: 'The Artemis Dispatch', description: 'Quarterly intelligence brief from the Chancellor — exclusive essays, research previews, and strategic updates from inside the founding.', minAmount: 100, category: 'digital', icon: 'Mail' },
+        { id: 'p3', title: 'Node Access Pass', description: 'Priority invitation to visit any Artemis node worldwide during the founding year. Experience the spaces, meet the community, witness the build.', minAmount: 500, category: 'experience', icon: 'Compass' },
+        { id: 'p4', title: 'Founders\' Book', description: 'A limited-edition leather-bound volume documenting the founding of Artemis — with your name inscribed in the founding roll.', minAmount: 1000, category: 'physical', icon: 'BookOpen' },
+        { id: 'p5', title: 'Scholarship Patron', description: 'Fully fund a named micro-scholarship for one student. You choose the focus. They carry your name through their Artemis journey.', minAmount: 5000, category: 'naming', icon: 'GraduationCap' },
+        { id: 'p6', title: 'Lab Dedication', description: 'Name a research lab within a node. A permanent plaque, a dedication ceremony, and annual reports from the researchers who work there.', minAmount: 25000, category: 'naming', icon: 'FlaskConical' },
+        { id: 'p7', title: 'Commons Naming', description: 'Name one of the 12 Living Commons. Your name becomes part of daily life at Artemis — spoken by every resident, written on every map.', minAmount: 100000, category: 'naming', icon: 'Home' },
+        { id: 'p8', title: 'Node Patron', description: 'Become the patron of an entire Artemis node. The building bears your name. The community carries your legacy. A seat on the Founders\' Council.', minAmount: 1000000, category: 'naming', icon: 'Building2' },
+      ],
+      events: [
+        { id: 'e1', title: 'The Founding Convocation', eventType: 'gala', description: 'An evening of vision and commitment. Meet the Chancellor, the founding faculty, and fellow patrons at the Geneva node.', date: '2026-09-15', location: 'Geneva, Switzerland', isVirtual: false, capacity: 200, registered: 87, ticketPrice: 500 },
+        { id: 'e2', title: 'Inside the Build: Virtual Site Tour', eventType: 'webinar', description: 'Walk through the digital and physical architecture of Artemis with the design team. Live Q&A with founding engineers.', date: '2026-07-22', location: 'Online', isVirtual: true, capacity: 1000, registered: 432, ticketPrice: 0 },
+        { id: 'e3', title: 'Double Impact Day', eventType: 'matching_day', description: 'Every donation made today is matched dollar-for-dollar by the Catalyst Foundation. Your $1 becomes $2. 24 hours only.', date: '2026-10-01', location: 'Global', isVirtual: true, capacity: null, registered: 0, ticketPrice: null },
+        { id: 'e4', title: 'The Artemis Auction', eventType: 'auction', description: 'Bid on naming rights, original artwork, and exclusive experiences — all proceeds fund the Global Scholars Fund.', date: '2026-11-20', location: 'London, UK', isVirtual: false, capacity: 150, registered: 34, ticketPrice: 250 },
+        { id: 'e5', title: 'Hack the Future: 48-Hour Build', eventType: 'hackathon', description: 'A founding-weekend hackathon where donors and students co-build tools for the Artemis platform. Prizes. Glory. Pizza.', date: '2026-08-08', location: 'San Francisco, USA', isVirtual: false, capacity: 100, registered: 61, ticketPrice: 0 },
+        { id: 'e6', title: 'Spring Benefactor Dinner', eventType: 'gala', description: 'An intimate dinner for major donors at the Valletta node. Michelin-starred cuisine, Mediterranean views, and the future of knowledge.', date: '2027-03-14', location: 'Valletta, Malta', isVirtual: false, capacity: 80, registered: 22, ticketPrice: 1000 },
+      ],
+    };
+
+    return NextResponse.json(campaign);
+  } catch (error) {
+    console.error('Campaign fetch error:', error);
+    return NextResponse.json({ error: 'Failed to fetch campaign' }, { status: 500 });
+  }
+}
+
+=== src/app/api/donations/route.ts ===
+import { NextResponse } from 'next/server';
+import { db } from '@/lib/db';
+import { verifyAdminAuth } from '@/lib/admin-auth';
+
+// POST /api/donations — create a new donation record (persisted to SQLite via Prisma)
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+    const {
+      donorEmail,
+      donorName,
+      donorAnonymous,
+      amount,
+      currency = 'USD',
+      paymentMethod = 'card',
+      perkId,
+      isRecurring = false,
+      recurringFreq,
+      message,
+    } = body;
+
+    // Validate required fields
+    if (!donorEmail || !amount || amount <= 0) {
+      return NextResponse.json(
+        { error: 'Email and a positive amount are required' },
+        { status: 400 }
+      );
+    }
+
+    if (amount > 10000000) {
+      return NextResponse.json(
+        { error: 'Amount exceeds maximum single donation limit' },
+        { status: 400 }
+      );
+    }
+
+    // Generate a transaction reference
+    const transactionRef = `ART-${Date.now()}-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
+
+    // Persist to database via Prisma
+    const donation = await db.donation.create({
+      data: {
+        donorEmail,
+        donorName: donorAnonymous ? null : donorName,
+        donorAnonymous: donorAnonymous || false,
+        amount,
+        currency,
+        paymentMethod,
+        paymentStatus: 'pending', // Starts as pending until payment gateway confirms
+        transactionRef,
+        perkId: perkId || null,
+        isRecurring,
+        recurringFreq: isRecurring ? recurringFreq : null,
+        message: message || null,
+      },
+    });
+
+    return NextResponse.json({
+      success: true,
+      donation: {
+        id: donation.id,
+        donorEmail: donation.donorEmail,
+        donorName: donation.donorName,
+        amount: donation.amount,
+        currency: donation.currency,
+        paymentMethod: donation.paymentMethod,
+        paymentStatus: donation.paymentStatus,
+        transactionRef: donation.transactionRef,
+        isRecurring: donation.isRecurring,
+        recurringFreq: donation.recurringFreq,
+        createdAt: donation.createdAt,
+      },
+      message: isRecurring
+        ? `Thank you! Your ${recurringFreq} recurring donation of ${currency === 'GBP' ? '£' : '$'}${amount.toLocaleString()} has been recorded.`
+        : `Thank you for your generous donation of ${currency === 'GBP' ? '£' : '$'}${amount.toLocaleString()}!`,
+    });
+  } catch (error) {
+    console.error('Donation creation error:', error);
+    return NextResponse.json(
+      { error: 'Failed to process donation' },
+      { status: 500 }
+    );
+  }
+}
+
+// GET /api/donations — fetch recent public donations for the donor wall
+// For the admin dashboard, requires auth. For the public donor wall, returns limited data.
+export async function GET(request: Request) {
+  const isAuth = await verifyAdminAuth(request);
+
+  try {
+    if (isAuth) {
+      // Admin: return ALL donations with full details
+      const allDonations = await db.donation.findMany({
+        orderBy: { createdAt: 'desc' },
+        take: 100,
+      });
+      return NextResponse.json({ donors: allDonations });
+    }
+
+    // Public: return limited, non-anonymous donor wall data
+    const dbDonors = await db.donation.findMany({
+      where: {
+        donorAnonymous: false,
+        paymentStatus: { in: ['pending', 'completed'] },
+      },
+      orderBy: { createdAt: 'desc' },
+      take: 20,
+    });
+
+    // If we have real donors in the DB, return them
+    if (dbDonors.length > 0) {
+      const donors = dbDonors.map(d => ({
+        name: d.donorName || 'Anonymous',
+        amount: d.amount,
+        date: d.createdAt.toISOString().split('T')[0],
+        message: d.message,
+        tier: d.amount >= 10000000 ? 'founders' : d.amount >= 5000000 ? 'guardians' : d.amount >= 1000000 ? 'builders' : d.amount >= 100000 ? 'fellows' : d.amount >= 10000 ? 'friends' : 'the99',
+      }));
+      return NextResponse.json({ donors });
+    }
+
+    // Fallback: return sample donor wall data when DB is empty
+    const recentDonors = [
+      { name: 'Dr. Elena Vasquez', amount: 50000, date: '2026-05-10', message: 'For the students who will change everything.', tier: 'founders' },
+      { name: 'James & Priya Okonkwo', amount: 25000, date: '2026-05-08', message: null, tier: 'guild' },
+      { name: 'Anonymous Patron', amount: 100000, date: '2026-05-07', message: 'Because knowledge should have no borders.', tier: 'chancellors' },
+      { name: 'The Al-Rashidi Family', amount: 15000, date: '2026-05-05', message: 'In memory of Fatima Al-Rashidi, who believed in education for all.', tier: 'guild' },
+      { name: 'Chen Wei Labs', amount: 200000, date: '2026-05-04', message: null, tier: 'founders' },
+      { name: 'Maria Santos', amount: 500, date: '2026-05-03', message: 'Proud to be part of the founding.', tier: 'community' },
+      { name: 'Takeshi Yamamoto', amount: 1000, date: '2026-05-02', message: null, tier: 'community' },
+      { name: 'The Nordgren Foundation', amount: 500000, date: '2026-04-28', message: 'Investing in the infrastructure of imagination.', tier: 'chancellors' },
+      { name: 'Amara Osei', amount: 100, date: '2026-04-27', message: 'Every great university starts with a first believer.', tier: 'community' },
+      { name: 'Liu Fang Foundation', amount: 75000, date: '2026-04-25', message: null, tier: 'guild' },
+      { name: 'Anonymous', amount: 5000, date: '2026-04-23', message: null, tier: 'community' },
+      { name: 'Dr. Robert & Sarah Kimani', amount: 10000, date: '2026-04-22', message: 'For the next generation of African scholars.', tier: 'guild' },
+    ];
+
+    return NextResponse.json({ donors: recentDonors });
+  } catch (error) {
+    console.error('Donation fetch error:', error);
+    return NextResponse.json(
+      { error: 'Failed to fetch donations' },
+      { status: 500 }
+    );
+  }
+}
+
+=== src/app/api/applications/route.ts ===
+import { NextResponse } from 'next/server';
+import { db } from '@/lib/db';
+import { verifyAdminAuth } from '@/lib/admin-auth';
+
+// POST /api/applications — submit an application (persisted to SQLite via Prisma)
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+
+    // Validate required fields
+    if (!body.firstName || !body.lastName || !body.email) {
+      return NextResponse.json(
+        { error: 'First name, last name, and email are required' },
+        { status: 400 }
+      );
+    }
+
+    // Serialize accomplishments array to JSON string for storage
+    const accomplishmentsJson = body.accomplishments
+      ? JSON.stringify(body.accomplishments)
+      : null;
+
+    // Persist to database via Prisma
+    const application = await db.application.create({
+      data: {
+        firstName: body.firstName,
+        lastName: body.lastName,
+        email: body.email,
+        phone: body.phone || null,
+        birthdate: body.birthdate || null,
+        gender: body.gender || null,
+        pronoun: body.pronoun || null,
+        citizenship: body.citizenship || null,
+        dualCitizenship: body.dualCitizenship || null,
+        address: body.address || null,
+        city: body.city || null,
+        state: body.state || null,
+        postalCode: body.postalCode || null,
+        country: body.country || null,
+        howHeard: body.howHeard || null,
+        applicationCycle: body.applicationCycle || null,
+        concentration: body.concentration || null,
+        currentlyEnrolled: body.currentlyEnrolled || null,
+        schoolName: body.schoolName || null,
+        schoolCountry: body.schoolCountry || null,
+        schoolCity: body.schoolCity || null,
+        enrollmentStart: body.enrollmentStart || null,
+        enrollmentEnd: body.enrollmentEnd || null,
+        gradingScale: body.gradingScale || null,
+        gpa: body.gpa || null,
+        maxGpa: body.maxGpa || null,
+        satMath: body.satMath || null,
+        satReading: body.satReading || null,
+        actScore: body.actScore || null,
+        isTestOptional: body.isTestOptional || false,
+        accomplishments: accomplishmentsJson,
+        personalStatement: body.personalStatement || null,
+        missionStatement: body.missionStatement || null,
+        applyingForAid: body.applyingForAid || null,
+        householdIncome: body.householdIncome || null,
+        dependents: body.dependents || null,
+      },
+    });
+
+    return NextResponse.json({
+      success: true,
+      applicationId: application.id,
+      message: 'Application submitted successfully. We will review your application and get back to you.',
+    });
+  } catch (error) {
+    console.error('Application submission error:', error);
+    return NextResponse.json(
+      { error: 'Failed to submit application' },
+      { status: 500 }
+    );
+  }
+}
+
+// GET /api/applications — list all applications (admin only)
+export async function GET(request: Request) {
+  const isAuth = await verifyAdminAuth(request);
+  if (!isAuth) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  try {
+    const applications = await db.application.findMany({
+      orderBy: { createdAt: 'desc' },
+      take: 50,
+    });
+
+    // Parse accomplishments JSON back for each record
+    const formatted = applications.map(app => ({
+      ...app,
+      accomplishments: app.accomplishments ? JSON.parse(app.accomplishments) : null,
+    }));
+
+    return NextResponse.json({ applications: formatted });
+  } catch (error) {
+    console.error('Application fetch error:', error);
+    return NextResponse.json(
+      { error: 'Failed to fetch applications' },
+      { status: 500 }
+    );
+  }
+}
+
+=== src/app/api/admin/route.ts ===
+import { NextResponse } from 'next/server';
+import { db } from '@/lib/db';
+import { verifyAdminAuth } from '@/lib/admin-auth';
+
+// GET /api/admin — aggregate stats for the admin dashboard
+export async function GET(request: Request) {
+  // Require admin authentication
+  const isAuth = await verifyAdminAuth(request);
+  if (!isAuth) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  try {
+    const [
+      totalDonations,
+      totalApplications,
+      totalContactMessages,
+      totalSubscribers,
+      recentDonations,
+      recentApplications,
+      recentContacts,
+      unreadMessages,
+      donationsByStatus,
+      totalRaised,
+    ] = await Promise.all([
+      db.donation.count(),
+      db.application.count(),
+      db.contactMessage.count(),
+      db.subscriber.count({ where: { active: true } }),
+      db.donation.findMany({ orderBy: { createdAt: 'desc' }, take: 10 }),
+      db.application.findMany({ orderBy: { createdAt: 'desc' }, take: 10 }),
+      db.contactMessage.findMany({ orderBy: { createdAt: 'desc' }, take: 10 }),
+      db.contactMessage.count({ where: { read: false } }),
+      db.donation.groupBy({ by: ['paymentStatus'], _count: true }),
+      db.donation.aggregate({ _sum: { amount: true }, where: { paymentStatus: 'completed' } }),
+    ]);
+
+    return NextResponse.json({
+      stats: {
+        totalDonations,
+        totalApplications,
+        totalContactMessages,
+        totalSubscribers,
+        unreadMessages,
+        totalRaised: totalRaised._sum.amount || 0,
+      },
+      donationsByStatus: donationsByStatus.reduce((acc: Record<string, number>, cur) => {
+        acc[cur.paymentStatus] = cur._count;
+        return acc;
+      }, {}),
+      recentDonations,
+      recentApplications,
+      recentContacts,
+    });
+  } catch (error) {
+    console.error('Admin stats error:', error);
+    return NextResponse.json(
+      { error: 'Failed to fetch admin data' },
+      { status: 500 }
+    );
+  }
+}
+
+=== src/app/api/admin/login/route.ts ===
+import { NextResponse } from 'next/server';
+
+const MAX_LOGIN_ATTEMPTS = 10;
+const LOCKOUT_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
+
+// Simple in-memory rate limiter for login attempts
+// In production, use Redis or a proper rate-limiting service
+const loginAttempts = new Map<string, { count: number; firstAttempt: number }>();
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const entry = loginAttempts.get(ip);
+
+  if (!entry) return false;
+
+  // Reset if outside the lockout window
+  if (now - entry.firstAttempt > LOCKOUT_WINDOW_MS) {
+    loginAttempts.delete(ip);
+    return false;
+  }
+
+  return entry.count >= MAX_LOGIN_ATTEMPTS;
+}
+
+function recordAttempt(ip: string) {
+  const now = Date.now();
+  const entry = loginAttempts.get(ip);
+
+  if (!entry || now - entry.firstAttempt > LOCKOUT_WINDOW_MS) {
+    loginAttempts.set(ip, { count: 1, firstAttempt: now });
+  } else {
+    entry.count++;
+  }
+}
+
+// Clean up old entries periodically (every 5 minutes)
+if (typeof globalThis !== 'undefined' && !(globalThis as any).__loginCleanupInterval) {
+  (globalThis as any).__loginCleanupInterval = setInterval(() => {
+    const now = Date.now();
+    for (const [ip, entry] of loginAttempts.entries()) {
+      if (now - entry.firstAttempt > LOCKOUT_WINDOW_MS) {
+        loginAttempts.delete(ip);
+      }
+    }
+  }, 5 * 60 * 1000);
+}
+
+// Edge-compatible hash function using Web Crypto API
+async function sha256Hash(input: string): Promise<string> {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(input);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('').slice(0, 22); // ~16 bytes base64url equivalent
+}
+
+function randomHex(bytes: number): string {
+  const array = new Uint8Array(bytes);
+  crypto.getRandomValues(array);
+  return Array.from(array).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+// POST /api/admin/login — authenticate with admin password
+export async function POST(request: Request) {
+  try {
+    // Rate limiting
+    const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
+    if (isRateLimited(ip)) {
+      return NextResponse.json(
+        { error: 'Too many login attempts. Please try again later.' },
+        { status: 429 }
+      );
+    }
+
+    const { password } = await request.json();
+    const adminPassword = process.env.ADMIN_PASSWORD;
+
+    // If no ADMIN_PASSWORD is set, deny access with a helpful message
+    if (!adminPassword) {
+      return NextResponse.json(
+        { error: 'Admin access not configured. Set ADMIN_PASSWORD in your .env file.' },
+        { status: 403 }
+      );
+    }
+
+    if (password !== adminPassword) {
+      recordAttempt(ip);
+      return NextResponse.json(
+        { error: 'Invalid password' },
+        { status: 401 }
+      );
+    }
+
+    // Generate a session token with cryptographic hash
+    const timestamp = Date.now().toString();
+    const random = randomHex(8); // Use crypto.getRandomValues instead of Math.random
+    const hash = await sha256Hash(adminPassword + timestamp);
+    const token = `adm_${timestamp}_${random}_${hash}`;
+
+    const isProduction = process.env.NODE_ENV === 'production';
+
+    const response = NextResponse.json({
+      success: true,
+      message: 'Authenticated',
+      token, // Return token so client can store in localStorage and send via Authorization header
+    });
+
+    // Set HttpOnly cookie — not accessible via JavaScript, only by the server
+    response.cookies.set('artemis_admin_token', token, {
+      httpOnly: true,
+      secure: isProduction, // Only require HTTPS in production
+      sameSite: 'lax',
+      path: '/',
+      maxAge: 60 * 60 * 24, // 24 hours
+    });
+
+    return response;
+  } catch {
+    return NextResponse.json(
+      { error: 'Invalid request' },
+      { status: 400 }
+    );
+  }
+}
+
+// DELETE /api/admin/login — logout
+export async function DELETE() {
+  const isProduction = process.env.NODE_ENV === 'production';
+  const response = NextResponse.json({ success: true, message: 'Logged out' });
+  response.cookies.set('artemis_admin_token', '', {
+    httpOnly: true,
+    secure: isProduction,
+    sameSite: 'lax',
+    path: '/',
+    maxAge: 0,
+  });
+  return response;
+}
+
+=== src/app/api/paypal/config/route.ts ===
+import { NextResponse } from 'next/server';
+
+export async function GET() {
+  const paypalEmail = process.env.PAYPAL_EMAIL;
+  return NextResponse.json({
+    configured: !!paypalEmail,
+    email: paypalEmail || null,
+  });
+}
+
+=== src/app/api/stripe/checkout/route.ts ===
+import { NextResponse } from 'next/server';
+import { db } from '@/lib/db';
+
+// POST /api/stripe/checkout — process a donation
+// Supports 4 modes (checked in order):
+//   1. Stripe (STRIPE_SECRET_KEY set) → real Stripe checkout
+//   2. PayPal Donate (PAYPAL_EMAIL set) → redirect to PayPal Donate page
+//   3. External payment link (DONATION_LINK set) → redirect to PayPal/BMAC/Ko-fi etc.
+//   4. No gateway → record as pending for manual follow-up
+
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+    const {
+      donorEmail,
+      donorName,
+      amount,
+      currency = 'USD',
+      isRecurring = false,
+      recurringFreq = 'monthly',
+      perkId,
+      message,
+      isAnonymous = false,
+      paymentMethod = 'card',
+    } = body;
+
+    if (!donorEmail || !amount || amount <= 0) {
+      return NextResponse.json(
+        { error: 'Email and a positive amount are required' },
+        { status: 400 }
+      );
+    }
+
+    const transactionRef = `ART-${Date.now()}-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
+    const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+    const paypalEmail = process.env.PAYPAL_EMAIL;
+    const donationLink = process.env.DONATION_LINK;
+
+    // ─── MODE 1: REAL STRIPE INTEGRATION ───
+    if (stripeSecretKey) {
+      const Stripe = (await import('stripe')).default;
+      const stripe = new Stripe(stripeSecretKey, { apiVersion: '2025-04-30.basil' });
+
+      const session = await stripe.checkout.sessions.create({
+        mode: isRecurring ? 'subscription' : 'payment',
+        payment_method_types: ['card'],
+        customer_email: donorEmail,
+        line_items: [
+          {
+            price_data: {
+              currency: currency.toLowerCase(),
+              product_data: {
+                name: isRecurring
+                  ? `Artemis ${recurringFreq} donation`
+                  : 'Artemis Donation',
+                description: isRecurring
+                  ? `Recurring ${recurringFreq} donation to the University of Artemis Founding Campaign`
+                  : 'One-time donation to the University of Artemis Founding Campaign',
+              },
+              unit_amount: Math.round(amount * 100),
+              ...(isRecurring ? { recurring: { interval: recurringFreq === 'yearly' ? 'year' : 'month' } } : {}),
+            },
+            quantity: 1,
+          },
+        ],
+        success_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}?donation=success&ref=${transactionRef}`,
+        cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}?donation=cancelled`,
+        metadata: {
+          donorName: donorName || '',
+          transactionRef,
+          perkId: perkId || '',
+          isAnonymous: String(isAnonymous),
+          message: message || '',
+        },
+      });
+
+      await db.donation.create({
+        data: {
+          donorEmail,
+          donorName: isAnonymous ? null : donorName,
+          donorAnonymous: isAnonymous,
+          amount,
+          currency,
+          paymentMethod: 'card',
+          paymentStatus: 'pending',
+          transactionRef,
+          stripeSessionId: session.id,
+          perkId: perkId || null,
+          isRecurring,
+          recurringFreq: isRecurring ? recurringFreq : null,
+          message: message || null,
+        },
+      });
+
+      return NextResponse.json({
+        success: true,
+        checkoutUrl: session.url,
+        transactionRef,
+      });
+    }
+
+    // ─── MODE 2: PAYPAL DONATE ───
+    if (paypalEmail) {
+      await db.donation.create({
+        data: {
+          donorEmail,
+          donorName: isAnonymous ? null : donorName,
+          donorAnonymous: isAnonymous,
+          amount,
+          currency,
+          paymentMethod: 'paypal',
+          paymentStatus: 'pending',
+          transactionRef,
+          perkId: perkId || null,
+          isRecurring,
+          recurringFreq: isRecurring ? recurringFreq : null,
+          message: message || null,
+        },
+      });
+
+      const paypalDonateUrl = `https://www.paypal.com/donate/?business=${encodeURIComponent(paypalEmail)}&amount=${amount}&currency_code=${currency}`;
+
+      return NextResponse.json({
+        success: true,
+        checkoutUrl: paypalDonateUrl,
+        transactionRef,
+        message: 'Your pledge has been recorded! You\'ll now be redirected to PayPal to complete your donation.',
+      });
+    }
+
+    // ─── MODE 3: EXTERNAL PAYMENT LINK (PayPal.me, Buy Me a Coffee, Ko-fi, etc.) ───
+    if (donationLink) {
+      await db.donation.create({
+        data: {
+          donorEmail,
+          donorName: isAnonymous ? null : donorName,
+          donorAnonymous: isAnonymous,
+          amount,
+          currency,
+          paymentMethod: paymentMethod || 'link',
+          paymentStatus: 'pending',
+          transactionRef,
+          perkId: perkId || null,
+          isRecurring,
+          recurringFreq: isRecurring ? recurringFreq : null,
+          message: message || null,
+        },
+      });
+
+      // Build the redirect URL — append amount if the platform supports it
+      let redirectUrl = donationLink;
+      // PayPal.me supports amounts: paypal.me/username/100
+      if (donationLink.includes('paypal.me') && amount) {
+        redirectUrl = `${donationLink.replace(/\/$/, '')}/${amount}${currency === 'GBP' ? 'GBP' : 'USD'}`;
+      }
+      // Buy Me a Coffee doesn't support URL amounts, just redirect
+      // Ko-fi doesn't support URL amounts either
+
+      return NextResponse.json({
+        success: true,
+        checkoutUrl: redirectUrl,
+        transactionRef,
+        message: 'Your pledge has been recorded! You\'ll now be redirected to complete your payment.',
+      });
+    }
+
+    // ─── MODE 4: NO GATEWAY — record as pending ───
+    const donation = await db.donation.create({
+      data: {
+        donorEmail,
+        donorName: isAnonymous ? null : donorName,
+        donorAnonymous: isAnonymous,
+        amount,
+        currency,
+        paymentMethod: paymentMethod || 'card',
+        paymentStatus: 'pending',
+        transactionRef,
+        perkId: perkId || null,
+        isRecurring,
+        recurringFreq: isRecurring ? recurringFreq : null,
+        message: message || null,
+      },
+    });
+
+    return NextResponse.json({
+      success: true,
+      checkoutUrl: null,
+      transactionRef,
+      donationId: donation.id,
+      message: 'Thank you! Your donation has been recorded. We will follow up with payment details.',
+    });
+  } catch (error) {
+    console.error('Checkout error:', error);
+    return NextResponse.json(
+      { error: 'Failed to process donation' },
+      { status: 500 }
+    );
+  }
+}
+
+=== src/app/api/stripe/webhook/route.ts ===
+import { NextResponse } from 'next/server';
+import { db } from '@/lib/db';
+
+// POST /api/stripe/webhook — receive Stripe webhook events
+// When Stripe confirms a payment, it sends an event here.
+// This updates the donation status from "pending" to "completed".
+
+export async function POST(request: Request) {
+  try {
+    const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+    const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+
+    if (!stripeSecretKey || !webhookSecret) {
+      // No Stripe configured — acknowledge but do nothing
+      return NextResponse.json({ received: true, note: 'Stripe not configured' });
+    }
+
+    const body = await request.text();
+    const sig = request.headers.get('stripe-signature');
+
+    const Stripe = (await import('stripe')).default;
+    const stripe = new Stripe(stripeSecretKey, { apiVersion: '2025-04-30.basil' });
+
+    let event;
+    try {
+      event = stripe.webhooks.constructEvent(body, sig!, webhookSecret);
+    } catch {
+      return NextResponse.json({ error: 'Invalid signature' }, { status: 400 });
+    }
+
+    switch (event.type) {
+      case 'checkout.session.completed': {
+        const session = event.data.object as any;
+        const sessionId = session.id;
+
+        // Update donation from pending to completed
+        await db.donation.updateMany({
+          where: { stripeSessionId: sessionId },
+          data: { paymentStatus: 'completed' },
+        });
+        break;
+      }
+      case 'checkout.session.expired': {
+        const session = event.data.object as any;
+        const sessionId = session.id;
+
+        // Mark as expired
+        await db.donation.updateMany({
+          where: { stripeSessionId: sessionId },
+          data: { paymentStatus: 'expired' },
+        });
+        break;
+      }
+      default:
+        // Ignore other event types
+        break;
+    }
+
+    return NextResponse.json({ received: true });
+  } catch (error) {
+    console.error('Stripe webhook error:', error);
+    return NextResponse.json(
+      { error: 'Webhook processing failed' },
+      { status: 500 }
+    );
+  }
+}

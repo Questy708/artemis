@@ -1,0 +1,957 @@
+     1→=== src/app/api/subscribe/route.ts ===
+     2→import { NextResponse } from 'next/server';
+     3→import { db } from '@/lib/db';
+     4→import { verifyAdminAuth } from '@/lib/admin-auth';
+     5→
+     6→// POST /api/subscribe — add a newsletter subscriber
+     7→export async function POST(request: Request) {
+     8→  try {
+     9→    const body = await request.json();
+    10→    const { email, source } = body;
+    11→
+    12→    if (!email) {
+    13→      return NextResponse.json(
+    14→        { error: 'Email is required' },
+    15→        { status: 400 }
+    16→      );
+    17→    }
+    18→
+    19→    // Upsert: if email exists and was unsubscribed, reactivate
+    20→    const subscriber = await db.subscriber.upsert({
+    21→      where: { email },
+    22→      update: { active: true, source: source || null },
+    23→      create: {
+    24→        email,
+    25→        source: source || null,
+    26→        active: true,
+    27→      },
+    28→    });
+    29→
+    30→    return NextResponse.json({
+    31→      success: true,
+    32→      id: subscriber.id,
+    33→      message: 'You have been subscribed to the Artemis newsletter.',
+    34→    });
+    35→  } catch (error) {
+    36→    console.error('Subscribe error:', error);
+    37→    return NextResponse.json(
+    38→      { error: 'Failed to subscribe' },
+    39→      { status: 500 }
+    40→    );
+    41→  }
+    42→}
+    43→
+    44→// GET /api/subscribe — list subscribers (admin only)
+    45→export async function GET(request: Request) {
+    46→  const isAuth = await verifyAdminAuth(request);
+    47→  if (!isAuth) {
+    48→    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    49→  }
+    50→
+    51→  try {
+    52→    const subscribers = await db.subscriber.findMany({
+    53→      where: { active: true },
+    54→      orderBy: { createdAt: 'desc' },
+    55→      take: 200,
+    56→    });
+    57→    return NextResponse.json({ subscribers });
+    58→  } catch (error) {
+    59→    console.error('Subscriber fetch error:', error);
+    60→    return NextResponse.json(
+    61→      { error: 'Failed to fetch subscribers' },
+    62→      { status: 500 }
+    63→    );
+    64→  }
+    65→}
+    66→
+    67→=== src/app/api/contact/route.ts ===
+    68→import { NextResponse } from 'next/server';
+    69→import { db } from '@/lib/db';
+    70→import { verifyAdminAuth } from '@/lib/admin-auth';
+    71→
+    72→// POST /api/contact — submit a contact/enquiry message
+    73→export async function POST(request: Request) {
+    74→  try {
+    75→    const body = await request.json();
+    76→    const { name, email, subject, area, message } = body;
+    77→
+    78→    if (!name || !email || !message) {
+    79→      return NextResponse.json(
+    80→        { error: 'Name, email, and message are required' },
+    81→        { status: 400 }
+    82→      );
+    83→    }
+    84→
+    85→    const contact = await db.contactMessage.create({
+    86→      data: {
+    87→        name,
+    88→        email,
+    89→        subject: subject || null,
+    90→        area: area || null,
+    91→        message,
+    92→      },
+    93→    });
+    94→
+    95→    return NextResponse.json({
+    96→      success: true,
+    97→      id: contact.id,
+    98→      message: 'Thank you for your enquiry. We will get back to you shortly.',
+    99→    });
+   100→  } catch (error) {
+   101→    console.error('Contact form error:', error);
+   102→    return NextResponse.json(
+   103→      { error: 'Failed to submit message' },
+   104→      { status: 500 }
+   105→    );
+   106→  }
+   107→}
+   108→
+   109→// GET /api/contact — list contact messages (admin only)
+   110→export async function GET(request: Request) {
+   111→  const isAuth = await verifyAdminAuth(request);
+   112→  if (!isAuth) {
+   113→    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+   114→  }
+   115→
+   116→  try {
+   117→    const messages = await db.contactMessage.findMany({
+   118→      orderBy: { createdAt: 'desc' },
+   119→      take: 100,
+   120→    });
+   121→    return NextResponse.json({ messages });
+   122→  } catch (error) {
+   123→    console.error('Contact fetch error:', error);
+   124→    return NextResponse.json(
+   125→      { error: 'Failed to fetch messages' },
+   126→      { status: 500 }
+   127→    );
+   128→  }
+   129→}
+   130→
+   131→// PATCH /api/contact — mark a message as read (admin only)
+   132→export async function PATCH(request: Request) {
+   133→  const isAuth = await verifyAdminAuth(request);
+   134→  if (!isAuth) {
+   135→    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+   136→  }
+   137→
+   138→  try {
+   139→    const body = await request.json();
+   140→    const { id, read } = body;
+   141→
+   142→    if (!id) {
+   143→      return NextResponse.json(
+   144→        { error: 'Message ID is required' },
+   145→        { status: 400 }
+   146→      );
+   147→    }
+   148→
+   149→    const updated = await db.contactMessage.update({
+   150→      where: { id },
+   151→      data: { read: read !== undefined ? read : true },
+   152→    });
+   153→
+   154→    return NextResponse.json({ success: true, message: updated });
+   155→  } catch (error) {
+   156→    console.error('Contact update error:', error);
+   157→    return NextResponse.json(
+   158→      { error: 'Failed to update message' },
+   159→      { status: 500 }
+   160→    );
+   161→  }
+   162→}
+   163→
+   164→=== src/app/api/campaign/route.ts ===
+   165→import { NextResponse } from 'next/server';
+   166→
+   167→// GET /api/campaign — fetch the active founding campaign with milestones, perks, events
+   168→export async function GET() {
+   169→  try {
+   170→    // Return campaign data — in production this would come from the database
+   171→    // For now, using rich static data that can be seeded later
+   172→    const campaign = {
+   173→      id: 'founding-campaign',
+   174→      slug: 'founding-campaign',
+   175→      title: 'Building the Future of Knowledge',
+   176→      subtitle: 'The Artemis Founding Campaign',
+   177→      goalAmount: 100000000,
+   178→      raisedAmount: 2100000,
+   179→      donorCount: 342,
+   180→      currency: 'USD',
+   181→      phase: 'public_launch',
+   182→      milestones: [
+   183→        { id: 'm1', title: 'Digital Foundation', targetAmount: 5000000, isReached: true, description: 'Core platform, secure infrastructure, and global access layer — deployed and operational across 3 continents.' },
+   184→        { id: 'm2', title: 'First Residential Hub', targetAmount: 15000000, isReached: false, description: 'Geneva — the first physical node with residential colleges, faculty offices, and a dedicated research wing.' },
+   185→        { id: 'm3', title: 'Inaugural Cohort', targetAmount: 30000000, isReached: false, description: 'Full scholarship fund for 500 students across multiple nodes with dedicated faculty and mentorship networks.' },
+   186→        { id: 'm4', title: 'Research Endowment', targetAmount: 55000000, isReached: false, description: 'Perpetual endowment for ten flagship research institutes with 20-year operational runway.' },
+   187→        { id: 'm5', title: 'Ten-Node Network', targetAmount: 75000000, isReached: false, description: 'Ten nodes on six continents — a planetary university with borderless access to knowledge.' },
+   188→        { id: 'm6', title: 'Global Scale', targetAmount: 100000000, isReached: false, description: 'Complete the founding campaign — 2,000 students, 200 faculty, and perpetual independence for centuries.' },
+   189→      ],
+   190→      perks: [
+   191→        { id: 'p1', title: 'Founding Cipher', description: 'A unique cryptographic token permanently recording your contribution on the Artemis ledger. Your name, encrypted, becomes part of the university\'s foundation.', minAmount: 25, category: 'digital', icon: 'Hash' },
+   192→        { id: 'p2', title: 'The Artemis Dispatch', description: 'Quarterly intelligence brief from the Chancellor — exclusive essays, research previews, and strategic updates from inside the founding.', minAmount: 100, category: 'digital', icon: 'Mail' },
+   193→        { id: 'p3', title: 'Node Access Pass', description: 'Priority invitation to visit any Artemis node worldwide during the founding year. Experience the spaces, meet the community, witness the build.', minAmount: 500, category: 'experience', icon: 'Compass' },
+   194→        { id: 'p4', title: 'Founders\' Book', description: 'A limited-edition leather-bound volume documenting the founding of Artemis — with your name inscribed in the founding roll.', minAmount: 1000, category: 'physical', icon: 'BookOpen' },
+   195→        { id: 'p5', title: 'Scholarship Patron', description: 'Fully fund a named micro-scholarship for one student. You choose the focus. They carry your name through their Artemis journey.', minAmount: 5000, category: 'naming', icon: 'GraduationCap' },
+   196→        { id: 'p6', title: 'Lab Dedication', description: 'Name a research lab within a node. A permanent plaque, a dedication ceremony, and annual reports from the researchers who work there.', minAmount: 25000, category: 'naming', icon: 'FlaskConical' },
+   197→        { id: 'p7', title: 'Commons Naming', description: 'Name one of the 12 Living Commons. Your name becomes part of daily life at Artemis — spoken by every resident, written on every map.', minAmount: 100000, category: 'naming', icon: 'Home' },
+   198→        { id: 'p8', title: 'Node Patron', description: 'Become the patron of an entire Artemis node. The building bears your name. The community carries your legacy. A seat on the Founders\' Council.', minAmount: 1000000, category: 'naming', icon: 'Building2' },
+   199→      ],
+   200→      events: [
+   201→        { id: 'e1', title: 'The Founding Convocation', eventType: 'gala', description: 'An evening of vision and commitment. Meet the Chancellor, the founding faculty, and fellow patrons at the Geneva node.', date: '2026-09-15', location: 'Geneva, Switzerland', isVirtual: false, capacity: 200, registered: 87, ticketPrice: 500 },
+   202→        { id: 'e2', title: 'Inside the Build: Virtual Site Tour', eventType: 'webinar', description: 'Walk through the digital and physical architecture of Artemis with the design team. Live Q&A with founding engineers.', date: '2026-07-22', location: 'Online', isVirtual: true, capacity: 1000, registered: 432, ticketPrice: 0 },
+   203→        { id: 'e3', title: 'Double Impact Day', eventType: 'matching_day', description: 'Every donation made today is matched dollar-for-dollar by the Catalyst Foundation. Your $1 becomes $2. 24 hours only.', date: '2026-10-01', location: 'Global', isVirtual: true, capacity: null, registered: 0, ticketPrice: null },
+   204→        { id: 'e4', title: 'The Artemis Auction', eventType: 'auction', description: 'Bid on naming rights, original artwork, and exclusive experiences — all proceeds fund the Global Scholars Fund.', date: '2026-11-20', location: 'London, UK', isVirtual: false, capacity: 150, registered: 34, ticketPrice: 250 },
+   205→        { id: 'e5', title: 'Hack the Future: 48-Hour Build', eventType: 'hackathon', description: 'A founding-weekend hackathon where donors and students co-build tools for the Artemis platform. Prizes. Glory. Pizza.', date: '2026-08-08', location: 'San Francisco, USA', isVirtual: false, capacity: 100, registered: 61, ticketPrice: 0 },
+   206→        { id: 'e6', title: 'Spring Benefactor Dinner', eventType: 'gala', description: 'An intimate dinner for major donors at the Valletta node. Michelin-starred cuisine, Mediterranean views, and the future of knowledge.', date: '2027-03-14', location: 'Valletta, Malta', isVirtual: false, capacity: 80, registered: 22, ticketPrice: 1000 },
+   207→      ],
+   208→    };
+   209→
+   210→    return NextResponse.json(campaign);
+   211→  } catch (error) {
+   212→    console.error('Campaign fetch error:', error);
+   213→    return NextResponse.json({ error: 'Failed to fetch campaign' }, { status: 500 });
+   214→  }
+   215→}
+   216→
+   217→=== src/app/api/donations/route.ts ===
+   218→import { NextResponse } from 'next/server';
+   219→import { db } from '@/lib/db';
+   220→import { verifyAdminAuth } from '@/lib/admin-auth';
+   221→
+   222→// POST /api/donations — create a new donation record (persisted to SQLite via Prisma)
+   223→export async function POST(request: Request) {
+   224→  try {
+   225→    const body = await request.json();
+   226→    const {
+   227→      donorEmail,
+   228→      donorName,
+   229→      donorAnonymous,
+   230→      amount,
+   231→      currency = 'USD',
+   232→      paymentMethod = 'card',
+   233→      perkId,
+   234→      isRecurring = false,
+   235→      recurringFreq,
+   236→      message,
+   237→    } = body;
+   238→
+   239→    // Validate required fields
+   240→    if (!donorEmail || !amount || amount <= 0) {
+   241→      return NextResponse.json(
+   242→        { error: 'Email and a positive amount are required' },
+   243→        { status: 400 }
+   244→      );
+   245→    }
+   246→
+   247→    if (amount > 10000000) {
+   248→      return NextResponse.json(
+   249→        { error: 'Amount exceeds maximum single donation limit' },
+   250→        { status: 400 }
+   251→      );
+   252→    }
+   253→
+   254→    // Generate a transaction reference
+   255→    const transactionRef = `ART-${Date.now()}-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
+   256→
+   257→    // Persist to database via Prisma
+   258→    const donation = await db.donation.create({
+   259→      data: {
+   260→        donorEmail,
+   261→        donorName: donorAnonymous ? null : donorName,
+   262→        donorAnonymous: donorAnonymous || false,
+   263→        amount,
+   264→        currency,
+   265→        paymentMethod,
+   266→        paymentStatus: 'pending', // Starts as pending until payment gateway confirms
+   267→        transactionRef,
+   268→        perkId: perkId || null,
+   269→        isRecurring,
+   270→        recurringFreq: isRecurring ? recurringFreq : null,
+   271→        message: message || null,
+   272→      },
+   273→    });
+   274→
+   275→    return NextResponse.json({
+   276→      success: true,
+   277→      donation: {
+   278→        id: donation.id,
+   279→        donorEmail: donation.donorEmail,
+   280→        donorName: donation.donorName,
+   281→        amount: donation.amount,
+   282→        currency: donation.currency,
+   283→        paymentMethod: donation.paymentMethod,
+   284→        paymentStatus: donation.paymentStatus,
+   285→        transactionRef: donation.transactionRef,
+   286→        isRecurring: donation.isRecurring,
+   287→        recurringFreq: donation.recurringFreq,
+   288→        createdAt: donation.createdAt,
+   289→      },
+   290→      message: isRecurring
+   291→        ? `Thank you! Your ${recurringFreq} recurring donation of ${currency === 'GBP' ? '£' : '$'}${amount.toLocaleString()} has been recorded.`
+   292→        : `Thank you for your generous donation of ${currency === 'GBP' ? '£' : '$'}${amount.toLocaleString()}!`,
+   293→    });
+   294→  } catch (error) {
+   295→    console.error('Donation creation error:', error);
+   296→    return NextResponse.json(
+   297→      { error: 'Failed to process donation' },
+   298→      { status: 500 }
+   299→    );
+   300→  }
+   301→}
+   302→
+   303→// GET /api/donations — fetch recent public donations for the donor wall
+   304→// For the admin dashboard, requires auth. For the public donor wall, returns limited data.
+   305→export async function GET(request: Request) {
+   306→  const isAuth = await verifyAdminAuth(request);
+   307→
+   308→  try {
+   309→    if (isAuth) {
+   310→      // Admin: return ALL donations with full details
+   311→      const allDonations = await db.donation.findMany({
+   312→        orderBy: { createdAt: 'desc' },
+   313→        take: 100,
+   314→      });
+   315→      return NextResponse.json({ donors: allDonations });
+   316→    }
+   317→
+   318→    // Public: return limited, non-anonymous donor wall data
+   319→    const dbDonors = await db.donation.findMany({
+   320→      where: {
+   321→        donorAnonymous: false,
+   322→        paymentStatus: { in: ['pending', 'completed'] },
+   323→      },
+   324→      orderBy: { createdAt: 'desc' },
+   325→      take: 20,
+   326→    });
+   327→
+   328→    // If we have real donors in the DB, return them
+   329→    if (dbDonors.length > 0) {
+   330→      const donors = dbDonors.map(d => ({
+   331→        name: d.donorName || 'Anonymous',
+   332→        amount: d.amount,
+   333→        date: d.createdAt.toISOString().split('T')[0],
+   334→        message: d.message,
+   335→        tier: d.amount >= 10000000 ? 'founders' : d.amount >= 5000000 ? 'guardians' : d.amount >= 1000000 ? 'builders' : d.amount >= 100000 ? 'fellows' : d.amount >= 10000 ? 'friends' : 'the99',
+   336→      }));
+   337→      return NextResponse.json({ donors });
+   338→    }
+   339→
+   340→    // Fallback: return sample donor wall data when DB is empty
+   341→    const recentDonors = [
+   342→      { name: 'Dr. Elena Vasquez', amount: 50000, date: '2026-05-10', message: 'For the students who will change everything.', tier: 'founders' },
+   343→      { name: 'James & Priya Okonkwo', amount: 25000, date: '2026-05-08', message: null, tier: 'guild' },
+   344→      { name: 'Anonymous Patron', amount: 100000, date: '2026-05-07', message: 'Because knowledge should have no borders.', tier: 'chancellors' },
+   345→      { name: 'The Al-Rashidi Family', amount: 15000, date: '2026-05-05', message: 'In memory of Fatima Al-Rashidi, who believed in education for all.', tier: 'guild' },
+   346→      { name: 'Chen Wei Labs', amount: 200000, date: '2026-05-04', message: null, tier: 'founders' },
+   347→      { name: 'Maria Santos', amount: 500, date: '2026-05-03', message: 'Proud to be part of the founding.', tier: 'community' },
+   348→      { name: 'Takeshi Yamamoto', amount: 1000, date: '2026-05-02', message: null, tier: 'community' },
+   349→      { name: 'The Nordgren Foundation', amount: 500000, date: '2026-04-28', message: 'Investing in the infrastructure of imagination.', tier: 'chancellors' },
+   350→      { name: 'Amara Osei', amount: 100, date: '2026-04-27', message: 'Every great university starts with a first believer.', tier: 'community' },
+   351→      { name: 'Liu Fang Foundation', amount: 75000, date: '2026-04-25', message: null, tier: 'guild' },
+   352→      { name: 'Anonymous', amount: 5000, date: '2026-04-23', message: null, tier: 'community' },
+   353→      { name: 'Dr. Robert & Sarah Kimani', amount: 10000, date: '2026-04-22', message: 'For the next generation of African scholars.', tier: 'guild' },
+   354→    ];
+   355→
+   356→    return NextResponse.json({ donors: recentDonors });
+   357→  } catch (error) {
+   358→    console.error('Donation fetch error:', error);
+   359→    return NextResponse.json(
+   360→      { error: 'Failed to fetch donations' },
+   361→      { status: 500 }
+   362→    );
+   363→  }
+   364→}
+   365→
+   366→=== src/app/api/applications/route.ts ===
+   367→import { NextResponse } from 'next/server';
+   368→import { db } from '@/lib/db';
+   369→import { verifyAdminAuth } from '@/lib/admin-auth';
+   370→
+   371→// POST /api/applications — submit an application (persisted to SQLite via Prisma)
+   372→export async function POST(request: Request) {
+   373→  try {
+   374→    const body = await request.json();
+   375→
+   376→    // Validate required fields
+   377→    if (!body.firstName || !body.lastName || !body.email) {
+   378→      return NextResponse.json(
+   379→        { error: 'First name, last name, and email are required' },
+   380→        { status: 400 }
+   381→      );
+   382→    }
+   383→
+   384→    // Serialize accomplishments array to JSON string for storage
+   385→    const accomplishmentsJson = body.accomplishments
+   386→      ? JSON.stringify(body.accomplishments)
+   387→      : null;
+   388→
+   389→    // Persist to database via Prisma
+   390→    const application = await db.application.create({
+   391→      data: {
+   392→        firstName: body.firstName,
+   393→        lastName: body.lastName,
+   394→        email: body.email,
+   395→        phone: body.phone || null,
+   396→        birthdate: body.birthdate || null,
+   397→        gender: body.gender || null,
+   398→        pronoun: body.pronoun || null,
+   399→        citizenship: body.citizenship || null,
+   400→        dualCitizenship: body.dualCitizenship || null,
+   401→        address: body.address || null,
+   402→        city: body.city || null,
+   403→        state: body.state || null,
+   404→        postalCode: body.postalCode || null,
+   405→        country: body.country || null,
+   406→        howHeard: body.howHeard || null,
+   407→        applicationCycle: body.applicationCycle || null,
+   408→        concentration: body.concentration || null,
+   409→        currentlyEnrolled: body.currentlyEnrolled || null,
+   410→        schoolName: body.schoolName || null,
+   411→        schoolCountry: body.schoolCountry || null,
+   412→        schoolCity: body.schoolCity || null,
+   413→        enrollmentStart: body.enrollmentStart || null,
+   414→        enrollmentEnd: body.enrollmentEnd || null,
+   415→        gradingScale: body.gradingScale || null,
+   416→        gpa: body.gpa || null,
+   417→        maxGpa: body.maxGpa || null,
+   418→        satMath: body.satMath || null,
+   419→        satReading: body.satReading || null,
+   420→        actScore: body.actScore || null,
+   421→        isTestOptional: body.isTestOptional || false,
+   422→        accomplishments: accomplishmentsJson,
+   423→        personalStatement: body.personalStatement || null,
+   424→        missionStatement: body.missionStatement || null,
+   425→        applyingForAid: body.applyingForAid || null,
+   426→        householdIncome: body.householdIncome || null,
+   427→        dependents: body.dependents || null,
+   428→      },
+   429→    });
+   430→
+   431→    return NextResponse.json({
+   432→      success: true,
+   433→      applicationId: application.id,
+   434→      message: 'Application submitted successfully. We will review your application and get back to you.',
+   435→    });
+   436→  } catch (error) {
+   437→    console.error('Application submission error:', error);
+   438→    return NextResponse.json(
+   439→      { error: 'Failed to submit application' },
+   440→      { status: 500 }
+   441→    );
+   442→  }
+   443→}
+   444→
+   445→// GET /api/applications — list all applications (admin only)
+   446→export async function GET(request: Request) {
+   447→  const isAuth = await verifyAdminAuth(request);
+   448→  if (!isAuth) {
+   449→    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+   450→  }
+   451→
+   452→  try {
+   453→    const applications = await db.application.findMany({
+   454→      orderBy: { createdAt: 'desc' },
+   455→      take: 50,
+   456→    });
+   457→
+   458→    // Parse accomplishments JSON back for each record
+   459→    const formatted = applications.map(app => ({
+   460→      ...app,
+   461→      accomplishments: app.accomplishments ? JSON.parse(app.accomplishments) : null,
+   462→    }));
+   463→
+   464→    return NextResponse.json({ applications: formatted });
+   465→  } catch (error) {
+   466→    console.error('Application fetch error:', error);
+   467→    return NextResponse.json(
+   468→      { error: 'Failed to fetch applications' },
+   469→      { status: 500 }
+   470→    );
+   471→  }
+   472→}
+   473→
+   474→=== src/app/api/admin/route.ts ===
+   475→import { NextResponse } from 'next/server';
+   476→import { db } from '@/lib/db';
+   477→import { verifyAdminAuth } from '@/lib/admin-auth';
+   478→
+   479→// GET /api/admin — aggregate stats for the admin dashboard
+   480→export async function GET(request: Request) {
+   481→  // Require admin authentication
+   482→  const isAuth = await verifyAdminAuth(request);
+   483→  if (!isAuth) {
+   484→    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+   485→  }
+   486→
+   487→  try {
+   488→    const [
+   489→      totalDonations,
+   490→      totalApplications,
+   491→      totalContactMessages,
+   492→      totalSubscribers,
+   493→      recentDonations,
+   494→      recentApplications,
+   495→      recentContacts,
+   496→      unreadMessages,
+   497→      donationsByStatus,
+   498→      totalRaised,
+   499→    ] = await Promise.all([
+   500→      db.donation.count(),
+   501→      db.application.count(),
+   502→      db.contactMessage.count(),
+   503→      db.subscriber.count({ where: { active: true } }),
+   504→      db.donation.findMany({ orderBy: { createdAt: 'desc' }, take: 10 }),
+   505→      db.application.findMany({ orderBy: { createdAt: 'desc' }, take: 10 }),
+   506→      db.contactMessage.findMany({ orderBy: { createdAt: 'desc' }, take: 10 }),
+   507→      db.contactMessage.count({ where: { read: false } }),
+   508→      db.donation.groupBy({ by: ['paymentStatus'], _count: true }),
+   509→      db.donation.aggregate({ _sum: { amount: true }, where: { paymentStatus: 'completed' } }),
+   510→    ]);
+   511→
+   512→    return NextResponse.json({
+   513→      stats: {
+   514→        totalDonations,
+   515→        totalApplications,
+   516→        totalContactMessages,
+   517→        totalSubscribers,
+   518→        unreadMessages,
+   519→        totalRaised: totalRaised._sum.amount || 0,
+   520→      },
+   521→      donationsByStatus: donationsByStatus.reduce((acc: Record<string, number>, cur) => {
+   522→        acc[cur.paymentStatus] = cur._count;
+   523→        return acc;
+   524→      }, {}),
+   525→      recentDonations,
+   526→      recentApplications,
+   527→      recentContacts,
+   528→    });
+   529→  } catch (error) {
+   530→    console.error('Admin stats error:', error);
+   531→    return NextResponse.json(
+   532→      { error: 'Failed to fetch admin data' },
+   533→      { status: 500 }
+   534→    );
+   535→  }
+   536→}
+   537→
+   538→=== src/app/api/admin/login/route.ts ===
+   539→import { NextResponse } from 'next/server';
+   540→
+   541→const MAX_LOGIN_ATTEMPTS = 10;
+   542→const LOCKOUT_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
+   543→
+   544→// Simple in-memory rate limiter for login attempts
+   545→// In production, use Redis or a proper rate-limiting service
+   546→const loginAttempts = new Map<string, { count: number; firstAttempt: number }>();
+   547→
+   548→function isRateLimited(ip: string): boolean {
+   549→  const now = Date.now();
+   550→  const entry = loginAttempts.get(ip);
+   551→
+   552→  if (!entry) return false;
+   553→
+   554→  // Reset if outside the lockout window
+   555→  if (now - entry.firstAttempt > LOCKOUT_WINDOW_MS) {
+   556→    loginAttempts.delete(ip);
+   557→    return false;
+   558→  }
+   559→
+   560→  return entry.count >= MAX_LOGIN_ATTEMPTS;
+   561→}
+   562→
+   563→function recordAttempt(ip: string) {
+   564→  const now = Date.now();
+   565→  const entry = loginAttempts.get(ip);
+   566→
+   567→  if (!entry || now - entry.firstAttempt > LOCKOUT_WINDOW_MS) {
+   568→    loginAttempts.set(ip, { count: 1, firstAttempt: now });
+   569→  } else {
+   570→    entry.count++;
+   571→  }
+   572→}
+   573→
+   574→// Clean up old entries periodically (every 5 minutes)
+   575→if (typeof globalThis !== 'undefined' && !(globalThis as any).__loginCleanupInterval) {
+   576→  (globalThis as any).__loginCleanupInterval = setInterval(() => {
+   577→    const now = Date.now();
+   578→    for (const [ip, entry] of loginAttempts.entries()) {
+   579→      if (now - entry.firstAttempt > LOCKOUT_WINDOW_MS) {
+   580→        loginAttempts.delete(ip);
+   581→      }
+   582→    }
+   583→  }, 5 * 60 * 1000);
+   584→}
+   585→
+   586→// Edge-compatible hash function using Web Crypto API
+   587→async function sha256Hash(input: string): Promise<string> {
+   588→  const encoder = new TextEncoder();
+   589→  const data = encoder.encode(input);
+   590→  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+   591→  const hashArray = Array.from(new Uint8Array(hashBuffer));
+   592→  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('').slice(0, 22); // ~16 bytes base64url equivalent
+   593→}
+   594→
+   595→function randomHex(bytes: number): string {
+   596→  const array = new Uint8Array(bytes);
+   597→  crypto.getRandomValues(array);
+   598→  return Array.from(array).map(b => b.toString(16).padStart(2, '0')).join('');
+   599→}
+   600→
+   601→// POST /api/admin/login — authenticate with admin password
+   602→export async function POST(request: Request) {
+   603→  try {
+   604→    // Rate limiting
+   605→    const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
+   606→    if (isRateLimited(ip)) {
+   607→      return NextResponse.json(
+   608→        { error: 'Too many login attempts. Please try again later.' },
+   609→        { status: 429 }
+   610→      );
+   611→    }
+   612→
+   613→    const { password } = await request.json();
+   614→    const adminPassword = process.env.ADMIN_PASSWORD;
+   615→
+   616→    // If no ADMIN_PASSWORD is set, deny access with a helpful message
+   617→    if (!adminPassword) {
+   618→      return NextResponse.json(
+   619→        { error: 'Admin access not configured. Set ADMIN_PASSWORD in your .env file.' },
+   620→        { status: 403 }
+   621→      );
+   622→    }
+   623→
+   624→    if (password !== adminPassword) {
+   625→      recordAttempt(ip);
+   626→      return NextResponse.json(
+   627→        { error: 'Invalid password' },
+   628→        { status: 401 }
+   629→      );
+   630→    }
+   631→
+   632→    // Generate a session token with cryptographic hash
+   633→    const timestamp = Date.now().toString();
+   634→    const random = randomHex(8); // Use crypto.getRandomValues instead of Math.random
+   635→    const hash = await sha256Hash(adminPassword + timestamp);
+   636→    const token = `adm_${timestamp}_${random}_${hash}`;
+   637→
+   638→    const isProduction = process.env.NODE_ENV === 'production';
+   639→
+   640→    const response = NextResponse.json({
+   641→      success: true,
+   642→      message: 'Authenticated',
+   643→      token, // Return token so client can store in localStorage and send via Authorization header
+   644→    });
+   645→
+   646→    // Set HttpOnly cookie — not accessible via JavaScript, only by the server
+   647→    response.cookies.set('artemis_admin_token', token, {
+   648→      httpOnly: true,
+   649→      secure: isProduction, // Only require HTTPS in production
+   650→      sameSite: 'lax',
+   651→      path: '/',
+   652→      maxAge: 60 * 60 * 24, // 24 hours
+   653→    });
+   654→
+   655→    return response;
+   656→  } catch {
+   657→    return NextResponse.json(
+   658→      { error: 'Invalid request' },
+   659→      { status: 400 }
+   660→    );
+   661→  }
+   662→}
+   663→
+   664→// DELETE /api/admin/login — logout
+   665→export async function DELETE() {
+   666→  const isProduction = process.env.NODE_ENV === 'production';
+   667→  const response = NextResponse.json({ success: true, message: 'Logged out' });
+   668→  response.cookies.set('artemis_admin_token', '', {
+   669→    httpOnly: true,
+   670→    secure: isProduction,
+   671→    sameSite: 'lax',
+   672→    path: '/',
+   673→    maxAge: 0,
+   674→  });
+   675→  return response;
+   676→}
+   677→
+   678→=== src/app/api/paypal/config/route.ts ===
+   679→import { NextResponse } from 'next/server';
+   680→
+   681→export async function GET() {
+   682→  const paypalEmail = process.env.PAYPAL_EMAIL;
+   683→  return NextResponse.json({
+   684→    configured: !!paypalEmail,
+   685→    email: paypalEmail || null,
+   686→  });
+   687→}
+   688→
+   689→=== src/app/api/stripe/checkout/route.ts ===
+   690→import { NextResponse } from 'next/server';
+   691→import { db } from '@/lib/db';
+   692→
+   693→// POST /api/stripe/checkout — process a donation
+   694→// Supports 4 modes (checked in order):
+   695→//   1. Stripe (STRIPE_SECRET_KEY set) → real Stripe checkout
+   696→//   2. PayPal Donate (PAYPAL_EMAIL set) → redirect to PayPal Donate page
+   697→//   3. External payment link (DONATION_LINK set) → redirect to PayPal/BMAC/Ko-fi etc.
+   698→//   4. No gateway → record as pending for manual follow-up
+   699→
+   700→export async function POST(request: Request) {
+   701→  try {
+   702→    const body = await request.json();
+   703→    const {
+   704→      donorEmail,
+   705→      donorName,
+   706→      amount,
+   707→      currency = 'USD',
+   708→      isRecurring = false,
+   709→      recurringFreq = 'monthly',
+   710→      perkId,
+   711→      message,
+   712→      isAnonymous = false,
+   713→      paymentMethod = 'card',
+   714→    } = body;
+   715→
+   716→    if (!donorEmail || !amount || amount <= 0) {
+   717→      return NextResponse.json(
+   718→        { error: 'Email and a positive amount are required' },
+   719→        { status: 400 }
+   720→      );
+   721→    }
+   722→
+   723→    const transactionRef = `ART-${Date.now()}-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
+   724→    const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+   725→    const paypalEmail = process.env.PAYPAL_EMAIL;
+   726→    const donationLink = process.env.DONATION_LINK;
+   727→
+   728→    // ─── MODE 1: REAL STRIPE INTEGRATION ───
+   729→    if (stripeSecretKey) {
+   730→      const Stripe = (await import('stripe')).default;
+   731→      const stripe = new Stripe(stripeSecretKey, { apiVersion: '2025-04-30.basil' });
+   732→
+   733→      const session = await stripe.checkout.sessions.create({
+   734→        mode: isRecurring ? 'subscription' : 'payment',
+   735→        payment_method_types: ['card'],
+   736→        customer_email: donorEmail,
+   737→        line_items: [
+   738→          {
+   739→            price_data: {
+   740→              currency: currency.toLowerCase(),
+   741→              product_data: {
+   742→                name: isRecurring
+   743→                  ? `Artemis ${recurringFreq} donation`
+   744→                  : 'Artemis Donation',
+   745→                description: isRecurring
+   746→                  ? `Recurring ${recurringFreq} donation to the University of Artemis Founding Campaign`
+   747→                  : 'One-time donation to the University of Artemis Founding Campaign',
+   748→              },
+   749→              unit_amount: Math.round(amount * 100),
+   750→              ...(isRecurring ? { recurring: { interval: recurringFreq === 'yearly' ? 'year' : 'month' } } : {}),
+   751→            },
+   752→            quantity: 1,
+   753→          },
+   754→        ],
+   755→        success_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}?donation=success&ref=${transactionRef}`,
+   756→        cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}?donation=cancelled`,
+   757→        metadata: {
+   758→          donorName: donorName || '',
+   759→          transactionRef,
+   760→          perkId: perkId || '',
+   761→          isAnonymous: String(isAnonymous),
+   762→          message: message || '',
+   763→        },
+   764→      });
+   765→
+   766→      await db.donation.create({
+   767→        data: {
+   768→          donorEmail,
+   769→          donorName: isAnonymous ? null : donorName,
+   770→          donorAnonymous: isAnonymous,
+   771→          amount,
+   772→          currency,
+   773→          paymentMethod: 'card',
+   774→          paymentStatus: 'pending',
+   775→          transactionRef,
+   776→          stripeSessionId: session.id,
+   777→          perkId: perkId || null,
+   778→          isRecurring,
+   779→          recurringFreq: isRecurring ? recurringFreq : null,
+   780→          message: message || null,
+   781→        },
+   782→      });
+   783→
+   784→      return NextResponse.json({
+   785→        success: true,
+   786→        checkoutUrl: session.url,
+   787→        transactionRef,
+   788→      });
+   789→    }
+   790→
+   791→    // ─── MODE 2: PAYPAL DONATE ───
+   792→    if (paypalEmail) {
+   793→      await db.donation.create({
+   794→        data: {
+   795→          donorEmail,
+   796→          donorName: isAnonymous ? null : donorName,
+   797→          donorAnonymous: isAnonymous,
+   798→          amount,
+   799→          currency,
+   800→          paymentMethod: 'paypal',
+   801→          paymentStatus: 'pending',
+   802→          transactionRef,
+   803→          perkId: perkId || null,
+   804→          isRecurring,
+   805→          recurringFreq: isRecurring ? recurringFreq : null,
+   806→          message: message || null,
+   807→        },
+   808→      });
+   809→
+   810→      const paypalDonateUrl = `https://www.paypal.com/donate/?business=${encodeURIComponent(paypalEmail)}&amount=${amount}&currency_code=${currency}`;
+   811→
+   812→      return NextResponse.json({
+   813→        success: true,
+   814→        checkoutUrl: paypalDonateUrl,
+   815→        transactionRef,
+   816→        message: 'Your pledge has been recorded! You\'ll now be redirected to PayPal to complete your donation.',
+   817→      });
+   818→    }
+   819→
+   820→    // ─── MODE 3: EXTERNAL PAYMENT LINK (PayPal.me, Buy Me a Coffee, Ko-fi, etc.) ───
+   821→    if (donationLink) {
+   822→      await db.donation.create({
+   823→        data: {
+   824→          donorEmail,
+   825→          donorName: isAnonymous ? null : donorName,
+   826→          donorAnonymous: isAnonymous,
+   827→          amount,
+   828→          currency,
+   829→          paymentMethod: paymentMethod || 'link',
+   830→          paymentStatus: 'pending',
+   831→          transactionRef,
+   832→          perkId: perkId || null,
+   833→          isRecurring,
+   834→          recurringFreq: isRecurring ? recurringFreq : null,
+   835→          message: message || null,
+   836→        },
+   837→      });
+   838→
+   839→      // Build the redirect URL — append amount if the platform supports it
+   840→      let redirectUrl = donationLink;
+   841→      // PayPal.me supports amounts: paypal.me/username/100
+   842→      if (donationLink.includes('paypal.me') && amount) {
+   843→        redirectUrl = `${donationLink.replace(/\/$/, '')}/${amount}${currency === 'GBP' ? 'GBP' : 'USD'}`;
+   844→      }
+   845→      // Buy Me a Coffee doesn't support URL amounts, just redirect
+   846→      // Ko-fi doesn't support URL amounts either
+   847→
+   848→      return NextResponse.json({
+   849→        success: true,
+   850→        checkoutUrl: redirectUrl,
+   851→        transactionRef,
+   852→        message: 'Your pledge has been recorded! You\'ll now be redirected to complete your payment.',
+   853→      });
+   854→    }
+   855→
+   856→    // ─── MODE 4: NO GATEWAY — record as pending ───
+   857→    const donation = await db.donation.create({
+   858→      data: {
+   859→        donorEmail,
+   860→        donorName: isAnonymous ? null : donorName,
+   861→        donorAnonymous: isAnonymous,
+   862→        amount,
+   863→        currency,
+   864→        paymentMethod: paymentMethod || 'card',
+   865→        paymentStatus: 'pending',
+   866→        transactionRef,
+   867→        perkId: perkId || null,
+   868→        isRecurring,
+   869→        recurringFreq: isRecurring ? recurringFreq : null,
+   870→        message: message || null,
+   871→      },
+   872→    });
+   873→
+   874→    return NextResponse.json({
+   875→      success: true,
+   876→      checkoutUrl: null,
+   877→      transactionRef,
+   878→      donationId: donation.id,
+   879→      message: 'Thank you! Your donation has been recorded. We will follow up with payment details.',
+   880→    });
+   881→  } catch (error) {
+   882→    console.error('Checkout error:', error);
+   883→    return NextResponse.json(
+   884→      { error: 'Failed to process donation' },
+   885→      { status: 500 }
+   886→    );
+   887→  }
+   888→}
+   889→
+   890→=== src/app/api/stripe/webhook/route.ts ===
+   891→import { NextResponse } from 'next/server';
+   892→import { db } from '@/lib/db';
+   893→
+   894→// POST /api/stripe/webhook — receive Stripe webhook events
+   895→// When Stripe confirms a payment, it sends an event here.
+   896→// This updates the donation status from "pending" to "completed".
+   897→
+   898→export async function POST(request: Request) {
+   899→  try {
+   900→    const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+   901→    const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+   902→
+   903→    if (!stripeSecretKey || !webhookSecret) {
+   904→      // No Stripe configured — acknowledge but do nothing
+   905→      return NextResponse.json({ received: true, note: 'Stripe not configured' });
+   906→    }
+   907→
+   908→    const body = await request.text();
+   909→    const sig = request.headers.get('stripe-signature');
+   910→
+   911→    const Stripe = (await import('stripe')).default;
+   912→    const stripe = new Stripe(stripeSecretKey, { apiVersion: '2025-04-30.basil' });
+   913→
+   914→    let event;
+   915→    try {
+   916→      event = stripe.webhooks.constructEvent(body, sig!, webhookSecret);
+   917→    } catch {
+   918→      return NextResponse.json({ error: 'Invalid signature' }, { status: 400 });
+   919→    }
+   920→
+   921→    switch (event.type) {
+   922→      case 'checkout.session.completed': {
+   923→        const session = event.data.object as any;
+   924→        const sessionId = session.id;
+   925→
+   926→        // Update donation from pending to completed
+   927→        await db.donation.updateMany({
+   928→          where: { stripeSessionId: sessionId },
+   929→          data: { paymentStatus: 'completed' },
+   930→        });
+   931→        break;
+   932→      }
+   933→      case 'checkout.session.expired': {
+   934→        const session = event.data.object as any;
+   935→        const sessionId = session.id;
+   936→
+   937→        // Mark as expired
+   938→        await db.donation.updateMany({
+   939→          where: { stripeSessionId: sessionId },
+   940→          data: { paymentStatus: 'expired' },
+   941→        });
+   942→        break;
+   943→      }
+   944→      default:
+   945→        // Ignore other event types
+   946→        break;
+   947→    }
+   948→
+   949→    return NextResponse.json({ received: true });
+   950→  } catch (error) {
+   951→    console.error('Stripe webhook error:', error);
+   952→    return NextResponse.json(
+   953→      { error: 'Webhook processing failed' },
+   954→      { status: 500 }
+   955→    );
+   956→  }
+   957→}
