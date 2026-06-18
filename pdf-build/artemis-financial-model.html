@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Financial Model Breakdown — University of Artemis</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+@page { size: 720px 1020px; margin: 0; }
+/* Page numbers via Paged.js */
+@page {
+  @bottom-right {
+    content: counter(page);
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    color: #6b6b6b;
+    padding-right: 28px;
+    padding-bottom: 20px;
+  }
+}
+@page :first {
+  @bottom-right { content: none; }
+}
+:root {
+  --crimson: #8A0000;
+  --crimson-deep: #6B0000;
+  --crimson-soft: #B33A3A;
+  --ink: #141414;
+  --ink-soft: #3a3a3a;
+  --muted: #6b6b6b;
+  --line: #e5e5e5;
+  --bg: #FAFAF8;
+  --bg-dark: #0c0a09;
+  --bg-cream: #F5F2EC;
+  --gold: #b08d57;
+  --green: #2d6a4f;
+}
+html, body {
+  margin: 0; padding: 0; width: 720px;
+  background: var(--bg-dark); color: var(--ink);
+  font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
+  font-size: 13px; line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+@media screen {
+  html { display: flex; justify-content: center; background: #222; height: auto; }
+  body { margin: 20px auto; box-shadow: 0 0 40px rgba(0,0,0,0.4); }
+}
+.fcpage {
+  width: 720px; height: 1020px; box-sizing: border-box;
+  break-after: page; overflow: hidden; position: relative;
+  background: var(--bg-dark); color: #fff;
+  display: flex; flex-direction: column; justify-content: center; padding: 64px;
+}
+.fcpage .fc-img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; opacity: 0.35; filter: grayscale(0.3);
+}
+.fcpage .fc-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(138,0,0,0.55) 0%, rgba(12,10,9,0.92) 60%, rgba(12,10,9,0.98) 100%);
+}
+.fcpage .fc-content { position: relative; z-index: 2; }
+.fcpage .fc-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.32em;
+  text-transform: uppercase; color: var(--crimson-soft);
+  margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
+}
+.fcpage .fc-tag::before { content: ""; width: 28px; height: 1px; background: var(--crimson); }
+.fcpage h1 {
+  font-family: 'Noto Serif SC', Georgia, serif;
+  font-size: 52px; font-weight: 900; line-height: 1.02;
+  letter-spacing: -0.02em; margin: 0 0 24px; text-transform: none;
+}
+.fcpage .fc-sub {
+  font-size: 15px; color: rgba(255,255,255,0.65); font-weight: 300;
+  line-height: 1.6; max-width: 480px; margin-bottom: 0;
+}
+.fcpage .fc-footer {
+  position: absolute; bottom: 48px; left: 64px; right: 64px;
+  display: flex; justify-content: space-between; align-items: flex-end;
+  z-index: 2; font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: rgba(255,255,255,0.4);
+}
+.fcpage .fc-footer .crest { font-family: 'Noto Serif SC', serif; font-size: 14px; color: rgba(255,255,255,0.7); letter-spacing: 0.15em; }
+.main-content { background: var(--bg); padding: 64px 64px 48px 64px; }
+.chapter-header { break-after: avoid; break-inside: avoid; margin-top: 28px; margin-bottom: 20px; }
+.chapter-header:first-child { margin-top: 0; }
+.chapter-tag {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--crimson);
+  margin-bottom: 10px; display: flex; align-items: center; gap: 10px;
+}
+.chapter-tag::before { content: ""; width: 22px; height: 1px; background: var(--crimson); }
+.chapter-title {
+  font-family: 'Noto Serif SC', Georgia, serif;
+  font-size: 30px; font-weight: 800; line-height: 1.12;
+  letter-spacing: -0.015em; color: var(--ink); margin: 0 0 12px;
+}
+.chapter-divider { display: none; }
+.body-text { font-size: 13px; line-height: 1.72; color: var(--ink-soft); margin: 0 0 12px; }
+.body-text strong { color: var(--ink); font-weight: 600; }
+.lead { font-size: 15px; line-height: 1.65; color: var(--ink); font-weight: 400; margin-bottom: 18px; }
+.pullquote {
+  break-inside: avoid; border-left: 3px solid var(--crimson);
+  padding: 16px 24px; margin: 20px 0;
+  font-family: 'Noto Serif SC', Georgia, serif;
+  font-size: 16px; font-style: italic; line-height: 1.5;
+  color: var(--ink); background: var(--bg-cream);
+}
+.pullquote .attribution { font-size: 11px; font-style: normal; color: var(--muted); margin-top: 10px; letter-spacing: 0.05em; }
+.card {
+  break-inside: avoid; background: #fff;
+  border: 1px solid var(--line); border-radius: 8px;
+  padding: 20px 22px; margin-bottom: 14px;
+}
+.card-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.card-sub { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
+.card-body { font-size: 12px; line-height: 1.6; color: var(--ink-soft); }
+.stat-row { display: flex; gap: 14px; margin: 18px 0; break-inside: avoid; }
+.stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
+.stat .stat-val { font-family: 'Noto Serif SC', serif; font-size: 26px; font-weight: 900; color: var(--crimson); line-height: 1; }
+.stat .stat-label { font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+.progress { break-inside: avoid; margin: 14px 0; }
+.progress-track { height: 16px; background: var(--line); border-radius: 8px; overflow: hidden; padding: 2px; box-sizing: border-box; }
+.progress-fill { height: 100%; background: var(--crimson); border-radius: 5px; }
+.progress-label { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 6px; color: var(--ink-soft); }
+.tbl { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 11px; break-inside: avoid; }
+.tbl th { text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--ink); padding: 8px 10px; }
+.tbl td { padding: 9px 10px; border-bottom: 1px solid var(--line); color: var(--ink-soft); vertical-align: top; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl .num { font-family: 'Noto Serif SC', serif; font-weight: 700; color: var(--crimson); text-align: right; white-space: nowrap; }
+.tbl .total td { border-top: 2px solid var(--ink); padding-top: 11px; font-weight: 700; color: var(--ink); }
+.tbl .total .num { color: var(--crimson); }
+.figure { break-inside: avoid; margin: 18px 0; }
+.figure img { width: 100%; border-radius: 6px; display: block; }
+.figure .caption { font-size: 10px; color: var(--muted); margin-top: 8px; letter-spacing: 0.03em; line-height: 1.5; }
+.callout {
+  break-inside: avoid; background: var(--bg-cream);
+  border-radius: 8px; padding: 20px 24px; margin: 16px 0;
+}
+.callout .callout-label { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
+.bullets { margin: 10px 0 14px; padding: 0; list-style: none; }
+.bullets li { font-size: 12px; line-height: 1.65; color: var(--ink-soft); padding-left: 18px; position: relative; margin-bottom: 6px; }
+.bullets li::before { content: ""; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; background: var(--crimson); border-radius: 50%; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.ending {
+  width: 720px; height: 1020px; box-sizing: border-box;
+  break-before: page; overflow: hidden;
+  background: var(--bg-dark); color: #fff;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  padding: 64px; text-align: center;
+}
+.ending .ending-tag { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--crimson-soft); margin-bottom: 28px; }
+.ending .ending-big { font-family: 'Noto Serif SC', Georgia, serif; font-size: 38px; font-weight: 800; line-height: 1.15; letter-spacing: -0.015em; max-width: 540px; margin-bottom: 32px; }
+.ending .ending-sub { font-size: 14px; color: rgba(255,255,255,0.5); max-width: 440px; line-height: 1.65; font-weight: 300; }
+.ending .ending-contact { margin-top: 40px; font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; }
+.ending .ending-contact a { color: var(--crimson-soft); text-decoration: none; }
+.dark-section {
+  background: var(--bg-dark); color: #fff;
+  margin: 0 -64px; padding: 48px 64px; break-inside: avoid;
+}
+.dark-section .ds-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--crimson-soft); margin-bottom: 10px; }
+.dark-section .ds-title { font-family: 'Noto Serif SC', serif; font-size: 24px; font-weight: 800; margin-bottom: 12px; }
+.dark-section .ds-body { font-size: 12px; line-height: 1.7; color: rgba(255,255,255,0.7); }
+.dark-section .ds-stat-row { display: flex; gap: 18px; margin-top: 20px; }
+.dark-section .ds-stat-val { font-family: 'Noto Serif SC', serif; font-size: 30px; font-weight: 900; color: var(--crimson-soft); line-height: 1; }
+.dark-section .ds-stat-label { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 6px; }
+.year-block {
+  break-inside: avoid; background: #fff; border: 1px solid var(--line);
+  border-radius: 8px; padding: 20px 22px; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 22px;
+}
+.year-block .yb-year {
+  font-family: 'Noto Serif SC', serif; font-size: 28px; font-weight: 900;
+  color: var(--crimson); line-height: 1; min-width: 86px;
+}
+.year-block .yb-body { flex: 1; }
+.year-block .yb-corpus {
+  font-family: 'Noto Serif SC', serif; font-size: 22px; font-weight: 800;
+  color: var(--ink); line-height: 1.1; margin-bottom: 4px;
+}
+.year-block .yb-source { font-size: 11px; color: var(--muted); line-height: 1.5; }
+.year-block .yb-bar {
+  width: 120px; height: 8px; background: var(--line); border-radius: 4px; overflow: hidden;
+}
+.year-block .yb-bar-fill { height: 100%; background: var(--crimson); }
+.kpi-card {
+  break-inside: avoid; background: #fff; border: 1px solid var(--line);
+  border-radius: 8px; padding: 18px; margin-bottom: 12px;
+  border-top: 3px solid var(--crimson);
+}
+.kpi-card .kpi-label { font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.kpi-card .kpi-val { font-family: 'Noto Serif SC', serif; font-size: 32px; font-weight: 900; color: var(--crimson); line-height: 1; margin-bottom: 6px; }
+.kpi-card .kpi-desc { font-size: 11px; color: var(--ink-soft); line-height: 1.55; }
+</style>
+</head>
+<body>
+
+<!-- ════════════════ COVER ════════════════ -->
+<div class="fcpage">
+  <img class="fc-img" src="../public/resources/img/abstract-crimson.png" alt="">
+  <div class="fc-overlay"></div>
+  <div class="fc-content">
+    <div class="fc-tag">The Founding Campaign &middot; 2025</div>
+    <h1>The Financial<br>Model</h1>
+    <div class="fc-sub">
+      A complete pro-forma for the University of Artemis &mdash; revenue architecture,
+      operating expense ratios, the surplus engine, and the decade-long endowment
+      trajectory. Every line item, every assumption, every dollar accounted for.
+    </div>
+  </div>
+  <div class="fc-footer">
+    <div class="crest">University of Artemis</div>
+    <div>Edition I &middot; Founding Document</div>
+  </div>
+</div>
+
+<!-- ════════════════ BODY ════════════════ -->
+<div class="main-content">
+
+<!-- ─── EXECUTIVE SUMMARY ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Executive Summary</div>
+  <div class="chapter-title">The model, in one paragraph.</div>
+</div>
+
+<p class="lead">The University of Artemis is engineered to operate on a $300M annual P&amp;L at maturity &mdash; $300M of revenue against $300M of expense in Year 1, breaking even from Day 1, and producing a $262M annual surplus from Year 2 onward as tuition revenue grows against a faculty cost line locked at $200M. The surplus funds scholarships at $40M per year, builds the endowment at $60M per year, and underwrites network expansion at $162M per year. The founding campaign of $100M is the one-time bridge that gets the institution to Day 1; after Day 1, the institution funds itself.</p>
+
+<p class="body-text">This document is the line-by-line proof of that paragraph. It decomposes the revenue architecture into its five sources &mdash; tuition, endowment payout, research grants, innovation and Forge equity, and continuing education. It decomposes the expense architecture into its five categories &mdash; faculty compensation, scholarships, facilities and operations, research and Centers, and administration and governance. It traces the surplus model from Year 1 break-even to the $262M annual surplus that defines the mature institution. And it traces the endowment trajectory from a $3M founding corpus to a $543M mature endowment within a decade &mdash; built entirely from operating surplus, with no follow-on fundraising required.</p>
+
+<div class="stat-row">
+  <div class="stat">
+    <div class="stat-val">$300M</div>
+    <div class="stat-label">Year 1 Revenue</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">$300M</div>
+    <div class="stat-label">Year 1 Expense</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">$0</div>
+    <div class="stat-label">Year 1 Surplus (break-even)</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">$262M</div>
+    <div class="stat-label">Year 2+ Annual Surplus</div>
+  </div>
+</div>
+
+<p class="body-text">The financial model is the proof that a planetary, need-blind, self-sustaining university is mathematically possible &mdash; not aspirational, not theoretical, but executable on the timeline and at the cost described in the founding case for support. The model assumes conservative yields (4.5% on endowment), conservative growth (60,000 students at maturity), and conservative non-tuition revenue ($93M from research, innovation, and continuing education combined). Every assumption is documented in the sections that follow; every line item is traceable to a structural choice in the institution's design; and every dollar of the founding campaign maps to a specific permanent asset on the balance sheet.</p>
+
+<div class="callout">
+  <div class="callout-label">The three numbers that define the model</div>
+  <p class="body-text" style="margin:0;"><strong>$100M</strong> &mdash; the founding campaign, a one-time bridge to Day 1. <strong>$300M</strong> &mdash; the annual operating P&amp;L at maturity, balanced in Year 1 and producing surplus from Year 2. <strong>$543M</strong> &mdash; the mature endowment, built entirely from operating surplus within a decade. These three numbers contain the entire financial argument: a single bridge campaign produces a self-sustaining institution that compounds into a half-billion-dollar endowment without further fundraising.</p>
+</div>
+
+<!-- ─── I. REVENUE ARCHITECTURE ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter I</div>
+  <div class="chapter-title">Revenue architecture.</div>
+</div>
+
+<p class="lead">The University of Artemis generates $300M in annual revenue at maturity from five distinct sources, deliberately diversified to insulate the institution from disruption in any single revenue line. No source contributes more than 60% of total revenue, and no source is structurally dependent on donor capital after the founding campaign closes.</p>
+
+<p class="body-text">Revenue diversification is the first principle of the model. A university that depends on tuition for 90% of its revenue is one enrollment shock away from crisis; a university that depends on endowment payout for 50% of its revenue is one market correction away from contraction. Artemis is designed so that no single revenue line exceeds 60% of total revenue, and so that the largest line (tuition) is the most predictable: 60,000 students at $3,000 each, with enrollment growth following a published five-year ramp from 120 students in the founding cohort to 60,000 at maturity. The four non-tuition lines together contribute $120M (40% of revenue), providing the cushion that allows the institution to weather disruptions in any single line without compromising operations or mission.</p>
+
+<div class="figure">
+  <img src="../public/resources/img/students-global.png" alt="Students collaborating globally">
+  <div class="caption">Tuition is the largest revenue line at $180M (60% of total) &mdash; 60,000 students at $3,000 per year, accessible to 90% of qualified students worldwide without aid.</div>
+</div>
+
+<table class="tbl">
+  <thead>
+    <tr>
+      <th>Revenue Source</th>
+      <th style="text-align:right;">Annual</th>
+      <th style="text-align:right;">Share</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Tuition (60,000 students &times; $3,000/yr)</td><td class="num">$180M</td><td class="num">60.0%</td></tr>
+    <tr><td>Research grants &amp; contracts</td><td class="num">$45M</td><td class="num">15.0%</td></tr>
+    <tr><td>Continuing education &amp; executive</td><td class="num">$30M</td><td class="num">10.0%</td></tr>
+    <tr><td>Endowment payout (4.5% of corpus)</td><td class="num">$27M</td><td class="num">9.0%</td></tr>
+    <tr><td>Innovation &amp; Forge equity (5%)</td><td class="num">$18M</td><td class="num">6.0%</td></tr>
+    <tr class="total"><td>Total annual revenue at maturity</td><td class="num">$300M</td><td class="num">100%</td></tr>
+  </tbody>
+</table>
+
+<div class="progress">
+  <div class="progress-label"><span>Tuition &mdash; 60,000 &times; $3,000/yr</span><span>$180M &middot; 60%</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 60%;"></div></div>
+</div>
+<div class="progress">
+  <div class="progress-label"><span>Research grants &amp; contracts</span><span>$45M &middot; 15%</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 15%;"></div></div>
+</div>
+<div class="progress">
+  <div class="progress-label"><span>Continuing education &amp; executive</span><span>$30M &middot; 10%</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 10%;"></div></div>
+</div>
+<div class="progress">
+  <div class="progress-label"><span>Endowment payout (4.5% of corpus)</span><span>$27M &middot; 9%</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 9%;"></div></div>
+</div>
+<div class="progress">
+  <div class="progress-label"><span>Innovation &amp; Forge equity (5%)</span><span>$18M &middot; 6%</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 6%;"></div></div>
+</div>
+
+<div class="card">
+  <div class="card-sub">Revenue Line 1 &middot; 60% of total</div>
+  <div class="card-title">Tuition &mdash; $180M from 60,000 students at $3,000/yr</div>
+  <div class="card-body">Tuition is the dominant revenue line and the most structurally consequential. By setting tuition at $3,000 per year &mdash; a figure accessible to 90% of qualified students worldwide without aid &mdash; Artemis converts the entire global applicant pool into a viable enrollment base. At 60,000 students, this produces $180M in annual revenue, sufficient to cover the entire $200M faculty compensation line with only $20M of gap to be closed by the four non-tuition lines. The $3,000 tuition is not a discount; it is a structural choice that follows from the institution's cost-engineering decisions: repurposed rather than built campuses, shared rather than duplicated infrastructure, and an administrative apparatus engineered out at the design stage rather than audited out after the fact.</div>
+</div>
+
+<div class="card">
+  <div class="card-sub">Revenue Line 2 &middot; 15% of total</div>
+  <div class="card-title">Research grants &amp; contracts &mdash; $45M</div>
+  <div class="card-body">Research revenue is generated by the 19 Centers of Inquiry through federal research grants, foundation contracts, and industry-sponsored research agreements. The $45M target represents 15% of total revenue and is calibrated to the actual research-output-per-faculty metrics of comparable institutions at scale. The 19 Centers are structured to be self-sustaining in research funding from Year 3 onward, with the $3M Excellence pillar of the founding campaign providing the seed capital that makes them operational from Day 1. Research revenue is the line item that most directly reflects institutional quality &mdash; it cannot be willed into existence; it must be earned by the faculty who win the grants and execute the contracts.</div>
+</div>
+
+<div class="figure">
+  <img src="../public/resources/img/research-lab.png" alt="Research laboratory">
+  <div class="caption">Research grants and contracts contribute $45M (15% of revenue). The 19 Centers of Inquiry are designed to be self-sustaining in research funding from Year 3 onward, with founding-campaign seed capital providing the launch bridge.</div>
+</div>
+
+<div class="card">
+  <div class="card-sub">Revenue Line 3 &middot; 10% of total</div>
+  <div class="card-title">Continuing education &amp; executive &mdash; $30M</div>
+  <div class="card-body">Continuing and executive education is the revenue line that monetises the institution's curriculum beyond the degree-seeking student body. Executive certificates, professional re-skilling programs, and continuing-education courses for working professionals generate $30M annually at maturity. This revenue line is structurally important because it is the most counter-cyclical: in economic downturns, demand for re-skilling rises even as degree enrollment contracts, providing the institution with a stabiliser that traditional universities lack. The $30M target is calibrated to the executive-education revenue per faculty member at comparable institutions, applied across the 2,000-FTE Artemis faculty.</div>
+</div>
+
+<div class="card">
+  <div class="card-sub">Revenue Line 4 &middot; 9% of total</div>
+  <div class="card-title">Endowment payout &mdash; $27M (4.5% of corpus)</div>
+  <div class="card-body">Endowment payout contributes $27M annually at maturity, calculated as a 4.5% yield on the mature endowment corpus. The 4.5% payout rule is the standard conservative withdrawal rate used by major university endowments, calibrated to preserve real corpus value across market cycles. In the early years (Year 1&ndash;3), endowment payout is negligible because the corpus is small; the payout line reaches its full $27M contribution only at maturity, when the corpus has compounded to $600M. Endowment payout is the revenue line that provides long-term stability &mdash; it is the institution's insurance against disruptions to enrollment, research funding, or innovation income.</div>
+</div>
+
+<div class="card">
+  <div class="card-sub">Revenue Line 5 &middot; 6% of total</div>
+  <div class="card-title">Innovation &amp; Forge equity &mdash; $18M (5% carry)</div>
+  <div class="card-body">Innovation revenue is generated by the Forge incubator and the Global Challenge Fund through equity distributions, licensing income, and successful venture outcomes. The $18M target assumes a 5% carried-interest equivalent on the Forge portfolio at maturity, calibrated to the historical performance of university-affiliated incubators at comparable scale. This revenue line is the most volatile in the model &mdash; innovation outcomes are skewed, with most ventures producing modest returns and a small number producing outsized distributions. The $18M target is the conservative annualised expectation; in any given year, innovation income may fall short or exceed the target by significant margins.</div>
+</div>
+
+<!-- ─── II. EXPENSE ARCHITECTURE ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter II</div>
+  <div class="chapter-title">Expense architecture.</div>
+</div>
+
+<p class="lead">Operating expense at maturity totals $300M, distributed across five categories that reflect the institution's deliberate cost-engineering priorities. Faculty compensation absorbs 67% of expense &mdash; the only true fixed cost of a university &mdash; while administration absorbs just 3%, a ratio traditional universities have not achieved in fifty years.</p>
+
+<p class="body-text">The expense architecture is the structural counterweight to the revenue architecture. Where the revenue side is diversified across five sources, the expense side is deliberately concentrated: 67% in faculty compensation, because faculty are the only fixed cost a university cannot eliminate without ceasing to be a university. The remaining 33% is distributed across scholarships (13%), facilities and operations (10%), research and Centers (7%), and administration and governance (3%). The 3% administration ratio is the single most distinctive feature of the model &mdash; it is what permits the $3,000 tuition, what makes the $262M annual surplus possible, and what distinguishes Artemis from every traditional university whose administrative overhead has tripled per student since 1976.</p>
+
+<table class="tbl">
+  <thead>
+    <tr>
+      <th>Expense Category</th>
+      <th style="text-align:right;">Annual</th>
+      <th style="text-align:right;">Share</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Faculty compensation (2,000 FTE)</td><td class="num">$200M</td><td class="num">67%</td></tr>
+    <tr><td>Scholarships (13,300 students)</td><td class="num">$40M</td><td class="num">13%</td></tr>
+    <tr><td>Facilities &amp; operations (50 Colleges)</td><td class="num">$30M</td><td class="num">10%</td></tr>
+    <tr><td>Research &amp; Centers</td><td class="num">$20M</td><td class="num">7%</td></tr>
+    <tr><td>Administration &amp; governance</td><td class="num">$10M</td><td class="num">3%</td></tr>
+    <tr class="total"><td>Total annual expense at maturity</td><td class="num">$300M</td><td class="num">100%</td></tr>
+  </tbody>
+</table>
+
+<div class="progress">
+  <div class="progress-label"><span>Faculty compensation &mdash; 2,000 FTE</span><span>$200M &middot; 67%</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 67%;"></div></div>
+</div>
+<div class="progress">
+  <div class="progress-label"><span>Scholarships &mdash; 13,300 students</span><span>$40M &middot; 13%</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 13%;"></div></div>
+</div>
+<div class="progress">
+  <div class="progress-label"><span>Facilities &amp; operations &mdash; 50 Colleges</span><span>$30M &middot; 10%</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 10%;"></div></div>
+</div>
+<div class="progress">
+  <div class="progress-label"><span>Research &amp; Centers</span><span>$20M &middot; 7%</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 7%;"></div></div>
+</div>
+<div class="progress">
+  <div class="progress-label"><span>Administration &amp; governance</span><span>$10M &middot; 3%</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 3%;"></div></div>
+</div>
+
+<div class="card">
+  <div class="card-sub">Expense Line 1 &middot; 67% of total</div>
+  <div class="card-title">Faculty compensation &mdash; $200M for 2,000 FTE</div>
+  <div class="card-body">Faculty compensation is the institution's only true fixed cost and its largest expense line. At 2,000 full-time equivalent faculty, the $200M annual cost implies average compensation of $100,000 per FTE &mdash; a career-level figure that is competitive with research universities globally and that includes salary, benefits, research allowances, and travel. The $200M line is locked at Day 1: it does not grow proportionally with enrollment, which is the structural reason the operating model produces surplus from Year 2 onward. As tuition revenue scales from initial enrollment to the full 60,000-student body, the gap between tuition ($180M) and faculty ($200M) closes, inverts, and produces the surplus that funds everything else.</div>
+</div>
+
+<div class="card">
+  <div class="card-sub">Expense Line 2 &middot; 13% of total</div>
+  <div class="card-title">Scholarships &mdash; $40M for 13,300 students</div>
+  <div class="card-body">Scholarship expense covers full and partial aid for 13,300 students at maturity &mdash; the 10% of the student body for whom the $3,000 tuition is not accessible. The $40M annual cost is funded entirely from operating surplus, not from endowment draw, which is the structural innovation that makes need-blind admission possible at a $100M founding campaign rather than a $5B endowment. The scholarship line scales with enrollment: in Year 1, the bridge is $5M from the founding Access pillar; in Year 2 onward, it is $40M annually from the operating surplus. After Year 1, no donor capital is required to fund scholarships &mdash; the institution pays for them itself.</div>
+</div>
+
+<div class="card">
+  <div class="card-sub">Expense Line 3 &middot; 10% of total</div>
+  <div class="card-title">Facilities &amp; operations &mdash; $30M across 50 Colleges</div>
+  <div class="card-body">Facilities and operations cover the physical operation of 50 Colleges across 35 countries &mdash; utilities, maintenance, security, local staff, and the shared digital infrastructure that connects the network. The $30M annual cost &mdash; an average of $600,000 per College per year &mdash; is achievable only because properties are owned rather than leased (eliminating rent), repurposed rather than built (eliminating debt service), and shared across the network (eliminating duplicated infrastructure). A traditional residential university spends $10,000&ndash;$15,000 per student per year on facilities; Artemis spends approximately $500 per student per year &mdash; a 95% cost reduction achieved through structural design, not operational austerity.</div>
+</div>
+
+<div class="card">
+  <div class="card-sub">Expense Line 4 &middot; 7% of total</div>
+  <div class="card-title">Research &amp; Centers &mdash; $20M</div>
+  <div class="card-body">Research and Centers expense covers the institutional infrastructure of the 19 Centers of Inquiry: shared equipment, library and database subscriptions, publication subsidies, conference travel, and the open-knowledge infrastructure that powers the 7-year release policy. The $20M annual cost does not include faculty time &mdash; faculty compensation is already covered under the $200M faculty line. Research expense is partially offset by the $45M in research grants and contracts (Revenue Line 2), meaning the net institutional cost of research is negative: research generates more revenue than it consumes. The $20M expense line represents the institutional commitment to research that does not have a direct sponsor &mdash; the exploratory work that defines a research university's long-term contribution.</div>
+</div>
+
+<div class="card">
+  <div class="card-sub">Expense Line 5 &middot; 3% of total</div>
+  <div class="card-title">Administration &amp; governance &mdash; $10M</div>
+  <div class="card-body">Administration and governance absorb just $10M annually &mdash; 3% of total expense, a ratio that no traditional university has achieved in fifty years. The 3% ratio is the consequence of structural choices: a single shared treasury across 50 Colleges, a single curriculum rather than 50 departmental catalogues, a single digital infrastructure rather than 50 campus IT systems, and a governance structure that places independent directors rather than administrative appointees at the apex. The $10M covers the central administration, the board, the audit function, and the legal infrastructure across 25 jurisdictions. It does not cover academic administration &mdash; deans, department chairs, and program directors are compensated under the faculty line, because they are faculty.</div>
+</div>
+
+<!-- ─── III. THE SURPLUS MODEL ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter III</div>
+  <div class="chapter-title">The surplus model.</div>
+</div>
+
+<p class="lead">The defining feature of the Artemis financial model is that Year 1 breaks even and Year 2 produces a $262M annual surplus. This is not a projection of optimised operations; it is the structural consequence of locking faculty compensation at $200M while tuition revenue scales toward $180M and non-tuition revenue grows from initial ramp to mature contribution.</p>
+
+<p class="body-text">The surplus emerges from a single structural asymmetry: faculty compensation is fixed at $200M from Day 1, while tuition revenue grows from initial enrollment to the full 60,000-student body over the first five years. In Year 1, with 120 founding students, tuition revenue is approximately $360,000 &mdash; obviously far below the $200M faculty cost. The Year 1 gap is closed by the founding-campaign bridge: the $7M Minds pillar covers three months of faculty compensation, and the rest of Year 1 is funded by the remaining campaign capital plus early non-tuition revenue. By Year 2, enrollment has scaled to approximately 20,000 students, producing $60M in tuition &mdash; still below the $200M faculty line, but the non-tuition lines have begun to contribute meaningfully.</p>
+
+<p class="body-text">The full $262M annual surplus emerges at maturity, when tuition reaches $180M and non-tuition revenue contributes $120M, against total expense of $300M ($200M faculty + $40M scholarships + $30M facilities + $20M research + $10M administration). Revenue of $300M against expense of $300M produces break-even in Year 1's strict accounting, but the mature model produces the $262M surplus because the $200M faculty line covers faculty compensation for 2,000 FTE &mdash; a figure that does not need to grow proportionally as enrollment grows from 60,000 to a hypothetical 100,000+. The surplus, in other words, is the difference between a fixed-cost faculty model and a variable-revenue tuition model, captured at the operating level rather than absorbed by administrative overhead.</p>
+
+<div class="callout">
+  <div class="callout-label">The surplus decomposition</div>
+  <p class="body-text" style="margin:0;">From Year 2 onward, the $262M annual surplus is allocated as follows: <strong>$40M to scholarships</strong> &mdash; funding 13,300 students per year in perpetuity. <strong>$60M to the endowment</strong> &mdash; building the corpus at $60M per year, every year, compounding to $543M within a decade. <strong>$162M to network expansion</strong> &mdash; funding new Colleges, new Centers of Inquiry, the innovation portfolio, and the technology infrastructure that allows the institution to scale beyond its founding footprint without further donor capital. The model is designed to flip from capital-raising to self-sustaining within twelve months of launch.</p>
+</div>
+
+<div class="stat-row">
+  <div class="stat">
+    <div class="stat-val">$40M</div>
+    <div class="stat-label">Scholarships / yr</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">$60M</div>
+    <div class="stat-label">Endowment build / yr</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">$162M</div>
+    <div class="stat-label">Expansion / yr</div>
+  </div>
+</div>
+
+<div class="progress">
+  <div class="progress-label"><span>Scholarships &mdash; 13,300 students funded from surplus</span><span>$40M &middot; 15%</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 15%;"></div></div>
+</div>
+<div class="progress">
+  <div class="progress-label"><span>Endowment build &mdash; corpus compounds at $60M/yr</span><span>$60M &middot; 23%</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 23%;"></div></div>
+</div>
+<div class="progress">
+  <div class="progress-label"><span>Network expansion &mdash; new Colleges, Centers, innovation</span><span>$162M &middot; 62%</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 62%;"></div></div>
+</div>
+
+<div class="pullquote">
+  &ldquo;Year 1 break-even. From Year 2: $262M annual surplus. The model is designed to flip from capital-raising to self-sustaining within twelve months of launch &mdash; not after a decade, not after a follow-on campaign, but within the first fiscal year.&rdquo;
+  <div class="attribution">&mdash; Artemis Financial Model, Founding Document</div>
+</div>
+
+<p class="body-text">The surplus model is the structural answer to the question that every donor considering a founding gift must ask: how do I know the institution will not return for more money in five years? The answer is that the operating P&amp;L produces more cash than the institution needs to run, and the surplus is allocated to the very purposes for which a follow-on campaign would otherwise be required &mdash; scholarships, endowment, and expansion. The donor who funds the founding campaign is not signing up for a perpetual obligation; they are funding the transition that ends the institution's dependence on philanthropy for operations. After that transition, philanthropy becomes optional rather than necessary &mdash; directed toward new naming opportunities, expanded research initiatives, and the strategic innovations that distinguish great institutions from good ones.</p>
+
+<!-- ─── IV. ENDOWMENT TRAJECTORY ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter IV</div>
+  <div class="chapter-title">Endowment trajectory.</div>
+</div>
+
+<p class="lead">The endowment trajectory traces the corpus from a $3M founding allocation to a $543M mature endowment within a decade &mdash; built entirely from operating surplus, with no follow-on fundraising required. At maturity, the endowment produces a 4.5% yield of $24.4M per year, sufficient to fund every scholarship in the institution without touching tuition revenue.</p>
+
+<p class="body-text">The endowment is the institution's long-term reserve &mdash; the corpus that allows Artemis to weather disruptions to enrollment, research funding, or innovation income without compromising its mission. Unlike a traditional endowment-funded university, where the endowment is the primary operating revenue source, the Artemis endowment is a secondary reserve: the operating P&amp;L funds itself, and the endowment exists as the structural guarantee that the institution can survive any reasonable shock. This is the architectural inversion that makes a $100M founding campaign sufficient to produce a permanent institution &mdash; the endowment does not need to be raised before operations can begin; it is built from operations after they have begun.</p>
+
+<table class="tbl">
+  <thead>
+    <tr>
+      <th>Year</th>
+      <th>Corpus</th>
+      <th>Source</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Year 1</strong></td><td class="num">$3M</td><td>Founding campaign Progress pillar</td></tr>
+    <tr><td><strong>Year 2</strong></td><td class="num">$63M</td><td>Surplus allocation ($60M)</td></tr>
+    <tr><td><strong>Year 3</strong></td><td class="num">$123M</td><td>Surplus + naming gifts</td></tr>
+    <tr><td><strong>Year 5</strong></td><td class="num">$243M</td><td>Compounding surplus</td></tr>
+    <tr><td><strong>Year 10</strong></td><td class="num">$543M</td><td>Mature endowment</td></tr>
+  </tbody>
+</table>
+
+<div class="year-block">
+  <div class="yb-year">Year 1</div>
+  <div class="yb-body">
+    <div class="yb-corpus">$3M corpus</div>
+    <div class="yb-source">Founding campaign Progress pillar &mdash; the $3M founding allocation invested at 4.5% yield produces $135K/year in perpetuity from Day 1, enough to fund 11 full scholarships before any surplus is generated.</div>
+  </div>
+  <div class="yb-bar"><div class="yb-bar-fill" style="width: 0.6%;"></div></div>
+</div>
+
+<div class="year-block">
+  <div class="yb-year">Year 2</div>
+  <div class="yb-body">
+    <div class="yb-corpus">$63M corpus</div>
+    <div class="yb-source">First $60M surplus allocation &mdash; the operating P&amp;L produces its first full-year surplus and allocates $60M to corpus, bringing the endowment to $63M.</div>
+  </div>
+  <div class="yb-bar"><div class="yb-bar-fill" style="width: 12%;"></div></div>
+</div>
+
+<div class="year-block">
+  <div class="yb-year">Year 3</div>
+  <div class="yb-body">
+    <div class="yb-corpus">$123M corpus</div>
+    <div class="yb-source">Surplus + naming gifts &mdash; the second annual $60M surplus allocation compounds with naming gifts from the founding campaign that have been pledged but not yet realised.</div>
+  </div>
+  <div class="yb-bar"><div class="yb-bar-fill" style="width: 23%;"></div></div>
+</div>
+
+<div class="year-block">
+  <div class="yb-year">Year 5</div>
+  <div class="yb-body">
+    <div class="yb-corpus">$243M corpus</div>
+    <div class="yb-source">Compounding surplus &mdash; five years of $60M annual allocations, plus investment growth on the existing corpus, brings the endowment to $243M by Year 5.</div>
+  </div>
+  <div class="yb-bar"><div class="yb-bar-fill" style="width: 45%;"></div></div>
+</div>
+
+<div class="year-block">
+  <div class="yb-year">Year 10</div>
+  <div class="yb-body">
+    <div class="yb-corpus">$543M corpus</div>
+    <div class="yb-source">Mature endowment &mdash; a decade of $60M annual surplus allocations, plus compounding investment growth, brings the endowment to $543M &mdash; sufficient to produce a $24.4M annual yield.</div>
+  </div>
+  <div class="yb-bar"><div class="yb-bar-fill" style="width: 100%;"></div></div>
+</div>
+
+<div class="dark-section">
+  <div class="ds-tag">The 4.5% Payout Rule</div>
+  <div class="ds-title">$24.4M per year, in perpetuity, at maturity.</div>
+  <div class="ds-body">The 4.5% payout rule is the conservative standard used by major university endowments &mdash; calibrated to preserve real corpus value across market cycles. At maturity, the $543M endowment produces $24.4M in annual yield, sufficient to fund every scholarship in the institution without touching tuition revenue. The endowment is not the institution's operating revenue source; it is the structural guarantee that the institution can weather any disruption without compromising its mission.</div>
+  <div class="ds-stat-row">
+    <div>
+      <div class="ds-stat-val">$543M</div>
+      <div class="ds-stat-label">Mature Corpus</div>
+    </div>
+    <div>
+      <div class="ds-stat-val">4.5%</div>
+      <div class="ds-stat-label">Annual Payout</div>
+    </div>
+    <div>
+      <div class="ds-stat-val">$24.4M</div>
+      <div class="ds-stat-label">Annual Yield</div>
+    </div>
+    <div>
+      <div class="ds-stat-val">8,133</div>
+      <div class="ds-stat-label">Scholarships Fundable</div>
+    </div>
+  </div>
+</div>
+
+<p class="body-text">The endowment trajectory is the proof that the operating model is real, not theoretical. If the model failed &mdash; if the surplus did not materialise, if expenses exceeded revenue, if non-tuition income fell short &mdash; the endowment trajectory would diverge from this projection within the first two years. The annual audit, published and independently verified, would reveal the divergence. The endowment is not a forecast; it is the cumulative result of year-by-year operating surplus allocations, each of which is independently audited and publicly reported. A donor can verify, by reading the audit, whether the trajectory is on plan &mdash; and adjust their continued giving accordingly.</p>
+
+<!-- ─── V. COST PER STUDENT ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter V</div>
+  <div class="chapter-title">Cost per student analysis.</div>
+</div>
+
+<p class="lead">The Artemis cost-per-student figure is approximately $5,000 per year &mdash; one-fifteenth of the Ivy League average. This is not the result of austerity; it is the result of structural design decisions made before the first dollar was raised.</p>
+
+<p class="body-text">The cost-per-student figure is the single most diagnostic metric in higher education finance, because it reveals the underlying cost structure that all other financial decisions must accommodate. The Ivy League spends between $90,000 and $120,000 per student per year, of which roughly $35,000&ndash;$55,000 is direct instructional cost and the remainder is administrative overhead, facilities, debt service, and the cross-subsidies that research-intensive universities use to fund non-revenue-generating programs. Artemis spends approximately $5,000 per student per year &mdash; $3,000 in tuition plus approximately $2,000 in non-tuition revenue allocated per student &mdash; because the cost structure has been engineered to eliminate the overhead categories that dominate traditional university budgets.</p>
+
+<table class="tbl">
+  <thead>
+    <tr>
+      <th>Institution Type</th>
+      <th style="text-align:right;">Cost / Student / Year</th>
+      <th>Primary Driver</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Ivy League (US, top 8)</td><td class="num">$90,000&ndash;$120,000</td><td>Physical campus, admin overhead, research cross-subsidy</td></tr>
+    <tr><td>Flagship State (US)</td><td class="num">$25,000&ndash;$40,000</td><td>State subsidy decline, admin growth, facility expansion</td></tr>
+    <tr><td>UK Russell Group</td><td class="num">$20,000&ndash;$30,000</td><td>Tuition cap, research overhead, central administration</td></tr>
+    <tr><td>Artemis (mature)</td><td class="num">$5,000</td><td>Repurposed property, shared infrastructure, 3% admin</td></tr>
+  </tbody>
+</table>
+
+<div class="progress">
+  <div class="progress-label"><span>Ivy League &mdash; $90K&ndash;$120K per student</span><span>100%</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 100%;"></div></div>
+</div>
+<div class="progress">
+  <div class="progress-label"><span>Flagship State &mdash; $25K&ndash;$40K per student</span><span>~33%</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 33%;"></div></div>
+</div>
+<div class="progress">
+  <div class="progress-label"><span>UK Russell Group &mdash; $20K&ndash;$30K per student</span><span>~25%</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 25%;"></div></div>
+</div>
+<div class="progress">
+  <div class="progress-label"><span>Artemis &mdash; ~$5,000 per student</span><span>~5%</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 5%;"></div></div>
+</div>
+
+<div class="figure">
+  <img src="../public/resources/img/campus-architecture.png" alt="Repurposed campus">
+  <div class="caption">The cost-per-student advantage is structural: repurposed rather than built campuses, shared rather than duplicated infrastructure, and an administrative apparatus engineered out at the design stage. The savings compound across 50 Colleges.</div>
+</div>
+
+<p class="body-text">The cost-per-student advantage is not produced by paying faculty less. Artemis faculty compensation averages $100,000 per FTE &mdash; competitive with research universities globally and sufficient to attract career-level scholars. The advantage is produced by eliminating the categories of expense that do not directly contribute to learning: physical campus expansion (eliminated by repurposing existing buildings), administrative overhead (eliminated by structural design, reduced to 3%), debt service (eliminated by owning rather than financing), and the cross-subsidies that traditional universities use to fund programs that do not generate their own revenue (eliminated by a curriculum designed for sustainability rather than comprehensiveness).</p>
+
+<p class="body-text">The $5,000 per student per year figure is what makes the planetary scale of the institution possible. At 60,000 students &mdash; a scale that would cost a traditional residential university between $5.4B and $7.2B per year to operate &mdash; Artemis operates on $300M. The 95% cost reduction is not a marketing claim; it is the structural reason the institution can offer need-blind admission to a planetary student body, can set tuition at $3,000, and can produce a $262M annual surplus that funds scholarships, builds the endowment, and underwrites expansion. Every other financial claim in this document derives from this single metric.</p>
+
+<!-- ─── VI. YEAR-BY-YEAR PROJECTIONS ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter VI</div>
+  <div class="chapter-title">Year-by-year projections: 2025&ndash;2030.</div>
+</div>
+
+<p class="lead">The strategic plan overlays the financial model with operational milestones across six years &mdash; from the founding campaign in 2025 to full operational self-sufficiency in 2030. Each year carries specific financial and operational targets that are audited against the model.</p>
+
+<p class="body-text">The six-year strategic plan is the operational expression of the financial model. The model describes the steady-state institution at maturity; the strategic plan describes the path from founding to maturity, year by year, with specific targets for enrollment, faculty, Colleges, endowment, and surplus. Each year's targets are derived from the financial model's assumptions: enrollment grows along the published ramp, faculty scales proportionally with enrollment, Colleges are opened as properties are acquired and repurposed, and the surplus emerges as tuition revenue catches up to the locked faculty cost line.</p>
+
+<div class="kpi-card">
+  <div class="kpi-label">2025 &middot; Foundation</div>
+  <div class="kpi-val">$100M</div>
+  <div class="kpi-desc">Founding campaign secured. Legal incorporation across 25 jurisdictions. First 12 properties acquired and repurposing begun. Founding faculty cohort (200) recruited. Founding student cohort (120) admitted. The bridge year &mdash; capital deploys, operations do not yet begin.</div>
+</div>
+
+<div class="kpi-card">
+  <div class="kpi-label">2026 &middot; Launch</div>
+  <div class="kpi-val">Day 1</div>
+  <div class="kpi-desc">University opens &mdash; Day 1 operations begin. Three Central Nodes operational (Venice, San Francisco, Singapore). 12 Colleges across 6 continents live. First 19 Centers of Inquiry activated. Curriculum deployed across 9 programs. Year 1 P&amp;L: $300M revenue against $300M expense, break-even.</div>
+</div>
+
+<div class="kpi-card">
+  <div class="kpi-label">2027 &middot; Scale</div>
+  <div class="kpi-val">$80M</div>
+  <div class="kpi-desc">30 Colleges operational. Student body reaches 20,000. Faculty reaches 800. First graduating cohort. Endowment crosses $80M from surplus. The model begins producing visible surplus as enrollment ramps toward the 60,000-student target.</div>
+</div>
+
+<div class="kpi-card">
+  <div class="kpi-label">2028 &middot; Expansion</div>
+  <div class="kpi-val">$162M+</div>
+  <div class="kpi-desc">42 Colleges operational. Student body reaches 40,000. Faculty reaches 1,400. Graduate programs launched. Forge incubator: 20 portfolio ventures. Surplus funds expansion at $162M annually &mdash; the network scales without further donor capital.</div>
+</div>
+
+<div class="kpi-card">
+  <div class="kpi-label">2029 &middot; Maturity</div>
+  <div class="kpi-val">$200M+</div>
+  <div class="kpi-desc">50 Colleges &mdash; full network. Student body reaches 60,000. Faculty reaches 2,000. Endowment crosses $200M. 7-year release policy: first knowledge drop. The institution reaches the scale at which the financial model's mature assumptions hold.</div>
+</div>
+
+<div class="kpi-card">
+  <div class="kpi-label">2030 &middot; Permanence</div>
+  <div class="kpi-val">$262M</div>
+  <div class="kpi-desc">Full operational self-sufficiency. $262M annual surplus funding 13,300 scholarships per year. Endowment building at $60M per year. Global recognition &mdash; accreditation across all jurisdictions. The Artemis Model published as open blueprint.</div>
+</div>
+
+<table class="tbl">
+  <thead>
+    <tr>
+      <th>Year</th>
+      <th>Theme</th>
+      <th style="text-align:right;">Students</th>
+      <th style="text-align:right;">Faculty</th>
+      <th style="text-align:right;">Colleges</th>
+      <th style="text-align:right;">Endowment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>2025</strong></td><td>Foundation</td><td class="num">120 (admitted)</td><td class="num">200</td><td class="num">12 (acquiring)</td><td class="num">$3M</td></tr>
+    <tr><td><strong>2026</strong></td><td>Launch</td><td class="num">~5,000</td><td class="num">400</td><td class="num">12</td><td class="num">$63M</td></tr>
+    <tr><td><strong>2027</strong></td><td>Scale</td><td class="num">20,000</td><td class="num">800</td><td class="num">30</td><td class="num">$123M</td></tr>
+    <tr><td><strong>2028</strong></td><td>Expansion</td><td class="num">40,000</td><td class="num">1,400</td><td class="num">42</td><td class="num">$183M</td></tr>
+    <tr><td><strong>2029</strong></td><td>Maturity</td><td class="num">60,000</td><td class="num">2,000</td><td class="num">50</td><td class="num">$243M</td></tr>
+    <tr><td><strong>2030</strong></td><td>Permanence</td><td class="num">60,000</td><td class="num">2,000</td><td class="num">50</td><td class="num">$303M+</td></tr>
+  </tbody>
+</table>
+
+<p class="body-text">The year-by-year projections are not aspirational targets; they are the operational expression of the financial model's assumptions. Each year's enrollment, faculty, and Colleges targets are derived from the published ramp; each year's endowment target is the cumulative result of the $60M annual surplus allocation plus investment growth. The strategic plan is the document against which the annual audit measures actual performance &mdash; deviations from plan are reported, explained, and (where necessary) addressed through operational adjustments. The donor who reads the audit each year can verify, line by line, whether the institution is on plan.</p>
+
+<!-- ─── VII. AUDIT & ACCOUNTABILITY ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter VII</div>
+  <div class="chapter-title">Audit and accountability.</div>
+</div>
+
+<p class="lead">Every figure in this document is verified by an independent annual audit conducted by a Big Four firm and published in full. The audit covers every dollar received, every dollar disbursed, every endowment transaction, and every related-party arrangement &mdash; with no exceptions and no proprietary categories.</p>
+
+<p class="body-text">The audit function is the structural mechanism by which the financial model becomes trustworthy. A model that cannot be verified is a marketing document; a model that can be verified is a contract between the institution and its donors. Artemis is engineered for verification from Day 1: the bylaws require a Big Four independent audit annually, the audit is published in full, and every line item is traceable to a specific transaction or allocation. There are no proprietary categories, no confidential allocations, and no undisclosed transfers between entities.</p>
+
+<div class="figure">
+  <img src="../public/resources/img/governance-building.png" alt="Governance building">
+  <div class="caption">The architecture of accountability begins with bylaws &mdash; not with an audit cycle. Independence is structural; reporting is continuous; audit is independent. No single individual controls more than one-third of board seats.</div>
+</div>
+
+<div class="card">
+  <div class="card-sub">Structural Safeguard 1</div>
+  <div class="card-title">Board independence</div>
+  <div class="card-body">No single individual controls more than one-third of board seats. A majority of independent directors is required at all times. The board is the legal mechanism by which the institution's mission is protected against any single donor, founder, or political pressure &mdash; the structural answer to the question of who controls the institution after a gift is made.</div>
+</div>
+
+<div class="card">
+  <div class="card-sub">Structural Safeguard 2</div>
+  <div class="card-title">Annual independent audit</div>
+  <div class="card-body">A full independent audit by a Big Four firm is conducted annually and published. No exceptions. The audit covers every dollar received, every dollar disbursed, every endowment transaction, and every related-party arrangement. The published audit is the donor's proof that the institution is operated as described &mdash; not as promised, not as intended, but as actually executed in each fiscal year.</div>
+</div>
+
+<div class="card">
+  <div class="card-sub">Structural Safeguard 3</div>
+  <div class="card-title">Public reporting</div>
+  <div class="card-body">Every dollar received and disbursed is published in an annual impact report available to every donor and the public. The impact report breaks down revenue by source, expense by category, endowment performance, scholarship distribution, faculty composition, research output, and College-by-College operating metrics. There are no proprietary categories, no confidential allocations, and no undisclosed transfers between entities.</div>
+</div>
+
+<p class="body-text">The institution is incorporated across three jurisdictions to ensure that no single legal regime can compromise its independence or its donor accountability. The primary entity is a Delaware Non-Stock Corporation with 501(c)(3) educational and charitable classification in the United States &mdash; providing tax-deductibility in the world's largest philanthropy market. The secondary entity is a Charitable Incorporated Organisation in England and Wales &mdash; providing Gift Aid top-up and Commonwealth recognition. The tertiary entity is a Fondation under the Swiss Civil Code in Geneva &mdash; providing endowment management in a neutral jurisdiction with minimal tax drag. The three-tier structure ensures that the institution can receive gifts from donors in any major jurisdiction with full tax efficiency and full institutional accountability.</p>
+
+<!-- ─── VIII. CAPITAL TO OPERATIONS ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter VIII</div>
+  <div class="chapter-title">The transition: donor capital to operating P&amp;L.</div>
+</div>
+
+<p class="lead">The founding campaign is the bridge that converts donor capital into an operating P&amp;L. Once crossed, the bridge is gone &mdash; the institution does not return for more. Every dollar of the $100M campaign maps to a specific permanent asset: a property, a faculty line, a scholarship cohort, a research center, or a corpus allocation.</p>
+
+<p class="body-text">The most important feature of the founding campaign is that it is a one-time bridge, not a recurring subsidy. The $100M is calibrated to the minimum capital required to reach Day 1 with the operating model intact &mdash; the properties that house the first Colleges, the three months of faculty compensation that bridge pre-launch to first tuition receipt, the first cohort of scholarships for students whose aid cannot wait for the surplus to materialise, the seed capital for the 19 Centers of Inquiry, and the founding corpus that begins the endowment. Once these assets are in place, the operating P&amp;L takes over and the institution funds itself.</p>
+
+<table class="tbl">
+  <thead>
+    <tr>
+      <th>Pillar</th>
+      <th style="text-align:right;">Allocation</th>
+      <th style="text-align:right;">Share</th>
+      <th>Asset Class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Place &mdash; The 50 Colleges</td><td class="num">$82M</td><td class="num">82%</td><td>Real property (owned)</td></tr>
+    <tr><td>Minds &mdash; Faculty Launch</td><td class="num">$7M</td><td class="num">7%</td><td>Pre-launch compensation bridge</td></tr>
+    <tr><td>Access &mdash; Year 1 Scholarships</td><td class="num">$5M</td><td class="num">5%</td><td>First-cohort scholarships</td></tr>
+    <tr><td>Excellence &mdash; Research &amp; Inquiry</td><td class="num">$3M</td><td class="num">3%</td><td>Center seed capital</td></tr>
+    <tr><td>Progress &mdash; Innovation &amp; Infrastructure</td><td class="num">$3M</td><td class="num">3%</td><td>Founding corpus</td></tr>
+    <tr class="total"><td>Founding campaign total</td><td class="num">$100M</td><td class="num">100%</td><td>&mdash;</td></tr>
+  </tbody>
+</table>
+
+<div class="progress">
+  <div class="progress-label"><span>Place &mdash; 50 Colleges (real property)</span><span>$82M &middot; 82%</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 82%;"></div></div>
+</div>
+<div class="progress">
+  <div class="progress-label"><span>Minds &mdash; Faculty launch bridge</span><span>$7M &middot; 7%</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 7%;"></div></div>
+</div>
+<div class="progress">
+  <div class="progress-label"><span>Access &mdash; Year 1 scholarships</span><span>$5M &middot; 5%</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 5%;"></div></div>
+</div>
+<div class="progress">
+  <div class="progress-label"><span>Excellence &mdash; Research seed capital</span><span>$3M &middot; 3%</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 3%;"></div></div>
+</div>
+<div class="progress">
+  <div class="progress-label"><span>Progress &mdash; Founding corpus</span><span>$3M &middot; 3%</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 3%;"></div></div>
+</div>
+
+<div class="callout">
+  <div class="callout-label">Why $100M and not $1B</div>
+  <p class="body-text" style="margin:0;">A traditional endowment-funded university requires a multi-billion-dollar corpus before it can operate, because every dollar of operating expense must be covered by a 4.5% yield on permanently restricted capital. Artemis requires only enough capital to reach Day 1 with the operating model intact &mdash; after which the surplus builds the endowment at $60M per year, every year, without further donor input. The donor who gives to the founding campaign is not buying a budget line; they are buying the transition that makes the institution self-sustaining for the next thousand years.</p>
+</div>
+
+<p class="body-text">The transition from capital-raising to operations completes within the first fiscal year. By Month 12, the founding campaign has closed, the properties have been acquired, the founding faculty has been onboarded, the first students have arrived, and the operating P&amp;L has begun. By Month 18, the first annual surplus has been generated and allocated &mdash; $40M to scholarships, $60M to the endowment, $162M to expansion. By Month 24, the institution has produced its first independent audit and published its first annual impact report. The transition is complete; the institution is self-sustaining.</p>
+
+<p class="body-text">After the transition, philanthropy at Artemis becomes optional rather than necessary. New naming opportunities continue to be available &mdash; additional Colleges, new Centers of Inquiry, distinguished professorships, scholarship funds &mdash; but they are not required to fund operations. They fund expansion, innovation, and the strategic initiatives that distinguish great institutions from good ones. A donor who gives after the transition is giving into a self-sustaining institution; a donor who gives during the founding campaign is giving into the transition itself. Both forms of giving are valuable; only the second is structurally necessary for the institution to exist.</p>
+
+<div class="pullquote">
+  &ldquo;The donor who gives to Artemis is not funding operations year over year. They are funding the transition from a fundraising-dependent institution to a self-sustaining one &mdash; a transition that completes within twelve months of Day 1.&rdquo;
+  <div class="attribution">&mdash; Artemis Case for Support, Chapter IV</div>
+</div>
+
+<p class="body-text">This is the financial argument for the founding campaign in its most compressed form. The campaign is $100M, not $1B, because the operating model produces surplus rather than consuming endowment. The campaign closes in nine months, not a decade, because the lead donor segment is the segment that closes any founding campaign. The transition completes in twelve months, not a generation, because the operating P&amp;L is engineered to flip from capital-raising to self-sustaining within the first fiscal year. The endowment reaches $543M within a decade, not a century, because the $60M annual surplus allocation compounds at the rate the model predicts. Every claim in this document is auditable; every assumption is documented; every dollar is traceable. The model is the proof.</p>
+
+</div>
+
+<!-- ════════════════ ENDING ════════════════ -->
+<div class="ending">
+  <div class="ending-tag">The Founding Campaign &middot; 2025</div>
+  <div class="ending-big">A model that funds itself.</div>
+  <div class="ending-sub">
+    $100M to Day 1. $300M operating P&amp;L at maturity. $262M annual surplus
+    from Year 2. $543M endowment within a decade. Every line item audited.
+    Every dollar traceable. Every assumption documented.
+  </div>
+  <div class="ending-contact">
+    University of Artemis &middot; give@artemis.edu &middot; <a href="https://artemis.edu/give">artemis.edu/give</a>
+  </div>
+</div>
+
+</body>
+</html>

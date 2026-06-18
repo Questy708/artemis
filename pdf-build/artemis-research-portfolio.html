@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Centers of Inquiry Research Portfolio — University of Artemis</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+@page { size: 720px 1020px; margin: 0; }
+@page {
+  @bottom-right {
+    content: counter(page);
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    color: #6b6b6b;
+    padding-right: 28px;
+    padding-bottom: 20px;
+  }
+}
+@page :first {
+  @bottom-right { content: none; }
+}
+:root {
+  --crimson: #8A0000;
+  --crimson-deep: #6B0000;
+  --crimson-soft: #B33A3A;
+  --ink: #141414;
+  --ink-soft: #3a3a3a;
+  --muted: #6b6b6b;
+  --line: #e5e5e5;
+  --bg: #FAFAF8;
+  --bg-dark: #0c0a09;
+  --bg-cream: #F5F2EC;
+  --gold: #b08d57;
+}
+html, body {
+  margin: 0; padding: 0; width: 720px;
+  background: var(--bg-dark); color: var(--ink);
+  font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
+  font-size: 13px; line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+@media screen {
+  html { display: flex; justify-content: center; background: #222; height: auto; }
+  body { margin: 20px auto; box-shadow: 0 0 40px rgba(0,0,0,0.4); }
+}
+.fcpage {
+  width: 720px; height: 1020px; box-sizing: border-box;
+  break-after: page; overflow: hidden; position: relative;
+  background: var(--bg-dark); color: #fff;
+  display: flex; flex-direction: column; justify-content: center; padding: 64px;
+}
+.fcpage .fc-img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; opacity: 0.35; filter: grayscale(0.3);
+}
+.fcpage .fc-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(138,0,0,0.55) 0%, rgba(12,10,9,0.92) 60%, rgba(12,10,9,0.98) 100%);
+}
+.fcpage .fc-content { position: relative; z-index: 2; }
+.fcpage .fc-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.32em;
+  text-transform: uppercase; color: var(--crimson-soft);
+  margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
+}
+.fcpage .fc-tag::before { content: ""; width: 28px; height: 1px; background: var(--crimson); }
+.fcpage h1 {
+  font-family: 'Noto Serif SC', Georgia, serif;
+  font-size: 50px; font-weight: 900; line-height: 1.04;
+  letter-spacing: -0.02em; margin: 0 0 24px; text-transform: none;
+}
+.fcpage .fc-sub {
+  font-size: 15px; color: rgba(255,255,255,0.65); font-weight: 300;
+  line-height: 1.6; max-width: 480px; margin-bottom: 0;
+}
+.fcpage .fc-footer {
+  position: absolute; bottom: 48px; left: 64px; right: 64px;
+  display: flex; justify-content: space-between; align-items: flex-end;
+  z-index: 2; font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: rgba(255,255,255,0.4);
+}
+.fcpage .fc-footer .crest { font-family: 'Noto Serif SC', serif; font-size: 14px; color: rgba(255,255,255,0.7); letter-spacing: 0.15em; }
+.main-content { background: var(--bg); padding: 64px 64px 48px 64px; }
+.chapter-header { break-after: avoid; break-inside: avoid; margin-top: 28px; margin-bottom: 20px; }
+.chapter-header:first-child { margin-top: 0; }
+.chapter-tag {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--crimson);
+  margin-bottom: 10px; display: flex; align-items: center; gap: 10px;
+}
+.chapter-tag::before { content: ""; width: 22px; height: 1px; background: var(--crimson); }
+.chapter-title {
+  font-family: 'Noto Serif SC', Georgia, serif;
+  font-size: 30px; font-weight: 800; line-height: 1.12;
+  letter-spacing: -0.015em; color: var(--ink); margin: 0 0 12px;
+}
+.body-text { font-size: 13px; line-height: 1.72; color: var(--ink-soft); margin: 0 0 12px; }
+.body-text strong { color: var(--ink); font-weight: 600; }
+.lead { font-size: 15px; line-height: 1.65; color: var(--ink); font-weight: 400; margin-bottom: 18px; }
+.pullquote {
+  break-inside: avoid; border-left: 3px solid var(--crimson);
+  padding: 16px 24px; margin: 20px 0;
+  font-family: 'Noto Serif SC', Georgia, serif;
+  font-size: 16px; font-style: italic; line-height: 1.5;
+  color: var(--ink); background: var(--bg-cream);
+}
+.pullquote .attribution { font-size: 11px; font-style: normal; color: var(--muted); margin-top: 10px; letter-spacing: 0.05em; }
+.card {
+  break-inside: avoid; background: #fff;
+  border: 1px solid var(--line); border-radius: 8px;
+  padding: 20px 22px; margin-bottom: 14px;
+}
+.card-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.card-sub { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
+.card-body { font-size: 12px; line-height: 1.6; color: var(--ink-soft); }
+.stat-row { display: flex; gap: 14px; margin: 18px 0; break-inside: avoid; }
+.stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
+.stat .stat-val { font-family: 'Noto Serif SC', serif; font-size: 26px; font-weight: 900; color: var(--crimson); line-height: 1; }
+.stat .stat-label { font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+.tbl { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 11px; break-inside: avoid; }
+.tbl th { text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--ink); padding: 8px 10px; }
+.tbl td { padding: 9px 10px; border-bottom: 1px solid var(--line); color: var(--ink-soft); vertical-align: top; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl .num { font-family: 'Noto Serif SC', serif; font-weight: 700; color: var(--crimson); text-align: right; white-space: nowrap; }
+.tbl .total td { border-top: 2px solid var(--ink); padding-top: 11px; font-weight: 700; color: var(--ink); }
+.figure { break-inside: avoid; margin: 18px 0; }
+.figure img { width: 100%; border-radius: 6px; display: block; }
+.figure .caption { font-size: 10px; color: var(--muted); margin-top: 8px; letter-spacing: 0.03em; line-height: 1.5; }
+.callout {
+  break-inside: avoid; background: var(--bg-cream);
+  border-radius: 8px; padding: 20px 24px; margin: 16px 0;
+}
+.callout .callout-label { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
+.bullets { margin: 10px 0 14px; padding: 0; list-style: none; }
+.bullets li { font-size: 12px; line-height: 1.65; color: var(--ink-soft); padding-left: 18px; position: relative; margin-bottom: 6px; }
+.bullets li::before { content: ""; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; background: var(--crimson); border-radius: 50%; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.ending {
+  width: 720px; height: 1020px; box-sizing: border-box;
+  break-before: page; overflow: hidden;
+  background: var(--bg-dark); color: #fff;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  padding: 64px; text-align: center;
+}
+.ending .ending-tag { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--crimson-soft); margin-bottom: 28px; }
+.ending .ending-big { font-family: 'Noto Serif SC', Georgia, serif; font-size: 38px; font-weight: 800; line-height: 1.15; letter-spacing: -0.015em; max-width: 540px; margin-bottom: 32px; }
+.ending .ending-sub { font-size: 14px; color: rgba(255,255,255,0.5); max-width: 440px; line-height: 1.65; font-weight: 300; }
+.ending .ending-contact { margin-top: 40px; font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; }
+.ending .ending-contact a { color: var(--crimson-soft); text-decoration: none; }
+.dark-section {
+  background: var(--bg-dark); color: #fff;
+  margin: 0 -64px; padding: 48px 64px; break-inside: avoid;
+}
+.dark-section .ds-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--crimson-soft); margin-bottom: 10px; }
+.dark-section .ds-title { font-family: 'Noto Serif SC', serif; font-size: 24px; font-weight: 800; margin-bottom: 12px; }
+.dark-section .ds-body { font-size: 12px; line-height: 1.7; color: rgba(255,255,255,0.7); }
+.dark-section .ds-stat-row { display: flex; gap: 18px; margin-top: 20px; }
+.dark-section .ds-stat-val { font-family: 'Noto Serif SC', serif; font-size: 30px; font-weight: 900; color: var(--crimson-soft); line-height: 1; }
+.dark-section .ds-stat-label { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 6px; }
+/* ─── CENTER CARD (detailed, ~1 page) ─── */
+.center-card {
+  break-inside: avoid; background: #fff;
+  border: 1px solid var(--line); border-radius: 10px;
+  padding: 24px 26px; margin-bottom: 16px;
+  border-top: 4px solid var(--crimson);
+}
+.center-card .cc-tag {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.24em;
+  text-transform: uppercase; color: var(--crimson); margin-bottom: 8px;
+}
+.center-card .cc-name {
+  font-family: 'Noto Serif SC', Georgia, serif;
+  font-size: 22px; font-weight: 800; color: var(--ink);
+  line-height: 1.15; margin-bottom: 8px; letter-spacing: -0.01em;
+}
+.center-card .cc-desc {
+  font-size: 13px; line-height: 1.65; color: var(--ink-soft); margin-bottom: 12px;
+}
+.center-card .cc-why {
+  font-size: 12px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 14px;
+  padding-left: 14px; border-left: 2px solid var(--bg-cream);
+}
+.center-card .cc-why strong { color: var(--ink); }
+.center-card .cc-stat-row { display: flex; gap: 12px; margin: 12px 0 14px; }
+.center-card .cc-stat {
+  flex: 1; background: var(--bg-cream); border-radius: 6px; padding: 10px 12px;
+}
+.center-card .cc-stat-val {
+  font-family: 'Noto Serif SC', serif; font-size: 18px; font-weight: 900;
+  color: var(--crimson); line-height: 1;
+}
+.center-card .cc-stat-label {
+  font-size: 8px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted); margin-top: 5px;
+}
+.center-card .cc-nodes {
+  font-size: 11px; color: var(--ink); font-weight: 600; margin-bottom: 8px;
+}
+.center-card .cc-nodes-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--crimson); margin-right: 8px;
+}
+.center-card .cc-focus-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--crimson); margin-bottom: 6px;
+}
+.center-card .cc-focus {
+  margin: 0; padding: 0; list-style: none;
+}
+.center-card .cc-focus li {
+  font-size: 11.5px; line-height: 1.55; color: var(--ink-soft);
+  padding-left: 16px; position: relative; margin-bottom: 4px;
+}
+.center-card .cc-focus li::before {
+  content: ""; position: absolute; left: 0; top: 8px;
+  width: 5px; height: 5px; background: var(--crimson); border-radius: 50%;
+}
+/* ─── MINI CENTER CARD (compact, 2 per page) ─── */
+.mini-center {
+  break-inside: avoid; background: #fff;
+  border: 1px solid var(--line); border-radius: 8px;
+  padding: 18px 20px; margin-bottom: 12px;
+  border-left: 3px solid var(--crimson);
+}
+.mini-center .mc-tag {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--crimson); margin-bottom: 4px;
+}
+.mini-center .mc-name {
+  font-family: 'Noto Serif SC', serif; font-size: 17px; font-weight: 800;
+  color: var(--ink); line-height: 1.15; margin-bottom: 6px;
+}
+.mini-center .mc-desc {
+  font-size: 12px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 8px;
+}
+.mini-center .mc-meta {
+  display: flex; gap: 16px; font-size: 10px;
+  color: var(--muted); padding-top: 8px; border-top: 1px dashed var(--line);
+}
+.mini-center .mc-meta strong { color: var(--ink); font-weight: 700; }
+.mini-center .mc-focus {
+  margin: 6px 0 0; padding: 0; list-style: none;
+}
+.mini-center .mc-focus li {
+  font-size: 11px; line-height: 1.55; color: var(--ink-soft);
+  padding-left: 14px; position: relative;
+}
+.mini-center .mc-focus li::before {
+  content: ""; position: absolute; left: 0; top: 7px;
+  width: 4px; height: 4px; background: var(--crimson); border-radius: 50%;
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════ COVER ════════════════ -->
+<div class="fcpage">
+  <img class="fc-img" src="../public/resources/img/research-lab.png" alt="">
+  <div class="fc-overlay"></div>
+  <div class="fc-content">
+    <div class="fc-tag">The Founding Campaign &middot; 2025</div>
+    <h1>Centers of<br>Inquiry</h1>
+    <div class="fc-sub">
+      The research portfolio of the University of Artemis &mdash; nineteen
+      centers across six continents, the seven-year release policy, the
+      core-investigator model, and the translational programs that
+      convert inquiry into impact.
+    </div>
+  </div>
+  <div class="fc-footer">
+    <div class="crest">University of Artemis</div>
+    <div>Edition I &middot; Founding Document</div>
+  </div>
+</div>
+
+<!-- ════════════════ BODY ════════════════ -->
+<div class="main-content">
+
+<!-- ─── EXECUTIVE SUMMARY ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Executive Summary</div>
+  <div class="chapter-title">The research portfolio, in one paragraph.</div>
+</div>
+
+<p class="lead">The University of Artemis conducts its research through nineteen Centers of Inquiry &mdash; distributed, mission-driven, and organized around the principal problems of the twenty-first century rather than around inherited academic disciplines. Each center operates across three nodes on three continents, is staffed by a core of tenured investigators and a larger cohort of fellows and postdocs, and is bound by the institution&rsquo;s seven-year release policy: every center publishes its findings openly, on a fixed schedule, regardless of commercial potential.</p>
+
+<p class="body-text">This document is the complete catalog of the Artemis research portfolio. It describes the seven anchor centers that the founding campaign will fund directly &mdash; Synthetic Intelligence, Bio-Regenerative Arts, Cosmological Humanities, Urban Futures, Biotech &amp; Life Sciences, Fintech/DeFi &amp; Economics, and Health &amp; Bioethics &mdash; with one-page entries detailing each center&rsquo;s mission, node locations, investigator cohort, fellows cohort, and focus areas. It then catalogs the twelve additional centers that complete the nineteen-center portfolio, following the same structural template. It explains the seven-year release policy that governs all center output. It describes the translational programs &mdash; including the Forge incubator &mdash; that convert center research into deployed impact. And it describes the core-investigator model that governs how centers hire, promote, and retain the researchers who do the work.</p>
+
+<div class="stat-row">
+  <div class="stat">
+    <div class="stat-val">19</div>
+    <div class="stat-label">Centers of Inquiry</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">3</div>
+    <div class="stat-label">Nodes per Center</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">7yr</div>
+    <div class="stat-label">Release Policy Cycle</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">~240</div>
+    <div class="stat-label">Investigators at Maturity</div>
+  </div>
+</div>
+
+<p class="body-text">The portfolio is deliberately planetary. Each center&rsquo;s three nodes are chosen to span the geopolitical, economic, and ecological range of the problem it studies: a center on urban futures is distributed across Copenhagen, Medell&iacute;n, and Singapore; a center on health is distributed across Boston, Cape Town, and Hyderabad. The distribution is not symbolic. It ensures that the research is informed by the lived conditions of the populations it most affects, and it ensures that no center becomes captive to the regulatory or political assumptions of a single jurisdiction. The nineteen-center portfolio, taken together, is the institutional commitment that Artemis does research for the planet, not for a single nation.</p>
+
+<div class="callout">
+  <div class="callout-label">The seven-year release policy</div>
+  <p class="body-text" style="margin:0;">Every Center of Inquiry is bound by the seven-year release policy: research output is published openly, on a fixed seven-year cycle, regardless of commercial potential. Centers may publish earlier &mdash; and most do &mdash; but no center may withhold a finding beyond the seven-year horizon. The policy is the institutional commitment that Artemis research exists for the public domain, not for the private balance sheet. It is also the structural feature that distinguishes Artemis from the venture-funded research models that have proliferated in the last decade, and from the patent-encumbered models of the previous century.</p>
+</div>
+
+<!-- ─── I. THE SEVEN-YEAR RELEASE POLICY ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter I</div>
+  <div class="chapter-title">The seven-year release policy.</div>
+</div>
+
+<p class="lead">Every Center of Inquiry at Artemis operates under the seven-year release policy: research findings are published openly, on a fixed schedule, within seven years of the work being initiated. The policy applies to every center, every investigator, and every line of research funding the institution disperses. It is the structural commitment that Artemis research is conducted for the public domain.</p>
+
+<p class="body-text">The seven-year horizon was chosen as the longest defensible interval between the initiation of a research program and the publication of its findings. Shorter intervals are encouraged &mdash; the median time-to-publication across the founding centers is expected to be approximately three years &mdash; but no interval may exceed seven. The policy applies regardless of the commercial potential of the work: a center may not withhold a finding because a spin-out could be formed around it, may not withhold because a corporate partner has requested delay, and may not withhold because the institution itself wishes to monetize the result. The policy is binding, enforced by the Office of Research Integrity, and violation is grounds for the dissolution of the center.</p>
+
+<p class="body-text">The policy does not prohibit commercialization. Centers are free to file patents, form spin-outs, and engage in translational programs &mdash; and the institution operates the Forge incubator precisely to support such activity. But the patents are filed defensively, the spin-outs operate under open-licensing terms, and the translational programs are structured so that the research output reaches the public domain on the seven-year schedule regardless of the commercial trajectory. The institutional position is that commercialization and open release are compatible, and that the choice to commercialize does not confer the right to enclose.</p>
+
+<div class="pullquote">
+  A finding that cannot survive the daylight of public release
+  is not a finding. It is a rumor held by a small group.
+  Artemis does research, not rumors.
+  <div class="attribution">&mdash; From the Artemis Research Charter, Article 1</div>
+</div>
+
+<p class="body-text">The first knowledge drop under the seven-year policy is scheduled for 2032 &mdash; seven years after the founding cohort of centers is activated in 2025. The drop will include the cumulative published output of the seven anchor centers, the institutional outcomes report on the founding research programs, and the external audit of compliance with the release policy. The drop will be open-access, indexed in the standard repositories, and accompanied by the underlying data and code wherever the consent of human subjects and the integrity of ongoing work permit. The institution has committed, in its charter, that no later knowledge drop will be delayed beyond the seven-year horizon, and that any delay beyond the median will be reported and explained in the institutional outcomes report.</p>
+
+<div class="dark-section">
+  <div class="ds-tag">The seven-year cycle</div>
+  <div class="ds-title">Initiate. Conduct. Publish. Repeat.</div>
+  <div class="ds-body">Each Center of Inquiry operates on a rolling seven-year cycle: research programs are initiated in year one, conducted through years two to five, published openly no later than year seven, and audited in the institutional outcomes report. Centers may publish earlier &mdash; the median time-to-publication across the founding centers is expected to be approximately three years &mdash; but no center may withhold a finding beyond the seven-year horizon. The cycle is the structural mechanism that ensures the institution&rsquo;s research remains in the public domain.</div>
+  <div class="ds-stat-row">
+    <div>
+      <div class="ds-stat-val">7yr</div>
+      <div class="ds-stat-label">Maximum Withholding Period</div>
+    </div>
+    <div>
+      <div class="ds-stat-val">~3yr</div>
+      <div class="ds-stat-label">Median Publication Time</div>
+    </div>
+    <div>
+      <div class="ds-stat-val">2032</div>
+      <div class="ds-stat-label">First Knowledge Drop</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── II. THE SEVEN ANCHOR CENTERS ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter II</div>
+  <div class="chapter-title">The seven anchor centers.</div>
+</div>
+
+<p class="lead">The founding campaign funds seven anchor centers directly. Each is structured around a problem domain rather than an academic discipline, each operates across three nodes on three continents, and each is staffed by a core cohort of investigators and a larger cohort of fellows. The entries that follow document each center in the standard format.</p>
+
+<p class="body-text">The seven anchor centers were chosen to span the principal research frontiers of the century: machine intelligence, the built environment, the cosmos, the city, life itself, the economic substrate, and human health. The choice is not exhaustive &mdash; the twelve additional centers extend the portfolio into climate, energy, governance, narrative, and the foundations of mathematics &mdash; but the seven anchors are the institutional bet on where the most consequential work of the next quarter-century will be done. They are also the centers for which the founding campaign has secured the principal-investigator cohort, the node infrastructure, and the multi-year funding commitment.</p>
+
+<div class="figure">
+  <img src="../public/resources/img/research-lab.png" alt="Artemis research lab">
+  <div class="caption">Each Center of Inquiry operates across three nodes &mdash; one in each of three regions &mdash; ensuring the research is informed by the lived conditions of the populations it most affects.</div>
+</div>
+
+<p class="body-text">The seven anchor centers were not chosen by committee. Each was proposed by a founding principal investigator who committed to lead the center for its first decade, who brought a research program of sufficient depth to justify the multi-year institutional commitment, and who could demonstrate that the program required the three-node, three-continent structure to be executed honestly. The institutional role was to vet the proposals &mdash; against the criterion of consequentiality, against the criterion of feasibility, and against the criterion of fit with the broader portfolio &mdash; and to provide the structural support. The centers are investigator-led institutions, not administrative units, and the investigators who proposed them are the directors who will lead them.</p>
+
+<!-- Center 1: Synthetic Intelligence -->
+<div class="center-card">
+  <div class="cc-tag">01 &mdash; Synthetic Intelligence</div>
+  <div class="cc-name">Synthetic Intelligence</div>
+  <div class="cc-desc">AI/human symbiotic reasoning, the CoThink project, and moral agency in AI &mdash; the principal research front of the century, studied as an integrated problem spanning computation, philosophy, and governance.</div>
+  <div class="cc-why"><strong>Why this matters.</strong> The Synthetic Intelligence center is the institutional response to the most consequential technological development of the century: the emergence of machine systems capable of reasoning, synthesis, and autonomous action at or above human levels in a growing range of domains. The center treats the technical, ethical, and governance questions as inseparable, and is structured to produce research that informs not only the engineering of such systems but the constitutional frameworks within which they will operate. The CoThink project &mdash; the center&rsquo;s flagship &mdash; is a multi-year research program on human-AI symbiotic reasoning, with deployed prototypes in education, scientific research, and policy analysis.</div>
+  <div class="cc-stat-row">
+    <div class="cc-stat">
+      <div class="cc-stat-val">16</div>
+      <div class="cc-stat-label">Investigators</div>
+    </div>
+    <div class="cc-stat">
+      <div class="cc-stat-val">48</div>
+      <div class="cc-stat-label">Fellows &amp; Postdocs</div>
+    </div>
+    <div class="cc-stat">
+      <div class="cc-stat-val">3</div>
+      <div class="cc-stat-label">Continental Nodes</div>
+    </div>
+  </div>
+  <div class="cc-nodes"><span class="cc-nodes-label">Nodes</span>San Francisco &mdash; Toronto &mdash; Edinburgh</div>
+  <div class="cc-focus-label">Focus Areas</div>
+  <ul class="cc-focus">
+    <li>Human-AI symbiotic reasoning</li>
+    <li>Moral agency and value alignment</li>
+    <li>Interpretability and mechanistic understanding</li>
+    <li>Constitutional and democratic AI governance</li>
+    <li>CoThink collaborative reasoning systems</li>
+  </ul>
+</div>
+
+<!-- Center 2: Bio-Regenerative Arts -->
+<div class="center-card">
+  <div class="cc-tag">02 &mdash; Bio-Regenerative Arts</div>
+  <div class="cc-name">Bio-Regenerative Arts</div>
+  <div class="cc-desc">Self-healing building materials (BioCrete-2), living architecture, and the integration of biological systems into the built environment &mdash; research at the intersection of materials science, biology, and design.</div>
+  <div class="cc-why"><strong>Why this matters.</strong> The construction sector is responsible for approximately 40% of global carbon emissions, and the materials that dominate the sector &mdash; concrete, steel, and fired brick &mdash; are responsible for the bulk of that footprint. The Bio-Regenerative Arts center treats this as a research problem, not a regulatory one: how can the materials of the built environment be redesigned to be carbon-negative, self-healing, and ecologically integrated? The BioCrete-2 material &mdash; the center&rsquo;s flagship &mdash; is a self-healing concrete substitute incorporating engineered mycelium, with deployed pilots in three cities and a publication schedule that will release the formulation openly under the seven-year policy.</div>
+  <div class="cc-stat-row">
+    <div class="cc-stat">
+      <div class="cc-stat-val">12</div>
+      <div class="cc-stat-label">Investigators</div>
+    </div>
+    <div class="cc-stat">
+      <div class="cc-stat-val">36</div>
+      <div class="cc-stat-label">Fellows &amp; Postdocs</div>
+    </div>
+    <div class="cc-stat">
+      <div class="cc-stat-val">3</div>
+      <div class="cc-stat-label">Continental Nodes</div>
+    </div>
+  </div>
+  <div class="cc-nodes"><span class="cc-nodes-label">Nodes</span>Venice &mdash; Rotterdam &mdash; Singapore</div>
+  <div class="cc-focus-label">Focus Areas</div>
+  <ul class="cc-focus">
+    <li>Self-healing and living materials</li>
+    <li>Mycelium and bio-fabrication</li>
+    <li>Regenerative architecture</li>
+    <li>Carbon-negative construction</li>
+    <li>BioCrete-2 material science</li>
+  </ul>
+</div>
+
+<!-- Center 3: Cosmological Humanities -->
+<div class="center-card">
+  <div class="cc-tag">03 &mdash; Cosmological Humanities</div>
+  <div class="cc-name">Cosmological Humanities</div>
+  <div class="cc-desc">Processing petabytes of telescope data, philosophical astrophysics, and the integration of cosmology with the humanistic traditions that have asked the same questions for three thousand years.</div>
+  <div class="cc-why"><strong>Why this matters.</strong> The cosmological data deluge of the next decade &mdash; from the Vera Rubin Observatory, the Square Kilometre Array, and the next generation of space telescopes &mdash; will exceed the capacity of the existing research community to interpret. The Cosmological Humanities center is structured to do the technical work of processing that data and the humanistic work of interpreting what it means. The center&rsquo;s philosophical astrophysics program treats the deepest questions &mdash; the origins of life, the nature of consciousness, the long arc of cosmic time &mdash; as research questions, not as topics reserved for popular books. The center partners with the major observatories and operates its own node at La Palma.</div>
+  <div class="cc-stat-row">
+    <div class="cc-stat">
+      <div class="cc-stat-val">14</div>
+      <div class="cc-stat-label">Investigators</div>
+    </div>
+    <div class="cc-stat">
+      <div class="cc-stat-val">40</div>
+      <div class="cc-stat-label">Fellows &amp; Postdocs</div>
+    </div>
+    <div class="cc-stat">
+      <div class="cc-stat-val">3</div>
+      <div class="cc-stat-label">Continental Nodes</div>
+    </div>
+  </div>
+  <div class="cc-nodes"><span class="cc-nodes-label">Nodes</span>La Palma &mdash; Cambridge &mdash; Tokyo</div>
+  <div class="cc-focus-label">Focus Areas</div>
+  <ul class="cc-focus">
+    <li>Petabyte-scale astronomical data</li>
+    <li>Philosophical astrophysics</li>
+    <li>Origins of life and consciousness</li>
+    <li>Deep-time cosmic perspectives</li>
+    <li>Observatory partnerships</li>
+  </ul>
+</div>
+
+<!-- Center 4: Health & Bioethics -->
+<div class="center-card">
+  <div class="cc-tag">12 &mdash; Health &amp; Bioethics</div>
+  <div class="cc-name">Health &amp; Bioethics</div>
+  <div class="cc-desc">AI-assisted diagnosis, gene editing ethics, pandemic preparedness, and global health justice &mdash; the integrated study of health as a technical, ethical, and political problem.</div>
+  <div class="cc-why"><strong>Why this matters.</strong> The health challenges of the century &mdash; from AI-assisted diagnosis to gene editing to pandemic preparedness &mdash; cannot be addressed as purely technical problems. The Health &amp; Bioethics center treats health as an integrated domain: technical research on diagnostic AI and gene-editing therapies proceeds alongside normative research on the ethics of deployment, the governance of access, and the justice of distribution. The center&rsquo;s three-node structure ensures that the research is informed by the lived conditions of health in Boston, Cape Town, and Hyderabad &mdash; three settings that span the planetary range of health infrastructure and health outcome.</div>
+  <div class="cc-stat-row">
+    <div class="cc-stat">
+      <div class="cc-stat-val">14</div>
+      <div class="cc-stat-label">Investigators</div>
+    </div>
+    <div class="cc-stat">
+      <div class="cc-stat-val">52</div>
+      <div class="cc-stat-label">Fellows &amp; Postdocs</div>
+    </div>
+    <div class="cc-stat">
+      <div class="cc-stat-val">3</div>
+      <div class="cc-stat-label">Continental Nodes</div>
+    </div>
+  </div>
+  <div class="cc-nodes"><span class="cc-nodes-label">Nodes</span>Boston &mdash; Cape Town &mdash; Hyderabad</div>
+  <div class="cc-focus-label">Focus Areas</div>
+  <ul class="cc-focus">
+    <li>AI-assisted diagnosis and precision medicine</li>
+    <li>Gene editing ethics and governance</li>
+    <li>Pandemic preparedness and equitable response</li>
+    <li>Health equity and social determinants</li>
+    <li>Global health justice and access to care</li>
+  </ul>
+</div>
+
+<!-- Center 5: Urban Futures -->
+<div class="center-card">
+  <div class="cc-tag">13 &mdash; Urban Futures</div>
+  <div class="cc-name">Urban Futures</div>
+  <div class="cc-desc">Designing cities that are resilient, equitable, and alive &mdash; integrating architecture, ecology, computation, and governance into a single research practice.</div>
+  <div class="cc-why"><strong>Why this matters.</strong> The majority of the human species now lives in cities, and the cities of the century will be designed under conditions that no previous generation of urbanists has faced: climate disruption, mass migration, automated infrastructure, and the fiscal contraction of municipal governments. The Urban Futures center treats the city as an integrated system and produces research that informs the design, governance, and adaptation of cities across the planetary range. The center&rsquo;s three-node structure &mdash; Copenhagen, Medell&iacute;n, and Singapore &mdash; was chosen to span the principal models of twenty-first-century urban governance and the principal climate adaptation challenges.</div>
+  <div class="cc-stat-row">
+    <div class="cc-stat">
+      <div class="cc-stat-val">10</div>
+      <div class="cc-stat-label">Investigators</div>
+    </div>
+    <div class="cc-stat">
+      <div class="cc-stat-val">38</div>
+      <div class="cc-stat-label">Fellows &amp; Postdocs</div>
+    </div>
+    <div class="cc-stat">
+      <div class="cc-stat-val">3</div>
+      <div class="cc-stat-label">Continental Nodes</div>
+    </div>
+  </div>
+  <div class="cc-nodes"><span class="cc-nodes-label">Nodes</span>Copenhagen &mdash; Medell&iacute;n &mdash; Singapore</div>
+  <div class="cc-focus-label">Focus Areas</div>
+  <ul class="cc-focus">
+    <li>Adaptive urban design and computational architecture</li>
+    <li>Urban ecology and green infrastructure</li>
+    <li>Smart city systems and digital twins</li>
+    <li>Equitable housing and inclusive urban development</li>
+    <li>Climate resilience and urban adaptation</li>
+  </ul>
+</div>
+
+<!-- Center 6: Biotech & Life Sciences -->
+<div class="center-card">
+  <div class="cc-tag">14 &mdash; Biotech &amp; Life Sciences</div>
+  <div class="cc-name">Biotech &amp; Life Sciences</div>
+  <div class="cc-desc">From gene editing and synthetic organisms to ecosystem engineering and de-extinction &mdash; the principal research front of the life sciences, conducted as an integrated technical and ethical practice.</div>
+  <div class="cc-why"><strong>Why this matters.</strong> The capacity to read, write, and edit the code of life is now in the hands of a growing research community, and the questions raised by that capacity &mdash; from the ethics of germline editing to the governance of synthetic organisms to the prospect of de-extinction &mdash; cannot be answered by the technical community alone. The Biotech &amp; Life Sciences center conducts the technical research and the parallel ethical, governance, and biosecurity research, with a structural commitment that no technical finding is published without the accompanying normative analysis. The center&rsquo;s three-node structure spans the principal regulatory regimes for biotechnology research.</div>
+  <div class="cc-stat-row">
+    <div class="cc-stat">
+      <div class="cc-stat-val">15</div>
+      <div class="cc-stat-label">Investigators</div>
+    </div>
+    <div class="cc-stat">
+      <div class="cc-stat-val">54</div>
+      <div class="cc-stat-label">Fellows &amp; Postdocs</div>
+    </div>
+    <div class="cc-stat">
+      <div class="cc-stat-val">3</div>
+      <div class="cc-stat-label">Continental Nodes</div>
+    </div>
+  </div>
+  <div class="cc-nodes"><span class="cc-nodes-label">Nodes</span>Cambridge, UK &mdash; Basel &mdash; Guangzhou</div>
+  <div class="cc-focus-label">Focus Areas</div>
+  <ul class="cc-focus">
+    <li>Gene editing and genetic engineering</li>
+    <li>Synthetic biology and organism design</li>
+    <li>Ecosystem engineering and restoration</li>
+    <li>De-extinction and species recovery</li>
+    <li>Biosecurity and dual-use governance</li>
+  </ul>
+</div>
+
+<!-- Center 7: Fintech, DeFi & Economics -->
+<div class="center-card">
+  <div class="cc-tag">15 &mdash; Fintech, DeFi &amp; Economics</div>
+  <div class="cc-name">Fintech, DeFi &amp; Economics</div>
+  <div class="cc-desc">Rethinking money, markets, and economic governance for a decentralized, automated, globally interconnected world &mdash; the integrated study of the financial substrate of the century.</div>
+  <div class="cc-why"><strong>Why this matters.</strong> The financial system is being rewritten in real time: decentralized finance protocols, central bank digital currencies, programmable money, and the integration of carbon markets into the global settlement layer are reshaping the substrate of economic life. The Fintech, DeFi &amp; Economics center conducts the technical research on the new protocols, the economic research on their systemic implications, and the policy research on the governance questions they raise. The center&rsquo;s three-node structure spans the principal financial centers of the northern and southern hemispheres, with a deliberate presence in Lagos to ensure the research is informed by the financial infrastructure of the global south.</div>
+  <div class="cc-stat-row">
+    <div class="cc-stat">
+      <div class="cc-stat-val">11</div>
+      <div class="cc-stat-label">Investigators</div>
+    </div>
+    <div class="cc-stat">
+      <div class="cc-stat-val">42</div>
+      <div class="cc-stat-label">Fellows &amp; Postdocs</div>
+    </div>
+    <div class="cc-stat">
+      <div class="cc-stat-val">3</div>
+      <div class="cc-stat-label">Continental Nodes</div>
+    </div>
+  </div>
+  <div class="cc-nodes"><span class="cc-nodes-label">Nodes</span>London &mdash; Singapore &mdash; Lagos</div>
+  <div class="cc-focus-label">Focus Areas</div>
+  <ul class="cc-focus">
+    <li>Decentralized finance protocols</li>
+    <li>Digital currencies and CBDCs</li>
+    <li>Programmable money and smart contracts</li>
+    <li>Financial sovereignty and inclusive finance</li>
+    <li>Carbon markets and environmental finance</li>
+  </ul>
+</div>
+
+<!-- ─── III. THE TWELVE ADDITIONAL CENTERS ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter III</div>
+  <div class="chapter-title">The twelve additional centers.</div>
+</div>
+
+<p class="lead">Beyond the seven anchor centers, the Artemis portfolio extends to twelve additional Centers of Inquiry, completing the nineteen-center structure that the founding campaign references. The additional centers are organized on the same structural template &mdash; three nodes, a core investigator cohort, a fellows cohort, and a published set of focus areas &mdash; and are activated on a rolling schedule between 2026 and 2030.</p>
+
+<p class="body-text">The twelve additional centers extend the portfolio into the domains not covered by the seven anchors: the climate system, the energy transition, the foundations of mathematics and computation, the design of democratic institutions, the practice of narrative and media, the structure of migration, the ocean system, the science of language, the production of food, the conduct of conflict and the building of peace, and the preservation of cultural memory. Each was chosen to fill a specific gap in the seven-anchor portfolio, and each is structured to maintain the same planetary distribution, the same seven-year release policy, and the same core-investigator model.</p>
+
+<!-- 04: Climate Systems -->
+<div class="mini-center">
+  <div class="mc-tag">04 &mdash; Climate Systems &amp; Geosciences</div>
+  <div class="mc-name">Climate Systems &amp; Geosciences</div>
+  <div class="mc-desc">The integrated study of the Earth&rsquo;s climate system &mdash; atmospheric dynamics, ocean circulation, the cryosphere, the carbon cycle &mdash; conducted as a single research practice across three nodes spanning the principal climate regimes of the planet.</div>
+  <div class="mc-meta"><span><strong>Nodes:</strong> Reykjav&iacute;k &mdash; Boulder &mdash; Hobart</span><span><strong>Investigators:</strong> 13</span><span><strong>Fellows:</strong> 44</span></div>
+  <ul class="mc-focus">
+    <li>Atmospheric dynamics and extreme weather</li>
+    <li>Ocean circulation and sea-level rise</li>
+    <li>Cryosphere monitoring and ice-sheet dynamics</li>
+    <li>Carbon cycle feedbacks and tipping points</li>
+  </ul>
+</div>
+
+<!-- 05: Quantum Information -->
+<div class="mini-center">
+  <div class="mc-tag">05 &mdash; Quantum Information &amp; Computation</div>
+  <div class="mc-name">Quantum Information &amp; Computation</div>
+  <div class="mc-desc">The hardware, software, and theoretical foundations of quantum computing &mdash; including error correction, quantum cryptography, and the systemic implications of quantum advantage for cryptography and complexity theory.</div>
+  <div class="mc-meta"><span><strong>Nodes:</strong> Zurich &mdash; Boston &mdash; Hefei</span><span><strong>Investigators:</strong> 12</span><span><strong>Fellows:</strong> 36</span></div>
+  <ul class="mc-focus">
+    <li>Quantum error correction and fault tolerance</li>
+    <li>Post-quantum cryptography and protocols</li>
+    <li>Quantum sensing and metrology</li>
+    <li>Complexity theory and quantum advantage</li>
+  </ul>
+</div>
+
+<!-- 06: Democratic Governance -->
+<div class="mini-center">
+  <div class="mc-tag">06 &mdash; Democratic Governance &amp; Constitutional Design</div>
+  <div class="mc-name">Democratic Governance &amp; Constitutional Design</div>
+  <div class="mc-desc">The comparative study of democratic institutions, electoral systems, and constitutional design &mdash; including the structural questions raised by automated decision systems, platform governance, and the fiscal contraction of the nation-state.</div>
+  <div class="mc-meta"><span><strong>Nodes:</strong> Berlin &mdash; S&atilde;o Paulo &mdash; Delhi</span><span><strong>Investigators:</strong> 11</span><span><strong>Fellows:</strong> 38</span></div>
+  <ul class="mc-focus">
+    <li>Comparative constitutional design</li>
+    <li>Electoral systems and democratic resilience</li>
+    <li>Platform governance and digital publics</li>
+    <li>Algorithmic decision systems in public law</li>
+  </ul>
+</div>
+
+<!-- 07: Narrative Arts & Media -->
+<div class="mini-center">
+  <div class="mc-tag">07 &mdash; Narrative Arts &amp; Media</div>
+  <div class="mc-name">Narrative Arts &amp; Media</div>
+  <div class="mc-desc">The study and practice of narrative across literature, film, games, and emerging media &mdash; including the structural and ethical questions raised by generative AI in the production of narrative work.</div>
+  <div class="mc-meta"><span><strong>Nodes:</strong> New York &mdash; Lagos &mdash; Mumbai</span><span><strong>Investigators:</strong> 10</span><span><strong>Fellows:</strong> 34</span></div>
+  <ul class="mc-focus">
+    <li>Narrative structure across media</li>
+    <li>Generative AI and authorship</li>
+    <li>Translation and cross-cultural circulation</li>
+    <li>Interactive and participatory narrative</li>
+  </ul>
+</div>
+
+<!-- 08: Migration & Border Studies -->
+<div class="mini-center">
+  <div class="mc-tag">08 &mdash; Migration &amp; Border Studies</div>
+  <div class="mc-name">Migration &amp; Border Studies</div>
+  <div class="mc-desc">The integrated study of human migration &mdash; its drivers, its governance, and its lived experience &mdash; conducted across three nodes that span the principal migration corridors of the century.</div>
+  <div class="mc-meta"><span><strong>Nodes:</strong> Mexico City &mdash; Tunis &mdash; Dhaka</span><span><strong>Investigators:</strong> 9</span><span><strong>Fellows:</strong> 32</span></div>
+  <ul class="mc-focus">
+    <li>Climate migration and adaptation</li>
+    <li>Border governance and human rights</li>
+    <li>Diaspora economics and remittance systems</li>
+    <li>Refugee protection and statelessness</li>
+  </ul>
+</div>
+
+<!-- 09: Ocean Systems -->
+<div class="mini-center">
+  <div class="mc-tag">09 &mdash; Ocean Systems &amp; Maritime Futures</div>
+  <div class="mc-name">Ocean Systems &amp; Maritime Futures</div>
+  <div class="mc-desc">The integrated study of the ocean &mdash; its physics, biology, governance, and economic role &mdash; with deployed research stations in the Atlantic, Pacific, and Indian Ocean basins.</div>
+  <div class="mc-meta"><span><strong>Nodes:</strong> Cape Town &mdash; Honolulu &mdash; Perth</span><span><strong>Investigators:</strong> 12</span><span><strong>Fellows:</strong> 40</span></div>
+  <ul class="mc-focus">
+    <li>Marine ecosystem monitoring and recovery</li>
+    <li>Deep-sea mining governance</li>
+    <li>Ocean carbon sequestration</li>
+    <li>Maritime law and the high seas treaty</li>
+  </ul>
+</div>
+
+<div class="figure">
+  <img src="../public/resources/img/world-night.png" alt="The planetary distribution of centers">
+  <div class="caption">The nineteen centers, taken together, span every continent and every major ocean basin &mdash; the institutional commitment that Artemis research is informed by the lived conditions of the planet it studies.</div>
+</div>
+
+<!-- 10: Language, Translation -->
+<div class="mini-center">
+  <div class="mc-tag">10 &mdash; Language, Translation &amp; Cross-Cultural Communication</div>
+  <div class="mc-name">Language, Translation &amp; Cross-Cultural Communication</div>
+  <div class="mc-desc">The scientific and humanistic study of language &mdash; including computational linguistics, the technology and ethics of machine translation, and the preservation of endangered languages.</div>
+  <div class="mc-meta"><span><strong>Nodes:</strong> Edinburgh &mdash; Kyoto &mdash; Beirut</span><span><strong>Investigators:</strong> 11</span><span><strong>Fellows:</strong> 36</span></div>
+  <ul class="mc-focus">
+    <li>Computational linguistics and large language models</li>
+    <li>Machine translation quality and equity</li>
+    <li>Endangered language documentation</li>
+    <li>Translation theory and cross-cultural hermeneutics</li>
+  </ul>
+</div>
+
+<!-- 11: Mathematics & Foundations -->
+<div class="mini-center">
+  <div class="mc-tag">11 &mdash; Mathematics &amp; Foundations</div>
+  <div class="mc-name">Mathematics &amp; Foundations</div>
+  <div class="mc-desc">The foundations of mathematics and computation &mdash; including logic, category theory, the theory of complexity, and the structural questions that underlie every other center in the portfolio.</div>
+  <div class="mc-meta"><span><strong>Nodes:</strong> Princeton &mdash; Paris &mdash; Kyoto</span><span><strong>Investigators:</strong> 13</span><span><strong>Fellows:</strong> 38</span></div>
+  <ul class="mc-focus">
+    <li>Logic, set theory, and the foundations of mathematics</li>
+    <li>Category theory and structural mathematics</li>
+    <li>Complexity theory and computational lower bounds</li>
+    <li>Algorithmic information and randomness</li>
+  </ul>
+</div>
+
+<!-- 16: Energy Systems -->
+<div class="mini-center">
+  <div class="mc-tag">16 &mdash; Energy Systems &amp; Decarbonization</div>
+  <div class="mc-name">Energy Systems &amp; Decarbonization</div>
+  <div class="mc-desc">The integrated study of the global energy transition &mdash; technology, policy, and the political economy of decarbonization &mdash; conducted across three nodes that span the principal energy systems of the planet.</div>
+  <div class="mc-meta"><span><strong>Nodes:</strong> Houston &mdash; Munich &mdash; Bangalore</span><span><strong>Investigators:</strong> 12</span><span><strong>Fellows:</strong> 42</span></div>
+  <ul class="mc-focus">
+    <li>Grid integration of variable renewables</li>
+    <li>Long-duration energy storage</li>
+    <li>Industrial decarbonization and process heat</li>
+    <li>Energy access and the global south</li>
+  </ul>
+</div>
+
+<!-- 17: Food Systems -->
+<div class="mini-center">
+  <div class="mc-tag">17 &mdash; Food Systems &amp; Agricultural Innovation</div>
+  <div class="mc-name">Food Systems &amp; Agricultural Innovation</div>
+  <div class="mc-desc">The integrated study of the global food system &mdash; from soil science to crop genetics to supply-chain logistics to nutrition policy &mdash; with deployed research stations in the principal agro-ecological zones.</div>
+  <div class="mc-meta"><span><strong>Nodes:</strong> Wageningen &mdash; Nairobi &mdash; Iowa City</span><span><strong>Investigators:</strong> 13</span><span><strong>Fellows:</strong> 44</span></div>
+  <ul class="mc-focus">
+    <li>Regenerative agriculture and soil health</li>
+    <li>Crop genetics and climate adaptation</li>
+    <li>Alternative proteins and cellular agriculture</li>
+    <li>Food-system resilience and supply-chain design</li>
+  </ul>
+</div>
+
+<!-- 18: Conflict, Peace & Security -->
+<div class="mini-center">
+  <div class="mc-tag">18 &mdash; Conflict, Peace &amp; Security</div>
+  <div class="mc-name">Conflict, Peace &amp; Security</div>
+  <div class="mc-desc">The integrated study of organized violence &mdash; its causes, its conduct, its prevention, and its aftermath &mdash; conducted across three nodes spanning the principal contemporary conflict geographies.</div>
+  <div class="mc-meta"><span><strong>Nodes:</strong> Geneva &mdash; Amman &mdash; Bogot&aacute;</span><span><strong>Investigators:</strong> 10</span><span><strong>Fellows:</strong> 34</span></div>
+  <ul class="mc-focus">
+    <li>Civilian protection and the laws of war</li>
+    <li>Cyber conflict and information operations</li>
+    <li>Post-conflict transition and reconciliation</li>
+    <li>Arms control and emerging-weapons governance</li>
+  </ul>
+</div>
+
+<!-- 19: Arts, Heritage & Cultural Memory -->
+<div class="mini-center">
+  <div class="mc-tag">19 &mdash; Arts, Heritage &amp; Cultural Memory</div>
+  <div class="mc-name">Arts, Heritage &amp; Cultural Memory</div>
+  <div class="mc-desc">The study and preservation of cultural heritage &mdash; built, movable, and intangible &mdash; with deployed conservation programs in three nodes spanning the principal heritage contexts of the planet.</div>
+  <div class="mc-meta"><span><strong>Nodes:</strong> Rome &mdash; Cairo &mdash; Kyoto</span><span><strong>Investigators:</strong> 9</span><span><strong>Fellows:</strong> 30</span></div>
+  <ul class="mc-focus">
+    <li>Built-heritage conservation and climate adaptation</li>
+    <li>Intangible heritage and language preservation</li>
+    <li>Digital heritage and large-scale documentation</li>
+    <li>Restitution and the politics of the museum</li>
+  </ul>
+</div>
+
+<p class="body-text">The twelve additional centers were chosen through the same proposal-and-vetting process as the seven anchors, and each is led by a founding director who has committed to lead the center for its first decade. The activation schedule is deliberately staggered: three to four centers activate per year between 2026 and 2030, ensuring that the institution can absorb the new cohorts without compromising the support provided to the founding seven. The full nineteen-center portfolio is operational by Q1 2030, in time for the first external review cycle to begin in 2032.</p>
+
+<div class="pullquote">
+  A research portfolio is not a list of departments. It is a bet,
+  made in advance, on where the consequential questions of the
+  next quarter-century will be found. The nineteen-center
+  portfolio is the Artemis bet.
+  <div class="attribution">&mdash; From the Artemis Research Charter, Article 2</div>
+</div>
+
+<p class="body-text">The portfolio is reviewed in its entirety every seven years by the Research Portfolio Committee, with the same three criteria applied to the portfolio as a whole: consequentiality, feasibility, and fit. Centers may be restructured, merged, or dissolved based on the portfolio review, and new centers may be proposed to fill gaps that the review identifies. The institutional commitment is that the portfolio is not a permanent entitlement: it is a living structure, reviewed against the continuing questions of the century, and revised when the revision is warranted.</p>
+
+<!-- ─── IV. THE CORE INVESTIGATOR MODEL ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter IV</div>
+  <div class="chapter-title">The core-investigator model.</div>
+</div>
+
+<p class="lead">Every Center of Inquiry is staffed on the same model: a core cohort of tenured investigators, a larger cohort of fellows and postdocs, and a rotating population of visiting researchers drawn from partner institutions. The model is designed to give investigators the long horizon, the protected time, and the institutional stability required to do research that does not fit within a grant cycle.</p>
+
+<p class="body-text">The core-investigator cohort at each center is between 9 and 16 members at maturity, with the size calibrated to the center&rsquo;s research program and the scale of its node infrastructure. Investigators are appointed to a center, not to a department, and their primary professional identity is the center rather than a disciplinary field. The appointment is structured as a long-term contract &mdash; ten years, renewable &mdash; with the institution committing to the funding of the investigator&rsquo;s research program for the duration of the contract, regardless of the grant-funding environment. The structural commitment is that the investigator is freed from the grant cycle: the institution absorbs the funding risk, and the investigator is left to do the work.</p>
+
+<p class="body-text">The fellows cohort is larger &mdash; typically three to four times the investigator cohort &mdash; and is structured as a five-year postdoctoral appointment with explicit progression criteria. Fellows are recruited globally, are expected to spend time at each of the center&rsquo;s three nodes during the appointment, and are supported toward independent investigator positions at Artemis or at partner institutions. The fellows cohort is the principal pipeline through which the center renews its investigator cadre, and the institution tracks the placement of every fellow as a measure of the center&rsquo;s contribution to the broader research community.</p>
+
+<table class="tbl">
+  <thead>
+    <tr>
+      <th>Cohort</th>
+      <th>Appointment</th>
+      <th style="text-align:right;">Per Center</th>
+      <th style="text-align:right;">Portfolio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Tenured investigators</td><td>10-year renewable contract</td><td class="num">9&ndash;16</td><td class="num">~240</td></tr>
+    <tr><td>Fellows &amp; postdocs</td><td>5-year appointment</td><td class="num">30&ndash;54</td><td class="num">~720</td></tr>
+    <tr><td>Visiting researchers</td><td>1-semester to 2-year rotation</td><td class="num">~10</td><td class="num">~190</td></tr>
+    <tr><td>Research staff</td><td>Permanent, center-funded</td><td class="num">~12</td><td class="num">~230</td></tr>
+    <tr class="total"><td>Total research headcount</td><td>Across 19 centers at maturity</td><td class="num">&mdash;</td><td class="num">~1,380</td></tr>
+  </tbody>
+</table>
+
+<p class="body-text">The visiting-researcher program is the structural mechanism through which Artemis centers remain connected to the broader research community. Every center hosts a rotating population of visiting researchers &mdash; from partner institutions, from government, and from industry &mdash; on appointments of one semester to two years. The visiting program is funded by the institution, not by the visitor&rsquo;s home organization, to ensure that the program is accessible to researchers from institutions without their own travel budgets. The program is also the principal channel through which the seven-year release policy is enforced: visiting researchers are bound by the same release terms as the core investigators, and the institution tracks the publication of work initiated during a visiting appointment.</p>
+
+<div class="callout">
+  <div class="callout-label">What the core-investigator model rejects</div>
+  <p class="body-text" style="margin:0;">The model rejects the grant-cycle research culture that has come to dominate the contemporary research university &mdash; the culture in which investigators spend a substantial fraction of their time pursuing short-term funding, in which research programs are calibrated to the grant cycle rather than to the question, and in which the institutional commitment to the investigator is contingent on the investigator&rsquo;s continuing ability to attract external funding. The Artemis position is that this culture is incompatible with the long-horizon research the institution intends to conduct, and that the core-investigator model &mdash; with its ten-year contracts, its institutional funding commitment, and its release from the grant cycle &mdash; is the structural alternative.</p>
+</div>
+
+<p class="body-text">The compensation model for investigators is published and transparent: a starting salary of $185,000 for a junior investigator, rising to $310,000 at the senior investigator level, with no negotiation on entry (the salary is fixed by rank) and a transparent sabbatical cycle of one year every seven years. The compensation is calibrated to be competitive with the leading research universities in the principal research economies, and the structural commitment is that the institution is competing for the same investigators as those universities, on a transparent and equitable basis. The compensation model is the institutional answer to the question of why a serious researcher would accept a long-term contract at a new institution: because the contract comes with the protected time, the long horizon, and the institutional stability that the grant-cycle culture cannot provide.</p>
+
+<!-- ─── V. CENTER LIFECYCLE ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter V</div>
+  <div class="chapter-title">Center lifecycle &amp; activation.</div>
+</div>
+
+<p class="lead">Every Center of Inquiry at Artemis follows the same lifecycle: proposal, vetting, activation, ramp-up, maturity, and external review. The lifecycle is the institutional mechanism that ensures each center earns its place in the portfolio, and that no center becomes a permanent entitlement regardless of its continuing contribution.</p>
+
+<p class="body-text">The proposal stage is open: any researcher affiliated with the institution may propose a new center, with a research program, a node plan, an investigator cohort, and a five-year budget. Proposals are vetted by the Research Portfolio Committee &mdash; a faculty body that includes the directors of the existing centers &mdash; against three criteria: consequentiality (does the proposal address a question of significance to the century?), feasibility (can the proposed team execute the program?), and fit (does the proposal complement or duplicate the existing portfolio?). Proposals that pass the vetting are forwarded to the board of trustees with a funding recommendation.</p>
+
+<p class="body-text">Activation begins with the recruitment of the founding investigator cohort and the establishment of the three nodes. The ramp-up phase &mdash; typically two to three years &mdash; covers the buildout of the node infrastructure, the recruitment of the fellows cohort, and the initiation of the first research programs. Maturity is reached when the center is operating at full headcount, with its research programs underway and its first publications approaching the seven-year release window. The external review &mdash; conducted every seven years by a panel of external researchers &mdash; evaluates whether the center has earned continuation, restructuring, or dissolution. The review is binding: a center that fails the review is dissolved, with its investigators offered transitions to other centers or to partner institutions.</p>
+
+<div class="callout">
+  <div class="callout-label">The activation schedule</div>
+  <p class="body-text" style="margin:0;">The seven anchor centers activate in 2025&ndash;2026, with the founding investigator cohort onboarded by Q2 2026 and the first research programs initiated by Q3 2026. The twelve additional centers activate on a rolling schedule between 2026 and 2030, with three to four centers activating per year. The full nineteen-center portfolio is operational by Q1 2030, in time for the institution&rsquo;s first external review cycle to begin in 2032 &mdash; the same year as the first knowledge drop under the seven-year release policy.</p>
+</div>
+
+<!-- ─── VI. TRANSLATIONAL PROGRAMS ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter VI</div>
+  <div class="chapter-title">Translational programs &amp; the Forge.</div>
+</div>
+
+<p class="lead">The Centers of Inquiry produce research; the translational programs convert that research into deployed impact. The principal translational vehicle is the Forge &mdash; the institutional incubator that supports the formation of spin-out ventures around center research, under open-licensing terms consistent with the seven-year release policy.</p>
+
+<p class="body-text">The Forge is structured as a non-equity incubator: it does not take ownership stakes in the ventures it supports, and the ventures are not a financial instrument of the institution. The Forge provides space, mentorship, regulatory navigation, and small amounts of seed funding &mdash; typically $50,000 to $250,000 per venture &mdash; in exchange for an open-licensing commitment on the underlying research and a royalty arrangement that returns a small percentage of venture revenue to the center that produced the research. The Forge is funded from the institutional surplus, not from external venture capital, and is structurally protected from the pressures that equity-based incubation would impose on the research agenda.</p>
+
+<div class="figure">
+  <img src="../public/resources/img/venice-node.png" alt="Translational programs">
+  <div class="caption">The Forge incubator supports spin-out ventures from across the nineteen centers, with a portfolio of approximately twenty ventures per year at maturity &mdash; each operating under open-licensing terms consistent with the seven-year release policy.</div>
+</div>
+
+<p class="body-text">At maturity, the Forge will support a portfolio of approximately twenty ventures per year, drawn from across the nineteen centers. The portfolio is deliberately diversified across domains &mdash; biotech ventures, climate-tech ventures, AI ventures, fintech ventures &mdash; to ensure that the translational program does not become captive to the venture-funding environment of any single sector. The Forge publishes an annual outcomes report, audited externally, that tracks the survival, the revenue, the employment, and the open-licensing compliance of every venture in the portfolio. The report is the institutional commitment that the translational program is being measured by the same standards as the rest of the research enterprise.</p>
+
+<div class="stat-row">
+  <div class="stat">
+    <div class="stat-val">~20</div>
+    <div class="stat-label">Forge Ventures / Year</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">$50K&ndash;$250K</div>
+    <div class="stat-label">Seed per Venture</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">0%</div>
+    <div class="stat-label">Equity Taken by Forge</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">Open</div>
+    <div class="stat-label">Licensing Terms</div>
+  </div>
+</div>
+
+<p class="body-text">Beyond the Forge, the translational programs include the Policy Bridge &mdash; a unit that supports the placement of center researchers in government and intergovernmental roles on temporary rotation &mdash; and the Public Programs division, which produces the open-access publications, the lecture series, and the executive education programs that bring center research into the public domain. The three translational vehicles together constitute the institutional commitment that Artemis research is not conducted for its own sake: the work is intended to reach the world, and the institution has built the structures that ensure it does.</p>
+
+<div class="pullquote">
+  A research university that does not deploy its findings
+  has only half-finished the work. The other half is the
+  translation &mdash; and the translation is where most
+  universities fail.
+  <div class="attribution">&mdash; From the Artemis Research Charter, Article 4</div>
+</div>
+
+<!-- ─── VII. GOVERNANCE & INTEGRITY ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter VII</div>
+  <div class="chapter-title">Governance, integrity, and the audit.</div>
+</div>
+
+<p class="lead">The Centers of Inquiry operate under the institutional research-integrity framework administered by the Office of Research Integrity. The framework governs the seven-year release policy, the conflict-of-interest regime, the open-data and open-code commitments, and the external audit of compliance.</p>
+
+<p class="body-text">The Office of Research Integrity is structurally independent of the centers it oversees. It reports to the board of trustees, not to the academic leadership, and its director is appointed for a single ten-year term to insulate the office from short-term pressures. The office conducts an annual audit of every center &mdash; reviewing the publication record, the conflict-of-interest disclosures, the open-data compliance, and the adherence to the seven-year release schedule &mdash; and publishes the audit findings in the institutional outcomes report. Centers that fail the audit are subject to corrective action, up to and including dissolution.</p>
+
+<p class="body-text">The conflict-of-interest regime is built on the principle of disclosure and structural separation. Investigators may hold equity in ventures spun out from their research, but the equity is held in a blind trust for the duration of the appointment and may not be traded on the basis of non-public information. Investigators may accept consulting fees from external organizations, but the consulting is capped at one day per week and the arrangements are disclosed in the public registry. The regime is not designed to prevent investigators from engaging with the world; it is designed to ensure that the engagement is visible and that the incentives do not corrupt the research.</p>
+
+<div class="callout">
+  <div class="callout-label">The institutional outcomes report</div>
+  <p class="body-text" style="margin:0;">Every five years, the institution publishes a research-outcomes report &mdash; audited externally, published openly &mdash; that catalogs the published output of every center, the compliance with the seven-year release policy, the disposition of every venture in the Forge portfolio, and the audit findings of the Office of Research Integrity. The report is the institutional commitment that the research enterprise is being measured by the same standards as the academic enterprise, and that the measurement is visible to the public that funds it.</p>
+</div>
+
+<p class="body-text">The first research-outcomes report will be published in 2032, drawing on the cumulative output of the founding cohort of centers. Until then, the institution is judged, like its students and like its faculty, on the seriousness of the questions it has chosen to ask. The nineteen-center portfolio is the institutional answer: that the principal questions of the century are technical, ethical, and political at once; that they require a planetary distribution of expertise to address; and that they require a research enterprise bound by an open-release commitment to the public domain. The portfolio is the institutional commitment to that answer.</p>
+
+</div>
+
+<!-- ════════════════ ENDING ════════════════ -->
+<div class="ending">
+  <div class="ending-tag">Centers of Inquiry &middot; Edition I</div>
+  <div class="ending-big">Research that survives the daylight of public release.</div>
+  <div class="ending-sub">
+    Nineteen centers. Three nodes each. A seven-year release policy.
+    The Artemis research enterprise is conducted for the public domain,
+    on a fixed schedule, regardless of commercial potential.
+  </div>
+  <div class="ending-contact">
+    research@artemis.edu &middot; artemis.edu/research
+  </div>
+</div>
+
+</body>
+</html>

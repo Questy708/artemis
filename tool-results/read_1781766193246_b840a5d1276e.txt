@@ -1,0 +1,427 @@
+   500→<table class="tbl endowment-tbl">
+   501→  <thead><tr><th>Year</th><th>Endowment Corpus</th><th>Source</th></tr></thead>
+   502→  <tbody>
+   503→    <tr><td class="yr-col">Year 1</td><td class="num">$3M</td><td class="src-col">Founding campaign Progress pillar</td></tr>
+   504→    <tr><td class="yr-col">Year 2</td><td class="num">$63M</td><td class="src-col">Surplus allocation ($60M)</td></tr>
+   505→    <tr><td class="yr-col">Year 3</td><td class="num">$123M</td><td class="src-col">Surplus + naming gifts</td></tr>
+   506→    <tr><td class="yr-col">Year 5</td><td class="num">$243M</td><td class="src-col">Compounding surplus</td></tr>
+   507→    <tr><td class="yr-col">Year 10</td><td class="num">$543M</td><td class="src-col">Mature endowment</td></tr>
+   508→  </tbody>
+   509→</table>
+   510→<div class="callout">
+   511→  <div class="callout-label">Why This Matters to a Founding Donor</div>
+   512→  <p class="body-text" style="margin:0;">Your gift is not consumed. It is converted — into a building, a professorship, a scholarship, a Center — that generates returns in perpetuity. A $5M Distinguished Professorship at 4.5% yield produces $225,000 every year, forever, enough to sustain one position at career-level compensation. A $25M Central Node naming produces a building that houses five thousand students per year, every year, for centuries. The asset is permanent. The return is permanent. The only thing that ends is the campaign.</p>
+   513→</div>
+   514→
+   515→<!-- ─── FIVE PILLARS ─── -->
+   516→<div class="chapter-header">
+   517→  <div class="chapter-tag">Part III · Chapter 4</div>
+   518→  <div class="chapter-title">The Five Pillars of the Campaign</div>
+   519→</div>
+   520→<p class="lead">Every dollar of the $100M goal is allocated to one of five pillars. Properties dominate — eighty-two cents of every dollar — because a university without a physical place is not a university. The remaining eighteen cents fund faculty, scholarships, research, and innovation.</p>
+   521→
+   522→<div class="pillar-card">
+   523→  <div class="pc-head"><div class="pc-title">Place</div><div class="pc-share">82%</div></div>
+   524→  <div class="pc-sub">The 50 Colleges</div>
+   525→  <div class="pc-goal"><strong>$82M</strong> · properties acquired outright, repurposed, owned in perpetuity</div>
+   526→  <div class="pc-body">A university without a physical place is a YouTube channel. Community requires co-location. Tutorials require rooms. We are not building campuses — we are finding existing buildings and giving them a second life as Colleges. Repurposed convents, warehouses, offices, factories. Each one acquired. Each one owned. Each one permanent.</div>
+   527→  <div class="pc-detail"><strong>Why 82%</strong>Properties are 82 cents of every dollar raised. Even at 50% naming uptake, the gifts cover the property costs. Named gifts are endowments — the property is the asset. Donor names a College; the College owns the building.</div>
+   528→</div>
+   529→
+   530→<div class="pillar-card">
+   531→  <div class="pc-head"><div class="pc-title">Minds</div><div class="pc-share">7%</div></div>
+   532→  <div class="pc-sub">Faculty Launch</div>
+   533→  <div class="pc-goal"><strong>$7M</strong> · faculty compensation bridge for the first three months</div>
+   534→  <div class="pc-body">2,000 faculty must be hired, onboarded, and in place before students arrive. This pillar covers roughly three months of faculty compensation before tuition revenue flows. After Day 1, the P&amp;L covers all faculty compensation from tuition. This is a one-time bridge, not an ongoing obligation.</div>
+   535→  <div class="pc-detail"><strong>The Endowment Math</strong>A $5M Distinguished Professorship at 4.5% yield generates $225K/year — enough to sustain one position in perpetuity at career-level compensation. The naming gifts are endowments; the $7M pre-launch cost is the bridge.</div>
+   536→</div>
+   537→
+   538→<div class="pillar-card">
+   539→  <div class="pc-head"><div class="pc-title">Access</div><div class="pc-share">5%</div></div>
+   540→  <div class="pc-sub">Year 1 Scholarships</div>
+   541→  <div class="pc-goal"><strong>$5M</strong> · scholarships for the founding cohort of 10,000 students</div>
+   542→  <div class="pc-body">$3,000/year is accessible to 90% of qualified students worldwide. The remaining 10% — 10,000 students in Year 1 — need assistance. After Year 1, the $262M annual surplus funds 13,300 scholarships per year. This $5M bridges the first cohort, then the surplus takes over permanently.</div>
+   543→  <div class="pc-detail"><strong>The Permanent Machine</strong>After Year 1, the surplus self-funds scholarships at $40M/year. Your seed gift does not run a program — it launches a permanent scholarship machine.</div>
+   544→</div>
+   545→
+   546→<div class="pillar-card">
+   547→  <div class="pc-head"><div class="pc-title">Excellence</div><div class="pc-share">3%</div></div>
+   548→  <div class="pc-sub">Research &amp; Inquiry</div>
+   549→  <div class="pc-goal"><strong>$3M</strong> · seed capital for 19 Centers of Inquiry and 42 active projects</div>
+   550→  <div class="pc-body">Research seed funds, visiting fellowships, the Artemis Press, Centers of Inquiry. The mechanisms that turn a good university into an inevitable one. 19 Centers of Inquiry and 42 active projects need startup capital: research equipment, fieldwork budgets, database subscriptions, publication subsidies, and the open knowledge infrastructure that powers the 7-year release.</div>
+   551→  <div class="pc-detail"><strong>After Year 1</strong>Faculty time (already compensated) covers most ongoing project work. This $3M is the seed that makes every Center operational from Day 1.</div>
+   552→</div>
+   553→
+   554→<div class="pillar-card">
+   555→  <div class="pc-head"><div class="pc-title">Progress</div><div class="pc-share">3%</div></div>
+   556→  <div class="pc-sub">Innovation &amp; Infrastructure</div>
+   557→  <div class="pc-goal"><strong>$3M</strong> · innovation labs, Global Challenge Fund, technology infrastructure</div>
+   558→  <div class="pc-body">Innovation labs, the Global Challenge Fund, technology infrastructure. The bridge between scholarship and the world it serves. The university that outlives its founders needs a corpus that outlives its donors. After Year 1, the surplus builds the endowment at $60M/year.</div>
+   559→  <div class="pc-detail"><strong>Day-1 Endowment</strong>$3M at 4.5% = $135K/year in perpetuity from Day 1 — enough to fund 11 full scholarships forever, before any surplus is generated.</div>
+   560→</div>
+   561→
+   562→<div class="progress">
+   563→  <div class="progress-label"><span>Campaign progress (live)</span><span>$2.1M of $100M · 342 donors</span></div>
+   564→  <div class="progress-track"><div class="progress-fill" style="width:2%;"></div></div>
+   565→</div>
+   566→
+   567→<!-- ─── THREE CENTRAL NODES ─── -->
+   568→<div class="chapter-header">
+   569→  <div class="chapter-tag">Part III · Chapter 5</div>
+   570→  <div class="chapter-title">The Three Central Nodes</div>
+   571→</div>
+   572→<p class="lead">Three cities anchor the network. Each hosts five thousand students. Each bears a founding donor's name in perpetuity. Together they form the governance, innovation, and convening triangle of the planetary university.</p>
+   573→<p class="body-text">The Central Nodes are not administrative capitals in the conventional sense. They are the three places where the university convenes itself — where the founding document is archived, where convocation is held, where the Board of Visitors meets, where the president resides. Each Node hosts approximately five thousand students and is the largest single institution in its host city. Each is named by a founding donor at the $25M level.</p>
+   574→
+   575→<div class="node-card">
+   576→  <img class="nc-img" src="../public/resources/img/venice-node.png" alt="Venice">
+   577→  <div class="nc-body">
+   578→    <div class="nc-name">Venice Central Node</div>
+   579→    <div class="nc-role">The Founding Seat · ~5,000 students</div>
+   580→    <div class="nc-desc">The founding seat — governance, convocation, the founding document archive. Canals and Renaissance palazzi repurposed as the academic heart. Venice was chosen because it is the city where East meets West, where the Renaissance was financed, and where a planetary institution can convene without belonging to any single nation.</div>
+   581→  </div>
+   582→</div>
+   583→
+   584→<div class="node-card">
+   585→  <img class="nc-img" src="../public/resources/img/governance-building.png" alt="San Francisco">
+   586→  <div class="nc-body">
+   587→    <div class="nc-name">San Francisco Central Node</div>
+   588→    <div class="nc-role">Technology &amp; Innovation Seat · ~5,000 students</div>
+   589→    <div class="nc-desc">The technology and innovation seat — proximity to Silicon Valley, the Forge incubator, biotech and computational research. The San Francisco Node is where the institution's research portfolio meets the capital markets that can scale it, and where the 5% innovation equity carry that funds the operating budget is generated.</div>
+   590→  </div>
+   591→</div>
+   592→
+   593→<div class="node-card">
+   594→  <img class="nc-img" src="../public/resources/img/campus-architecture.png" alt="Singapore">
+   595→  <div class="nc-body">
+   596→    <div class="nc-name">Singapore Central Node</div>
+   597→    <div class="nc-role">Asia-Pacific Seat · ~5,000 students</div>
+   598→    <div class="nc-desc">The Asia-Pacific seat — a neutral convening point for the Eastern hemisphere, fintech and urban futures research. Singapore was chosen for its neutrality, its regulatory sophistication, and its position as the natural meeting point of South Asia, East Asia, and Oceania. A founding donor may name this Node for $25M.</div>
+   599→  </div>
+   600→</div>
+   601→
+   602→<div class="callout">
+   603→  <div class="callout-label">A Note on Selection</div>
+   604→  <p class="body-text" style="margin:0;">These three cities were chosen after a two-year review of more than forty candidate locations. Venice, San Francisco, and Singapore were selected because together they span every major timezone, every major legal tradition, and every major linguistic family — and because each is, in its own way, a city that has been rebuilt by trade and ideas. A planetary university must be rooted in places that understand planetary traffic.</p>
+   605→</div>
+   606→
+   607→<!-- ─── NAMING ─── -->
+   608→<div class="chapter-header">
+   609→  <div class="chapter-tag">Part IV · Chapter 6</div>
+   610→  <div class="chapter-title">Naming Opportunities</div>
+   611→</div>
+   612→<p class="lead">Every gift at every level carries a name. From a $12K student scholarship to a $25M Central Node, the naming architecture is designed so that no founding contribution is invisible — and so that every named asset is permanent.</p>
+   613→<p class="body-text">Artemis's naming philosophy is simple. A named gift is not a plaque — it is an endowment. When you name a College, the College owns the building; your name is attached to that building for as long as the institution exists. When you name a Professorship, your gift is invested at 4.5% yield, and the income funds one faculty position in perpetuity. When you name a Scholarship, your gift covers one student's four-year education, and your name is recorded permanently in the founding Donor Roll. There is no temporary naming, no five-year term, no expiry.</p>
+   614→<table class="tbl">
+   615→  <thead><tr><th>Naming Opportunity</th><th>Amount</th><th>Type</th></tr></thead>
+   616→  <tbody>
+   617→    <tr><td><strong>Central Node</strong> — Venice, San Francisco, or Singapore<br><span style="font-size:10px;color:var(--muted);">~5,000 students. The apex of the Artemis network.</span></td><td class="num">$25M</td><td>Central Node</td></tr>
+   618→    <tr><td><strong>Tier A College</strong> — London, Tokyo, Berlin, Paris, etc.<br><span style="font-size:10px;color:var(--muted);">Flagship colleges in great knowledge capitals. ~2,500 students.</span></td><td class="num">$10M</td><td>College</td></tr>
+   619→    <tr><td><strong>Center of Inquiry</strong> — 19 centers<br><span style="font-size:10px;color:var(--muted);">Permanently endowed, independently operating research center.</span></td><td class="num">$10M</td><td>Naming</td></tr>
+   620→    <tr><td><strong>Tier B College</strong> — Major global cities<br><span style="font-size:10px;color:var(--muted);">~2,000 students. A permanent physical presence in your name.</span></td><td class="num">$5M</td><td>College</td></tr>
+   621→    <tr><td><strong>Distinguished Professorship</strong><br><span style="font-size:10px;color:var(--muted);">At 4.5% yield, generates $225K/yr in perpetuity.</span></td><td class="num">$5M</td><td>Endowment</td></tr>
+   622→    <tr><td><strong>Degree Program</strong> — 55 programs<br><span style="font-size:10px;color:var(--muted);">Your name associated with a discipline and every graduate.</span></td><td class="num">$3M</td><td>Naming</td></tr>
+   623→    <tr><td><strong>Tier C College</strong> — Kigali, Dhaka, Kampala, Karachi<br><span style="font-size:10px;color:var(--muted);">~1,100 students. Home to the next generation of regional leaders.</span></td><td class="num">$2M</td><td>College</td></tr>
+   624→    <tr><td><strong>Scholarship Fund</strong> — One student, four years<br><span style="font-size:10px;color:var(--muted);">$3,000/yr × 4 years. The most direct way to change a life.</span></td><td class="num">$12K</td><td>Scholarship</td></tr>
+   625→  </tbody>
+   626→</table>
+   627→<p class="body-text">The naming architecture is engineered for leverage. Consider the College naming math. A $5M Tier B College naming covers a property that, in most major global cities, would cost $8–12M to acquire and repurpose. The donor's $5M is matched against the building's acquisition; the campaign covers the remainder. The donor's name is attached to a permanent physical asset that houses two thousand students per year. Over a fifty-year building life, that is one hundred thousand students educated inside a building bearing the donor's name. The cost per student is fifty dollars.</p>
+   628→<p class="body-text">The Distinguished Professorship math is even cleaner. A $5M endowment at 4.5% yield produces $225,000 per year, every year, indefinitely. A career-level faculty compensation package is approximately $200,000–$225,000 fully loaded. The endowment therefore funds one professor forever — and as the endowment compounds, the surplus accumulates, eventually funding a second position from the same gift. A founding donor who names five professorships creates a permanent academic department that will exist for as long as the university does.</p>
+   629→<div class="callout">
+   630→  <div class="callout-label">The Naming Principle</div>
+   631→  <p class="body-text" style="margin:0;">No temporary naming. No five-year terms. No expiry. A named gift at Artemis is a permanent transfer of capital into a permanent asset of the institution. The donor's name is recorded in the founding charter, engraved at the named site, and protected by the same governance and audit regime that protects every other asset of the university.</p>
+   632→</div>
+   633→
+   634→<!-- ─── GIVING CIRCLES ─── -->
+   635→<div class="chapter-header">
+   636→  <div class="chapter-tag">Part IV · Chapter 7</div>
+   637→  <div class="chapter-title">Giving Circles</div>
+   638→</div>
+   639→<p class="lead">Six circles, structured by gift size, each carrying a defined set of permanent recognitions. The circles exist to honour contribution at every scale — from $99 to $25M+ — and to ensure that every founding donor is part of the founding community.</p>
+   640→<p class="body-text">The Giving Circles are not a loyalty program. They are a permanent record of who built the institution, and at what level of commitment. Membership in a circle is determined by cumulative lifetime giving during the founding campaign, and membership is permanent — recorded in the founding charter, on the founding Donor Roll, and, at the higher levels, in physical engravings at the Central Nodes.</p>
+   641→
+   642→<div class="circle-card">
+   643→  <div class="cc-range"><div class="cc-amt">$10M+</div><div class="cc-amt-label">Founders'</div></div>
+   644→  <div>
+   645→    <div class="cc-name">The Founders' Circle</div>
+   646→    <div class="cc-benefits"><strong>Name engraved on the university's founding document at Venice Central Node.</strong> Permanent seat on Board of Visitors. Private annual dinner with the President at rotating Central Node. Named endowment fund or equivalent naming opportunity. Recognition plaque at all 50 Colleges. Biographical feature in annual campaign report.</div>
+   647→  </div>
+   648→</div>
+   649→
+   650→<div class="circle-card">
+   651→  <div class="cc-range"><div class="cc-amt">$5M–9.9M</div><div class="cc-amt-label">Guardians'</div></div>
+   652→  <div>
+   653→    <div class="cc-name">The Guardians' Circle</div>
+   654→    <div class="cc-benefits"><strong>Named College or Center of Inquiry.</strong> Recognition plaque at all 50 Colleges. Annual Guardian's Lecture — a public lecture series named by you. Annual private briefing with the President. Named endowment fund.</div>
+   655→  </div>
+   656→</div>
+   657→
+   658→<div class="circle-card">
+   659→  <div class="cc-range"><div class="cc-amt">$1M–4.9M</div><div class="cc-amt-label">Builders'</div></div>
+   660→  <div>
+   661→    <div class="cc-name">The Builders' Circle</div>
+   662→    <div class="cc-benefits"><strong>Named Professorship, Scholarship Fund, or major program.</strong> Recognition plaque at all 50 Colleges. Annual Builder's Report — detailed impact report on your named gift. Invitation to annual gathering. Feature in campaign newsletter.</div>
+   663→  </div>
+   664→</div>
+   665→
+   666→<div class="circle-card">
+   667→  <div class="cc-range"><div class="cc-amt">$100K–999K</div><div class="cc-amt-label">Fellows'</div></div>
+   668→  <div>
+   669→    <div class="cc-name">The Fellows' Circle</div>
+   670→    <div class="cc-benefits"><strong>Named scholarship fund or tutorial room at chosen College.</strong> Recognition at chosen College. Annual Fellow's Newsletter from the President. Invitation to regional events.</div>
+   671→  </div>
+   672→</div>
+   673→
+   674→<div class="circle-card">
+   675→  <div class="cc-range"><div class="cc-amt">$10K–99K</div><div class="cc-amt-label">Friends</div></div>
+   676→  <div>
+   677→    <div class="cc-name">Friends of Artemis</div>
+   678→    <div class="cc-benefits"><strong>Name in founding Donor Roll (permanent digital and print record).</strong> Digital certificate of founding support. Quarterly progress updates. Invitation to online events.</div>
+   679→  </div>
+   680→</div>
+   681→
+   682→<div class="circle-card">
+   683→  <div class="cc-range"><div class="cc-amt">$99</div><div class="cc-amt-label">The 99</div></div>
+   684→  <div>
+   685→    <div class="cc-name">The 99</div>
+   686→    <div class="cc-benefits"><strong>Waitlist priority for enrollment.</strong> Digital recognition on community wall. Monthly community updates. The knowledge that you were first in line — the founding community begins here.</div>
+   687→  </div>
+   688→</div>
+   689→
+   690→<div class="callout">
+   691→  <div class="callout-label">A Word on The 99</div>
+   692→  <p class="body-text" style="margin:0;">The lowest circle is named for its entry gift of $99 — the price of one textbook at most universities. We created it because we believe that the first dollar given to an institution matters more than the millionth, and that a founding community must include those who give what they can, not only those who give what others cannot. Three hundred and forty-two donors have already joined at this level. They will be listed, by name, in the founding Donor Roll alongside the Founders' Circle.</p>
+   693→</div>
+   694→
+   695→<!-- ─── HOW FOUNDING CAMPAIGNS WORK ─── -->
+   696→<div class="chapter-header">
+   697→  <div class="chapter-tag">Part IV · Chapter 8</div>
+   698→  <div class="chapter-title">How Founding Campaigns Work</div>
+   699→</div>
+   700→<p class="lead">Founding campaigns do not raise money from crowds. They raise money from a small number of people who understand that institutions are built before they are announced. The Artemis campaign follows the standard distribution: 70% from 10 donors, 20% from 20 donors, 10% from hundreds.</p>
+   701→<p class="body-text">This distribution is not a preference — it is a structural fact about how institutions are founded. Yale's "For Humanity" campaign secured $3.5 billion in its quiet phase, before any public announcement, from fewer than fifty donors. Stanford's campaign raised more than 70% of its goal from lead donors before the public launch. The pattern is consistent because the logic is consistent: lead donors commit privately because they understand that their commitment is what makes the public campaign credible. Without the lead gifts, there is nothing to announce.</p>
+   702→<table class="tbl">
+   703→  <thead><tr><th>Donor Segment</th><th>Gift Count</th><th>Total</th><th>Share</th></tr></thead>
+   704→  <tbody>
+   705→    <tr><td><strong>Lead Donors</strong><br><span style="font-size:10px;color:var(--muted);">Founders' &amp; Guardians' Circle</span></td><td>10 gifts</td><td class="num">$70M</td><td>70%</td></tr>
+   706→    <tr><td><strong>Major Donors</strong><br><span style="font-size:10px;color:var(--muted);">$1M–$5M level, Builders' Circle</span></td><td>20 gifts</td><td class="num">$20M</td><td>20%</td></tr>
+   707→    <tr><td><strong>Community</strong><br><span style="font-size:10px;color:var(--muted);">Fellows, Friends, The 99</span></td><td>Unlimited</td><td class="num">$10M</td><td>10%</td></tr>
+   708→    <tr><td><strong>Total Campaign Goal</strong></td><td>—</td><td class="num"><strong>$100M</strong></td><td><strong>100%</strong></td></tr>
+   709→  </tbody>
+   710→</table>
+   711→<p class="body-text">The arithmetic is straightforward. Ten lead donors at an average of $7M each — typically distributed across a Central Node naming, a College naming, and a Professorship or Center — secure seventy percent of the campaign. Twenty major donors at an average of $1M each — typically Professorships, Degree Program namings, or Scholarship Funds — secure another twenty percent. The remaining ten percent — $10M — is raised from hundreds of donors across the Fellows', Friends, and The 99 circles. This last tranche is small in dollars but large in signal: a broad founding community is itself a form of credibility.</p>
+   712→<div class="pullquote">
+   713→  This is how founding campaigns work. Lead donors commit privately because their commitment is what makes the public campaign credible. Without the lead gifts, there is nothing to announce.
+   714→  <div class="attribution">— Artemis Campaign Cabinet</div>
+   715→</div>
+   716→<p class="body-text">To date, the campaign has secured $2.1M in binding commitments from 342 donors — primarily across the Friends and The 99 circles, with two Builder-level commitments under negotiation. The campaign is currently in the Quiet Phase, the first of four milestones described in Chapter 11. The next ninety days will determine whether the founding cabinet can secure the $50M in lead commitments required to enter the Public Phase. Your decision is part of that determination.</p>
+   717→
+   718→<!-- ─── DONORS ─── -->
+   719→<div class="chapter-header">
+   720→  <div class="chapter-tag">Part IV · Chapter 9</div>
+   721→  <div class="chapter-title">The Founders — A Living Record</div>
+   722→</div>
+   723→<p class="lead">A selection of recent founding gifts, listed with the permission of the donors. Anonymous gifts are recorded without names but with the messages their donors chose to leave.</p>
+   724→<p class="body-text">The list below is a snapshot of the founding donor roll as of the date of this prospectus. Gifts are recorded in chronological order, with the donor's name (where permitted), the gift amount, the date received, and where the donor has provided one, a brief message. Every donor on this list will be permanently recorded in the founding Donor Roll, in the order of their gift, alongside the Founders' Circle and the Guardians' Circle.</p>
+   725→
+   726→<div class="donor-row"><div><div class="dr-name">The Nordgren Foundation</div><div class="dr-msg">"Investing in the infrastructure of imagination."</div></div><div class="dr-amt">$100,000</div><div class="dr-date">28 Apr</div></div>
+   727→<div class="donor-row"><div><div class="dr-name">Chen Wei Laboratories</div></div><div class="dr-amt">$50,000</div><div class="dr-date">4 May</div></div>
+   728→<div class="donor-row"><div><div class="dr-name">Anonymous Patron</div><div class="dr-msg">"Because knowledge should have no borders."</div></div><div class="dr-amt">$40,000</div><div class="dr-date">7 May</div></div>
+   729→<div class="donor-row"><div><div class="dr-name">Dr. Elena Vasquez</div><div class="dr-msg">"For the students who will change everything."</div></div><div class="dr-amt">$25,000</div><div class="dr-date">10 May</div></div>
+   730→<div class="donor-row"><div><div class="dr-name">The Matsuo Trust</div></div><div class="dr-amt">$30,000</div><div class="dr-date">18 Apr</div></div>
+   731→<div class="donor-row"><div><div class="dr-name">Liu Fang Foundation</div></div><div class="dr-amt">$15,000</div><div class="dr-date">25 Apr</div></div>
+   732→<div class="donor-row"><div><div class="dr-name">Sven &amp; Astrid Lindqvist</div><div class="dr-msg">"For the north, and for everywhere."</div></div><div class="dr-amt">$5,000</div><div class="dr-date">20 Apr</div></div>
+   733→<div class="donor-row"><div><div class="dr-name">James &amp; Priya Okonkwo</div></div><div class="dr-amt">$5,000</div><div class="dr-date">8 May</div></div>
+   734→<div class="donor-row"><div><div class="dr-name">The Al-Rashidi Family</div><div class="dr-msg">"In memory of Fatima Al-Rashidi."</div></div><div class="dr-amt">$3,000</div><div class="dr-date">5 May</div></div>
+   735→<div class="donor-row"><div><div class="dr-name">Dr. Robert &amp; Sarah Kimani</div><div class="dr-msg">"For the next generation of African scholars."</div></div><div class="dr-amt">$2,500</div><div class="dr-date">22 Apr</div></div>
+   736→<div class="donor-row"><div><div class="dr-name">Maria Santos</div><div class="dr-msg">"Proud to be part of the founding."</div></div><div class="dr-amt">$250</div><div class="dr-date">3 May</div></div>
+   737→<div class="donor-row"><div><div class="dr-name">Amara Osei</div><div class="dr-msg">"Every great university starts with a first believer."</div></div><div class="dr-amt">$100</div><div class="dr-date">27 Apr</div></div>
+   738→
+   739→<div class="callout">
+   740→  <div class="callout-label">Cumulative Founding Gifts to Date</div>
+   741→  <p class="body-text" style="margin:0;">As of the date of this prospectus: <strong>$2,100,000</strong> from <strong>342 donors</strong> across 28 countries. The largest single gift is $100,000; the median gift is $250. The campaign remains in the Quiet Phase, with lead solicitations currently under negotiation across nine jurisdictions. Full donor roll available on request to qualified prospects.</p>
+   742→</div>
+   743→
+   744→<!-- ─── GOVERNANCE / LEGAL / TAX ─── -->
+   745→<div class="chapter-header">
+   746→  <div class="chapter-tag">Part V · Chapter 10</div>
+   747→  <div class="chapter-title">Governance, Accountability &amp; Tax</div>
+   748→</div>
+   749→<p class="lead">Three parallel legal entities across three jurisdictions. A board majority of independent directors. A Big Four audit, published annually. Tax deductibility in twelve major donor countries. The institutional architecture is engineered for permanence and transparency.</p>
+   750→
+   751→<div class="card">
+   752→  <div class="card-sub">Legal Architecture</div>
+   753→  <div class="card-title">Three Entities, One Institution</div>
+   754→  <p class="body-text">Artemis is incorporated as three parallel legal entities, each tailored to the regulatory and tax requirements of its host jurisdiction. The primary vehicle is a Delaware non-stock 501(c)(3) public charity, which provides tax-deductible giving in the world's largest philanthropy market — a $499B annual market in 2024. The secondary vehicle, in England &amp; Wales, is a Charitable Incorporated Organisation eligible for Gift Aid. The tertiary vehicle, planned for Switzerland, is a Fondation under the Swiss Civil Code, providing endowment management in a neutral jurisdiction.</p>
+   755→</div>
+   756→
+   757→<div class="legal-card">
+   758→  <div class="lc-tier">Primary · Incorporated · United States</div>
+   759→  <div class="lc-name">Delaware Non-Stock Corporation</div>
+   760→  <div class="lc-meta">501(c)(3) — Educational &amp; Charitable</div>
+   761→  <div class="lc-benefit">Tax-deductible donations in the world's largest philanthropy market ($499B in 2024). Every dollar given reduces the donor's US tax liability.</div>
+   762→</div>
+   763→
+   764→<div class="legal-card">
+   765→  <div class="lc-tier">Secondary · Pre-Filing · England &amp; Wales</div>
+   766→  <div class="lc-name">Charitable Incorporated Organisation</div>
+   767→  <div class="lc-meta">Charity Commission — Advancement of Education</div>
+   768→  <div class="lc-benefit">Gift Aid turns every £1M into £1.25M through HMRC top-up. UK donors receive full tax relief. Aligns with University of London consortium partnership.</div>
+   769→</div>
+   770→
+   771→<div class="legal-card">
+   772→  <div class="lc-tier">Tertiary · Planned · Switzerland</div>
+   773→  <div class="lc-name">Fondation under Swiss Civil Code</div>
+   774→  <div class="lc-meta">International Foundation — Geneva Canton</div>
+   775→  <div class="lc-benefit">Endowment management in a neutral jurisdiction with minimal tax drag. Signals institutional permanence to European and Gulf donors. Home to WHO, CERN, IOC.</div>
+   776→</div>
+   777→
+   778→<div class="callout">
+   779→  <div class="callout-label">Fiscal Sponsorship — Bridge to Incorporation</div>
+   780→  <p class="body-text" style="margin:0;">Until the 501(c)(3) determination letter is issued (typically 6–9 months from Form 1023 filing), Artemis operates under fiscal sponsorship through <strong>Rockefeller Philanthropy Advisors</strong>, <strong>NGOsource</strong>, and <strong>Global Impact</strong>. Donors may give through any of these vehicles and receive immediate US tax deductibility. Retroactive deductibility applies within 27 months of incorporation.</p>
+   781→</div>
+   782→
+   783→<div class="accountability-card">
+   784→  <div class="ac-title">Board Independence</div>
+   785→  <div class="ac-desc">No single individual controls more than one-third of board seats. Majority independent directors required at all times. Founding directors serve staggered terms; succession governance is codified in the bylaws.</div>
+   786→</div>
+   787→<div class="accountability-card">
+   788→  <div class="ac-title">Annual Independent Audit</div>
+   789→  <div class="ac-desc">Full independent audit by a Big Four firm. Published annually without exception. Every line item disclosed. The audit is the single most important governance instrument — it is the mechanism by which the founding cabinet proves, every year, that the model in this prospectus is the model being executed.</div>
+   790→</div>
+   791→<div class="accountability-card">
+   792→  <div class="ac-title">Public Reporting</div>
+   793→  <div class="ac-desc">Every dollar received and disbursed is published in an annual impact report, available to every donor and the public. Founding donors receive a separate, detailed report on their named assets and the students, faculty, and research those assets have produced.</div>
+   794→</div>
+   795→
+   796→<div class="card">
+   797→  <div class="card-sub">Tax Deductibility · 12 Jurisdictions</div>
+   798→  <div class="card-title">Giving Internationally</div>
+   799→  <p class="body-text">Artemis is structured to provide tax-efficient giving in twelve major donor jurisdictions, covering approximately 85% of global philanthropic capacity. The table below summarises the vehicle, the deductibility, and the key notes for each jurisdiction. Detailed tax guidance, including for appreciated assets, securities, and cryptocurrency, is available in the separate Artemis Tax Guide.</p>
+   800→</div>
+   801→
+   802→<table class="tbl tax-tbl">
+   803→  <thead><tr><th>Country</th><th>Vehicle</th><th>Deductibility</th></tr></thead>
+   804→  <tbody>
+   805→    <tr><td><strong>United States</strong></td><td class="veh">501(c)(3) Public Charity</td><td>Up to 60% AGI (cash), 30% (appreciated assets). 5-yr carryforward.</td></tr>
+   806→    <tr><td><strong>United Kingdom</strong></td><td class="veh">Charitable Incorporated Org.</td><td>Gift Aid: 25% top-up. Higher-rate relief via self-assessment.</td></tr>
+   807→    <tr><td><strong>Canada</strong></td><td class="veh">Registered Charity (CRA)</td><td>75% of net income. 5-yr carryforward. Reciprocal with US.</td></tr>
+   808→    <tr><td><strong>Australia</strong></td><td class="veh">Deductible Gift Recipient (DGR)</td><td>Tax-deductible. No cap for gifts &gt;$2.</td></tr>
+   809→    <tr><td><strong>Germany</strong></td><td class="veh">Gemeinnützige GmbH / e.V.</td><td>Up to 20% of total income. 5-yr carryforward.</td></tr>
+   810→    <tr><td><strong>Switzerland</strong></td><td class="veh">Fondation (Swiss Civil Code)</td><td>Canton-dependent: typically 10–20% of income.</td></tr>
+   811→    <tr><td><strong>Singapore</strong></td><td class="veh">Institution of a Public Character</td><td>250% tax deduction (enhanced through 2026).</td></tr>
+   812→    <tr><td><strong>Hong Kong</strong></td><td class="veh">Charitable Institution (s88)</td><td>100% deductible. 25% of assessable income cap.</td></tr>
+   813→    <tr><td><strong>UAE / Gulf</strong></td><td class="veh">Recognised Foreign Charity</td><td>No income tax in UAE. Zakat alignment for GCC donors.</td></tr>
+   814→    <tr><td><strong>Brazil</strong></td><td class="veh">OSCIP (Civil Society Org)</td><td>Up to 2% of operating revenue (corporate).</td></tr>
+   815→    <tr><td><strong>South Africa</strong></td><td class="veh">Section 18A PBO</td><td>10% of taxable income. 5-yr carryforward.</td></tr>
+   816→    <tr><td><strong>India</strong></td><td class="veh">Registered Society / Trust (12A/80G)</td><td>50% deduction (80G). 10% of income cap. FCRA for foreign.</td></tr>
+   817→  </tbody>
+   818→</table>
+   819→
+   820→<!-- ─── ROADMAP ─── -->
+   821→<div class="chapter-header">
+   822→  <div class="chapter-tag">Part VI · Chapter 11</div>
+   823→  <div class="chapter-title">The Twelve-Month Roadmap</div>
+   824→</div>
+   825→<p class="lead">From this prospectus to a live university in twelve months. Four milestones, each with binding deliverables. The campaign begins privately, announces publicly only after the lead gifts are secured, and closes with the foundation poured and the institution opening its doors.</p>
+   826→<p class="body-text">The roadmap below is the operating plan for the founding campaign. Each milestone has a target dollar amount, a date, and a set of binding deliverables. The milestones are not aspirational — they are the gates the cabinet has committed to. If a milestone is missed, the cabinet reports transparently to every donor and revises the timeline. There is no quiet failure.</p>
+   827→
+   828→<div class="milestone">
+   829→  <div class="ms-num">01</div>
+   830→  <div>
+   831→    <div class="ms-title">The Quiet Phase</div>
+   832→    <div class="ms-date">Months 1–3 · Target $50M</div>
+   833→    <div class="ms-desc">No public announcement. No website. No press. The quiet phase secures lead gifts before the world knows we exist. Standard practice — Yale secured $3.5B before announcing "For Humanity."</div>
+   834→    <div class="ms-deliverables"><strong>Deliverables</strong>Lead donor cultivation and solicitation. $50M in binding commitments secured. Campaign cabinet fully operational.</div>
+   835→  </div>
+   836→</div>
+   837→
+   838→<div class="milestone">
+   839→  <div class="ms-num">02</div>
+   840→  <div>
+   841→    <div class="ms-title">The Public Phase</div>
+   842→    <div class="ms-date">Months 4–6 · Target $85M</div>
+   843→    <div class="ms-desc">The campaign goes public. Website launches. Events held. Press engaged. The full case statement reaches every major prospect worldwide.</div>
+   844→    <div class="ms-deliverables"><strong>Deliverables</strong>Public website and campaign materials live. Regional events across all 35 countries. $85M cumulative commitments.</div>
+   845→  </div>
+   846→</div>
+   847→
+   848→<div class="milestone">
+   849→  <div class="ms-num">03</div>
+   850→  <div>
+   851→    <div class="ms-title">Close &amp; Capitalise</div>
+   852→    <div class="ms-date">Months 7–9 · Target $100M</div>
+   853→    <div class="ms-desc">All $100M commitments secured. Properties acquired. Legal incorporation across 25 jurisdictions. The foundation is poured.</div>
+   854→    <div class="ms-deliverables"><strong>Deliverables</strong>All $100M commitments secured. Properties acquired and repurposing begun. Legal incorporation across 25 countries.</div>
+   855→  </div>
+   856→</div>
+   857→
+   858→<div class="milestone">
+   859→  <div class="ms-num">04</div>
+   860→  <div>
+   861→    <div class="ms-title">Build &amp; Launch</div>
+   862→    <div class="ms-date">Months 10–12 · University Live</div>
+   863→    <div class="ms-desc">Faculty onboarded. Colleges opened. Students arriving. The university becomes operational. The match lights the fuel.</div>
+   864→    <div class="ms-deliverables"><strong>Deliverables</strong>Faculty onboarded and in place. Colleges opened and operational. Students arriving — university is live.</div>
+   865→  </div>
+   866→</div>
+   867→
+   868→<div class="callout">
+   869→  <div class="callout-label">A Five-Year Horizon Beyond Launch</div>
+   870→  <p class="body-text" style="margin:0;">The twelve-month roadmap ends with the university opening. The five-year strategic plan, beginning in 2025, runs through full operational self-sufficiency by 2030: $262M annual surplus funding 13,300 scholarships per year, endowment building at $60M/yr, global recognition, and the publication of the Artemis Model as an open blueprint. The full strategic plan is available in the separate Artemis Strategic Plan 2025–2030 document.</p>
+   871→</div>
+   872→
+   873→<!-- ─── HOW TO GIVE ─── -->
+   874→<div class="chapter-header">
+   875→  <div class="chapter-tag">Part VI · Chapter 12</div>
+   876→  <div class="chapter-title">How to Give</div>
+   877→</div>
+   878→<p class="lead">Eight channels. From a $99 online gift to a $25M named Central Node. Every channel is operational; every gift is receipted; every donor is recorded in the founding Donor Roll.</p>
+   879→<p class="body-text">Artemis accepts gifts through eight distinct channels, each engineered for a different donor profile and gift size. The channels below cover every realistic path a founding donor might take, from an immediate online card gift to a multi-year pledged commitment structured through a donor-advised fund. Lead gifts ($1M+) are typically pledged over three to five years and structured through a formal gift agreement that specifies the naming, the recognition, the payment schedule, and the audit reporting cadence.</p>
+   880→
+   881→<div class="two-col">
+   882→  <div class="way-card"><div class="wc-title">Online</div><div class="wc-desc">One-time or recurring gift by card, PayPal, or cryptocurrency directly on the website. Fast, secure, immediate confirmation.</div></div>
+   883→  <div class="way-card"><div class="wc-title">Bank or Wire Transfer</div><div class="wc-desc">Transfer directly from your bank. Suitable for large contributions and international donors.</div></div>
+   884→  <div class="way-card"><div class="wc-title">Cryptocurrency</div><div class="wc-desc">Donate BTC or ETH directly to Artemis. Recorded on the public chain — a permanent part of the founding record.</div></div>
+   885→  <div class="way-card"><div class="wc-title">Securities &amp; Stock</div><div class="wc-desc">Donate appreciated stocks, bonds, or mutual funds to avoid capital gains tax while maximising impact.</div></div>
+   886→  <div class="way-card"><div class="wc-title">Planned Giving</div><div class="wc-desc">Include Artemis in your estate plan through a will, trust, or beneficiary designation. Planned gifts create a permanent legacy.</div></div>
+   887→  <div class="way-card"><div class="wc-title">Employer Matching</div><div class="wc-desc">Many employers match charitable contributions dollar-for-dollar. Check with your HR department — your gift could be doubled.</div></div>
+   888→  <div class="way-card"><div class="wc-title">Donor-Advised Funds</div><div class="wc-desc">Recommend a grant from your DAF to the University of Artemis. A tax-efficient way to support the founding.</div></div>
+   889→  <div class="way-card"><div class="wc-title">In-Kind Contributions</div><div class="wc-desc">Donate equipment, technology, library materials, real estate, or professional services. In-kind gifts are valued and recognised.</div></div>
+   890→</div>
+   891→
+   892→<div class="callout">
+   893→  <div class="callout-label">Cryptocurrency Addresses</div>
+   894→  <p class="body-text" style="margin:0;"><strong>BTC:</strong> bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh &nbsp;·&nbsp; <strong>ETH:</strong> 0x71C7656EC7ab88b098defB751B7401B5f6d8976F<br><span style="font-size:10px;color:var(--muted);">All crypto donations are recorded permanently on the public chain and acknowledged in the founding Donor Roll.</span></p>
+   895→</div>
+   896→
+   897→<!-- ─── THE ASK ─── -->
+   898→<div class="chapter-header">
+   899→  <div class="chapter-tag">Part VI · Chapter 13</div>
+   900→  <div class="chapter-title">The Ask</div>
+   901→</div>
+   902→<p class="lead">We are asking for one hundred million dollars from approximately thirty donors to build a university that will, within a decade, generate a five-hundred-and-forty-three-million-dollar endowment and educate sixty thousand students per year. We are asking you to be one of those thirty.</p>
+   903→<p class="body-text">The ask is precise. The campaign requires ten lead gifts at an average of $7M each, and twenty major gifts at an average of $1M each. Every lead gift is structured around a named asset — a Central Node, a College, a Center of Inquiry, or a Distinguished Professorship — that becomes a permanent part of the institution's physical or academic architecture. Every major gift funds a Professorship, a Degree Program naming, or a Scholarship Fund that becomes a permanent line in the university's endowment.</p>
+   904→<p class="body-text">The minimum founding gift that secures a named asset is $12,000 — a four-year scholarship for one student. The maximum is $25M — the naming of a Central Node in Venice, San Francisco, or Singapore. Between these two figures there are seven distinct naming opportunities, each with its own financial structure, its own recognition, and its own place in the founding architecture. There is a path for every serious founding donor.</p>
+   905→<div class="pullquote">
+   906→  The institution you seed in 2025 will, by 2035, be one of the better-endowed universities in the world. The students it educates will, by 2055, be the leaders of the institutions that succeed the ones we know today. The only thing required is that the first ten donors say yes.
+   907→  <div class="attribution">— The Founding Cabinet</div>
+   908→</div>
+   909→<p class="body-text">If you have read this far, you have invested roughly ninety minutes in considering whether Artemis should exist. We have tried to disclose everything: the vision, the model, the financial engine, the pillars, the naming, the governance, the legal entities, the tax treatment, the roadmap, and the ask. The next step is a conversation — private, confidential, and at your initiative. Write to the Office of the President at the Venice Central Node, or contact the founding cabinet through the channels listed on the closing page of this prospectus.</p>
+   910→<p class="body-text">A founding donor once told us that the hardest part of giving to a new institution is the conviction that the institution will exist. We cannot give you that conviction by argument alone. What we can give you is the math, the model, the governance, the audit, and the names of the three hundred and forty-two people who have already said yes. The four hundred and thirty-fourth will be the one who decides it is real.</p>
+   911→
+   912→</div>
+   913→
+   914→<!-- ═══════════════════════════════════════════════════════
+   915→     ENDING
+   916→     ═══════════════════════════════════════════════════════ -->
+   917→<div class="ending">
+   918→  <div class="ending-tag">Founding Prospectus · 2025</div>
+   919→  <div class="ending-big">Build the university the planet is waiting for.</div>
+   920→  <div class="ending-sub">For a private conversation with the Office of the President or the Founding Cabinet, contact us at the Venice Central Node. Lead gift structured solicitations currently under negotiation across nine jurisdictions.</div>
+   921→  <div class="ending-contact">founders@artemis.edu &nbsp;·&nbsp; Venice · San Francisco · Singapore</div>
+   922→</div>
+   923→
+   924→</body>
+   925→</html>
+   926→

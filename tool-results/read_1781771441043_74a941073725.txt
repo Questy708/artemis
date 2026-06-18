@@ -1,0 +1,644 @@
+     1→<!DOCTYPE html>
+     2→<html lang="en">
+     3→<head>
+     4→<meta charset="UTF-8">
+     5→<title>Campus Master Plan — University of Artemis</title>
+     6→<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="stylesheet">
+     7→<script>window.renderMathInElement = function() {}; window.katex = {};</script>
+     8→<style>
+     9→@page { size: 720px 1020px; margin: 0; }
+    10→@page {
+    11→  @bottom-right {
+    12→    content: counter(page);
+    13→    font-family: 'Inter', sans-serif;
+    14→    font-size: 9px;
+    15→    color: #6b6b6b;
+    16→    padding-right: 28px;
+    17→    padding-bottom: 20px;
+    18→  }
+    19→}
+    20→@page :first { @bottom-right { content: none; } }
+    21→:root {
+    22→  --crimson: #8A0000;
+    23→  --crimson-deep: #6B0000;
+    24→  --crimson-soft: #B33A3A;
+    25→  --ink: #141414;
+    26→  --ink-soft: #3a3a3a;
+    27→  --muted: #6b6b6b;
+    28→  --line: #e5e5e5;
+    29→  --bg: #FAFAF8;
+    30→  --bg-dark: #0c0a09;
+    31→  --bg-cream: #F5F2EC;
+    32→  --gold: #b08d57;
+    33→}
+    34→html, body {
+    35→  margin: 0; padding: 0; width: 720px;
+    36→  background: var(--bg-dark); color: var(--ink);
+    37→  font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
+    38→  font-size: 13px; line-height: 1.65;
+    39→  -webkit-font-smoothing: antialiased;
+    40→}
+    41→@media screen {
+    42→  html { display: flex; justify-content: center; background: #222; height: auto; }
+    43→  body { margin: 20px auto; box-shadow: 0 0 40px rgba(0,0,0,0.4); }
+    44→}
+    45→.fcpage {
+    46→  width: 720px; height: 1020px; box-sizing: border-box;
+    47→  break-after: page; overflow: hidden; position: relative;
+    48→  background: var(--bg-dark); color: #fff;
+    49→  display: flex; flex-direction: column; justify-content: center; padding: 64px;
+    50→}
+    51→.fcpage .fc-img {
+    52→  position: absolute; inset: 0; width: 100%; height: 100%;
+    53→  object-fit: cover; opacity: 0.35; filter: grayscale(0.3);
+    54→}
+    55→.fcpage .fc-overlay {
+    56→  position: absolute; inset: 0;
+    57→  background: linear-gradient(135deg, rgba(138,0,0,0.55) 0%, rgba(12,10,9,0.92) 60%, rgba(12,10,9,0.98) 100%);
+    58→}
+    59→.fcpage .fc-content { position: relative; z-index: 2; }
+    60→.fcpage .fc-tag {
+    61→  font-size: 10px; font-weight: 700; letter-spacing: 0.32em;
+    62→  text-transform: uppercase; color: var(--crimson-soft);
+    63→  margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
+    64→}
+    65→.fcpage .fc-tag::before { content: ""; width: 28px; height: 1px; background: var(--crimson); }
+    66→.fcpage h1 {
+    67→  font-family: 'Noto Serif SC', Georgia, serif;
+    68→  font-size: 52px; font-weight: 900; line-height: 1.02;
+    69→  letter-spacing: -0.02em; margin: 0 0 24px; text-transform: none;
+    70→}
+    71→.fcpage .fc-sub {
+    72→  font-size: 15px; color: rgba(255,255,255,0.65); font-weight: 300;
+    73→  line-height: 1.6; max-width: 480px; margin-bottom: 0;
+    74→}
+    75→.fcpage .fc-footer {
+    76→  position: absolute; bottom: 48px; left: 64px; right: 64px;
+    77→  display: flex; justify-content: space-between; align-items: flex-end;
+    78→  z-index: 2; font-size: 10px; letter-spacing: 0.2em;
+    79→  text-transform: uppercase; color: rgba(255,255,255,0.4);
+    80→}
+    81→.fcpage .fc-footer .crest { font-family: 'Noto Serif SC', serif; font-size: 14px; color: rgba(255,255,255,0.7); letter-spacing: 0.15em; }
+    82→.main-content { background: var(--bg); padding: 64px 64px 48px 64px; }
+    83→.chapter-header { break-after: avoid; break-inside: avoid; margin-top: 28px; margin-bottom: 20px; }
+    84→.chapter-header:first-child { margin-top: 0; }
+    85→.chapter-tag {
+    86→  font-size: 9px; font-weight: 700; letter-spacing: 0.28em;
+    87→  text-transform: uppercase; color: var(--crimson);
+    88→  margin-bottom: 10px; display: flex; align-items: center; gap: 10px;
+    89→}
+    90→.chapter-tag::before { content: ""; width: 22px; height: 1px; background: var(--crimson); }
+    91→.chapter-title {
+    92→  font-family: 'Noto Serif SC', Georgia, serif;
+    93→  font-size: 30px; font-weight: 800; line-height: 1.12;
+    94→  letter-spacing: -0.015em; color: var(--ink); margin: 0 0 12px;
+    95→}
+    96→.chapter-divider { display: none; }
+    97→.body-text { font-size: 13px; line-height: 1.72; color: var(--ink-soft); margin: 0 0 12px; }
+    98→.body-text strong { color: var(--ink); font-weight: 600; }
+    99→.lead { font-size: 15px; line-height: 1.65; color: var(--ink); font-weight: 400; margin-bottom: 18px; }
+   100→.pullquote {
+   101→  break-inside: avoid; border-left: 3px solid var(--crimson);
+   102→  padding: 16px 24px; margin: 20px 0;
+   103→  font-family: 'Noto Serif SC', Georgia, serif;
+   104→  font-size: 16px; font-style: italic; line-height: 1.5;
+   105→  color: var(--ink); background: var(--bg-cream);
+   106→}
+   107→.pullquote .attribution { font-size: 11px; font-style: normal; color: var(--muted); margin-top: 10px; letter-spacing: 0.05em; }
+   108→.card {
+   109→  break-inside: avoid; background: #fff;
+   110→  border: 1px solid var(--line); border-radius: 8px;
+   111→  padding: 20px 22px; margin-bottom: 14px;
+   112→}
+   113→.card-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+   114→.card-sub { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
+   115→.card-body { font-size: 12px; line-height: 1.6; color: var(--ink-soft); }
+   116→.stat-row { display: flex; gap: 16px; margin: 18px 0; break-inside: avoid; }
+   117→.stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 18px; }
+   118→.stat .stat-val { font-family: 'Noto Serif SC', serif; font-size: 28px; font-weight: 900; color: var(--crimson); line-height: 1; }
+   119→.stat .stat-label { font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+   120→.progress { break-inside: avoid; margin: 14px 0; }
+   121→.progress-track { height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+   122→.progress-fill { height: 100%; background: var(--crimson); border-radius: 3px; }
+   123→.progress-label { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 6px; color: var(--ink-soft); }
+   124→.tbl { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 11px; break-inside: avoid; }
+   125→.tbl th { text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--ink); padding: 8px 10px; }
+   126→.tbl td { padding: 9px 10px; border-bottom: 1px solid var(--line); color: var(--ink-soft); vertical-align: top; }
+   127→.tbl tr:last-child td { border-bottom: none; }
+   128→.tbl .num { font-family: 'Noto Serif SC', serif; font-weight: 700; color: var(--crimson); text-align: right; white-space: nowrap; }
+   129→.figure { break-inside: avoid; margin: 18px 0; }
+   130→.figure img { width: 100%; border-radius: 6px; display: block; }
+   131→.figure .caption { font-size: 10px; color: var(--muted); margin-top: 8px; letter-spacing: 0.03em; line-height: 1.5; }
+   132→.callout {
+   133→  break-inside: avoid; background: var(--bg-cream);
+   134→  border-radius: 8px; padding: 20px 24px; margin: 16px 0;
+   135→}
+   136→.callout .callout-label { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
+   137→.bullets { margin: 10px 0 14px; padding: 0; list-style: none; }
+   138→.bullets li { font-size: 12px; line-height: 1.65; color: var(--ink-soft); padding-left: 18px; position: relative; margin-bottom: 6px; }
+   139→.bullets li::before { content: ""; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; background: var(--crimson); border-radius: 50%; }
+   140→.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+   141→.ending {
+   142→  width: 720px; height: 1020px; box-sizing: border-box;
+   143→  break-before: page; overflow: hidden;
+   144→  background: var(--bg-dark); color: #fff;
+   145→  display: flex; flex-direction: column; justify-content: center; align-items: center;
+   146→  padding: 64px; text-align: center;
+   147→}
+   148→.ending .ending-tag { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--crimson-soft); margin-bottom: 28px; }
+   149→.ending .ending-big { font-family: 'Noto Serif SC', Georgia, serif; font-size: 38px; font-weight: 800; line-height: 1.15; letter-spacing: -0.015em; max-width: 540px; margin-bottom: 32px; }
+   150→.ending .ending-sub { font-size: 14px; color: rgba(255,255,255,0.5); max-width: 440px; line-height: 1.65; font-weight: 300; }
+   151→.ending .ending-contact { margin-top: 40px; font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; }
+   152→.ending .ending-contact a { color: var(--crimson-soft); text-decoration: none; }
+   153→.dark-section {
+   154→  background: var(--bg-dark); color: #fff;
+   155→  margin: 0 -64px; padding: 48px 64px; break-inside: avoid;
+   156→}
+   157→.dark-section .ds-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--crimson-soft); margin-bottom: 10px; }
+   158→.dark-section .ds-title { font-family: 'Noto Serif SC', serif; font-size: 24px; font-weight: 800; margin-bottom: 12px; }
+   159→.dark-section .ds-body { font-size: 12px; line-height: 1.7; color: rgba(255,255,255,0.7); }
+   160→.node-card {
+   161→  break-inside: avoid; background: #fff;
+   162→  border: 1px solid var(--line); border-radius: 8px;
+   163→  padding: 22px 24px; margin-bottom: 14px;
+   164→  border-left: 4px solid var(--crimson);
+   165→}
+   166→.node-card .nc-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+   167→.node-card .nc-name { font-family: 'Noto Serif SC', serif; font-size: 17px; font-weight: 800; color: var(--ink); }
+   168→.node-card .nc-students { font-family: 'Noto Serif SC', serif; font-size: 18px; font-weight: 900; color: var(--crimson); }
+   169→.node-card .nc-meta { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--crimson); margin-bottom: 10px; }
+   170→.node-card .nc-body { font-size: 12px; line-height: 1.65; color: var(--ink-soft); }
+   171→.tier-card {
+   172→  break-inside: avoid; background: #fff;
+   173→  border: 1px solid var(--line); border-radius: 8px;
+   174→  padding: 22px 24px; margin-bottom: 14px;
+   175→  border-left: 4px solid var(--crimson);
+   176→}
+   177→.tier-card .tc-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+   178→.tier-card .tc-name { font-family: 'Noto Serif SC', serif; font-size: 17px; font-weight: 800; color: var(--ink); }
+   179→.tier-card .tc-meta { font-family: 'Noto Serif SC', serif; font-size: 13px; font-weight: 700; color: var(--crimson); }
+   180→.tier-card .tc-sub { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--crimson); margin-bottom: 10px; }
+   181→.tier-card .tc-body { font-size: 12px; line-height: 1.65; color: var(--ink-soft); }
+   182→</style>
+   183→</head>
+   184→<body>
+   185→
+   186→<!-- ════════════════ COVER ════════════════ -->
+   187→<div class="fcpage">
+   188→  <img class="fc-img" src="../public/resources/img/venice-node.png" alt="">
+   189→  <div class="fc-overlay"></div>
+   190→  <div class="fc-content">
+   191→    <div class="fc-tag">Campus Master Plan · Founding Campaign 2025</div>
+   192→    <h1>The Campus<br>Master Plan</h1>
+   193→    <div class="fc-sub">
+   194→      Why the planetary university is repurposed, not built &mdash;
+   195→      and how three Central Nodes, fifty Colleges, and a single shared curriculum
+   196→      come together across thirty-five countries to form a planetary institution
+   197→      owned in perpetuity by the foundation that governs it.
+   198→    </div>
+   199→  </div>
+   200→  <div class="fc-footer">
+   201→    <div class="crest">University of Artemis</div>
+   202→    <div>Edition I &middot; Founding Document</div>
+   203→  </div>
+   204→</div>
+   205→
+   206→<!-- ════════════════ BODY ════════════════ -->
+   207→<div class="main-content">
+   208→
+   209→<!-- ─── AT A GLANCE ─── -->
+   210→<div class="chapter-header">
+   211→  <div class="chapter-tag">At a Glance</div>
+   212→  <div class="chapter-title">A university repurposed, not built.</div>
+   213→  <div class="chapter-divider"></div>
+   214→</div>
+   215→
+   216→<p class="lead">The University of Artemis operates across fifty Colleges in thirty-five countries, anchored by three Central Nodes in Venice, San Francisco, and Singapore. No Artemis campus is built from scratch. Every building is acquired from existing stock &mdash; repurposed convents, warehouses, factories, and offices &mdash; and owned in fee simple by the institution. The campus master plan is the strategy by which this planetary network is assembled, financed, and operated.</p>
+   217→
+   218→<p class="body-text">The repurposing philosophy is the single most important decision in the campus plan, because it determines the economics of the entire institution. A traditional research university spends between $200M and $1B to build a flagship campus; Artemis acquires a comparable facility for $5M&ndash;$25M by repurposing existing buildings that already exist in the cities the institution wishes to occupy. The savings &mdash; on the order of $500M per campus &mdash; are what make the $100M founding campaign sufficient to launch a planetary university rather than a single regional one.</p>
+   219→
+   220→<p class="body-text">The fifty Colleges are organized in three tiers: eight Tier A flagship Colleges in the world's knowledge capitals (London, Tokyo, Berlin, Paris, Toronto, Sydney, Seoul, New York); sixteen Tier B Colleges in major global cities across all six continents (Nairobi, Mumbai, São Paulo, Cairo, Istanbul, Buenos Aires, Jakarta, Mexico City, and more); and twenty-three Tier C regional access Colleges in cities the existing university system has failed to serve (Kigali, Dhaka, Kampala, Karachi, and beyond). The three Central Nodes are the apex &mdash; Venice, San Francisco, and Singapore &mdash; each housing approximately 5,000 students and serving as the regional seat of governance, convocation, and the founding document archive.</p>
+   221→
+   222→<div class="stat-row">
+   223→  <div class="stat">
+   224→    <div class="stat-val">50</div>
+   225→    <div class="stat-label">Colleges</div>
+   226→  </div>
+   227→  <div class="stat">
+   228→    <div class="stat-val">3</div>
+   229→    <div class="stat-label">Central Nodes</div>
+   230→  </div>
+   231→  <div class="stat">
+   232→    <div class="stat-val">35</div>
+   233→    <div class="stat-label">Countries</div>
+   234→  </div>
+   235→  <div class="stat">
+   236→    <div class="stat-val">$82M</div>
+   237→    <div class="stat-label">Place Pillar · Property</div>
+   238→  </div>
+   239→</div>
+   240→
+   241→<!-- ─── I. THE REPURPOSING PHILOSOPHY ─── -->
+   242→<div class="chapter-header">
+   243→  <div class="chapter-tag">Chapter I</div>
+   244→  <div class="chapter-title">The repurposing philosophy &mdash; why we do not build.</div>
+   245→  <div class="chapter-divider"></div>
+   246→</div>
+   247→
+   248→<p class="lead">The single most important decision in the Artemis campus plan is the decision not to build. Every Artemis College is housed in a repurposed building &mdash; a convent, a warehouse, a factory, an office complex &mdash; acquired from existing stock, owned in fee simple, and adapted to the institution's specifications. This decision is the foundation of the financial model, the sustainability model, and the timeline by which the planetary university is launched.</p>
+   249→
+   250→<p class="body-text">The decision rests on three reasons. The first is environmental. New construction is among the most carbon-intensive activities in the modern economy: a single new academic building typically embodies between 500 and 1,500 tonnes of CO2 in its concrete, steel, and glass, and that embodied carbon is emitted before the building is ever occupied. Repurposing an existing building saves between 60% and 80% of the embodied carbon that would be expended in new construction &mdash; a saving that compounds across fifty Colleges into the carbon equivalent of a small city's annual footprint. The planetary university cannot claim to address the twenty-first century's challenges while expending the twentieth century's construction carbon to build itself.</p>
+   251→
+   252→<p class="body-text">The second reason is cost. A new flagship academic building in a Tier-1 global city costs between $50M and $200M, depending on land acquisition, design fees, and construction complexity. A comparable repurposed building &mdash; with equivalent floor area, equivalent occupancy, and equivalent operational capacity &mdash; costs between $5M and $25M. The savings, multiplied across fifty Colleges, are what permit the $100M founding campaign to launch a planetary university rather than a single regional one. The campus plan is, in this sense, a financial instrument: the decision not to build is the decision to make the planetary model mathematically possible.</p>
+   253→
+   254→<div class="figure">
+   255→  <img src="../public/resources/img/campus-architecture.png" alt="Repurposed campus building">
+   256→  <div class="caption">A repurposed College &mdash; acquired from existing stock, owned in fee simple, adapted to the institution's specifications. The decision not to build is what makes the planetary university possible.</div>
+   257→</div>
+   258→
+   259→<p class="body-text">The third reason is speed. A new academic building takes between three and seven years from architectural design through permitting, construction, and occupancy &mdash; a timeline that would push the planetary university's launch past the closing window of the founding campaign. A repurposed building takes between six and eighteen months from acquisition through renovation to occupancy &mdash; a timeline that permits the institution to be operational within the campaign's twelve-month horizon. The campus plan is therefore also a calendar: repurposing is the only path that allows the founding campaign to close and the university to open within the same year.</p>
+   260→
+   261→<p class="body-text">A fourth consideration reinforces the first three: the integration of the College with the surrounding city. A repurposed building is, by definition, already embedded in an urban fabric &mdash; with surrounding transit, residential density, commercial amenity, and civic infrastructure. A new building, by contrast, often requires the surrounding fabric to be re-engineered to support it. The repurposing philosophy is therefore also an urbanist philosophy: the College joins the city, the city does not reorganize itself around the College. This is what permits each Artemis College to be a local institution as well as a planetary one &mdash; embedded in the city that hosts it rather than isolated from it.</p>
+   262→
+   263→<div class="callout">
+   264→  <div class="callout-label">The repurposing calculus</div>
+   265→  <p class="body-text" style="margin:0;">A repurposed College in a Tier-1 city costs $5M&ndash;$25M. A new-build College in the same city costs $50M&ndash;$200M. The savings compound across fifty Colleges into $1B&ndash;$5B &mdash; the difference between a planetary university and a regional one, and the difference between a $100M founding campaign and a $5B one. The repurposing philosophy is what makes the planetary model financially possible.</p>
+   266→</div>
+   267→
+   268→<p class="body-text">The repurposing philosophy also shapes the institution's relationship with its buildings over time. Because each building is owned rather than leased, the institution can renovate, expand, or repurpose the building further as the College grows &mdash; without negotiating with a landlord, without rent escalation, and without the displacement risk that lease-dependent institutions face. The buildings become permanent assets of the institution's balance sheet, appreciating in value over decades, and providing collateral capacity that supports the institution's long-term financing. The campus plan, in this sense, is also a balance-sheet strategy: the property portfolio is the institutional asset base.</p>
+   269→
+   270→<!-- ─── II. PROPERTY ACQUISITION STRATEGY ─── -->
+   271→<div class="chapter-header">
+   272→  <div class="chapter-tag">Chapter II</div>
+   273→  <div class="chapter-title">Property acquisition strategy.</div>
+   274→  <div class="chapter-divider"></div>
+   275→</div>
+   276→
+   277→<p class="lead">The acquisition of fifty College buildings and three Central Node campuses across thirty-five countries is the largest single line item in the founding campaign &mdash; $82M of the $100M goal, allocated to the Place pillar. The acquisition strategy specifies how buildings are sourced, evaluated, acquired, and integrated into the planetary network.</p>
+   278→
+   279→<p class="body-text">Building sourcing begins twelve to eighteen months before a College is scheduled to open. The founding team identifies candidate cities based on the tier framework (Tier A, B, or C), then surveys the city's existing building stock for properties that meet four criteria: adequate floor area (typically 8,000&ndash;25,000 square meters, depending on tier); appropriate floorplates for tutorial rooms, lecture halls, library, and commons; central location with transit access; and a building condition that permits renovation within the budget and timeline constraints. Candidate buildings include repurposed convents and monasteries (often vacant due to declining religious orders), warehouses and factories (vacated by industrial relocation), office complexes (underutilized due to remote-work shifts), and former schools or government buildings (decommissioned due to demographic change).</p>
+   280→
+   281→<p class="body-text">Each candidate building is evaluated against a standard assessment template covering structural condition, environmental performance, regulatory status, acquisition cost, renovation cost, and operating cost. The assessment is conducted by a local architect and a local surveyor, with the founding team providing the institutional specification. Buildings that pass the assessment enter the acquisition pipeline; buildings that fail are recorded for future reference. The pipeline is maintained at three to five candidate buildings per planned College, ensuring that the institution can proceed with an alternative if the preferred building is withdrawn or if the acquisition cost exceeds the budget envelope.</p>
+   282→
+   283→<table class="tbl">
+   284→  <thead>
+   285→    <tr>
+   286→      <th>Tier</th>
+   287→      <th>Building size</th>
+   288→      <th>Acquisition cost</th>
+   289→      <th>Renovation cost</th>
+   290→    </tr>
+   291→  </thead>
+   292→  <tbody>
+   293→    <tr><td><strong>Central Node</strong></td><td>~25,000 sqm</td><td class="num">~$15M</td><td class="num">~$5M</td></tr>
+   294→    <tr><td><strong>Tier A College</strong></td><td>~15,000 sqm</td><td class="num">~$7M</td><td class="num">~$2M</td></tr>
+   295→    <tr><td><strong>Tier B College</strong></td><td>~10,000 sqm</td><td class="num">~$3.5M</td><td class="num">~$1M</td></tr>
+   296→    <tr><td><strong>Tier C College</strong></td><td>~6,000 sqm</td><td class="num">~$1.4M</td><td class="num">~$0.5M</td></tr>
+   297→  </tbody>
+   298→</table>
+   299→
+   300→<p class="body-text">Acquisition is structured as a fee-simple purchase wherever local law permits, which is the case in forty-two of the fifty planned College cities and all three Central Node cities. In the eight cities where foreign-institution ownership is restricted, the institution acquires the building through a long-term lease (typically 99 years) with a local foundation partner that holds legal title in trust for the university. The lease structure includes the institution's right to renovate, operate, and rename the building, with the underlying title reverting to the institution if and when local law permits foreign ownership. In every case, the institution's operating control over the building is absolute; only the legal form of the title varies.</p>
+   301→
+   302→<p class="body-text">Renovation is conducted by local contractors under the supervision of the institution's facilities team, with the founding team providing the institutional specification (tutorial room sizing, lecture hall capacity, library and commons requirements, digital infrastructure). The renovation timeline is six to twelve months for Tier C Colleges, nine to fifteen months for Tier B Colleges, twelve to eighteen months for Tier A Colleges, and fifteen to twenty-four months for Central Nodes &mdash; with the longer timelines reflecting the more extensive specification (convocation halls, founding archives, hybrid-delivery AV infrastructure) at the higher tiers. Renovation is sequenced to permit occupancy in the academic year following acquisition, ensuring that the founding cohort can be admitted on schedule.</p>
+   303→
+   304→<div class="callout">
+   305→  <div class="callout-label">The 82% allocation</div>
+   306→  <p class="body-text" style="margin:0;">The Place pillar receives $82M of the $100M founding campaign &mdash; 82 cents of every dollar raised. Properties are the only asset class large enough to absorb a $100M founding campaign while simultaneously providing the physical infrastructure the university will operate in for centuries. Even at 50% naming uptake, the naming gifts cover the property costs: the donor names a College, the College owns the building, and the building is permanent.</p>
+   307→</div>
+   308→
+   309→<p class="body-text">The acquisition strategy also includes a portfolio-level reserve. Approximately 8% of the Place pillar ($6.6M) is held as a contingency reserve to cover cost overruns, currency fluctuations, and the acquisition of additional properties if a planned College cannot be opened in its target city. The reserve is governed by the Board of Visitors and reported on the annual audit. The portfolio approach &mdash; rather than a per-College budget &mdash; permits the institution to absorb the variability inherent in fifty simultaneous property acquisitions across thirty-five countries without jeopardizing the launch schedule.</p>
+   310→
+   311→<!-- ─── III. THE THREE CENTRAL NODES ─── -->
+   312→<div class="chapter-header">
+   313→  <div class="chapter-tag">Chapter III</div>
+   314→  <div class="chapter-title">The three Central Nodes.</div>
+   315→  <div class="chapter-divider"></div>
+   316→</div>
+   317→
+   318→<p class="lead">The three Central Nodes &mdash; Venice, San Francisco, and Singapore &mdash; are the apex of the planetary network. Each Node serves as the regional seat of governance, convocation, and the founding document archive for one third of the planetary university. The Nodes are the structural mechanism by which the institution's governance is distributed across three legally and culturally distinct jurisdictions, preventing capture by any single national government.</p>
+   319→
+   320→<p class="body-text">The three Central Nodes were selected by a single criterion: their capacity to serve as neutral, permanent, geographically distributed seats of the institution. Venice anchors the European and Mediterranean basin and provides the historical and cultural gravitas appropriate to the founding seat. San Francisco anchors the Americas and the Pacific technology arc and provides proximity to Silicon Valley, the Forge incubator, and the computational and biotech research programs. Singapore anchors the Asia-Pacific and the Indian Ocean basin and provides a neutral convening point for the Eastern hemisphere with research focus on fintech, urban futures, and the Indian Ocean region.</p>
+   321→
+   322→<p class="body-text">The tri-continental governance structure is the institutional defense against political capture. A university whose governance is concentrated in a single country is vulnerable to changes in that country's regulatory regime, political climate, or diplomatic posture. A university whose governance rotates physically between three jurisdictions &mdash; with the founding document archived in Venice, the technology charter in San Francisco, and the Asia-Pacific convening seat in Singapore &mdash; is structurally protected against any single government's intervention. The Nodes are not only academic campuses; they are the constitutional architecture of the institution's independence.</p>
+   323→
+   324→<div class="node-card">
+   325→  <div class="nc-head">
+   326→    <div class="nc-name">Venice Central Node</div>
+   327→    <div class="nc-students">~5,000 students</div>
+   328→  </div>
+   329→  <div class="nc-meta">Founding Seat · Governance · Convocation · Archive</div>
+   330→  <div class="nc-body">The founding seat of the planetary university. Venice houses the founding document archive, the convocation hall where the first graduating class is sworn in, and the historical identity of the institution. The Venice Node occupies repurposed Renaissance palazzi along the Grand Canal &mdash; acquired, restored, and operated as the academic heart of the European and Mediterranean basin. The city's geographic isolation from any single national capital, its historical role as the meeting point between East and West, and its architectural inheritance make it the natural seat for an institution whose identity is planetary rather than national.</div>
+   331→</div>
+   332→
+   333→<div class="node-card">
+   334→  <div class="nc-head">
+   335→    <div class="nc-name">San Francisco Central Node</div>
+   336→    <div class="nc-students">~5,000 students</div>
+   337→  </div>
+   338→  <div class="nc-meta">Innovation Seat · Technology · Forge Incubator · Biotech</div>
+   339→  <div class="nc-body">The technology and innovation seat. San Francisco houses the Forge incubator (the institution's startup-spinout engine), the computational and biotech research programs, and the technology charter of the institution. The Node occupies a repurposed industrial complex in the Mission Bay innovation district, with proximity to Silicon Valley, the biotech corridor, and the venture capital community that supports the Forge. The San Francisco Node is the institution's bridge to the technology economy &mdash; the place where the research of the planetary university meets the market for new ventures.</div>
+   340→</div>
+   341→
+   342→<div class="node-card">
+   343→  <div class="nc-head">
+   344→    <div class="nc-name">Singapore Central Node</div>
+   345→    <div class="nc-students">~5,000 students</div>
+   346→  </div>
+   347→  <div class="nc-meta">Asia-Pacific Seat · Neutral Convening · Fintech · Urban Futures</div>
+   348→  <div class="nc-body">The Asia-Pacific seat. Singapore is the neutral convening point for the Eastern hemisphere &mdash; a jurisdiction whose diplomatic posture, regulatory stability, and geographic centrality make it the natural meeting place for students, faculty, and partners from India, China, Southeast Asia, Japan, Korea, and Oceania. The Singapore Node houses the fintech and urban futures research programs, the Asia-Pacific convening hall, and the institution's outreach to the Indian Ocean basin. The city's combination of legal certainty, cultural neutrality, and research infrastructure makes it the indispensable third apex of the planetary network.</div>
+   349→</div>
+   350→
+   351→<div class="pullquote">
+   352→  &ldquo;The three Central Nodes are not three campuses; they are the three legs of a constitutional tripod. Remove any one, and the institution's independence becomes vulnerable. The Nodes exist to ensure that the planetary university cannot be captured by any single government, any single decade, or any single ideological turn.&rdquo;
+   353→  <div class="attribution">&mdash; Artemis Founding Prospectus, Campus Plan Section 3.1</div>
+   354→</div>
+   355→
+   356→<p class="body-text">The three Central Nodes together house approximately 15,000 students &mdash; one quarter of the planetary student body at maturity. Each Node serves a dual function: as an academic campus hosting students and faculty in the regular curriculum, and as the regional seat hosting the institutional functions (governance, convocation, archive, incubator) that rotate between the three. The Nodes are therefore both universities and capitols &mdash; places where students learn and where the institution governs itself. The architectural specification of each Node reflects this dual function: in addition to the standard College facilities (tutorial rooms, lecture halls, library, commons), each Node includes a convocation hall, a governance chamber, and the founding archive appropriate to its regional role.</p>
+   357→
+   358→<!-- ─── IV. THE COLLEGE TIERS ─── -->
+   359→<div class="chapter-header">
+   360→  <div class="chapter-tag">Chapter IV</div>
+   361→  <div class="chapter-title">The College tiers &mdash; A, B, and C.</div>
+   362→  <div class="chapter-divider"></div>
+   363→</div>
+   364→
+   365→<p class="lead">The fifty Colleges are organized into three tiers calibrated to the size, regional role, and acquisition cost of each placement. Tier A flagship Colleges anchor the world's knowledge capitals; Tier B Colleges anchor the major global cities; Tier C Colleges anchor the regional access cities the existing university system has failed to serve. The tier framework is the mechanism by which the planetary network is sized, priced, and sequenced.</p>
+   366→
+   367→<p class="body-text">The tier framework is not a hierarchy of academic quality &mdash; every Artemis College delivers the same curriculum, the same degree, and the same faculty rotation, regardless of tier. The tiers differ along three dimensions: the size of the student body (with Tier A Colleges hosting approximately 2,500 students, Tier B Colleges 2,000, and Tier C Colleges 1,100); the acquisition cost of the building (with Tier A Colleges costing $10M, Tier B $5M, and Tier C $2M); and the regional role (with Tier A Colleges anchoring knowledge capitals, Tier B Colleges anchoring regional commercial capitals, and Tier C Colleges anchoring access cities). A student graduating from a Tier C College in Kigali holds the same degree as a student graduating from a Tier A College in London; the difference is the city, not the credential.</p>
+   368→
+   369→<div class="tier-card">
+   370→  <div class="tc-head">
+   371→    <div class="tc-name">Tier A Colleges</div>
+   372→    <div class="tc-meta">8 Colleges · ~2,500 students each</div>
+   373→  </div>
+   374→  <div class="tc-sub">Flagship · $10M Naming · Knowledge Capitals</div>
+   375→  <div class="tc-body">Flagship Colleges in the world's great knowledge capitals &mdash; London, Tokyo, Berlin, Paris, Toronto, Sydney, Seoul, New York. These cities are not selected because they are underserved &mdash; they are heavily served by existing universities. They are selected because the planetary university cannot be planetary without a permanent, owned, named presence in each of them. Each Tier A College houses approximately 2,500 students and serves as the institution's flagship presence in the city that already defines the global academic conversation.</div>
+   376→</div>
+   377→
+   378→<div class="tier-card">
+   379→  <div class="tc-head">
+   380→    <div class="tc-name">Tier B Colleges</div>
+   381→    <div class="tc-meta">16 Colleges · ~2,000 students each</div>
+   382→  </div>
+   383→  <div class="tc-sub">Major Global Cities · $5M Naming · Regional Capitals</div>
+   384→  <div class="tc-body">Major global cities across all six continents &mdash; Nairobi, Mumbai, São Paulo, Cairo, Istanbul, Buenos Aires, Jakarta, Mexico City, Lagos, Bangkok, Lima, Bogotá, Casablanca, Amman, Hanoi, Manila. Each Tier B College houses approximately 2,000 students and serves as the institution's regional capital presence in a city whose economic gravity shapes an entire sub-continent. The Tier B Colleges are the global-city backbone of the planetary network.</div>
+   385→</div>
+   386→
+   387→<div class="tier-card">
+   388→  <div class="tc-head">
+   389→    <div class="tc-name">Tier C Colleges</div>
+   390→    <div class="tc-meta">23 Colleges · ~1,100 students each</div>
+   391→  </div>
+   392→  <div class="tc-sub">Regional Access · $2M Naming · Emerging Knowledge Cities</div>
+   393→  <div class="tc-body">Regional access colleges in cities the existing university system has failed to serve &mdash; Kigali, Dhaka, Kampala, Karachi, Tashkent, Quito, and emerging knowledge cities across Africa, South Asia, Central Asia, and Latin America. Each Tier C College houses approximately 1,100 students and provides the planetary network's most direct expression of its access mission: frontier curriculum, $3,000 tuition, and need-blind admission in cities where none of these currently exist.</div>
+   394→</div>
+   395→
+   396→<p class="body-text">The tier framework also drives the sequencing of the founding campaign. The three Central Nodes are committed first, because they are the constitutional architecture of the institution. The eight Tier A Colleges are committed next, because they anchor the planetary network in the cities that define the global academic conversation. The sixteen Tier B Colleges follow, because they extend the network into the major regional capitals. The twenty-three Tier C Colleges complete the network, because they are the access layer that fulfills the institution's founding mission. The sequencing reflects the institutional logic of the planetary university: governance first, then flagship presence, then regional capital, then access.</p>
+   397→
+   398→<div class="callout">
+   399→  <div class="callout-label">The total network</div>
+   400→  <p class="body-text" style="margin:0;">3 Central Nodes (15,000 students) + 8 Tier A Colleges (20,000 students) + 16 Tier B Colleges (32,000 students) + 23 Tier C Colleges (25,300 students) = 50 Colleges, 92,300 student capacity, 60,000 enrolled at maturity. The planetary university is sized for the demographic peak of 2035 and the access mission that justifies its founding.</p>
+   401→</div>
+   402→
+   403→<!-- ─── V. VENICE — THE FOUNDING SEAT ─── -->
+   404→<div class="chapter-header">
+   405→  <div class="chapter-tag">Chapter V</div>
+   406→  <div class="chapter-title">Venice &mdash; the founding seat.</div>
+   407→  <div class="chapter-divider"></div>
+   408→</div>
+   409→
+   410→<p class="lead">Venice is the founding seat of the planetary university. The Venice Central Node houses the founding document archive, the convocation hall where the first graduating class is sworn in, and the historical identity of the institution. The Node occupies repurposed Renaissance palazzi along the Grand Canal, restored to house 5,000 students, the governance chamber, and the founding archive.</p>
+   411→
+   412→<p class="body-text">Venice was selected as the founding seat for four reasons. The first is historical: Venice was for five centuries the meeting point between the Latin West, the Byzantine East, and the Islamic South &mdash; the original planetary city, whose identity was defined by its capacity to convene across cultural and religious boundaries. The planetary university inherits that vocation. The second is geographic: Venice is isolated from any single national capital, protected by its lagoon from the political turbulence that has historically affected mainland European cities, and culturally neutral in a way that no national capital can be. The third is architectural: Venice's stock of Renaissance palazzi &mdash; many of them underutilized due to demographic decline and the relocation of commercial functions to the mainland &mdash; provides the building stock the repurposing philosophy requires.</p>
+   413→
+   414→<p class="body-text">The fourth reason is legal. Italy's legal framework for foreign-institution ownership of historically significant buildings is well-established, with the Italian Ministry of Culture maintaining a formal pathway for the acquisition and restoration of palazzi by recognized educational and cultural institutions. The pathway includes tax benefits for restoration expenditures, regulatory protection for the institution's long-term operating control, and the standing of the institution as a recognized cultural custodian of the building. The Venice Node is therefore both a physical campus and a legal instrument &mdash; the mechanism by which the institution's founding seat is anchored in a jurisdiction whose legal framework supports its permanence.</p>
+   415→
+   416→<div class="figure">
+   417→  <img src="../public/resources/img/venice-node.png" alt="Venice Central Node">
+   418→  <div class="caption">Venice Central Node &mdash; the founding seat. Renaissance palazzi along the Grand Canal, repurposed as the academic heart of the European and Mediterranean basin, and the constitutional anchor of the institution's independence.</div>
+   419→</div>
+   420→
+   421→<p class="body-text">The Venice Node houses approximately 5,000 students drawn from across the European and Mediterranean basin, with the curriculum delivered in the standard Artemis format: tutorials, lectures, seminars, and the hybrid-delivery infrastructure that connects the Node to the planetary network. The Node also houses the founding archive &mdash; the physical and digital repository of the institution's founding documents, bylaws, gift agreements, and historical records &mdash; maintained in perpetuity as the institutional record. The archive is open to scholars and donors, with the founding documents available for inspection at any time. The convocation hall hosts the institution's annual founding convocation, the swearing-in of new graduates, and the periodic gathering of the Board of Visitors.</p>
+   422→
+   423→<p class="body-text">The donor who names the Venice Central Node acquires a permanent association with the founding seat of the planetary university. The $25M gift covers campus acquisition, renovation to Central Node specification including the convocation hall and founding archive, and an operating endowment that yields $225K per year in perpetuity to fund the Node's regional convening role. The donor's name is recorded in the founding document at Venice, attached to the Node's convocation hall, and associated with the institution's apex presence in the European and Mediterranean basin. The naming is permanent &mdash; coextensive with the building, which under the institution's design horizon is centuries.</p>
+   424→
+   425→<!-- ─── VI. SAN FRANCISCO — THE INNOVATION SEAT ─── -->
+   426→<div class="chapter-header">
+   427→  <div class="chapter-tag">Chapter VI</div>
+   428→  <div class="chapter-title">San Francisco &mdash; the innovation seat.</div>
+   429→  <div class="chapter-divider"></div>
+   430→</div>
+   431→
+   432→<p class="lead">San Francisco is the technology and innovation seat of the planetary university. The San Francisco Central Node houses the Forge incubator, the computational and biotech research programs, and the technology charter of the institution. The Node occupies a repurposed industrial complex in the Mission Bay innovation district, with proximity to Silicon Valley, the biotech corridor, and the venture capital community.</p>
+   433→
+   434→<p class="body-text">San Francisco was selected as the innovation seat for three reasons. The first is geographic: the San Francisco Bay Area is the global center of the technology economy, with the highest concentration of venture capital, startup activity, and technology talent in the world. Locating the Forge incubator in this ecosystem provides the planetary university's spinout engine with direct access to the capital, talent, and commercialization infrastructure that the technology economy provides. The second is institutional: the Bay Area's existing research universities (Stanford, Berkeley, UCSF) provide a collegial ecosystem of complementary research capacity, with collaboration pathways in biotech, computational science, and adjacent fields.</p>
+   435→
+   436→<p class="body-text">The third reason is symbolic. The planetary university's commitment to innovation as one of its four academic pillars (alongside epistemology, computational thinking, and global systems) requires a permanent physical presence in the geography that has most defined twenty-first-century innovation. San Francisco is not the only city with a technology economy, but it is the city whose identity has been most shaped by the technology economy &mdash; and the institution that anchors its innovation seat there inherits that identity. The Forge incubator, the computational research programs, and the biotech corridor partnerships are the substantive content of the San Francisco Node; the city's symbolic gravity is the institutional context in which that content is delivered.</p>
+   437→
+   438→<p class="body-text">The San Francisco Node houses approximately 5,000 students drawn from across the Americas and the Pacific technology arc, with the curriculum delivered in the standard Artemis format. The Node also houses the Forge incubator &mdash; the institution's startup-spinout engine, which takes research from the planetary university's Centers of Inquiry and develops it into commercial ventures, with the institution retaining a 5% equity stake in each spinout. The Forge equity portfolio is one of the institution's five revenue lines at maturity, projected to generate $18M per year in distributions and exits. The Node also houses the computational and biotech research programs &mdash; including the Synthetic Intelligence Center of Inquiry (San Francisco&ndash;Toronto&ndash;Edinburgh), the Biotech and Life Sciences Center (Cambridge UK&ndash;Basel&ndash;Guangzhou), and the Urban Futures Center (Copenhagen&ndash;Medellín&ndash;Singapore).</p>
+   439→
+   440→<div class="callout">
+   441→  <div class="callout-label">The Forge incubator</div>
+   442→  <p class="body-text" style="margin:0;">The Forge is the institution's startup-spinout engine, housed at the San Francisco Central Node. Research from the planetary university's 19 Centers of Inquiry is developed into commercial ventures, with the institution retaining a 5% equity stake in each spinout. At maturity, the Forge portfolio is projected to generate $18M per year in distributions and exits &mdash; one of the institution's five revenue lines, and the bridge between the scholarship of the university and the world it serves.</p>
+   443→</div>
+   444→
+   445→<p class="body-text">The donor who names the San Francisco Central Node acquires a permanent association with the innovation seat of the planetary university. The $25M gift covers campus acquisition, renovation to Central Node specification including the Forge incubator and computational research facilities, and an operating endowment that yields $225K per year in perpetuity to fund the Node's regional convening role. The donor's name is recorded in the founding document at Venice, attached to the Node's innovation charter, and associated with the institution's apex presence in the Americas and the Pacific technology arc. The naming is permanent &mdash; coextensive with the building, which under the institution's design horizon is centuries.</p>
+   446→
+   447→<!-- ─── VII. SINGAPORE — THE ASIA-PACIFIC SEAT ─── -->
+   448→<div class="chapter-header">
+   449→  <div class="chapter-tag">Chapter VII</div>
+   450→  <div class="chapter-title">Singapore &mdash; the Asia-Pacific seat.</div>
+   451→  <div class="chapter-divider"></div>
+   452→</div>
+   453→
+   454→<p class="lead">Singapore is the Asia-Pacific seat of the planetary university. The Singapore Central Node houses the Asia-Pacific convening hall, the fintech and urban futures research programs, and the institution's outreach to the Indian Ocean basin. The Node occupies a repurposed commercial complex in the city's innovation district, with proximity to the regional headquarters of the global financial and technology firms that anchor Singapore's economy.</p>
+   455→
+   456→<p class="body-text">Singapore was selected as the Asia-Pacific seat for four reasons. The first is geopolitical neutrality: Singapore is a sovereign city-state whose diplomatic posture is independent of any of the major regional powers (China, India, Japan, Indonesia, Australia), and whose regulatory and legal framework is internationally trusted. A university whose Asia-Pacific seat is in Singapore is therefore convening in a jurisdiction that none of the regional powers can claim as their own &mdash; the structural condition for neutral convening in a region whose geopolitical tensions are otherwise unavoidable. The second is geographic centrality: Singapore sits at the meeting point of the Indian Ocean, the South China Sea, and the Pacific, with direct flight connections to every major city in the Eastern hemisphere.</p>
+   457→
+   458→<p class="body-text">The third reason is regulatory: Singapore's legal framework for foreign-institution ownership, research conduct, and intellectual property is among the most stable and well-established in the Asia-Pacific region, providing the institutional certainty required for a permanent campus. The fourth reason is research infrastructure: Singapore's existing research ecosystem &mdash; including the National University of Singapore, Nanyang Technological University, the A*STAR research institutes, and the city's financial and urban-planning agencies &mdash; provides a collegial ecosystem of complementary research capacity, particularly in fintech, urban futures, and the digital infrastructure of the smart city.</p>
+   459→
+   460→<p class="body-text">The Singapore Node houses approximately 5,000 students drawn from across the Asia-Pacific and the Indian Ocean basin, with the curriculum delivered in the standard Artemis format. The Node also houses the Fintech, DeFi, and Economics Center of Inquiry (London&ndash;Singapore&ndash;Lagos), the Urban Futures Center (Copenhagen&ndash;Medellín&ndash;Singapore), and the Bio-Regenerative Arts Center (Venice&ndash;Rotterdam&ndash;Singapore) &mdash; three of the institution's 19 research centers, each distributed across multiple nodes. The Asia-Pacific convening hall hosts the institution's periodic gatherings of students, faculty, and partners from across the Eastern hemisphere, providing the neutral meeting point that the region's diplomatic posture otherwise lacks.</p>
+   461→
+   462→<div class="pullquote">
+   463→  &ldquo;Singapore is the indispensable third apex of the planetary network. Without it, the institution's Asia-Pacific presence would be subject to the geopolitical tensions of whichever major regional power hosted it. With it, the institution convenes in a jurisdiction that none of the regional powers can claim as their own.&rdquo;
+   464→  <div class="attribution">&mdash; Artemis Founding Prospectus, Campus Plan Section 3.3</div>
+   465→</div>
+   466→
+   467→<p class="body-text">The donor who names the Singapore Central Node acquires a permanent association with the Asia-Pacific seat of the planetary university. The $25M gift covers campus acquisition, renovation to Central Node specification including the Asia-Pacific convening hall and the fintech research facilities, and an operating endowment that yields $225K per year in perpetuity to fund the Node's regional convening role. The donor's name is recorded in the founding document at Venice, attached to the Node's Asia-Pacific charter, and associated with the institution's apex presence in the Eastern hemisphere. The naming is permanent &mdash; coextensive with the building, which under the institution's design horizon is centuries.</p>
+   468→
+   469→<!-- ─── VIII. THE GLOBAL NODE NETWORK ─── -->
+   470→<div class="chapter-header">
+   471→  <div class="chapter-tag">Chapter VIII</div>
+   472→  <div class="chapter-title">The global node network.</div>
+   473→  <div class="chapter-divider"></div>
+   474→</div>
+   475→
+   476→<p class="lead">The fifty Colleges and three Central Nodes form a single network &mdash; not a federation of independent institutions, but one university operating across fifty-three physical locations. Students move between nodes. Faculty rotate. Knowledge is produced everywhere and shared everywhere. The network architecture is the mechanism by which the planetary university is planetary rather than merely multicampus.</p>
+   477→
+   478→<p class="body-text">The network operates on a single shared curriculum, a single faculty roster, and a single treasury. Every Artemis College delivers the same nine degree programs, the same four academic pillars, the same tutorial model, and the same graduation requirements &mdash; with local electives that reflect the city's particular intellectual resources (a Berlin College elective in Continental Philosophy, a San Francisco Node elective in Venture Formation, a Nairobi College elective in East African History). The faculty roster is shared: a professor based in Venice may teach a tutorial in Singapore in the fall and a lecture in Berlin in the spring, with the digital infrastructure of the network permitting synchronous and asynchronous delivery across the planetary footprint.</p>
+   479→
+   480→<p class="body-text">Student mobility is a structural feature of the network. Every Artemis student is entitled to spend at least one academic term at a node other than their home College, with the tuition, credit, and financial aid flowing seamlessly across the network. A student who enters at the Kampala College may spend a term at the Venice Central Node, another at the San Francisco Node, and another at the London College &mdash; accumulating the planetary experience that is the credential's distinctive feature. The mobility program is funded by the operating P&amp;L (not by an additional fee), ensuring that the planetary experience is available to every student regardless of financial circumstance.</p>
+   481→
+   482→<div class="figure">
+   483→  <img src="../public/resources/img/world-night.png" alt="Earth at night from space">
+   484→  <div class="caption">The planetary network at night &mdash; fifty Colleges and three Central Nodes across thirty-five countries. The lights are the cities the network is embedded in; the network is the institution that connects them.</div>
+   485→</div>
+   486→
+   487→<p class="body-text">The treasury is single: tuition, endowment payout, research grants, Forge equity distributions, and continuing-education revenue flow into a single institutional treasury, from which faculty compensation, facilities operations, scholarships, research expenditures, and administration are paid. The single-treasury architecture is what permits the operating model to produce the $262M annual surplus from Year 2 onward &mdash; the surplus that funds scholarships, builds the endowment, and underwrites expansion. A federated treasury, with each College managing its own finances, would replicate the cost structure of the existing university system; a single treasury is what permits the planetary university to operate at $5,000 per student per year rather than $90,000.</p>
+   488→
+   489→<p class="body-text">The network's digital infrastructure is the connective tissue that makes the planetary model possible. Every College is equipped with hybrid-delivery lecture halls (permitting a lecture in Venice to be attended live in Nairobi and São Paulo), tutorial rooms with synchronous collaboration tools, and the asynchronous video library that permits every lecture to be reviewed by every student across the network. The digital infrastructure was, until recently, the missing piece that would have made a planetary university impossible: cloud infrastructure, AI-mediated tutorials, distributed collaboration tools, and translation at scale are now mature enough to support a single shared curriculum across thirty-five countries. The campus plan is, in this sense, also a technology plan: the buildings house the digital infrastructure, and the digital infrastructure houses the network.</p>
+   490→
+   491→<div class="callout">
+   492→  <div class="callout-label">The network's compounding advantage</div>
+   493→  <p class="body-text" style="margin:0;">A traditional university adds marginal students at a marginal cost of several thousand dollars per student &mdash; the cost of the physical and administrative capacity required to support them. The Artemis network adds marginal students at a marginal cost approaching zero, because the curriculum, faculty, and digital infrastructure are shared across the network. This is the structural reason the planetary university can offer $3,000 tuition while the Ivy League charges $60,000: the cost per student falls as the network grows, rather than rising as the campus fills.</p>
+   494→</div>
+   495→
+   496→<p class="body-text">The network's expansion path is built into the founding architecture. The fifty Colleges and three Central Nodes are the Year 1 target, but the institution's design horizon extends to a century and beyond. Additional Colleges can be added to the network at marginal cost &mdash; a new College in a city not yet on the map requires acquisition and renovation ($2M&ndash;$25M, depending on tier), connection to the shared digital infrastructure, and integration into the faculty rotation, but does not require additional curriculum development, additional administrative overhead, or additional central infrastructure. The network is therefore not only the founding configuration of the planetary university but the expansion architecture by which the institution grows over the century that follows its founding.</p>
+   497→
+   498→<!-- ─── IX. SUSTAINABILITY: EMBODIED AND OPERATIONAL CARBON ─── -->
+   499→<div class="chapter-header">
+   500→  <div class="chapter-tag">Chapter IX</div>
+   501→  <div class="chapter-title">Sustainability &mdash; embodied and operational carbon.</div>
+   502→  <div class="chapter-divider"></div>
+   503→</div>
+   504→
+   505→<p class="lead">The repurposing philosophy is the institution's primary climate instrument. New academic construction is among the most carbon-intensive activities in the modern economy, and a planetary university built from scratch would expend the carbon of a small city before admitting a single student. By repurposing fifty-three existing buildings, the institution avoids between 60% and 80% of the embodied carbon that new construction would require, while operating the network at a fraction of the per-student energy footprint of the traditional research university.</p>
+   506→
+   507→<p class="body-text">The carbon case for repurposing is mathematical. A new academic building of 15,000 square meters &mdash; the typical Tier A College specification &mdash; embodies between 4,500 and 13,500 tonnes of CO2 in its concrete, steel, glass, and finishes. A repurposed building of equivalent floor area, by contrast, typically requires only 1,000 to 3,000 tonnes of CO2 in renovation materials, mechanical systems, and finishes. Across fifty-three campuses, the saving is between 175,000 and 555,000 tonnes of CO2 &mdash; the annual carbon footprint of a city of 30,000 people. The planetary university cannot claim to address the twenty-first century's challenges while expending the twentieth century's construction carbon to build itself.</p>
+   508→
+   509→<p class="body-text">The operational carbon case is equally compelling. New academic buildings typically consume between 250 and 400 kilowatt-hours per square meter per year, driven by deep floorplates, mechanical ventilation, and intensive cooling loads. Repurposed buildings, with shallower floorplates and natural cross-ventilation possible through original window arrangements, typically consume between 120 and 200 kWh per square meter per year &mdash; a 40% to 50% reduction in operational energy. Across the 600,000-square-meter planetary portfolio, the operational saving is on the order of 60 to 100 gigawatt-hours per year, the consumption of a small city.</p>
+   510→
+   511→<div class="stat-row">
+   512→  <div class="stat">
+   513→    <div class="stat-val">60-80%</div>
+   514→    <div class="stat-label">Embodied Carbon Saved</div>
+   515→  </div>
+   516→  <div class="stat">
+   517→    <div class="stat-val">40-50%</div>
+   518→    <div class="stat-label">Operational Energy Saved</div>
+   519→  </div>
+   520→  <div class="stat">
+   521→    <div class="stat-val">~175K t</div>
+   522→    <div class="stat-label">CO2 Avoided (lower bound)</div>
+   523→  </div>
+   524→  <div class="stat">
+   525→    <div class="stat-val">~80 GWh</div>
+   526→    <div class="stat-label">Annual Energy Reduction</div>
+   527→  </div>
+   528→</div>
+   529→
+   530→<p class="body-text">The renovation specification reinforces the carbon strategy. Insulation is upgraded to modern standards where original construction permits, glazing is replaced with high-performance units where heritage regulations allow, and mechanical systems are specified to district-heating or heat-pump configurations where local infrastructure supports them. Each renovation includes a building-management system that monitors consumption in real time, with the data aggregated across the network and reported in the annual sustainability audit. The planetary portfolio's energy intensity is therefore a measurable, reportable, and improvable quantity &mdash; not a vague aspiration but a tracked metric with annual targets.</p>
+   531→
+   532→<p class="body-text">The institution's century-scale design horizon is itself a sustainability strategy. A building renovated to institutional specification and operated for a century amortizes its embodied carbon over a far longer period than the typical commercial building, which is replaced every 30 to 50 years. The Artemis buildings are designed to outlive the founders, the founding cohort, and the century in which they were acquired. The carbon expended in their renovation is therefore an investment in a multi-generational asset, not a one-time expense &mdash; the only honest way to count the carbon of an institution that intends to be permanent.</p>
+   533→
+   534→<div class="callout">
+   535→  <div class="callout-label">The annual sustainability audit</div>
+   536→  <p class="body-text" style="margin:0;">Each Artemis building reports embodied carbon (one-time, at renovation), operational energy (annual, by source), water consumption, waste diversion, and indoor environmental quality. The data is consolidated into the institutional Sustainability Report, audited alongside the financial statements, and published annually. Donors who name a building receive the sustainability audit for their named asset in perpetuity &mdash; the carbon accounting of a permanent gift.</p>
+   537→</div>
+   538→
+   539→<!-- ─── X. THE FOUNDING TIMELINE ─── -->
+   540→<div class="chapter-header">
+   541→  <div class="chapter-tag">Chapter X</div>
+   542→  <div class="chapter-title">The founding timeline &mdash; from campaign close to Day 1.</div>
+   543→  <div class="chapter-divider"></div>
+   544→</div>
+   545→
+   546→<p class="lead">The founding campaign closes on a fixed date, and the university opens on a fixed date twelve months later. The compression of these two events into a single calendar year is the operational consequence of the repurposing philosophy: because the buildings already exist, the institution can move from campaign close to Day 1 operations in the time a new-build university would still be in design review.</p>
+   547→
+   548→<p class="body-text">The twelve-month timeline decomposes into four overlapping quarters. In the first quarter, the founding team confirms the founding gift agreements, executes the property acquisitions for the three Central Nodes and the first twelve Colleges, and recruits the founding faculty cohort of 200. The first quarter is also when the institutional treasury is capitalized, the legal entities across the three jurisdictions are activated, and the digital infrastructure contract is signed. By the end of the first quarter, the institution has its assets, its faculty pipeline, and its operating infrastructure in place.</p>
+   549→
+   550→<p class="body-text">In the second quarter, renovation begins on the three Central Nodes and the first twelve Colleges, with the founding team conducting the institutional specification process and supervising local contractors. The founding faculty cohort is fully recruited (200 of the 2,000 Year-1 faculty), and the admissions process opens for the founding student cohort of 120. The second quarter is also when the curriculum is finalized, the tutorial pairings are designed, and the first lecture series is rehearsed. By the end of the second quarter, the buildings are mid-renovation, the faculty is largely in place, and the admissions decisions are being made.</p>
+   551→
+   552→<div class="figure">
+   553→  <img src="../public/resources/img/research-lab.png" alt="Renovation specification and faculty preparation">
+   554→  <div class="caption">The founding-year specification process &mdash; institutional standards for tutorial rooms, lecture halls, library stacks, and hybrid-delivery infrastructure are deployed simultaneously across fifty-three campuses during the second and third quarters of the founding year.</div>
+   555→</div>
+   556→
+   557→<p class="body-text">In the third quarter, renovation completes on the first twelve Colleges, the founding student cohort of 120 is admitted and housed, and the faculty orientation program begins. The digital infrastructure is tested across the network: hybrid-delivery lecture halls are calibrated, tutorial collaboration tools are deployed, and the asynchronous video library is populated with the first lecture series. The third quarter is when the network becomes operational &mdash; not yet teaching students, but capable of doing so. By the end of the third quarter, the first twelve Colleges are physically and digitally ready to open.</p>
+   558→
+   559→<p class="body-text">In the fourth quarter, the three Central Nodes complete renovation, the founding convocation is held in Venice, and the university opens on Day 1. The first lecture is delivered (in Venice, broadcast across the network), the first tutorials are convened (in every College, simultaneously), and the first cohort of 120 students begins the planetary curriculum. The fourth quarter is also when the second wave of property acquisitions begins &mdash; the remaining 38 Colleges, which will open in Years 2 through 5 as renovation completes. The founding year closes with the university operational, the founding cohort matriculated, and the second wave of expansion underway.</p>
+   560→
+   561→<div class="callout">
+   562→  <div class="callout-label">Why twelve months, not seven years</div>
+   563→  <p class="body-text" style="margin:0;">A traditional research university takes between five and ten years from gift to opening &mdash; the design, permitting, and construction timeline of a new campus. Artemis takes twelve months because the buildings already exist. The twelve-month timeline is the operational expression of the repurposing philosophy: the campus plan is a calendar as much as it is a financial instrument or a sustainability strategy.</p>
+   564→</div>
+   565→
+   566→<p class="body-text">The twelve-month timeline is also a fundraising instrument. Donors who give to the founding campaign see their gifts converted into operational reality within the same calendar year &mdash; a named College in March, an open College by the following March. The compression of gift-to-impact is rare in higher-education philanthropy, where the typical lag between a naming gift and the building's completion is three to seven years. The Artemis donor is therefore participating in an unusually legible form of philanthropy: the gift produces a permanent, named, operational asset, within a single fiscal cycle.</p>
+   567→
+   568→<!-- ─── XI. OPERATIONS IN PRACTICE ─── -->
+   569→<div class="chapter-header">
+   570→  <div class="chapter-tag">Chapter XI</div>
+   571→  <div class="chapter-title">Operations in practice &mdash; faculty, convocation, and the single treasury.</div>
+   572→  <div class="chapter-divider"></div>
+   573→</div>
+   574→
+   575→<p class="lead">A planetary network of fifty-three campuses is, in operational terms, an exercise in shared infrastructure. The curriculum is shared, the faculty roster is shared, the treasury is shared, and the calendar of convocations is shared. The campus plan therefore specifies not only what is built but how the buildings are operated together &mdash; the operational architecture that converts fifty-three physical locations into a single institution.</p>
+   576→
+   577→<p class="body-text">The faculty roster is the most operationally complex shared infrastructure. The 2,000-faculty roster at maturity is recruited, compensated, and rotated centrally &mdash; with each faculty member holding a home College and rotating through the network for at least one term every three years. A professor based in Venice may teach a tutorial in Singapore in the fall, a lecture in Berlin in the spring, and a research sabbatical in San Francisco in the summer. The rotation ensures that every College, regardless of tier, has access to the institution's full faculty &mdash; the structural condition for the network's claim that a graduate of the Kampala College holds the same degree as a graduate of the London College.</p>
+   578→
+   579→<p class="body-text">Faculty compensation is set centrally, on a single global salary scale calibrated to the local cost of living in each College city. The single scale prevents the salary arbitrage that would otherwise hollow out Tier C Colleges (where local market rates are low) or inflate Tier A Colleges (where local market rates are high). A professor in Nairobi is paid on the same scale as a professor in New York, adjusted for housing and tax differentials, ensuring that the network's faculty is recruited on the basis of intellectual fit rather than compensation differential. The single scale is also the institution's defense against the brain drain that has historically disadvantaged universities in lower-income countries.</p>
+   580→
+   581→<div class="figure">
+   582→  <img src="../public/resources/img/students-global.png" alt="Students collaborating across the planetary network">
+   583→  <div class="caption">The student experience of the planetary network &mdash; every Artemis student is entitled to spend at least one academic term at a node other than their home College, with tuition, credit, and financial aid flowing seamlessly across the network.</div>
+   584→</div>
+   585→
+   586→<p class="body-text">The convocation calendar is the rhythm of the academic year. Each Central Node hosts one annual founding convocation: Venice in October (the founding seat, where new graduates are sworn in), San Francisco in February (the innovation seat, where the Forge portfolio is reviewed), and Singapore in June (the Asia-Pacific seat, where the regional gatherings convene). The three convocations are open to every student and faculty member, with travel funded from the operating P&amp;L for the founding cohort. The convocation calendar is the mechanism by which the planetary network acquires its institutional identity &mdash; the rhythm by which a network of fifty-three campuses becomes a single university.</p>
+   587→
+   588→<p class="body-text">The single treasury is the financial connective tissue. Tuition, endowment payout, research grants, Forge equity distributions, and continuing-education revenue flow into a single institutional account, from which faculty compensation, facilities operations, scholarships, research, and administration are paid. The single treasury is what permits the operating model to produce the $262M annual surplus from Year 2 onward, and what permits the institution to charge $3,000 tuition while the Ivy League charges $60,000. A federated treasury, with each College managing its own finances, would replicate the cost structure of the existing university system; the single treasury is what makes the planetary model financially distinctive.</p>
+   589→
+   590→<div class="callout">
+   591→  <div class="callout-label">The single salary, single treasury, single curriculum</div>
+   592→  <p class="body-text" style="margin:0;">Three architectural decisions make the planetary university possible: a single faculty salary scale (no arbitrage), a single institutional treasury (no federation), and a single shared curriculum (no local variation in degree). Together, these decisions are what convert fifty-three buildings into a single university &mdash; and what distinguish the planetary model from a federation of independent institutions.</p>
+   593→</div>
+   594→
+   595→<p class="body-text">The operational infrastructure is supported by an administrative staff of approximately 200 FTE at maturity &mdash; 3% of the operating budget, against the 15% to 25% administrative overhead typical of traditional research universities. The administrative compression is possible because the network shares its administrative functions: a single admissions office, a single registrar, a single financial-aid office, a single facilities team, a single IT team, a single development office. The administrative overhead is the operational expression of the network's compounding advantage: marginal students and marginal faculty are added at marginal administrative cost, because the shared infrastructure already exists.</p>
+   596→
+   597→<!-- ─── XII. THE CENTURY AHEAD ─── -->
+   598→<div class="chapter-header">
+   599→  <div class="chapter-tag">Chapter XII</div>
+   600→  <div class="chapter-title">The century ahead &mdash; expansion beyond Year 1.</div>
+   601→  <div class="chapter-divider"></div>
+   602→</div>
+   603→
+   604→<p class="lead">The fifty-three campuses of Year 1 are not the final configuration of the planetary university &mdash; they are the founding configuration. The institution's design horizon extends to a century and beyond, with the network architecture permitting expansion at marginal cost as new cities are added, new research centers are endowed, and new generations of students are admitted. The campus plan is therefore also a century-scale expansion plan: the founding architecture is the seed of an institution that grows over the century that follows its founding.</p>
+   605→
+   606→<p class="body-text">The expansion path is built into the network architecture. A new College in a city not yet on the map requires acquisition and renovation ($2M&ndash;$25M, depending on tier), connection to the shared digital infrastructure, and integration into the faculty rotation &mdash; but does not require additional curriculum development, additional administrative overhead, or additional central infrastructure. The marginal cost of adding the fifty-fourth College is therefore on the order of $5M, against the average cost of $1.6M per College in the founding fifty. The network's compounding advantage is that each new College becomes cheaper to add than the one before, because the shared infrastructure is already in place.</p>
+   607→
+   608→<p class="body-text">The strategic expansion priorities for the second decade are the cities the founding fifty does not reach: second-tier cities in sub-Saharan Africa (Accra, Addis Ababa, Dakar, Dar es Salaam), the secondary capitals of South Asia (Colombo, Kathmandu), and the emerging knowledge cities of Latin America (Medellín, Curitiba, Monterrey). These cities are the access mission's second wave &mdash; the places where the planetary university's $3,000 tuition and need-blind admission will have the largest marginal impact on the access pipeline. The expansion is sequenced to maintain the founding commitment: governance first, then flagship presence, then regional capital, then access &mdash; with the second decade weighted toward access.</p>
+   609→
+   610→<p class="body-text">The research infrastructure expands in parallel. The nineteen Centers of Inquiry of Year 1 are the founding configuration of a research portfolio that is expected to grow to forty or fifty centers by Year 25, as new endowments are added and new research domains emerge. Each new Center is endowed at $10M (the Center of Inquiry naming tier), with the endowment generating $450K per year in perpetuity to fund the center's research program. The expansion of the research portfolio is therefore self-funding &mdash; each new center is capitalized by a donor gift, with the operating P&amp;L covering the marginal cost of integration into the existing research infrastructure.</p>
+   611→
+   612→<div class="figure">
+   613→  <img src="../public/resources/img/governance-building.png" alt="Governance architecture of the planetary university">
+   614→  <div class="caption">The governance architecture &mdash; the Board of Visitors, the Academic Council, and the Founders' Council are the institutional structures that govern the planetary university across the century ahead, with the founding document archived at Venice as the constitutional anchor.</div>
+   615→</div>
+   616→
+   617→<p class="body-text">The century-scale design horizon also shapes the institution's relationship with its buildings. Each Artemis building is owned, not leased, and is therefore maintained to a century-scale specification: roofs are replaced on a 50-year cycle, mechanical systems on a 25-year cycle, finishes on a 10-year cycle. The maintenance schedule is funded from the operating P&amp;L, with the facilities budget calibrated to the long-term preservation of the asset rather than the short-term minimization of cost. The buildings appreciate in value over the century, providing collateral capacity that supports the institution's long-term financing &mdash; the campus plan as a balance-sheet strategy, sustained across generations.</p>
+   618→
+   619→<div class="callout">
+   620→  <div class="callout-label">The century metric</div>
+   621→  <p class="body-text" style="margin:0;">The institution measures its success on century-scale metrics: the number of buildings still owned and operated, the number of degree programs still taught, the number of graduates who have lived their full careers under the institution's charter. The founding cohort will not see the institution's century. The donors who name its buildings will not see it. The campus plan is designed for the generations that will &mdash; the students of 2125, the faculty of 2075, the graduates whose careers the planetary university will anchor across the entire twenty-first century.</p>
+   622→</div>
+   623→
+   624→<p class="body-text">The campus plan closes with the institutional commitment that motivates the century-scale design horizon. The planetary university is founded not as a venture with an exit, but as a permanent institution whose architecture, finances, and operations are designed to outlive every founder, every donor, and every century in which it operates. The fifty-three campuses of Year 1 are the seed; the century ahead is the institution's actual horizon. The campus plan is the document by which that horizon is made operational &mdash; repurposed, not built; owned, not leased; permanent.</p>
+   625→
+   626→</div>
+   627→
+   628→<!-- ════════════════ ENDING ════════════════ -->
+   629→<div class="ending">
+   630→  <div class="ending-tag">Campus Master Plan · 2025</div>
+   631→  <div class="ending-big">Repurposed, not built. Owned, not leased. Permanent.</div>
+   632→  <div class="ending-sub">
+   633→    Three Central Nodes. Fifty Colleges. Thirty-five countries.
+   634→    One curriculum, one faculty, one treasury &mdash;
+   635→    across a network that compounds into the century ahead.
+   636→  </div>
+   637→  <div class="ending-contact">
+   638→    University of Artemis &middot; give@artemis.edu &middot; <a href="https://artemis.edu/give">artemis.edu/give</a>
+   639→  </div>
+   640→</div>
+   641→
+   642→</body>
+   643→</html>
+   644→

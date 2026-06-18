@@ -310,15 +310,6 @@ export default function Header({ onMenuClick, goHome, goToPage, onSearchClick, c
             Give
           </button>
 
-          {/* Give 2 — modern redesign */}
-          <button
-            onClick={() => goToPage('give-2')}
-            className="hidden lg:inline-flex border border-[#8A0000] text-[#8A0000] px-3 py-1 text-[10px] uppercase tracking-wider cursor-pointer transition-colors hover:bg-[#8A0000] hover:text-white"
-            suppressHydrationWarning
-          >
-            Give 2
-          </button>
-
           {/* Apply */}
           <button
             onClick={() => goToPage('apply')}
@@ -411,13 +402,6 @@ export default function Header({ onMenuClick, goHome, goToPage, onSearchClick, c
 
           {/* Mobile action buttons */}
           <div className="flex gap-2 px-6 py-4 border-t border-gray-100 mt-2">
-            <button
-              onClick={() => { goToPage('give-2'); setMobileMenuOpen(false); }}
-              className="flex-1 py-2.5 border border-[#8A0000] text-[#8A0000] text-[11px] font-bold uppercase tracking-wider hover:bg-[#8A0000] hover:text-white transition-colors text-center"
-              suppressHydrationWarning
-            >
-              Give 2
-            </button>
             <button
               onClick={() => { goToPage('apply'); setMobileMenuOpen(false); }}
               className="flex-1 py-2.5 bg-[#8A0000] text-white text-[11px] font-bold uppercase tracking-wider hover:bg-[#6B0000] transition-colors text-center"

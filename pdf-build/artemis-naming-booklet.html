@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Naming Opportunities Booklet — University of Artemis</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+@page { size: 720px 1020px; margin: 0; }
+@page {
+  @bottom-right {
+    content: counter(page);
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    color: #6b6b6b;
+    padding-right: 28px;
+    padding-bottom: 20px;
+  }
+}
+@page :first { @bottom-right { content: none; } }
+:root {
+  --crimson: #8A0000;
+  --crimson-deep: #6B0000;
+  --crimson-soft: #B33A3A;
+  --ink: #141414;
+  --ink-soft: #3a3a3a;
+  --muted: #6b6b6b;
+  --line: #e5e5e5;
+  --bg: #FAFAF8;
+  --bg-dark: #0c0a09;
+  --bg-cream: #F5F2EC;
+  --gold: #b08d57;
+}
+html, body {
+  margin: 0; padding: 0; width: 720px;
+  background: var(--bg-dark); color: var(--ink);
+  font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
+  font-size: 13px; line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+@media screen {
+  html { display: flex; justify-content: center; background: #222; height: auto; }
+  body { margin: 20px auto; box-shadow: 0 0 40px rgba(0,0,0,0.4); }
+}
+.fcpage {
+  width: 720px; height: 1020px; box-sizing: border-box;
+  break-after: page; overflow: hidden; position: relative;
+  background: var(--bg-dark); color: #fff;
+  display: flex; flex-direction: column; justify-content: center; padding: 64px;
+}
+.fcpage .fc-img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; opacity: 0.35; filter: grayscale(0.3);
+}
+.fcpage .fc-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(138,0,0,0.55) 0%, rgba(12,10,9,0.92) 60%, rgba(12,10,9,0.98) 100%);
+}
+.fcpage .fc-content { position: relative; z-index: 2; }
+.fcpage .fc-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.32em;
+  text-transform: uppercase; color: var(--crimson-soft);
+  margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
+}
+.fcpage .fc-tag::before { content: ""; width: 28px; height: 1px; background: var(--crimson); }
+.fcpage h1 {
+  font-family: 'Noto Serif SC', Georgia, serif;
+  font-size: 52px; font-weight: 900; line-height: 1.02;
+  letter-spacing: -0.02em; margin: 0 0 24px; text-transform: none;
+}
+.fcpage .fc-sub {
+  font-size: 15px; color: rgba(255,255,255,0.65); font-weight: 300;
+  line-height: 1.6; max-width: 480px; margin-bottom: 0;
+}
+.fcpage .fc-footer {
+  position: absolute; bottom: 48px; left: 64px; right: 64px;
+  display: flex; justify-content: space-between; align-items: flex-end;
+  z-index: 2; font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: rgba(255,255,255,0.4);
+}
+.fcpage .fc-footer .crest { font-family: 'Noto Serif SC', serif; font-size: 14px; color: rgba(255,255,255,0.7); letter-spacing: 0.15em; }
+.main-content { background: var(--bg); padding: 64px 64px 48px 64px; }
+.chapter-header { break-after: avoid; break-inside: avoid; margin-top: 28px; margin-bottom: 20px; }
+.chapter-header:first-child { margin-top: 0; }
+.chapter-tag {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--crimson);
+  margin-bottom: 10px; display: flex; align-items: center; gap: 10px;
+}
+.chapter-tag::before { content: ""; width: 22px; height: 1px; background: var(--crimson); }
+.chapter-title {
+  font-family: 'Noto Serif SC', Georgia, serif;
+  font-size: 30px; font-weight: 800; line-height: 1.12;
+  letter-spacing: -0.015em; color: var(--ink); margin: 0 0 12px;
+}
+.chapter-divider { display: none; }
+.body-text { font-size: 13px; line-height: 1.72; color: var(--ink-soft); margin: 0 0 12px; }
+.body-text strong { color: var(--ink); font-weight: 600; }
+.lead { font-size: 15px; line-height: 1.65; color: var(--ink); font-weight: 400; margin-bottom: 18px; }
+.pullquote {
+  break-inside: avoid; border-left: 3px solid var(--crimson);
+  padding: 16px 24px; margin: 20px 0;
+  font-family: 'Noto Serif SC', Georgia, serif;
+  font-size: 16px; font-style: italic; line-height: 1.5;
+  color: var(--ink); background: var(--bg-cream);
+}
+.pullquote .attribution { font-size: 11px; font-style: normal; color: var(--muted); margin-top: 10px; letter-spacing: 0.05em; }
+.card {
+  break-inside: avoid; background: #fff;
+  border: 1px solid var(--line); border-radius: 8px;
+  padding: 20px 22px; margin-bottom: 14px;
+}
+.card-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.card-sub { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
+.card-body { font-size: 12px; line-height: 1.6; color: var(--ink-soft); }
+.stat-row { display: flex; gap: 16px; margin: 18px 0; break-inside: avoid; }
+.stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 18px; }
+.stat .stat-val { font-family: 'Noto Serif SC', serif; font-size: 28px; font-weight: 900; color: var(--crimson); line-height: 1; }
+.stat .stat-label { font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+.progress { break-inside: avoid; margin: 14px 0; }
+.progress-track { height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--crimson); border-radius: 3px; }
+.progress-label { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 6px; color: var(--ink-soft); }
+.tbl { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 11px; break-inside: avoid; }
+.tbl th { text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--ink); padding: 8px 10px; }
+.tbl td { padding: 9px 10px; border-bottom: 1px solid var(--line); color: var(--ink-soft); vertical-align: top; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl .num { font-family: 'Noto Serif SC', serif; font-weight: 700; color: var(--crimson); text-align: right; white-space: nowrap; }
+.figure { break-inside: avoid; margin: 18px 0; }
+.figure img { width: 100%; border-radius: 6px; display: block; }
+.figure .caption { font-size: 10px; color: var(--muted); margin-top: 8px; letter-spacing: 0.03em; line-height: 1.5; }
+.callout {
+  break-inside: avoid; background: var(--bg-cream);
+  border-radius: 8px; padding: 20px 24px; margin: 16px 0;
+}
+.callout .callout-label { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
+.bullets { margin: 10px 0 14px; padding: 0; list-style: none; }
+.bullets li { font-size: 12px; line-height: 1.65; color: var(--ink-soft); padding-left: 18px; position: relative; margin-bottom: 6px; }
+.bullets li::before { content: ""; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; background: var(--crimson); border-radius: 50%; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.ending {
+  width: 720px; height: 1020px; box-sizing: border-box;
+  break-before: page; overflow: hidden;
+  background: var(--bg-dark); color: #fff;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  padding: 64px; text-align: center;
+}
+.ending .ending-tag { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--crimson-soft); margin-bottom: 28px; }
+.ending .ending-big { font-family: 'Noto Serif SC', Georgia, serif; font-size: 38px; font-weight: 800; line-height: 1.15; letter-spacing: -0.015em; max-width: 540px; margin-bottom: 32px; }
+.ending .ending-sub { font-size: 14px; color: rgba(255,255,255,0.5); max-width: 440px; line-height: 1.65; font-weight: 300; }
+.ending .ending-contact { margin-top: 40px; font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; }
+.ending .ending-contact a { color: var(--crimson-soft); text-decoration: none; }
+.dark-section {
+  background: var(--bg-dark); color: #fff;
+  margin: 0 -64px; padding: 48px 64px; break-inside: avoid;
+}
+.dark-section .ds-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--crimson-soft); margin-bottom: 10px; }
+.dark-section .ds-title { font-family: 'Noto Serif SC', serif; font-size: 24px; font-weight: 800; margin-bottom: 12px; }
+.dark-section .ds-body { font-size: 12px; line-height: 1.7; color: rgba(255,255,255,0.7); }
+.toc { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 24px 28px; margin: 14px 0; break-inside: avoid; }
+.toc-title { font-family: 'Noto Serif SC', serif; font-size: 16px; font-weight: 800; color: var(--ink); margin-bottom: 14px; }
+.toc-item { padding: 8px 0; border-bottom: 1px dotted var(--line); font-size: 12px; color: var(--ink-soft); }
+.toc-item:last-child { border-bottom: none; }
+.toc-item .tnum { font-family: 'Noto Serif SC', serif; font-weight: 700; color: var(--crimson); display: inline-block; width: 36px; }
+.toc-item .tpage { font-family: 'Noto Serif SC', serif; color: var(--muted); font-weight: 700; float: right; }
+.naming-card {
+  break-inside: avoid; background: #fff;
+  border: 1px solid var(--line); border-radius: 8px;
+  padding: 22px 24px; margin-bottom: 14px;
+  border-left: 4px solid var(--crimson);
+}
+.naming-card .nc-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+.naming-card .nc-name { font-family: 'Noto Serif SC', serif; font-size: 17px; font-weight: 800; color: var(--ink); }
+.naming-card .nc-amount { font-family: 'Noto Serif SC', serif; font-size: 22px; font-weight: 900; color: var(--crimson); }
+.naming-card .nc-meta { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--crimson); margin-bottom: 10px; }
+.naming-card .nc-body { font-size: 12px; line-height: 1.65; color: var(--ink-soft); }
+.naming-card .nc-math { font-size: 11px; line-height: 1.6; color: var(--muted); margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line); }
+.math-block {
+  break-inside: avoid; background: #fff;
+  border: 1px solid var(--line); border-radius: 8px;
+  padding: 22px 24px; margin: 16px 0;
+}
+.math-block .mb-title { font-family: 'Noto Serif SC', serif; font-size: 14px; font-weight: 800; color: var(--ink); margin-bottom: 12px; }
+.math-block .mb-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dotted var(--line); font-size: 12px; color: var(--ink-soft); }
+.math-block .mb-row:last-child { border-bottom: none; }
+.math-block .mb-row.total { font-weight: 700; color: var(--ink); border-top: 2px solid var(--ink); padding-top: 10px; margin-top: 6px; }
+.math-block .mb-row .mb-val { font-family: 'Noto Serif SC', serif; font-weight: 700; color: var(--crimson); }
+</style>
+</head>
+<body>
+
+<!-- ════════════════ COVER ════════════════ -->
+<div class="fcpage">
+  <img class="fc-img" src="../public/resources/img/abstract-crimson.png" alt="">
+  <div class="fc-overlay"></div>
+  <div class="fc-content">
+    <div class="fc-tag">Naming Opportunities · Founding Campaign 2025</div>
+    <h1>The Naming<br>Opportunities Booklet</h1>
+    <div class="fc-sub">
+      Eight ways to place a name on a permanent asset of the planetary university &mdash;
+      from a $12K scholarship that changes a single life to a $25M Central Node
+      that anchors a continent. Every gift is an endowment. Every gift is audited.
+      Every gift is forever.
+    </div>
+  </div>
+  <div class="fc-footer">
+    <div class="crest">University of Artemis</div>
+    <div>Edition I &middot; Founding Document</div>
+  </div>
+</div>
+
+<!-- ════════════════ BODY ════════════════ -->
+<div class="main-content">
+
+<!-- ─── AT A GLANCE ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">At a Glance</div>
+  <div class="chapter-title">A name on a permanent asset.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<p class="lead">The founding campaign of the University of Artemis closes by placing donor names on permanent assets &mdash; Colleges, Central Nodes, professorships, centers of inquiry, degree programs, and scholarships. Every naming is recorded as a permanent asset of the institution, governed by a binding gift agreement, and audited annually. This booklet is the complete catalog of the eight naming tiers.</p>
+
+<p class="body-text">Naming at Artemis is not a marketing gesture. It is a legal and financial instrument by which a donor converts capital into a permanent, named, audited component of the university's balance sheet. The donor's name attaches to an asset &mdash; a building, a faculty position, a research center, a degree, a scholarship &mdash; and the asset is governed under the institution's bylaws, monitored by the Board of Visitors, and reported on the annual audited financial statements. The naming survives the donor, the founders, and the century in which it was made.</p>
+
+<p class="body-text">This booklet describes each of the eight naming opportunities in detail. For each tier, it states the gift amount, the scope of what is named, the duration of the naming right, the financial structure (endowment versus acquisition), the reporting cadence the donor will receive, and the legal recourse preserved to the donor's estate. It also explains the endowment mathematics that govern every recurring-cost naming &mdash; the 4.5% yield assumption that converts a one-time gift into a perpetual annual cash flow.</p>
+
+<div class="stat-row">
+  <div class="stat">
+    <div class="stat-val">$25M</div>
+    <div class="stat-label">Apex Naming · Central Node</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">$12K</div>
+    <div class="stat-label">Entry Naming · Scholarship</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">4.5%</div>
+    <div class="stat-label">Endowment Yield Assumption</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">8</div>
+    <div class="stat-label">Naming Tiers</div>
+  </div>
+</div>
+
+<!-- ─── I. THE ARCHITECTURE OF NAMING ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter I</div>
+  <div class="chapter-title">The architecture of naming.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<p class="lead">Naming at Artemis is structured around two distinct financial instruments: the property acquisition and the endowment. A College or Central Node naming funds the acquisition of a physical asset that the institution owns in perpetuity. A professorship, center, degree program, or scholarship naming funds an endowment whose yield covers a recurring cost in perpetuity. Understanding the difference is the prerequisite to understanding what each naming tier buys.</p>
+
+<p class="body-text">A property naming &mdash; Tier C, Tier B, Tier A, or Central Node &mdash; converts the donor's gift into the acquisition of a building. The building is selected from existing stock (a repurposed convent, warehouse, factory, or office complex) and acquired in fee simple. The donor's name attaches to the building, the College housed within it, and every graduate who passes through it for as long as the institution owns the property. Because the property is owned rather than leased, the naming right is coextensive with the asset &mdash; the name endures as long as the building does, which under Artemis's repurposing philosophy means centuries rather than decades.</p>
+
+<p class="body-text">An endowment naming &mdash; Distinguished Professorship, Center of Inquiry, Degree Program, or Scholarship Fund &mdash; converts the donor's gift into a restricted corpus whose annual yield covers a specific recurring cost. The corpus is invested under the institution's investment policy, governed by the Board of Visitors, and reported on the annual audit. At a 4.5% spending rate, a $5M endowment generates $225,000 per year &mdash; enough to fund one senior faculty position in perpetuity. A $10M endowment generates $450,000 per year &mdash; enough to operate a research center. A $3M endowment generates $135,000 per year &mdash; enough to underwrite a degree program. A $12K scholarship funds one student for four years at $3,000 per year.</p>
+
+<div class="callout">
+  <div class="callout-label">The two naming instruments</div>
+  <p class="body-text" style="margin:0;"><strong>Property naming</strong> (Tiers C/B/A College + Central Node): the gift acquires a building. The donor's name attaches to the building and the College it houses, in perpetuity. The asset is owned; the name is permanent.<br><br><strong>Endowment naming</strong> (Professorship + Center + Degree + Scholarship): the gift establishes a restricted corpus. The corpus yields 4.5% per year in perpetuity. The donor's name attaches to the recurring cost &mdash; a position, a center, a program, a life &mdash; that the yield covers, forever.</p>
+</div>
+
+<p class="body-text">The eight tiers described in this booklet cover every scale of giving, from the $12K scholarship that funds a single student's four-year journey to the $25M Central Node that anchors an entire continent in the planetary network. Every tier is open to every donor. Every tier is structured to close the founding campaign. Every tier is governed by the same accountability architecture &mdash; a binding gift agreement, an annual audit, a permanent seat on the Board of Visitors (for lead namings), and the legal recourse preserved to the donor's estate if the institution deviates from the terms of the gift.</p>
+
+<!-- ─── II. TIER C COLLEGE ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter II</div>
+  <div class="chapter-title">Tier C College &mdash; the regional access naming.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<div class="naming-card">
+  <div class="nc-head">
+    <div class="nc-name">Tier C College</div>
+    <div class="nc-amount">$2M</div>
+  </div>
+  <div class="nc-meta">Property Acquisition · ~1,100 Students · 23 Colleges</div>
+  <div class="nc-body">Name a College in cities like Kigali, Dhaka, Kampala, Karachi, Tashkent, or Quito. Approximately 1,100 students per College. The donor's name becomes home to the next generation of leaders in their region &mdash; permanently attached to a building acquired in fee simple, owned by the university, and operated as a College of Artemis in perpetuity.</div>
+  <div class="nc-math"><strong>Structure:</strong> property acquisition. The $2M covers building purchase, renovation, and fit-out for a ~1,100-student College in an emerging-knowledge city. <strong>Asset class:</strong> real estate, owned by the institution. <strong>Yield:</strong> the building itself eliminates a recurring lease cost, producing an implicit annual yield equal to the local market rent on a comparable property.</div>
+</div>
+
+<p class="lead">Tier C Colleges are the regional access layer of the planetary network &mdash; twenty-three Colleges placed in the cities the existing university system has failed to serve. A Tier C naming places the donor's name on one of these Colleges, converting a $2M gift into the acquisition of a building that will house generations of students who would otherwise have no access to a frontier curriculum.</p>
+
+<p class="body-text">The twenty-three Tier C cities are selected by a single criterion: the presence of qualified students whose access to a frontier curriculum is currently blocked by geography, cost, or both. Kigali, Dhaka, Kampala, Karachi, Tashkent, Quito, Accra, Addis Ababa, Lomé, Kathmandu, Colombo, Bishkek, Antananarivo, Managua, San José, Tegucigalpa, La Paz, Ulaanbaatar, Vientiane, Phnom Penh, Maputo, Windhoek, and Harare represent the first wave. Each city contains a population of university-age students large enough to fill a 1,100-student College several times over, and a lack of any existing institution capable of delivering the Artemis curriculum at $3,000 tuition.</p>
+
+<p class="body-text">The economics of a Tier C naming are deliberately calibrated to the donor who wants to make a regional, place-based commitment. The $2M gift covers the full acquisition cost of a suitable building &mdash; typically a repurposed convent, school, factory, or office complex in the city center, selected for proximity to public transit, walkability, and integration with the surrounding community. The building is acquired in fee simple by the university, renovated to Artemis specifications (tutorial rooms, lecture halls, library, dining, student commons), and operated as a College of Artemis in perpetuity. The donor's name is attached to the building, the College, and every graduate who passes through it.</p>
+
+<p class="body-text">The donor of a Tier C College receives a permanent seat on the Board of Visitors, an annual audited report on the College's operations, enrollment, and finances, and the right to nominate one student per year for a named scholarship at the College. The naming right is coextensive with the building &mdash; the donor's name remains on the College for as long as the building is owned by the university, which under Artemis's repurposing philosophy means centuries. The gift agreement specifies the named asset, the reporting cadence, the audit cycle, and the legal recourse available to the donor's estate.</p>
+
+<div class="pullquote">
+  &ldquo;The Tier C naming is the most direct way to convert philanthropic capital into changed lives. A $2M gift places a name on a building that will house 1,100 students per year &mdash; 110,000 over the first century &mdash; in a city the existing system has failed.&rdquo;
+  <div class="attribution">&mdash; Artemis Founding Prospectus, Naming Tier Catalog</div>
+</div>
+
+<p class="body-text">Tier C namings are particularly suited to donors with a regional or national commitment &mdash; a donor from the Rwandan diaspora who wants to anchor Kigali as a knowledge capital; a donor whose family originates in Karachi and wants to place their name on the institution that will educate the next generation of Pakistani leaders; a foundation focused on Central Asia that wants to anchor Tashkent as a regional access hub. The Tier C catalog is designed to make the planetary university locally embedded at the level of the city, and the donor's name becomes the local expression of that embedding.</p>
+
+<!-- ─── III. TIER B COLLEGE ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter III</div>
+  <div class="chapter-title">Tier B College &mdash; the major global city naming.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<div class="naming-card">
+  <div class="nc-head">
+    <div class="nc-name">Tier B College</div>
+    <div class="nc-amount">$5M</div>
+  </div>
+  <div class="nc-meta">Property Acquisition · ~2,000 Students · 16 Colleges</div>
+  <div class="nc-body">Name a College in a major global city across all six continents &mdash; Nairobi, Mumbai, São Paulo, Cairo, Istanbul, Buenos Aires, Jakarta, Mexico City, Lagos, Bangkok, Lima, Bogotá, Casablanca, Amman, Hanoi, Manila. Approximately 2,000 students per College. A permanent physical presence bearing the donor's name, serving scholars for centuries.</div>
+  <div class="nc-math"><strong>Structure:</strong> property acquisition. The $5M covers building purchase, renovation, fit-out, and endowment reserve for a ~2,000-student College in a major global city. <strong>Asset class:</strong> real estate + operating reserve, owned by the institution. <strong>Yield:</strong> the building eliminates recurring lease cost; the operating reserve covers maintenance in perpetuity.</div>
+</div>
+
+<p class="lead">Tier B Colleges are the global-city backbone of the planetary network &mdash; sixteen Colleges placed in the major commercial, cultural, and political capitals that lie between the apex Tier A knowledge capitals and the regional Tier C access cities. A Tier B naming places the donor's name on one of these Colleges, converting a $5M gift into the acquisition of a building that will house 2,000 students per year in a city whose economic gravity shapes an entire region.</p>
+
+<p class="body-text">The sixteen Tier B cities are selected for their combination of student demand, regional influence, and absence of an affordable frontier-curriculum institution. Nairobi anchors East Africa; Lagos anchors West Africa; Cairo anchors the Arabic-speaking world north of the Sahara; Casablanca anchors the Maghreb; Mumbai, Jakarta, Bangkok, Hanoi, and Manila anchor the Indian Ocean and Southeast Asian arcs; Istanbul straddles Europe and Asia; São Paulo, Buenos Aires, Lima, and Bogotá anchor the Latin American arc; Mexico City anchors North America south of the Rio Grande; Amman anchors the Levant. Each city is a regional capital whose educational capacity shapes the trajectory of the surrounding region.</p>
+
+<p class="body-text">The economics of a Tier B naming reflect the higher acquisition cost of buildings in major global cities. The $5M gift covers acquisition of a larger building suitable for 2,000 students ($3.5M), renovation and fit-out ($1.0M), furniture library and technology ($250K), a maintenance endowment reserve ($200K), and signage branding and opening ($50K). The building is acquired in fee simple, owned by the university, and operated as a College of Artemis. The donor's name attaches to the building, the College, every graduate, and the regional role the College plays in the planetary network.</p>
+
+<p class="body-text">The donor of a Tier B College receives a permanent seat on the Board of Visitors, an annual audited report, the right to nominate two students per year for named scholarships, and standing invitation to the annual College convocation. The Tier B naming is the most requested tier in the founding campaign because it combines regional gravitas with affordability &mdash; a $5M gift places the donor's name on a College whose influence extends across a sub-continent, at a gift level accessible to a wide range of major donors, family foundations, and corporate giving programs.</p>
+
+<div class="figure">
+  <img src="../public/resources/img/campus-architecture.png" alt="Repurposed Tier B College building">
+  <div class="caption">A Tier B College &mdash; repurposed from an existing building, acquired in fee simple, named in perpetuity. The donor's name attaches to the building and every graduate it produces.</div>
+</div>
+
+<p class="body-text">Tier B namings are particularly suited to donors whose philanthropic identity is tied to a specific global city. A Nigerian-American donor who has built a career in finance may choose to name the Lagos College; a Brazilian family foundation may choose to name the São Paulo College; an Indonesian technology entrepreneur may choose to name the Jakarta College. The Tier B catalog makes it possible for the planetary university to be locally embedded at the level of the major global city, with each College bearing the name of a donor whose commitment is to that specific city and the region it anchors.</p>
+
+<!-- ─── IV. TIER A COLLEGE ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter IV</div>
+  <div class="chapter-title">Tier A College &mdash; the flagship knowledge capital naming.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<div class="naming-card">
+  <div class="nc-head">
+    <div class="nc-name">Tier A College</div>
+    <div class="nc-amount">$10M</div>
+  </div>
+  <div class="nc-meta">Property Acquisition · ~2,500 Students · 8 Colleges</div>
+  <div class="nc-body">Name a flagship College in the world's great knowledge capitals &mdash; London, Tokyo, Berlin, Paris, Toronto, Sydney, Seoul, New York. Approximately 2,500 students per College. The highest-profile naming opportunity outside the three Central Nodes, in the cities that already define the global academic conversation.</div>
+  <div class="nc-math"><strong>Structure:</strong> property acquisition. The $10M covers building purchase in a Tier-1 global city, full renovation to flagship specification, fit-out, technology, library, and operating endowment reserve. <strong>Asset class:</strong> prime urban real estate + operating reserve. <strong>Yield:</strong> the building eliminates recurring lease cost in the most expensive property market tier, with implicit annual yield on local rent often exceeding $1M.</div>
+</div>
+
+<p class="lead">Tier A Colleges are the flagship urban campuses of the planetary network &mdash; eight Colleges placed in the cities that already define the global academic conversation. A Tier A naming places the donor's name on one of these flagship Colleges, converting a $10M gift into the acquisition of a building that will house 2,500 students per year in a city whose academic and cultural gravity is unmatched.</p>
+
+<p class="body-text">The eight Tier A cities are the world's established knowledge capitals: London, Paris, Berlin, and New York anchor the trans-Atlantic academic tradition; Tokyo and Seoul anchor the East Asian research economy; Toronto anchors the North American northern arc; Sydney anchors the Oceania research community. These cities are not selected because they are underserved &mdash; they are heavily served by existing universities. They are selected because the planetary university cannot be planetary without a permanent, owned, named presence in each of them, and because the students these cities produce deserve an institution that combines global curriculum with local embedding.</p>
+
+<p class="body-text">The economics of a Tier A naming reflect the high cost of building acquisition in Tier-1 global cities. The $10M gift covers acquisition of a flagship building suitable for 2,500 students ($7.0M) &mdash; typically a repurposed historic structure (a former bank, ministry, embassy, or department store) in a central location, or a purpose-acquired modern building with appropriate floorplates. Renovation to flagship specification ($2.0M) includes tutorial rooms sized for the Oxford-model tutorial, lecture halls equipped for hybrid global delivery, a research-grade library, dining and commons facilities, and the digital infrastructure required to integrate the College into the planetary network. Furniture library technology and hybrid-delivery AV ($500K), a maintenance endowment reserve ($400K), and signage branding and opening ($100K) complete the gift.</p>
+
+<p class="body-text">The donor of a Tier A College receives a permanent seat on the Board of Visitors, an annual audited report, the right to nominate three students per year for named scholarships, and a standing role in the annual flagship College convocation attended by the Board and the founding donors. The Tier A naming is the most prestigious naming opportunity outside the three Central Nodes, and the eight Tier A Colleges are the most sought-after assets in the founding campaign because they combine planetary visibility with institutional gravitas in cities that already host the world's leading universities.</p>
+
+<div class="pullquote">
+  &ldquo;The Tier A naming places a donor's name alongside the institutions that have defined the academic conversation for centuries. The difference is that the Tier A College of Artemis offers a $3,000 tuition to a planetary student body &mdash; the model the existing institutions cannot match.&rdquo;
+  <div class="attribution">&mdash; Artemis Founding Prospectus, Naming Tier Catalog</div>
+</div>
+
+<p class="body-text">Tier A namings are particularly suited to donors whose philanthropic identity is tied to a specific knowledge capital and whose gift size allows them to anchor an entire flagship College. The eight Tier A namings are expected to close early in the campaign because each represents a once-in-an-institution opportunity: there is only one London College, one Tokyo College, one New York College. The donor who secures the naming acquires a permanent association with the city's place in the planetary network &mdash; an association that will outlive every other donor commitment the city attracts during the founding campaign.</p>
+
+<!-- ─── V. CENTRAL NODE ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter V</div>
+  <div class="chapter-title">Central Node &mdash; the apex naming.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<div class="naming-card">
+  <div class="nc-head">
+    <div class="nc-name">Central Node</div>
+    <div class="nc-amount">$25M</div>
+  </div>
+  <div class="nc-meta">Property Acquisition + Operating Endowment · ~5,000 Students · 3 Nodes</div>
+  <div class="nc-body">Name one of three Central Nodes &mdash; Venice, San Francisco, or Singapore. Approximately 5,000 students per Node. The apex of the Artemis network, bearing the donor's name in perpetuity. The Central Node naming combines property acquisition with an operating endowment that funds the Node's permanent role as the seat of governance, convocation, and the founding document archive for an entire region of the planetary university.</div>
+  <div class="nc-math"><strong>Structure:</strong> property acquisition + operating endowment. The $25M covers building acquisition (~$15M), renovation to Central Node specification (~$5M), and operating endowment (~$5M) generating $225K/year in perpetuity to fund the Node's regional convening role. <strong>Asset class:</strong> prime urban real estate + restricted endowment corpus. <strong>Recurrence:</strong> one of three apex namings; only Venice, San Francisco, and Singapore qualify.</div>
+</div>
+
+<p class="lead">The three Central Nodes &mdash; Venice, San Francisco, and Singapore &mdash; are the apex of the planetary network. Each Node serves as the regional seat of governance, convocation, and the founding document archive for one third of the planetary university. A Central Node naming is the apex gift of the founding campaign, converting a $25M commitment into a permanent association with one of the three seats of the institution.</p>
+
+<p class="body-text">The three Central Nodes are selected by a single criterion: their capacity to serve as the neutral, permanent, geographically distributed seats of the institution. Venice anchors the European and Mediterranean basin; San Francisco anchors the Americas and the Pacific technology arc; Singapore anchors the Asia-Pacific and the Indian Ocean. The three Nodes together form a tri-continental governance structure that prevents the planetary university from being captured by any single national jurisdiction, and ensures that the institution's governance rotates physically between three legally and culturally distinct contexts.</p>
+
+<p class="body-text">The Venice Central Node is the founding seat &mdash; the location where the founding document is archived, where the first convocation is held, and where the institution's historical identity is anchored. The Venice Node occupies repurposed Renaissance palazzi along the Grand Canal, restored to house the Central Node's 5,000 students, the founding archive, and the convocation hall. The San Francisco Central Node is the technology and innovation seat, with proximity to Silicon Valley, the Forge incubator, and the computational and biotech research programs. The Singapore Central Node is the Asia-Pacific seat, a neutral convening point for the Eastern hemisphere with research focus on fintech, urban futures, and the Indian Ocean basin.</p>
+
+<div class="figure">
+  <img src="../public/resources/img/venice-node.png" alt="Venice Central Node">
+  <div class="caption">Venice Central Node &mdash; the founding seat of the planetary university. The donor who names this Node acquires a permanent association with the city that anchors the institution's historical identity.</div>
+</div>
+
+<p class="body-text">The economics of a Central Node naming reflect both the size and the permanence of the asset. The $25M gift covers acquisition of a Central Node campus ($15M for a 5,000-student facility in a prime global location), renovation to Central Node specification including the convocation hall and founding archive ($5M), and an operating endowment of $5M that yields $225K per year in perpetuity to fund the Node's regional convening role. The building is acquired in fee simple; the operating endowment is restricted corpus governed under the institution's investment policy.</p>
+
+<p class="body-text">The donor of a Central Node receives a permanent seat on the Board of Visitors with voting rights, the right to appoint one member of the Board of Trustees, an annual audited report, the right to nominate five students per year for named scholarships, and the naming of the Node's convocation hall. The Central Node naming is recorded in the founding document at Venice, and the donor's name is associated with the institution's apex presence in one of three global regions. The naming right is coextensive with the asset &mdash; the donor's name endures as long as the Central Node is owned by the university, which under the institution's design horizon is centuries.</p>
+
+<div class="callout">
+  <div class="callout-label">The strategic significance</div>
+  <p class="body-text" style="margin:0;">Only three Central Node namings exist. Only Venice, San Francisco, and Singapore qualify. The donor who secures one of these namings acquires a permanent association with the apex of the planetary university &mdash; a once-in-an-institution opportunity that will not recur. The three Central Node namings are the campaign's lead gifts, and their commitment is the precondition for the campaign's public phase.</p>
+</div>
+
+<p class="body-text">The Central Node naming is suited to the campaign's lead donors &mdash; individuals, families, and foundations whose commitment to the institution is at the scale required to anchor one of its three regional seats. The naming is typically structured as a multi-year pledge (three to five years) against a binding gift agreement, with the building acquired when the pledge is sufficiently advanced to support a capital expenditure of $15M. The three Central Node namings together account for $75M of the $100M campaign goal &mdash; they are the structural pillars on which the rest of the campaign is built.</p>
+
+<!-- ─── VI. DISTINGUISHED PROFESSORSHIP ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter VI</div>
+  <div class="chapter-title">Distinguished Professorship &mdash; $5M endowment.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<div class="naming-card">
+  <div class="nc-head">
+    <div class="nc-name">Distinguished Professorship</div>
+    <div class="nc-amount">$5M</div>
+  </div>
+  <div class="nc-meta">Endowment Naming · 4.5% Yield · $225K/year in perpetuity</div>
+  <div class="nc-body">At a 4.5% yield, a $5M endowment generates $225,000 per year &mdash; enough to sustain one senior faculty position in perpetuity at career-level compensation. The naming gift is an endowment, not an acquisition: the corpus is invested under the institution's investment policy, and the annual yield covers the named professor's compensation, benefits, and research allowance.</div>
+  <div class="nc-math"><strong>Yield math:</strong> $5,000,000 × 0.045 = $225,000/year. <strong>Recurrence:</strong> perpetual, with corpus compounding at the institution's investment return net of spending. <strong>Reporting:</strong> annual audited statement of the corpus value, the spending distribution, and the named professor's research output. <strong>Recourse:</strong> binding gift agreement with legal remedy preserved to the donor's estate.</div>
+</div>
+
+<p class="lead">The Distinguished Professorship is the founding campaign's endowment naming for the faculty. Each $5M gift establishes a restricted corpus whose 4.5% annual yield funds one senior faculty position in perpetuity. The donor's name attaches to the position, the scholar who holds it, and the research they produce &mdash; forever.</p>
+
+<p class="body-text">The Distinguished Professorship exists because Artemis has chosen to fund its faculty through endowment rather than through operating revenue. While the operating P&amp;L covers faculty compensation for all 2,000 FTE positions from tuition revenue after Day 1, the institution reserves a subset of senior positions for named endowment &mdash; the scholars whose work defines the institution's research identity, whose compensation is structurally independent of the operating cycle, and whose positions are protected from the volatility of enrollment, tuition, or surplus. The named professorship is the instrument by which the institution makes certain positions permanent in a deeper sense than the operating model can.</p>
+
+<p class="body-text">The endowment mathematics of a Distinguished Professorship are simple, durable, and audited annually. The donor's $5M gift is placed in a restricted corpus invested under the institution's investment policy &mdash; a diversified portfolio targeting a long-term net return of 6-7% with a 4.5% spending rate. The 4.5% spending rate produces $225,000 in the first year, which covers the named professor's compensation, benefits, and research allowance. The remaining 1.5-2.5% of net return is retained in the corpus to offset inflation, ensuring that the $225,000 maintains its real purchasing power across decades. The corpus compounds; the spending rate is held constant; the position is funded forever.</p>
+
+<div class="math-block">
+  <div class="mb-title">Distinguished Professorship — the 4.5% yield math</div>
+  <div class="mb-row"><span>Gift (restricted corpus)</span><span class="mb-val">$5,000,000</span></div>
+  <div class="mb-row"><span>Investment policy target net return</span><span class="mb-val">6.5%/yr</span></div>
+  <div class="mb-row"><span>Spending rate (annual distribution)</span><span class="mb-val">4.5%/yr</span></div>
+  <div class="mb-row"><span>Annual yield (Year 1)</span><span class="mb-val">$225,000</span></div>
+  <div class="mb-row"><span>Retained for inflation offset (Year 1)</span><span class="mb-val">$100,000</span></div>
+  <div class="mb-row"><span>Year 10 corpus (compounded)</span><span class="mb-val">~$6.5M</span></div>
+  <div class="mb-row"><span>Year 10 annual yield (4.5% of $6.5M)</span><span class="mb-val">~$292,500</span></div>
+  <div class="mb-row total"><span>Year 50 corpus (compounded, 2% real retention)</span><span class="mb-val">~$13.5M</span></div>
+</div>
+
+<p class="body-text">The donor of a Distinguished Professorship receives a permanent seat on the Board of Visitors, an annual audited report on the corpus value, the spending distribution, and the named professor's research output, and the right to be consulted on the appointment of the named professor when the position is filled or refilled. The donor's name is attached to the position in perpetuity &mdash; the "John and Jane Doe Distinguished Professor of Synthetic Intelligence" is the title held by every scholar who occupies the position, in every annual report, in every publication produced from the position, and in every convocation at which the professor speaks.</p>
+
+<div class="pullquote">
+  &ldquo;A $5M endowment at 4.5% yield is not a contribution to a budget line; it is a permanent conversion of capital into a salary line. The professor it funds in Year 1 will be succeeded by another professor in Year 30, and another in Year 60, each carrying the donor's name.&rdquo;
+  <div class="attribution">&mdash; Artemis Financial Model, Endowment Architecture</div>
+</div>
+
+<p class="body-text">Distinguished Professorship namings are particularly suited to donors whose philanthropic identity is tied to a specific discipline &mdash; a donor whose career was built in computer science may name the Distinguished Professor of Synthetic Intelligence; a donor whose foundation focuses on biotech may name the Distinguished Professor of Biotech and Life Sciences; a donor whose commitment is to the humanities may name the Distinguished Professor of Cosmological Humanities. The professorship naming creates a permanent association between the donor's name and the field they care most about, embodied in the scholar whose work the position supports.</p>
+
+<!-- ─── VII. CENTER OF INQUIRY ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter VII</div>
+  <div class="chapter-title">Center of Inquiry &mdash; $10M endowment.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<div class="naming-card">
+  <div class="nc-head">
+    <div class="nc-name">Center of Inquiry</div>
+    <div class="nc-amount">$10M</div>
+  </div>
+  <div class="nc-meta">Endowment Naming · 4.5% Yield · $450K/year in perpetuity · 19 Centers</div>
+  <div class="nc-body">Name one of the institution's 19 Centers of Inquiry &mdash; a permanently endowed, independently operating research center carrying the donor's name. Each Center is structured around a specific frontier research agenda, distributed across two or three of the planetary nodes, and staffed by a roster of investigators and fellows whose work is funded by the endowment yield in perpetuity.</div>
+  <div class="nc-math"><strong>Yield math:</strong> $10,000,000 × 0.045 = $450,000/year. <strong>Use:</strong> investigator and fellow stipends, research equipment, fieldwork budgets, publication subsidies, and the open-knowledge infrastructure that powers the institution's 7-year release policy. <strong>Reporting:</strong> annual audited statement of corpus, spending, and research output; biennial external review of Center direction.</div>
+</div>
+
+<p class="lead">The Center of Inquiry naming is the founding campaign's endowment for the research enterprise. Each $10M gift establishes a restricted corpus whose 4.5% annual yield funds one of the institution's 19 permanently endowed, independently operating research centers. The donor's name attaches to the Center, its investigators, its fellows, and the body of research it produces &mdash; forever.</p>
+
+<p class="body-text">The 19 Centers of Inquiry are the institution's research infrastructure &mdash; each one a permanently endowed, independently operating research enterprise structured around a specific frontier agenda. The current catalog includes Synthetic Intelligence, Bio-Regenerative Arts, Cosmological Humanities, Urban Futures, Biotech and Life Sciences, Fintech and DeFi Economics, and Health and Bioethics, with twelve additional Centers covering the remaining frontier agendas of the planetary research portfolio. Each Center is distributed across two or three of the planetary nodes &mdash; Synthetic Intelligence spans San Francisco, Toronto, and Edinburgh; Bio-Regenerative Arts spans Venice, Rotterdam, and Singapore; Cosmological Humanities spans La Palma, Cambridge, and Tokyo.</p>
+
+<p class="body-text">The endowment mathematics of a Center of Inquiry follow the same 4.5% spending-rate architecture as the Distinguished Professorship, but at twice the scale. A $10M corpus yields $450,000 per year, which covers the Center's operating budget &mdash; typically 12-16 investigators and 36-54 fellows, plus research equipment, fieldwork budgets, database subscriptions, and publication subsidies. The Center's research output is published under the institution's 7-year release policy, which dedicates all research to the public domain seven years after initial publication. The Center's work is therefore not only permanent in its funding but permanent in its public availability.</p>
+
+<div class="math-block">
+  <div class="mb-title">Center of Inquiry — the 4.5% yield math at $10M</div>
+  <div class="mb-row"><span>Gift (restricted corpus)</span><span class="mb-val">$10,000,000</span></div>
+  <div class="mb-row"><span>Spending rate (annual distribution)</span><span class="mb-val">4.5%/yr</span></div>
+  <div class="mb-row"><span>Annual yield (Year 1)</span><span class="mb-val">$450,000</span></div>
+  <div class="mb-row"><span>Investigator stipends (12&ndash;16 × ~$20K top-up)</span><span class="mb-val">~$280K</span></div>
+  <div class="mb-row"><span>Fellow stipends (36&ndash;54 × ~$2K top-up)</span><span class="mb-val">~$80K</span></div>
+  <div class="mb-row"><span>Equipment, fieldwork, publications, infrastructure</span><span class="mb-val">~$90K</span></div>
+  <div class="mb-row total"><span>Year 10 corpus (compounded)</span><span class="mb-val">~$13.0M</span></div>
+</div>
+
+<p class="body-text">The donor of a Center of Inquiry receives a permanent seat on the Board of Visitors, an annual audited report on the corpus value and spending distribution, a biennial external review of the Center's research direction, and the right to be consulted on the appointment of the Center's director when the position is filled. The donor's name is attached to the Center in perpetuity &mdash; the "Doe Center for Synthetic Intelligence" is the title under which every research paper, conference, and grant issued by the Center is published, and the name by which the Center is known to the planetary research community.</p>
+
+<div class="callout">
+  <div class="callout-label">The seven-year release</div>
+  <p class="body-text" style="margin:0;">Every research output produced by a named Center of Inquiry is dedicated to the public domain seven years after initial publication. The donor's name therefore attaches not only to the Center and its scholars but to a permanent, growing, openly accessible body of research that will outlive every proprietary research program in the field. This is the architecture by which a single $10M gift compounds into a century of open knowledge.</p>
+</div>
+
+<p class="body-text">Center of Inquiry namings are particularly suited to donors whose philanthropic identity is tied to a specific research frontier. A donor whose career was built in finance may name the Center for Fintech, DeFi, and Economics; a donor whose foundation focuses on urban resilience may name the Center for Urban Futures; a donor whose commitment is to public health may name the Center for Health and Bioethics. The Center naming creates a permanent association between the donor's name and the research frontier they care most about, embodied in the body of work the Center produces over the century that follows the gift.</p>
+
+<!-- ─── VIII. DEGREE PROGRAM ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter VIII</div>
+  <div class="chapter-title">Degree Program &mdash; $3M endowment.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<div class="naming-card">
+  <div class="nc-head">
+    <div class="nc-name">Degree Program</div>
+    <div class="nc-amount">$3M</div>
+  </div>
+  <div class="nc-meta">Endowment Naming · 4.5% Yield · $135K/year in perpetuity · 55 Programs</div>
+  <div class="nc-body">Name one of the institution's 55 degree programs. The donor's name is associated with a specific discipline and every graduate who carries the credential forward into their career. The $3M endowment generates $135K per year in perpetuity, funding curriculum development, visiting lecturers, capstone prizes, and the program's standing convocation.</div>
+  <div class="nc-math"><strong>Yield math:</strong> $3,000,000 × 0.045 = $135,000/year. <strong>Use:</strong> curriculum refresh, visiting lecturer honoraria, capstone and thesis prizes, alumni network coordination, and the program's annual convocation. <strong>Recurrence:</strong> 55 named programs available across the institution's nine degree families.</div>
+</div>
+
+<p class="lead">The Degree Program naming is the founding campaign's endowment for the curriculum. Each $3M gift establishes a restricted corpus whose 4.5% annual yield funds one of the institution's 55 degree programs in perpetuity. The donor's name attaches to the degree, every graduate who earns it, and the discipline the degree represents.</p>
+
+<p class="body-text">The institution's 55 degree programs span nine degree families: Computer Science, International Business, Environmental Science, Philosophy Politics and Economics, Biotechnology, Architecture and Urban Design, Data Science and Statistics, Global History, and Cognitive Science. Within each family, multiple degree variants are offered &mdash; concentrations, joint degrees, dual-location degrees that combine coursework across two or more of the planetary nodes. The 55 named programs are the substantive curriculum of the planetary university, and each one is available for naming by a donor whose commitment is to the discipline it represents.</p>
+
+<p class="body-text">The endowment mathematics of a Degree Program naming operate at the 4.5% spending rate, producing $135,000 per year from a $3M corpus. The annual yield funds the program's recurring curricular costs &mdash; the curriculum refresh cycle, visiting lecturer honoraria, capstone and thesis prizes, alumni network coordination, and the program's standing annual convocation. The program's faculty compensation is covered by the operating P&amp;L; the endowment covers the program's identity, community, and intellectual life. The distinction matters: the endowment does not fund operations, it funds permanence.</p>
+
+<div class="math-block">
+  <div class="mb-title">Degree Program — the 4.5% yield math at $3M</div>
+  <div class="mb-row"><span>Gift (restricted corpus)</span><span class="mb-val">$3,000,000</span></div>
+  <div class="mb-row"><span>Spending rate (annual distribution)</span><span class="mb-val">4.5%/yr</span></div>
+  <div class="mb-row"><span>Annual yield (Year 1)</span><span class="mb-val">$135,000</span></div>
+  <div class="mb-row"><span>Curriculum refresh cycle</span><span class="mb-val">~$40K</span></div>
+  <div class="mb-row"><span>Visiting lecturer honoraria (4&ndash;6/year)</span><span class="mb-val">~$35K</span></div>
+  <div class="mb-row"><span>Capstone &amp; thesis prizes</span><span class="mb-val">~$20K</span></div>
+  <div class="mb-row"><span>Alumni network coordination</span><span class="mb-val">~$15K</span></div>
+  <div class="mb-row"><span>Annual program convocation</span><span class="mb-val">~$25K</span></div>
+  <div class="mb-row total"><span>Year 10 corpus (compounded)</span><span class="mb-val">~$3.9M</span></div>
+</div>
+
+<p class="body-text">The donor of a Degree Program receives an annual audited report on the corpus value and spending distribution, the right to attend the program's annual convocation, and the right to nominate one student per year for the program's named capstone prize. The donor's name is attached to the degree in perpetuity &mdash; the "Doe Program in Data Science and Statistics" is the title under which every graduate's diploma is issued, every transcript is recorded, and every alumni communication is sent. The naming creates a permanent association between the donor and the discipline, embodied in every graduate who carries the credential forward.</p>
+
+<div class="pullquote">
+  &ldquo;A degree program naming converts a $3M gift into a permanent association with every graduate of a discipline. A program that graduates 200 students per year will produce 20,000 alumni in its first century &mdash; each one carrying the donor's name on their credential.&rdquo;
+  <div class="attribution">&mdash; Artemis Founding Prospectus, Naming Tier Catalog</div>
+</div>
+
+<p class="body-text">Degree Program namings are particularly suited to donors whose philanthropic identity is tied to a specific discipline and whose gift size allows them to anchor a curriculum. A donor whose career was built in architecture may name the Program in Architecture and Urban Design; a donor whose foundation focuses on cognitive science may name the Program in Cognitive Science; a donor whose commitment is to the humanities may name the Program in Global History. The Degree Program naming creates a permanent association between the donor and the discipline, embodied in the body of graduates the program produces over the century that follows the gift.</p>
+
+<!-- ─── IX. SCHOLARSHIP FUND ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter IX</div>
+  <div class="chapter-title">Scholarship Fund &mdash; $12K, the most direct naming.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<div class="naming-card">
+  <div class="nc-head">
+    <div class="nc-name">Scholarship Fund</div>
+    <div class="nc-amount">$12K</div>
+  </div>
+  <div class="nc-meta">Direct Funding · $3,000/yr × 4 years · One Student</div>
+  <div class="nc-body">Fund one student's full scholarship for four years. $3,000 per year × 4 years = $12,000. The most direct way to change a life. The donor's name is attached to the scholarship, the student who receives it, and the graduating class the student joins. The scholarship fund is direct funding &mdash; not an endowment &mdash; and is deployed in the academic year following the gift.</div>
+  <div class="nc-math"><strong>Structure:</strong> direct funding, deployed in Year 1. <strong>Cost:</strong> $3,000 tuition × 4 years = $12,000. <strong>Effect:</strong> one student who would not otherwise have been able to attend Artemis is admitted and graduates four years later. <strong>Reporting:</strong> annual update on the named scholar's progress; standing invitation to the scholar's graduation convocation.</div>
+</div>
+
+<p class="lead">The Scholarship Fund is the entry-level naming of the founding campaign &mdash; a $12K gift that funds one student's full four-year scholarship. It is the most direct way to convert philanthropic capital into a changed life, and it is the naming tier through which the largest number of donors will participate in the founding of the institution.</p>
+
+<p class="body-text">The Scholarship Fund is structured as direct funding rather than as an endowment, because the per-student cost ($3,000 per year for four years) is small enough that an endowment would be operationally inefficient. The donor's $12K gift is deployed in the academic year following the contribution &mdash; the funds are applied to the tuition of one student who would not otherwise have been able to attend Artemis, and the student is admitted to the College of their choice across the planetary network. The donor's name is attached to the scholarship, the student who receives it, and the graduating class the student joins four years later.</p>
+
+<p class="body-text">The economics of the Scholarship Fund are deliberately simple. Artemis tuition is set at $3,000 per year &mdash; a figure accessible to 90% of qualified students worldwide without aid. The remaining 10% &mdash; 6,000 students at maturity &mdash; require scholarship assistance to attend. In Year 1, 10,000 of the 60,000 enrolled students require scholarship support. After Year 1, the operating surplus funds 13,300 scholarships per year, but the founding cohort of 10,000 scholarship students must be funded by donor capital. A $12K Scholarship Fund covers one of those 10,000 students for the full four years.</p>
+
+<div class="math-block">
+  <div class="mb-title">Scholarship Fund — what $12K buys</div>
+  <div class="mb-row"><span>Annual tuition at Artemis</span><span class="mb-val">$3,000/yr</span></div>
+  <div class="mb-row"><span>Duration of scholarship</span><span class="mb-val">4 years</span></div>
+  <div class="mb-row"><span>Total gift</span><span class="mb-val">$12,000</span></div>
+  <div class="mb-row"><span>Student admitted to the planetary network</span><span class="mb-val">1</span></div>
+  <div class="mb-row"><span>Graduating class the student joins (Year 4)</span><span class="mb-val">~15,000</span></div>
+  <div class="mb-row total"><span>Cost per changed life</span><span class="mb-val">$12,000</span></div>
+</div>
+
+<p class="body-text">The donor of a Scholarship Fund receives an annual update on the named scholar's progress, a standing invitation to the scholar's graduation convocation, and recognition in the founding Donor Roll at the Founders' Circle, Guardians' Circle, Builders' Circle, or Fellows' Circle level corresponding to the cumulative gift size (a $12K Scholarship Fund qualifies the donor for Friends of Artemis recognition, the $10K&ndash;$99K band). The donor's name is attached to the scholarship and the scholar who receives it &mdash; the "Jane Doe Scholarship" appears on the scholar's admission letter, annual progress report, and graduation record.</p>
+
+<p class="body-text">Scholarship Fund namings are particularly suited to community donors, alumni of other institutions who wish to support access at Artemis, family foundations, employer matching programs, and group giving circles. A donor who gives $12K through a donor-advised fund, with a 1:1 employer match, can fund a named scholarship for $6K out of pocket. A group of ten donors contributing $1.2K each can jointly name a scholarship. The Scholarship Fund is the tier through which the founding campaign is opened to the largest possible community of donors, and the tier through which the institution's access mission is most directly expressed.</p>
+
+<!-- ─── X. THE ENDOWMENT MATH ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter X</div>
+  <div class="chapter-title">The endowment math &mdash; 4.5% forever.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<p class="lead">Every endowment naming in the founding campaign &mdash; Distinguished Professorship, Center of Inquiry, Degree Program &mdash; is governed by the same spending-rate architecture: a 4.5% annual distribution from a restricted corpus invested under the institution's investment policy. This chapter explains the math, the assumptions, the reporting, and the recourse that together make the endowment naming a permanent, audited, legally enforceable instrument.</p>
+
+<p class="body-text">The 4.5% spending rate is the product of three deliberate choices. First, the institution targets a long-term net investment return of 6.5% on the endowment corpus &mdash; a conservative assumption based on a diversified portfolio of global equities, fixed income, real estate, and alternative assets, calibrated to the long-term returns achieved by mature university endowments over the past half-century. Second, the institution retains approximately 2% of net return in the corpus each year to offset inflation, ensuring that the spending distribution maintains its real purchasing power across decades. Third, the institution distributes 4.5% of corpus value annually to the named purpose &mdash; the position, the center, or the program &mdash; producing a predictable, durable, perpetual cash flow.</p>
+
+<p class="body-text">The math is straightforward. A $5M corpus yields $225,000 in Year 1. A $10M corpus yields $450,000. A $3M corpus yields $135,000. The spending rate is applied to a rolling average of corpus value over the prior twelve quarters, smoothing the distribution against short-term market volatility. The corpus compounds at the retained 2% real rate, meaning that a $5M corpus becomes approximately $6.5M after ten years, $13.5M after fifty years, and $36M after a century &mdash; at which point the 4.5% spending rate produces $1.6M per year from the original $5M gift. This is the architecture by which a single endowment naming compounds into a century of permanent, growing, audited cash flow.</p>
+
+<table class="tbl">
+  <thead>
+    <tr>
+      <th>Year</th>
+      <th>Corpus (real return net of 4.5% spend)</th>
+      <th>Annual Spending Distribution</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Year 1</td><td>$5,000,000</td><td class="num">$225,000</td></tr>
+    <tr><td>Year 5</td><td>$5,400,000</td><td class="num">$243,000</td></tr>
+    <tr><td>Year 10</td><td>$6,500,000</td><td class="num">$292,500</td></tr>
+    <tr><td>Year 20</td><td>$7,800,000</td><td class="num">$351,000</td></tr>
+    <tr><td>Year 50</td><td>$13,500,000</td><td class="num">$607,500</td></tr>
+    <tr><td>Year 100</td><td>$36,000,000</td><td class="num">$1,620,000</td></tr>
+  </tbody>
+</table>
+
+<p class="body-text">The endowment is governed by the institution's investment policy &mdash; a publicly available document specifying the asset allocation, the rebalancing rules, the spending-rate formula, and the audit cycle. The corpus is held in a restricted account segregated from operating funds; the spending distribution is transferred to the operating account annually and applied to the named purpose. The endowment is reported on the institution's annual audited financial statements, with the named corpus identified separately and its spending distribution disclosed. The donor receives an annual audited statement of the corpus value, the investment return, the spending distribution, and the named purpose's activities.</p>
+
+<div class="callout">
+  <div class="callout-label">Legal recourse and the binding gift agreement</div>
+  <p class="body-text" style="margin:0;">Every endowment naming is governed by a binding gift agreement that specifies the named purpose, the spending rate, the reporting cadence, the audit cycle, and the legal recourse available to the donor's estate if the institution deviates from the terms. The gift agreement is enforceable under Delaware Non-Stock Corporation law and is registered with the institution's legal counsel. If the institution fails to apply the spending distribution to the named purpose, or fails to maintain the corpus at the required minimum, the donor's estate (or its designated successor) has standing to compel performance through the Delaware Court of Chancery.</p>
+</div>
+
+<p class="body-text">The endowment architecture is the mechanism by which a single gift becomes permanent. The donor who gives $5M to name a Distinguished Professorship is not giving $5M to a year of operations &mdash; they are giving $5M to a century of positions, each funded by the yield on a corpus that compounds and survives. The donor who gives $10M to name a Center of Inquiry is not giving $10M to a research project &mdash; they are giving $10M to a century of research, embodied in the succession of investigators and fellows who occupy the Center across decades. The architecture is the institution's commitment that a naming gift is not a contribution to a budget line but a permanent conversion of capital into a recurring purpose.</p>
+
+<div class="pullquote">
+  &ldquo;The 4.5% spending rate is the institution's promise to every endowment donor: your gift will fund the named purpose this year, next year, in the year your grandchildren retire, and in the year the institution celebrates its centenary. The corpus will be larger then. The purpose will be the same.&rdquo;
+  <div class="attribution">&mdash; Artemis Financial Model, Endowment Architecture</div>
+</div>
+
+<!-- ─── XI. HOW TO SECURE A NAMING ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter XI</div>
+  <div class="chapter-title">How to secure a naming.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<p class="lead">Securing a naming is a structured process: an expression of interest, a due-diligence exchange, a binding gift agreement, and a pledge schedule. This chapter describes each step and the timeline within which a naming is committed, executed, and recognized.</p>
+
+<p class="body-text">The process begins with an expression of interest &mdash; an email, a call, or a meeting with the founding team that identifies the naming tier, the geographic or disciplinary preference, and the donor's timeline. The founding team responds within five business days with a tailored proposal specifying the named asset, the gift amount, the gift agreement terms, the reporting cadence, and the recognition the donor will receive. The proposal includes the institution's audited financial statements, the bylaws, the gift agreement template, and the legal opinion on the donor's home-jurisdiction tax treatment.</p>
+
+<p class="body-text">The donor conducts due diligence &mdash; a review of the financial model, the campus master plan, the academic prospectus, the legal entities overview, and the accountability architecture. The institution's legal counsel is available to the donor's counsel for any clarifying exchange. The due-diligence process typically takes two to six weeks, depending on the donor's existing familiarity with the institution and the complexity of the donor's tax structure. The institution does not impose a deadline on due diligence; the founding window is open, but each naming is held for the donor until the donor confirms or withdraws.</p>
+
+<table class="tbl">
+  <thead>
+    <tr>
+      <th>Step</th>
+      <th>Action</th>
+      <th>Timeline</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>1</strong></td><td>Expression of interest &mdash; donor identifies naming tier and preference</td><td>Day 0</td></tr>
+    <tr><td><strong>2</strong></td><td>Tailored proposal &mdash; founding team responds with full documentation</td><td>Day 5</td></tr>
+    <tr><td><strong>3</strong></td><td>Due diligence &mdash; donor reviews financials, bylaws, legal opinion</td><td>Weeks 1&ndash;6</td></tr>
+    <tr><td><strong>4</strong></td><td>Gift agreement executed &mdash; binding instrument signed by both parties</td><td>Weeks 4&ndash;8</td></tr>
+    <tr><td><strong>5</strong></td><td>Pledge schedule activated; named asset acquired or established</td><td>Per pledge schedule</td></tr>
+    <tr><td><strong>6</strong></td><td>Naming recognized &mdash; donor's name recorded in founding document at Venice</td><td>Within 90 days of execution</td></tr>
+  </tbody>
+</table>
+
+<p class="body-text">Once due diligence is complete, the donor and the institution execute the binding gift agreement &mdash; a legal instrument specifying the named asset, the gift amount, the pledge schedule, the reporting cadence, the audit cycle, and the legal recourse preserved to the donor's estate. The gift agreement is governed by Delaware Non-Stock Corporation law with 501(c)(3) recognition. Pledges may be paid over three to five years for namings above $1M, with the named asset acquired or established when the pledge is sufficiently advanced to support the underlying capital expenditure. The donor may structure the gift through a direct gift agreement with the institution, through a fiscal sponsor (Rockefeller Philanthropy Advisors, NGOsource, or Global Impact), or through a donor-advised fund. Securities, real estate, and cryptocurrency are accepted at fair market value.</p>
+
+<div class="callout">
+  <div class="callout-label">The closing window</div>
+  <p class="body-text" style="margin:0;">The founding campaign is engineered to close, not to remain perpetually open. The quiet phase secures lead commitments &mdash; the three Central Nodes, the eight Tier A Colleges, the named Distinguished Professorships and Centers of Inquiry &mdash; and once the quiet phase reaches its $50M threshold, the campaign moves to public phase with the conviction that the lead segment is committed and the major and community segments will follow. The donor who waits for the public phase to begin before committing will give into a campaign that is already half closed; the donor who commits in the quiet phase gives into the campaign that determines whether the institution is built at all.</p>
+</div>
+
+<p class="body-text">The eight naming tiers described in this booklet &mdash; Tier C College, Tier B College, Tier A College, Central Node, Distinguished Professorship, Center of Inquiry, Degree Program, and Scholarship Fund &mdash; cover every scale of giving from $12K to $25M, and every combination of place, faculty, research, curriculum, and access that a donor might wish to name. Every tier is open. Every tier is governed by the same accountability architecture. Every tier is recorded as a permanent asset of the founding. The donor who secures a naming in the next nine months acquires a permanent association with the planetary university &mdash; an association that will outlive them, the founders, and the century in which the gift was made.</p>
+
+</div>
+
+<!-- ════════════════ ENDING ════════════════ -->
+<div class="ending">
+  <div class="ending-tag">Naming Opportunities · 2025</div>
+  <div class="ending-big">A name on a permanent asset of the planetary university.</div>
+  <div class="ending-sub">
+    Eight tiers. From a $12K scholarship that changes a life
+    to a $25M Central Node that anchors a continent.
+    Every gift is an endowment. Every gift is audited.
+    Every gift is forever.
+  </div>
+  <div class="ending-contact">
+    University of Artemis &middot; give@artemis.edu &middot; <a href="https://artemis.edu/give">artemis.edu/give</a>
+  </div>
+</div>
+
+</body>
+</html>

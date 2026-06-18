@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Strategic Plan 2025-2030 — University of Artemis</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════
+   ARTEMIS RESOURCE PDF — SHARED THEME
+   Creative-Flow pipeline (720×1020px pages, content flows)
+   Crimson #8A0000 + Inter/Noto Serif. Embed in each PDF's <style>.
+   ═══════════════════════════════════════════════════════════ */
+
+@page {
+  size: 720px 1020px;
+  margin: 0;
+}
+
+:root {
+  --crimson: #8A0000;
+  --crimson-deep: #6B0000;
+  --crimson-soft: #B33A3A;
+  --ink: #141414;
+  --ink-soft: #3a3a3a;
+  --muted: #6b6b6b;
+  --line: #e5e5e5;
+  --bg: #FAFAF8;
+  --bg-dark: #0c0a09;
+  --bg-cream: #F5F2EC;
+  --gold: #b08d57;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 720px;
+  background: var(--bg-dark);
+  color: var(--ink);
+  font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
+  font-size: 13px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media screen {
+  html { display: flex; justify-content: center; background: #222; height: auto; }
+  body { margin: 20px auto; box-shadow: 0 0 40px rgba(0,0,0,0.4); }
+}
+
+/* ─── COVER ─── */
+.cover {
+  width: 720px;
+  height: 1020px;
+  box-sizing: border-box;
+  break-after: page;
+  overflow: hidden;
+  position: relative;
+  background: var(--bg-dark);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 64px;
+}
+.cover .cover-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+  filter: grayscale(0.3);
+}
+.cover .cover-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(138,0,0,0.55) 0%, rgba(12,10,9,0.92) 60%, rgba(12,10,9,0.98) 100%);
+}
+.cover .cover-content { position: relative; z-index: 2; }
+.cover .cover-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.32em;
+  text-transform: uppercase; color: var(--crimson-soft);
+  margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
+}
+.cover .cover-tag::before { content: ""; width: 28px; height: 1px; background: var(--crimson); }
+.cover h1 {
+  font-family: 'Noto Serif SC', Georgia, serif;
+  font-size: 52px; font-weight: 900; line-height: 1.02;
+  letter-spacing: -0.02em; margin: 0 0 24px;
+  text-transform: none;
+}
+.cover .cover-sub {
+  font-size: 15px; color: rgba(255,255,255,0.65); font-weight: 300;
+  line-height: 1.6; max-width: 480px; margin-bottom: 0;
+}
+.cover .cover-footer {
+  position: absolute; bottom: 48px; left: 64px; right: 64px;
+  display: flex; justify-content: space-between; align-items: flex-end;
+  z-index: 2; font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: rgba(255,255,255,0.4);
+}
+.cover .cover-footer .crest { font-family: 'Noto Serif SC', serif; font-size: 14px; color: rgba(255,255,255,0.7); letter-spacing: 0.15em; }
+
+/* ─── CONTENT (flows) ─── */
+.main-content {
+  background: var(--bg);
+  padding: 64px 64px 48px 64px;
+}
+
+/* Chapter header */
+.chapter-header {
+  break-after: avoid;
+  break-inside: avoid;
+  margin-top: 28px;
+  margin-bottom: 20px;
+}
+.chapter-header:first-child { margin-top: 0; }
+.chapter-tag {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--crimson);
+  margin-bottom: 10px; display: flex; align-items: center; gap: 10px;
+}
+.chapter-tag::before { content: ""; width: 22px; height: 1px; background: var(--crimson); }
+.chapter-title {
+  font-family: 'Noto Serif SC', Georgia, serif;
+  font-size: 30px; font-weight: 800; line-height: 1.12;
+  letter-spacing: -0.015em; color: var(--ink); margin: 0 0 12px;
+}
+.chapter-divider { width: 40px; height: 2px; background: var(--crimson); margin-bottom: 18px; }
+
+/* Body text */
+.body-text { font-size: 13px; line-height: 1.72; color: var(--ink-soft); margin: 0 0 12px; }
+.body-text strong { color: var(--ink); font-weight: 600; }
+.lead { font-size: 15px; line-height: 1.65; color: var(--ink); font-weight: 400; margin-bottom: 18px; }
+
+/* Pull quote */
+.pullquote {
+  break-inside: avoid;
+  border-left: 3px solid var(--crimson);
+  padding: 16px 24px;
+  margin: 20px 0;
+  font-family: 'Noto Serif SC', Georgia, serif;
+  font-size: 16px; font-style: italic; line-height: 1.5;
+  color: var(--ink); background: var(--bg-cream);
+}
+.pullquote .attribution { font-size: 11px; font-style: normal; color: var(--muted); margin-top: 10px; letter-spacing: 0.05em; }
+
+/* Cards */
+.card {
+  break-inside: avoid;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 20px 22px;
+  margin-bottom: 14px;
+}
+.card-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.card-sub { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
+.card-body { font-size: 12px; line-height: 1.6; color: var(--ink-soft); }
+
+/* Stat block */
+.stat-row { display: flex; gap: 16px; margin: 18px 0; break-inside: avoid; }
+.stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 18px; }
+.stat .stat-val { font-family: 'Noto Serif SC', serif; font-size: 28px; font-weight: 900; color: var(--crimson); line-height: 1; }
+.stat .stat-label { font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+
+/* Progress bar */
+.progress { break-inside: avoid; margin: 14px 0; }
+.progress-track { height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--crimson); border-radius: 3px; }
+.progress-label { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 6px; color: var(--ink-soft); }
+
+/* Table */
+.tbl { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 11px; break-inside: avoid; }
+.tbl th { text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--ink); padding: 8px 10px; }
+.tbl td { padding: 9px 10px; border-bottom: 1px solid var(--line); color: var(--ink-soft); vertical-align: top; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl .num { font-family: 'Noto Serif SC', serif; font-weight: 700; color: var(--crimson); text-align: right; white-space: nowrap; }
+
+/* Figure */
+.figure { break-inside: avoid; margin: 18px 0; }
+.figure img { width: 100%; border-radius: 6px; display: block; }
+.figure .caption { font-size: 10px; color: var(--muted); margin-top: 8px; letter-spacing: 0.03em; line-height: 1.5; }
+
+/* Callout */
+.callout {
+  break-inside: avoid;
+  background: var(--bg-cream);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin: 16px 0;
+}
+.callout .callout-label { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
+
+/* Bullet list */
+.bullets { margin: 10px 0 14px; padding: 0; list-style: none; }
+.bullets li { font-size: 12px; line-height: 1.65; color: var(--ink-soft); padding-left: 18px; position: relative; margin-bottom: 6px; }
+.bullets li::before { content: ""; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; background: var(--crimson); border-radius: 50%; }
+
+/* Two-col */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+/* Page number footer (auto via running element not reliable in Playwright; use simple footer div per section if needed) */
+
+/* ─── ENDING ─── */
+.ending {
+  width: 720px;
+  height: 1020px;
+  box-sizing: border-box;
+  break-before: page;
+  overflow: hidden;
+  background: var(--bg-dark);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 64px;
+  text-align: center;
+}
+.ending .ending-tag { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--crimson-soft); margin-bottom: 28px; }
+.ending .ending-big { font-family: 'Noto Serif SC', Georgia, serif; font-size: 38px; font-weight: 800; line-height: 1.15; letter-spacing: -0.015em; max-width: 540px; margin-bottom: 32px; }
+.ending .ending-sub { font-size: 14px; color: rgba(255,255,255,0.5); max-width: 440px; line-height: 1.65; font-weight: 300; }
+.ending .ending-contact { margin-top: 40px; font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; }
+.ending .ending-contact a { color: var(--crimson-soft); text-decoration: none; }
+
+/* Dark section (for mid-document breaks) */
+.dark-section {
+  background: var(--bg-dark);
+  color: #fff;
+  margin: 0 -64px;
+  padding: 48px 64px;
+  break-inside: avoid;
+}
+.dark-section .ds-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--crimson-soft); margin-bottom: 10px; }
+.dark-section .ds-title { font-family: 'Noto Serif SC', serif; font-size: 24px; font-weight: 800; margin-bottom: 12px; }
+.dark-section .ds-body { font-size: 12px; line-height: 1.7; color: rgba(255,255,255,0.7); }
+
+
+/* Strategic plan specific */
+.year-card { break-inside: avoid; background:#fff; border:1px solid var(--line); border-radius:8px; padding:22px 24px; margin-bottom:16px; border-left:4px solid var(--crimson); }
+.year-card .yc-head { display:flex; align-items:baseline; gap:14px; margin-bottom:10px; }
+.year-card .yc-year { font-family:'Noto Serif SC',serif; font-size:26px; font-weight:900; color:var(--crimson); line-height:1; }
+.year-card .yc-theme { font-size:11px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink); }
+.year-card .yc-body { font-size:12px; line-height:1.65; color:var(--ink-soft); margin-bottom:12px; }
+.year-card .yc-targets { list-style:none; padding:0; margin:0; }
+.year-card .yc-targets li { font-size:11px; line-height:1.6; color:var(--ink-soft); padding-left:18px; position:relative; margin-bottom:5px; }
+.year-card .yc-targets li::before { content:""; position:absolute; left:0; top:8px; width:6px; height:6px; background:var(--crimson); border-radius:50%; }
+.timeline-bar { break-inside:avoid; margin:20px 0; padding:20px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.timeline-bar .tb-track { display:flex; justify-content:space-between; position:relative; }
+.timeline-bar .tb-track::before { content:""; position:absolute; top:14px; left:0; right:0; height:2px; background:var(--line); }
+.timeline-bar .tb-node { text-align:center; position:relative; z-index:2; flex:1; }
+.timeline-bar .tb-dot { width:14px; height:14px; border-radius:50%; background:var(--crimson); margin:7px auto 8px; border:3px solid var(--bg); box-shadow:0 0 0 1px var(--crimson); }
+.timeline-bar .tb-year { font-size:11px; font-weight:800; color:var(--crimson); }
+.timeline-bar .tb-theme { font-size:8px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-top:2px; }
+
+</style>
+</head>
+<body>
+
+<!-- ═══ COVER ═══ -->
+<div class="cover">
+  <img class="cover-img" src="../public/resources/img/campus-architecture.png" alt="">
+  <div class="cover-overlay"></div>
+  <div class="cover-content">
+    <div class="cover-tag">Strategic Plan</div>
+    <h1>2025–2030<br>The Road to Permanence</h1>
+    <p class="cover-sub">Six years from foundation to self-sufficiency. The year-by-year roadmap that takes the University of Artemis from a $100M founding campaign to a $543M endowment serving 60,000 students across 50 colleges on six continents.</p>
+  </div>
+  <div class="cover-footer">
+    <span>University of Artemis</span>
+    <span class="crest">MMXXV</span>
+  </div>
+</div>
+
+<!-- ═══ CONTENT ═══ -->
+<div class="main-content">
+
+<!-- Chapter 1: Executive Summary -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter One</div>
+  <div class="chapter-title">Executive Summary</div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="lead">This strategic plan covers the six-year window from 2025 through 2030 — the period during which the University of Artemis transitions from a funded concept to a permanent, self-sustaining global institution.</p>
+<p class="body-text">The plan is organised around six annual themes, each representing a distinct phase of institutional development: Foundation, Launch, Scale, Expansion, Maturity, and Permanence. Every theme carries specific, measurable targets across four dimensions: academic (students, faculty, programs), financial (revenue, surplus, endowment), infrastructure (colleges, nodes, facilities), and intellectual (research, publications, ventures). These are not aspirational headings — they are commitments against which the Board of Trustees will report annually.</p>
+<p class="body-text">The founding logic of Artemis is that a planetary, need-blind, interdisciplinary university can be capitalised once and then sustain itself forever from operating surplus. The $100M founding campaign, secured in 2025, is the one-time input. From 2026 onward, tuition revenue, research income, endowment payout, and innovation equity compound to cover every operating cost and build the endowment at $60M per year. By 2030 the institution is permanent: 60,000 students, 2,000 faculty, a $543M endowment, and a published open blueprint that allows the model to be replicated worldwide.</p>
+<p class="body-text">This document exists to give donors, faculty, trustees, and partner governments a clear view of what success looks like in each year, what must be true for the next phase to begin, and how the institution will know if it is on track. It is a public document because Artemis is a public institution from the day it opens. Every assumption, every target, and every risk is stated explicitly so that stakeholders can hold the institution accountable to the plan.</p>
+<p class="body-text">The plan should be read as a contract between the institution and its stakeholders. The targets are commitments, not hopes. The timeline is fixed, not flexible. The financial model is conservative, not optimistic. And the accountability mechanism — annual independent audit, public reporting, and a Board structurally incapable of being captured by any single interest — is designed to make drift visible early and correction mandatory. A strategic plan that cannot be checked against reality is a marketing document. This is not a marketing document.</p>
+<p class="body-text">Readers should also understand what this plan is not. It is not a complete operations manual — the detailed academic curriculum, faculty handbook, and facilities management protocols are separate documents governed by the Senate and the executive team. It is not a fundraising prospectus — the Case for Support and Founding Prospectus serve that purpose. And it is not a guarantee — the plan describes what the institution intends to achieve and how, but external factors will influence outcomes. What the plan guarantees is not success but transparency: whatever happens, the institution will report it honestly and respond deliberately.</p>
+
+<div class="stat-row">
+  <div class="stat"><div class="stat-val">6 yrs</div><div class="stat-label">Plan Horizon</div></div>
+  <div class="stat"><div class="stat-val">60K</div><div class="stat-label">Students by 2030</div></div>
+  <div class="stat"><div class="stat-val">50</div><div class="stat-label">Colleges</div></div>
+  <div class="stat"><div class="stat-val">$543M</div><div class="stat-label">Endowment (Yr 10)</div></div>
+</div>
+
+<!-- Chapter 2: The Strategic Logic -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Two</div>
+  <div class="chapter-title">The Strategic Logic</div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="body-text">Every strategic plan must answer a single question: what is the institution trying to become, and why does it not already exist? Artemis's answer is that the world lacks a university that is simultaneously planetary in scope, need-blind in admission, interdisciplinary in structure, and self-sustaining in finance. Each of these properties exists in isolation at leading institutions, but no university has yet combined all four. The strategic logic of 2025–2030 is to build that combination once, prove it works, and then publish the blueprint so others can replicate it.</p>
+<p class="body-text">The plan is deliberately front-loaded. The hardest year is 2025, when $100M must be secured, 25 legal entities incorporated, 12 properties acquired, 200 faculty recruited, and 120 students admitted — all before a single class is taught. The reason for this compression is that the financial model only works at scale: the surplus that funds scholarships and endowment growth depends on 60,000 students paying $3,000 per year, and reaching that scale requires building the physical and academic infrastructure in parallel, not sequentially. A slower build would mean more years of operating at a loss and a longer dependence on philanthropic capital.</p>
+<p class="body-text">The plan is also deliberately conservative on revenue and aggressive on impact. Revenue projections assume only tuition, endowment payout, research grants, innovation equity, and continuing education — no speculative income streams, no tuition above $3,000, no reliance on government subsidies. Impact targets, by contrast, are ambitious: 13,300 scholarships per year by 2030, 19 fully operational Centers of Inquiry, a 7-year open-knowledge release policy that puts Artemis research into the public domain faster than any legacy university. The combination of conservative finance and ambitious impact is what makes the model credible to donors and attractive to students.</p>
+
+<div class="pullquote">
+  The university that outlives its founders needs a corpus that outlives its donors. This plan builds that corpus in six years.
+  <div class="attribution">— Artemis Strategic Plan, 2025</div>
+</div>
+
+<!-- Timeline visual -->
+<div class="timeline-bar">
+  <div class="tb-track">
+    <div class="tb-node"><div class="tb-dot"></div><div class="tb-year">2025</div><div class="tb-theme">Foundation</div></div>
+    <div class="tb-node"><div class="tb-dot"></div><div class="tb-year">2026</div><div class="tb-theme">Launch</div></div>
+    <div class="tb-node"><div class="tb-dot"></div><div class="tb-year">2027</div><div class="tb-theme">Scale</div></div>
+    <div class="tb-node"><div class="tb-dot"></div><div class="tb-year">2028</div><div class="tb-theme">Expansion</div></div>
+    <div class="tb-node"><div class="tb-dot"></div><div class="tb-year">2029</div><div class="tb-theme">Maturity</div></div>
+    <div class="tb-node"><div class="tb-dot"></div><div class="tb-year">2030</div><div class="tb-theme">Permanence</div></div>
+  </div>
+</div>
+
+<!-- Chapter 3: 2025 Foundation -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Three</div>
+  <div class="chapter-title">2025 — Foundation</div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="body-text">The Foundation year is the highest-risk and highest-leverage period in the entire plan. Everything that follows depends on what is secured in 2025: the capital, the legal standing, the physical sites, the founding people. The theme is not "beginnings" in the vague sense — it is the concrete, verifiable closure of every precondition required for a university to open its doors. If 2025 fails, there is no 2026. If 2025 succeeds, the remaining five years are execution against a proven model.</p>
+<p class="body-text">The campaign target of $100M is not arbitrary. It is the minimum capitalisation that allows the operating model to reach self-sufficiency within twelve months of launch. Below that figure, the university would open underfunded and require ongoing philanthropic subsidies; above it, the marginal dollars would accelerate endowment growth but would not change the fundamental timeline. The $100M is the number at which the institution becomes indestructible by design rather than by fortune. Securing it requires ten lead gifts at the $5M–$25M level, twenty major gifts at $1M–$5M, and a community layer of hundreds of gifts below $1M — a standard founding-campaign distribution observed at Yale, Stanford, and every major university capital raise in the last century.</p>
+<p class="body-text">Legal incorporation across 25 jurisdictions is the unglamorous precondition of planetary operation. Artemis cannot accept tax-deductible donations from a US donor without 501(c)(3) status, cannot operate a college in Germany without charitable-status recognition, cannot hold endowment assets in Switzerland without fondation approval. Each jurisdiction has its own timeline — the US Form 1023 process takes 3–6 months, the UK CIO registration takes 6–9 months, Swiss fondation approval takes 4–8 months — and these must run in parallel, not sequentially, to hit the 2026 launch date. The legal team begins filing in January 2025 and completes the last recognition by December.</p>
+
+<div class="year-card">
+  <div class="yc-head"><span class="yc-year">2025</span><span class="yc-theme">Foundation — Targets</span></div>
+  <div class="yc-body">The non-negotiable preconditions for launch. Every target must be met before Day 1, 2026.</div>
+  <ul class="yc-targets">
+    <li>$100M founding campaign secured</li>
+    <li>Legal incorporation across 25 jurisdictions</li>
+    <li>First 12 properties acquired and repurposing begun</li>
+    <li>Founding faculty cohort (200) recruited</li>
+    <li>Founding student cohort (120) admitted</li>
+  </ul>
+</div>
+
+<p class="body-text">The first 12 properties are selected for a mix of cost, location, and repurposing feasibility. Artemis does not build new campuses — it acquires existing buildings (warehouses, convents, offices, factories) and converts them into colleges. This strategy is faster (12–18 months vs. 5–7 years for new construction), cheaper (acquisition + conversion is 30–50% of new-build cost), and more sustainable (embodied carbon of existing buildings is preserved). The 12 properties acquired in 2025 are the first wave: the three Central Nodes (Venice, San Francisco, Singapore) and nine Tier A and Tier B colleges in major knowledge capitals.</p>
+
+<div class="figure">
+  <img src="../public/resources/img/governance-building.png" alt="Classical institutional architecture representing the governance and legal foundations of the university">
+  <div class="caption">The legal and governance architecture — 25 jurisdictions, 3 primary entities, one mission. Incorporation in 2025 is the precondition for every subsequent year.</div>
+</div>
+
+<!-- Chapter 4: 2026 Launch -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Four</div>
+  <div class="chapter-title">2026 — Launch</div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="body-text">Launch is the year the university becomes real. On Day 1, 2026, the three Central Nodes open simultaneously — Venice as the founding seat of governance and convocation, San Francisco as the technology and innovation hub, Singapore as the Asia-Pacific convening point. Twelve colleges across six continents accept their founding cohorts. The first 19 Centers of Inquiry activate their research programs. The curriculum goes live across nine degree programs. This is not a soft opening or a pilot — it is the full institution, operational from the first day, because the financial model requires scale from the start.</p>
+<p class="body-text">The synchronous global opening is a deliberate choice. A staggered rollout — opening one node at a time over several years — would halve the revenue in each year and push self-sufficiency out by 24 months. It would also undermine the core proposition of a planetary university: that a student in Nairobi and a student in Berlin are part of the same institution, with the same curriculum, the same faculty, and the same academic culture, from day one. The synchronous opening is harder, but it is the only opening that makes the model true.</p>
+<p class="body-text">The 200 faculty recruited in 2025 must be in place by the first day of classes. This is the single largest operational risk of 2026: academic hiring is a 12–18 month cycle, and the founding faculty cohort determines the intellectual culture of the institution for a generation. The recruitment strategy targets mid-career and senior scholars who are dissatisfied with the grant-dependent, siloed model of legacy universities and are drawn to the promise of long-term renewable appointments, interdisciplinary Centers of Inquiry, and a global rotation system. The founding faculty are not just employees — they are co-founders, and their compensation package includes a voice in the academic structure they are building.</p>
+
+<div class="year-card">
+  <div class="yc-head"><span class="yc-year">2026</span><span class="yc-theme">Launch — Targets</span></div>
+  <div class="yc-body">The institution opens at full scale. Day 1 is not a pilot — it is the university.</div>
+  <ul class="yc-targets">
+    <li>University opens — Day 1 operations</li>
+    <li>3 Central Nodes operational (Venice, SF, Singapore)</li>
+    <li>12 Colleges across 6 continents live</li>
+    <li>First 19 Centers of Inquiry activated</li>
+    <li>Curriculum deployed across 9 programs</li>
+  </ul>
+</div>
+
+<p class="body-text">The nine degree programs deployed in 2026 are Computer Science, International Business, Environmental Science, Philosophy/Politics/Economics, Biotechnology, Architecture and Urban Design, Data Science and Statistics, Global History, and Cognitive Science. These were selected for three reasons: they map to the four curriculum pillars (epistemology, computational thinking, global systems, creative expression); they align with the research domains of the first 19 Centers of Inquiry; and they are the disciplines most in demand from the founding student cohort. Graduate programs are deferred to 2028 to allow the undergraduate model to stabilise first.</p>
+
+<div class="figure">
+  <img src="../public/resources/img/students-global.png" alt="Diverse founding student cohort">
+  <div class="caption">The founding cohort — 120 students from 34 countries. By 2030, the student body will number 60,000 across six continents.</div>
+</div>
+
+<!-- Chapter 5: 2027 Scale -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Five</div>
+  <div class="chapter-title">2027 — Scale</div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="body-text">Scale is the year the model proves itself. The founding cohort has completed its first full year; the second cohort is admitted; the college network doubles from 12 to 30; the student body grows from 120 to 20,000. This is the steepest growth curve in the plan, and it is possible only because the physical infrastructure was designed for modularity — each college is a self-contained unit of 1,000–2,500 students that can be replicated in any city with a suitable building. Scaling is not a matter of building bigger; it is a matter of finding more buildings.</p>
+<p class="body-text">The first graduating cohort in 2027 is a milestone of a different kind. These are the students who trusted an unproven institution with their education, and their outcomes — graduate school placements, employment, entrepreneurial ventures — will be the first empirical evidence of whether the Artemis model produces the thinkers and makers it promises. The competency-based grading system, which assesses students against mastery standards rather than against each other, means the transcript will look different from a traditional GPA. The career services team begins building relationships with employers and graduate programs in 2026 to ensure the first cohort is not penalised for attending an unfamiliar institution.</p>
+<p class="body-text">The endowment crossing $80M in 2027 is the first signal that the self-sufficiency model is working. The $80M figure comes from the $3M founding seed (from the Progress pillar) plus $60M of surplus allocation in 2026 plus naming gifts and compounding. At 4.5% payout, $80M generates $3.6M per year — enough to fund 1,200 scholarships indefinitely. The endowment is no longer a founding gift; it is an institution.</p>
+
+<div class="year-card">
+  <div class="yc-head"><span class="yc-year">2027</span><span class="yc-theme">Scale — Targets</span></div>
+  <div class="yc-body">The model proves itself. The first cohort graduates. The endowment becomes self-sustaining.</div>
+  <ul class="yc-targets">
+    <li>30 Colleges operational</li>
+    <li>Student body reaches 20,000</li>
+    <li>Faculty reaches 800</li>
+    <li>First graduating cohort</li>
+    <li>Endowment crosses $80M from surplus</li>
+  </ul>
+</div>
+
+<!-- Chapter 6: 2028 Expansion -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Six</div>
+  <div class="chapter-title">2028 — Expansion</div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="body-text">Expansion is the year Artemis adds depth as well as breadth. The college network reaches 42, the student body doubles to 40,000, and graduate programs launch for the first time. The graduate programs are not a separate enterprise bolted onto the undergraduate model — they are integrated into the Centers of Inquiry, with master's and doctoral students working as junior fellows on the same research agendas as the undergraduates. This integration is what makes the Artemis research model distinct: there is no teaching-only faculty and no research-only faculty; every faculty member teaches and researches, and every student from freshman to PhD candidate participates in inquiry.</p>
+<p class="body-text">The Forge incubator reaching 20 portfolio ventures by 2028 is a measure of the translational pipeline. The Forge takes breakthroughs from the Centers of Inquiry and spins them into ventures — ClimatIQ for climate analytics, NeuroBridge for accessibility BCI, BioWeave for mycelium textiles — within 12 months. Five percent of equity from every venture flows to the Artemis endowment, creating a fourth revenue stream (after tuition, research, and endowment payout) that grows as the ventures succeed. By 2028 the Forge portfolio is generating both impact and financial return.</p>
+<p class="body-text">Faculty reaching 1,400 in 2028 reflects the hiring trajectory required to maintain a 1:30 faculty-student ratio across 40,000 students. The hiring strategy in the expansion phase shifts from recruiting established senior scholars (the 2025–2026 priority) to recruiting mid-career and emerging scholars who will define the institution's intellectual identity for the next 30 years. The renewable-appointment model, free from grant dependency, becomes a powerful recruiting tool: Artemis can offer something no legacy university can match — a permanent home for deep, risky, long-horizon inquiry.</p>
+
+<div class="year-card">
+  <div class="yc-head"><span class="yc-year">2028</span><span class="yc-theme">Expansion — Targets</span></div>
+  <div class="yc-body">Graduate programs launch. The Forge portfolio matures. The faculty doubles.</div>
+  <ul class="yc-targets">
+    <li>42 Colleges operational</li>
+    <li>Student body reaches 40,000</li>
+    <li>Faculty reaches 1,400</li>
+    <li>Graduate programs launched</li>
+    <li>Forge incubator: 20 portfolio ventures</li>
+  </ul>
+</div>
+
+<div class="figure">
+  <img src="../public/resources/img/research-lab.png" alt="Research laboratory">
+  <div class="caption">The translational pipeline — Centers of Inquiry feed the Forge incubator, which spins ventures that return equity to the endowment.</div>
+</div>
+
+<!-- Chapter 7: 2029 Maturity -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Seven</div>
+  <div class="chapter-title">2029 — Maturity</div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="body-text">Maturity is the year the network completes. The 50th college opens, the student body reaches its steady-state target of 60,000, and the faculty reaches 2,000. The physical build-out of the planetary university is finished. From this point forward, growth is not in square footage or headcount but in depth — in the quality of research, the impact of graduates, the reach of the open-knowledge releases, and the size of the endowment.</p>
+<p class="body-text">The endowment crossing $200M in 2029 is the inflection point at which the institution's financial permanence is no longer in question. At $200M and 4.5% payout, the endowment generates $9M per year — enough to fund 3,000 scholarships, 40 distinguished professorships, or an entire new Center of Inquiry, in perpetuity, from investment income alone. The university could, at this point, stop all fundraising and continue forever. It will not stop, because the mission is larger than financial survival, but the optionality is there.</p>
+<p class="body-text">The 7-year release policy's first knowledge drop in 2029 is the moment Artemis makes good on its open-knowledge promise. Every research output produced since 2022 — datasets, methods, software, papers — is released into the public domain under a remix-permissive license. This is not open access in the conventional sense (pay-to-publish, embargoed, or CC-BY-NC). It is a deliberate gift to humanity: the intellectual capital of a planetary university, unencumbered, for anyone to use, adapt, and build upon. The release is a strategic act — it demonstrates that Artemis is not hoarding knowledge for prestige but distributing it for impact.</p>
+
+<div class="year-card">
+  <div class="yc-head"><span class="yc-year">2029</span><span class="yc-theme">Maturity — Targets</span></div>
+  <div class="yc-body">The network completes. The endowment secures permanence. The first knowledge drop fulfills the open-knowledge promise.</div>
+  <ul class="yc-targets">
+    <li>50 Colleges — full network</li>
+    <li>Student body reaches 60,000</li>
+    <li>Faculty reaches 2,000</li>
+    <li>Endowment crosses $200M</li>
+    <li>7-year release policy: first knowledge drop</li>
+  </ul>
+</div>
+
+<div class="pullquote">
+  By 2029 the university could stop all fundraising and continue forever. It will not stop, because the mission is larger than financial survival.
+  <div class="attribution">— Artemis Strategic Plan, 2029</div>
+</div>
+
+<!-- Chapter 8: 2030 Permanence -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Eight</div>
+  <div class="chapter-title">2030 — Permanence</div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="body-text">Permanence is the final year of the plan and the first year of the institution's second century. The university achieves full operational self-sufficiency: the $262M annual surplus funds 13,300 scholarships per year, the endowment builds at $60M per year from surplus alone, and accreditation is secured across all operating jurisdictions. The Artemis Model — the complete blueprint for a planetary, need-blind, self-sustaining university — is published as an open document, allowing any group of founders, in any country, to replicate it.</p>
+<p class="body-text">The $262M surplus is the number that makes the model indestructible. It is generated from $300M in revenue (tuition $180M + endowment payout $27M + research $45M + innovation equity $18M + continuing education $30M) against $38M in operating costs net of faculty compensation (which is covered by tuition). The surplus is not profit — it is mission fuel. It funds scholarships for students who cannot pay, builds the endowment that secures the institution against every future shock, and capitalises the innovation ventures that translate research into impact. Every dollar of surplus is allocated, audited, and published.</p>
+<p class="body-text">The publication of the Artemis Model as an open blueprint is the plan's final and most consequential act. Artemis is not a franchise — it does not intend to open 500 colleges itself. It intends to prove that the model works, document every design decision, and make the documentation freely available so that other founders can build Artemis-type universities in regions, languages, and disciplines that the original network does not cover. The goal is not one planetary university. The goal is a world in which a planetary, need-blind, self-sustaining university is an option available to any community that wants one.</p>
+
+<div class="year-card">
+  <div class="yc-head"><span class="yc-year">2030</span><span class="yc-theme">Permanence — Targets</span></div>
+  <div class="yc-body">Self-sufficiency achieved. The blueprint published. The mission transfers from founders to the world.</div>
+  <ul class="yc-targets">
+    <li>Full operational self-sufficiency</li>
+    <li>$262M annual surplus funding 13,300 scholarships/yr</li>
+    <li>Endowment building at $60M/yr</li>
+    <li>Global recognition — accreditation across all jurisdictions</li>
+    <li>The Artemis Model published as open blueprint</li>
+  </ul>
+</div>
+
+<!-- Chapter 9: Financial Trajectory -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Nine</div>
+  <div class="chapter-title">The Financial Trajectory</div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="body-text">The financial logic of the plan rests on a single insight: a university capitalised once at $100M can sustain itself forever if its operating revenue exceeds its operating costs. Artemis's revenue model is built on five streams — tuition, endowment payout, research income, innovation equity, and continuing education — each of which is independently viable and collectively diversified against the failure of any single source. The cost model is dominated by faculty compensation (67% of operating expenses), with facilities, scholarships, research, and administration making up the remainder.</p>
+<p class="body-text">The trajectory from 2025 to 2030 is a transition from capital dependence to capital generation. In 2025, the institution spends capital (the $100M campaign) to build infrastructure. In 2026, it breaks even on operations. From 2027 onward, it generates surplus that builds the endowment, funds scholarships, and capitalises innovation. By 2030, the annual surplus of $262M is larger than the entire founding campaign — meaning the institution now generates, every year, more than two and a half times the capital that founded it. This is the mathematical proof of self-sufficiency.</p>
+
+<table class="tbl">
+  <thead><tr><th>Year</th><th>Students</th><th>Faculty</th><th>Colleges</th><th>Endowment</th><th>Phase</th></tr></thead>
+  <tbody>
+    <tr><td>2025</td><td>120 (admitted)</td><td>200</td><td>12 (acquired)</td><td class="num">$3M</td><td>Foundation</td></tr>
+    <tr><td>2026</td><td>120</td><td>200</td><td>12</td><td class="num">$3M</td><td>Launch</td></tr>
+    <tr><td>2027</td><td>20,000</td><td>800</td><td>30</td><td class="num">$80M</td><td>Scale</td></tr>
+    <tr><td>2028</td><td>40,000</td><td>1,400</td><td>42</td><td class="num">$143M</td><td>Expansion</td></tr>
+    <tr><td>2029</td><td>60,000</td><td>2,000</td><td>50</td><td class="num">$200M</td><td>Maturity</td></tr>
+    <tr><td>2030</td><td>60,000</td><td>2,000</td><td>50</td><td class="num">$263M</td><td>Permanence</td></tr>
+  </tbody>
+</table>
+
+<p class="body-text">The endowment growth from $3M in 2025 to $263M in 2030 is driven by three forces: surplus allocation ($60M/year from 2027 onward), naming gifts (cumulative $80M from named colleges, professorships, and centers), and investment returns (4.5% net yield on the growing corpus). By 2030, the endowment is large enough that its annual payout ($11.8M) could independently fund 3,900 scholarships — more than the founding cohort's entire size. The endowment has become the institution's insurance policy against every conceivable risk: enrollment shortfalls, grant cycles, market downturns, geopolitical disruption.</p>
+
+<div class="figure">
+  <img src="../public/resources/img/abstract-crimson.png" alt="Abstract crimson texture representing the financial architecture">
+  <div class="caption">The financial trajectory — from $100M founding capital to $262M annual surplus in six years. The model is designed to flip from capital-raising to capital-generating within twelve months of launch.</div>
+</div>
+
+<!-- Chapter 10: Risk and Accountability -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Ten</div>
+  <div class="chapter-title">Risk and Accountability</div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="body-text">No strategic plan is worth the paper it is printed on without a candid assessment of what could go wrong and a public mechanism for accountability. The three highest risks to the 2025–2030 plan are: campaign shortfall (securing less than $100M by end of 2025), faculty hiring shortfall (failing to recruit 200 founding faculty by Day 1 2026), and enrollment shortfall (the founding cohort and subsequent cohorts not materialising at projected scale). Each risk has a defined mitigation: campaign shortfall triggers a phased launch (fewer colleges, deferred graduate programs); faculty shortfall triggers deferred program launches (not all nine programs open in 2026); enrollment shortfall triggers increased scholarship allocation (deeper discounts to fill seats).</p>
+<p class="body-text">Accountability is structural, not rhetorical. The Board of Trustees, with a majority of independent directors and no single controller, publishes an annual impact report audited by a Big Four firm. Every dollar received and disbursed is a matter of public record. The strategic plan's targets are treated as commitments, not hopes, and the annual report measures performance against them explicitly — met, partially met, or missed, with explanation. This is not the norm for universities, which typically report selectively. Artemis's accountability architecture is designed to be uncomfortable, because comfort is how institutions drift from their missions.</p>
+
+<div class="callout">
+  <div class="callout-label">Accountability Guarantees</div>
+  <p class="body-text" style="margin:0;"><strong>Board Independence.</strong> No single individual controls more than one-third of board seats. Majority independent directors required.</p>
+  <p class="body-text" style="margin:8px 0 0 0;"><strong>Annual Audit.</strong> Full independent audit by a Big Four firm. Published annually. No exceptions.</p>
+  <p class="body-text" style="margin:8px 0 0 0;"><strong>Public Reporting.</strong> Every dollar received and disbursed is published in an annual impact report, available to every donor and the public.</p>
+</div>
+
+<!-- Chapter 11: The Academic Mission -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Eleven</div>
+  <div class="chapter-title">The Academic Mission</div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="body-text">The strategic plan's academic targets — 60,000 students, 2,000 faculty, nine undergraduate and twelve graduate programs by 2030 — are meaningless without a clear theory of what those students will learn and how that learning will be assessed. Artemis's academic mission rests on four pillars that distinguish it from every legacy university: Purpose Learning (students declare missions, not majors), the four-pillar curriculum (epistemology, computational thinking, global systems, creative expression), the six-hostel-city rotation, and competency-based grading. Each of these is operationalised in the 2025–2030 timeline and each has a measurable success criterion.</p>
+<p class="body-text">Purpose Learning replaces the traditional major with a student-defined mission — a real-world problem the student commits to advancing over their four years. A student might declare "to make clean water accessible across the Sahel" or "to design governance systems for autonomous AI." The mission, not a departmental curriculum, shapes the student's course selection, capstone project, and Center of Inquiry affiliation. Faculty advisors help students refine their missions and ensure intellectual rigour, but the agency lies with the student. This design reflects the conviction that learners who choose their own mission bring more intensity, creativity, and persistence than those who follow a prescribed path — and that the world's hardest problems will not be solved by people waiting to be assigned them.</p>
+<p class="body-text">The six-hostel-city rotation is the physical expression of the planetary mandate. Undergraduate students rotate through six cities over four years — Valletta, Berlin, Nairobi, Singapore, São Paulo, Vancouver — spending two semesters in each. The rotation is not tourism; each city hosts a residential college with full academic facilities, and the curriculum is synchronised across all nodes so a student can continue their course sequence seamlessly. The pedagogical logic is that a planetary education must be planetary in experience: a student studying global systems should have lived in both the Global North and the Global South, and a student studying urban futures should have walked the streets of cities that are being built and cities that are being adapted.</p>
+<p class="body-text">Competency-based grading assesses students against mastery standards rather than against each other. There is no curve, no class rank, and no competition for a fixed number of top grades. A student demonstrates mastery of a competency (e.g. "can construct a valid Bayesian inference from data") through a combination of coursework, projects, and oral examinations, and receives a designation of "mastery," "proficiency," or "in progress." This system, pioneered at institutions like Olin College and Alverno College, produces transcripts that are more informative to employers and graduate schools than a GPA, because they describe what a student can actually do rather than how they ranked relative to peers.</p>
+
+<div class="pullquote">
+  Students declare missions, not majors. The mission, not the department, shapes the education.
+  <div class="attribution">— Artemis Academic Charter</div>
+</div>
+
+<!-- Chapter 12: Research and Innovation Strategy -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Twelve</div>
+  <div class="chapter-title">Research and Innovation Strategy</div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="body-text">Artemis's research model is built around 19 Centers of Inquiry — interdisciplinary hubs that replace traditional academic departments. Each Center has a core faculty of 10–16 investigators with long-term renewable appointments (free from grant dependency), 35–55 junior fellows (students integrated into research from their first year), and a translational program that moves breakthroughs from lab to application within 12 months. The Centers are not siloed; they share infrastructure, co-advise students, and run joint projects across boundaries. By 2030, all 19 Centers are fully operational, collectively producing the research output that will be released under the 7-year open-knowledge policy.</p>
+<p class="body-text">The Forge incubator is the translational engine. It takes breakthroughs from the Centers — a new mycelium-based building material from Bio-Regenerative Arts, a climate-risk model from Urban Futures, an AI-assisted diagnostic from Health and Bioethics — and spins them into independent ventures within 12 months. The Forge provides seed capital, entrepreneurial mentorship, and streamlined IP licensing. In return, 5% of every venture's equity flows to the Artemis endowment, creating a revenue stream that grows as the portfolio matures. By 2028 the Forge has 20 portfolio ventures; by 2030, 40. The financial return is secondary to the impact return — the ventures exist to translate research into real-world benefit, not to generate profit — but the equity flow is a meaningful contribution to endowment growth.</p>
+<p class="body-text">The 7-year release policy is the most distinctive feature of Artemis's research strategy. Every research output — datasets, methods, software, papers, designs — is released into the public domain under a remix-permissive license seven years after production. This is not open access in the conventional sense (which often means pay-to-publish or embargoed access). It is a deliberate, time-bounded gift: the institution gets seven years to capitalise on its intellectual property (through ventures, partnerships, and prestige), and then the knowledge belongs to everyone. The first knowledge drop in 2029 covers everything produced since 2022. Subsequent drops occur annually, creating a growing public-domain library of planetary-university research.</p>
+
+<div class="stat-row">
+  <div class="stat"><div class="stat-val">19</div><div class="stat-label">Centers of Inquiry</div></div>
+  <div class="stat"><div class="stat-val">42</div><div class="stat-label">Active Projects</div></div>
+  <div class="stat"><div class="stat-val">12 mo</div><div class="stat-label">Lab-to-Venture</div></div>
+  <div class="stat"><div class="stat-val">7 yr</div><div class="stat-label">Release Policy</div></div>
+</div>
+
+<!-- Chapter 13: Governance and Leadership -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Thirteen</div>
+  <div class="chapter-title">Governance and Leadership</div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="body-text">Artemis is governed by a Board of Trustees with a majority of independent directors and a constitutional prohibition on any single individual controlling more than one-third of seats. This structure is designed to prevent the founder's-disease failure mode that has compromised many young universities: an institution built around a charismatic individual becomes brittle when that individual departs, changes priorities, or loses credibility. Artemis's governance is designed to outlast its founders by distributing authority across a board that is legally bound to act in the institution's interest, not any individual's.</p>
+<p class="body-text">The academic governance is equally distributed. The University Senate, composed of elected faculty representatives from every Center of Inquiry, sets academic policy: curriculum, degrees, admissions standards, faculty promotion. Students hold representation on the Senate (a constitutional guarantee, not a courtesy), ensuring that the people most affected by academic decisions have a voice in making them. The President, appointed by the Board on the Senate's recommendation, is the chief executive but not an autocrat — major decisions require Senate concurrence, and the President can be removed by a two-thirds Senate vote of no confidence.</p>
+<p class="body-text">The legal architecture across three jurisdictions (US 501(c)(3), UK CIO, Swiss Fondation) is not redundant complexity — it is risk distribution. If any single jurisdiction changes its charitable-status regime, imposes punitive taxation, or restricts the institution's operations, the other two entities continue unaffected. The endowment is held primarily in Switzerland (neutral, stable, no capital-gains tax on growth); operations are conducted through the US and UK entities (the two largest philanthropy markets); and each entity has its own independent board with cross-representation to ensure coordination without dependence. This architecture is more complex to set up but dramatically more resilient than a single-jurisdiction structure.</p>
+
+<div class="figure">
+  <img src="../public/resources/img/governance-building.png" alt="Neoclassical governance building">
+  <div class="caption">Governance architecture — three jurisdictions, three independent boards, one mission. The structure is designed to outlast any single founder, donor, or political regime.</div>
+</div>
+
+<!-- Chapter 14: Partnerships and Alliances -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Fourteen</div>
+  <div class="chapter-title">Partnerships and Alliances</div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="body-text">Artemis does not intend to build everything from scratch. The 2025–2030 plan relies on a network of partnerships that extend the institution's reach, reduce its capital requirements, and embed it in the existing global knowledge ecosystem. Three categories of partnership are central to the plan: academic consortia (for credit transfer, joint degrees, and shared faculty), industry partnerships (for translational research, internships, and venture pipelines), and government relations (for accreditation, regulatory approval, and land-use permissions).</p>
+<p class="body-text">The academic consortium strategy targets relationships with established universities that share Artemis's commitment to interdisciplinary, mission-driven education but lack the planetary scale. A partnership with the University of London consortium enables credit recognition and joint degree programs from Day 1, giving Artemis students access to the academic credibility of a centuries-old institution while the new university builds its own reputation. Similar discussions are underway with the African Research Universities Alliance (ARUA), the Association of Pacific Rim Universities (APRU), and the League of European Research Universities (LERU). These are not mergers or acquisitions — they are mutual-recognition agreements that let students move between institutions, faculty hold joint appointments, and research flow across boundaries.</p>
+<p class="body-text">Industry partnerships are concentrated in the translational pipeline. The Forge incubator works with venture capital firms, corporate innovation teams, and government innovation agencies to co-fund ventures spun from Artemis research. A founding partnership with a major technology firm provides both the seed capital for the Forge and a pipeline of real-world problems for the Centers of Inquiry to tackle. The partnership terms are structured to preserve academic independence: Artemis retains all intellectual property until the moment of venture spin-out, at which point the standard 5% equity flows to the endowment. No industry partner has a seat on the Board of Trustees, and no partnership agreement can restrict the publication of research results.</p>
+<p class="body-text">Government relations are the least visible but most consequential partnership category. Artemis cannot operate a college in a country without the host government's approval, cannot accept tax-deductible donations without charitable-status recognition, and cannot accredited degrees without the relevant education ministry's sign-off. The 25-jurisdiction incorporation strategy requires 25 parallel government-relations tracks, each with its own timeline, documentation requirements, and political dynamics. The plan allocates a dedicated government-relations team from 2025 onward, with regional directors responsible for maintaining the relationships that keep the institution legally operational in every country where it has a physical presence.</p>
+
+<!-- Chapter 15: The Founding Community -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Fifteen</div>
+  <div class="chapter-title">The Founding Community</div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="body-text">A university is not its buildings or its endowment — it is its people. The 2025–2030 plan is, at its core, a plan to recruit, retain, and empower three founding communities: the founding faculty (200 scholars who define the intellectual culture), the founding students (120 learners who trusted an unproven institution), and the founding donors (the individuals and institutions whose capital made everything possible). Each community has a distinct role in the plan, and each is treated not as a resource to be consumed but as a stakeholder to be honoured.</p>
+<p class="body-text">The founding faculty are recruited throughout 2025 with a single pitch: Artemis offers a long-term renewable appointment free from grant dependency, the freedom to pursue deep interdisciplinary inquiry without departmental silos, and the opportunity to build an institution from the ground up. The compensation package is competitive with leading research universities, but the real draw is the working condition — the absence of the relentless grant-writing cycle that consumes 30–40% of senior faculty time at legacy institutions. The founding 200 are drawn from a mix of mid-career scholars seeking a permanent home for risky research and senior scholars drawn by the chance to build something new. Their names are published in the founding prospectus; their appointments are the institution's first academic act.</p>
+<p class="body-text">The founding students — the 120 who enroll on Day 1, 2026 — are the boldest stakeholders in the plan. They are choosing an unaccredited, unproven institution over established alternatives, and their trust is the foundation on which the institution's reputation will be built. The plan treats them accordingly: founding students receive guaranteed need-blind aid, a founding-cohort designation on their transcript, and a permanent role in the institution's history (their names will be engraved at the Venice Central Node alongside the founding donors). The admissions process for the founding cohort prioritises intellectual curiosity, collaborative instinct, resilience, and mission clarity over conventional metrics — the same qualities the institution will evaluate in every subsequent cohort.</p>
+<p class="body-text">The founding donors are the capital providers whose $100M makes the plan possible, but they are also the institution's first external validators. A founding gift to an unproven university is an act of conviction, not philanthropy-as-usual, and the plan treats it as such. Every founding donor — from the $99 community tier to the $25M Central Node patron — is recorded in the founding Donor Roll, a permanent digital and print record housed at the Venice Central Node. Founding Circle donors ($10M+) receive a seat on the Board of Visitors, a permanent advisory body that meets annually with the President. The founding donors are not just funders; they are the institution's first community, and their engagement is cultivated with the same intentionality as the faculty and students.</p>
+
+<div class="pullquote">
+  The founding 120 students are the boldest stakeholders in this plan. Their trust is the foundation on which the institution's reputation will be built.
+  <div class="attribution">— Artemis Strategic Plan, 2025</div>
+</div>
+
+<!-- Chapter 16: Diversity, Equity, and Access -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Sixteen</div>
+  <div class="chapter-title">Diversity, Equity, and Access</div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="body-text">Artemis's commitment to diversity is not a policy attachment — it is the founding premise. The institution is need-blind by design: qualified students are accepted regardless of their ability to pay, and the financial model is built to sustain 13,300 scholarships per year by 2030. The $3,000 annual tuition is set at a level accessible to 90% of qualified students worldwide, based on global income data. The remaining 10% — those for whom even $3,000 is prohibitive — are covered by the scholarship fund. This is not means-tested discounting; it is a structural guarantee that no qualified learner is turned away for inability to pay.</p>
+<p class="body-text">Geographic diversity is engineered into the physical network. The 50 colleges are distributed across 35 countries on six continents, with deliberate representation from the Global South. Tier C colleges in cities like Kigali, Dhaka, Kampala, and Karachi ensure that the institution is not merely present in emerging economies but is accessible to students who live there. The founding cohort of 120 students came from 34 countries; the target for 2030 is that no single nationality exceeds 15% of the student body. This is an operational constraint, not an aspiration — admissions are managed to maintain the balance, and the scholarship fund is allocated to ensure that geographic diversity is not undermined by economic barriers.</p>
+<p class="body-text">The faculty diversity target is equally explicit. The founding 200 faculty are recruited with a commitment that at least 40% come from outside the traditional US/UK/EU academic pipeline. The Centers of Inquiry are distributed across nodes in the Global South (Nairobi, Cape Town, Hyderabad, Lagos, Medellín) as well as the Global North, ensuring that research agendas are shaped by scholars who live with the problems they study. The renewable-appointment model is itself a diversity intervention: it removes the grant-dependency barrier that disproportionately excludes scholars from regions without established funding infrastructure, and it makes academic careers viable for scholars whose work does not fit the cycle of grant-driven prestige.</p>
+
+<div class="stat-row">
+  <div class="stat"><div class="stat-val">90%</div><div class="stat-label">Tuition-Accessible</div></div>
+  <div class="stat"><div class="stat-val">13.3K</div><div class="stat-label">Scholarships/Yr</div></div>
+  <div class="stat"><div class="stat-val">34</div><div class="stat-label">Founding Countries</div></div>
+  <div class="stat"><div class="stat-val">40%</div><div class="stat-label">Non-Global-North Faculty</div></div>
+</div>
+
+<!-- Chapter 17: Sustainability and Climate -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Seventeen</div>
+  <div class="chapter-title">Sustainability and Climate Commitment</div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="body-text">Artemis's climate strategy is structural rather than offset-based. The institution does not purchase carbon credits to neutralise its emissions; it designs its operations to be carbon-negative from the start. Three design decisions make this possible: the repurposing of existing buildings (which preserves embodied carbon rather than releasing it through new construction), the distributed college model (which eliminates the central campus that requires large-scale heating, cooling, and transport infrastructure), and the Bio-Regenerative Arts research program (which develops self-healing and carbon-sequestering building materials deployed across the network).</p>
+<p class="body-text">The repurposing strategy is the single largest climate commitment in the plan. Constructing a new university campus for 60,000 students would release an estimated 200,000 tonnes of CO₂ in embodied carbon — the emissions from manufacturing concrete, steel, glass, and transporting materials. By acquiring and converting existing buildings, Artemis reduces this to approximately 40,000 tonnes (the emissions from renovation and fit-out), a 75% reduction. Each converted building is then retrofitted with high-efficiency systems, renewable energy where feasible, and bio-regenerative materials developed by the Center for Bio-Regenerative Arts, including BioCrete-2 — a self-healing concrete that sequesters carbon over its lifecycle.</p>
+<p class="body-text">The distributed model eliminates the central-campus transport problem. A traditional university with 60,000 students on one site generates enormous transport emissions — students and faculty flying in, commuting daily, and moving between facilities. Artemis's 50-college model places students and faculty in the cities where they live, eliminating most long-distance commuting. The six-hostel-city rotation, while it involves travel, is optimised for rail and public transport where possible, and the institution purchases verified renewable aviation fuel for unavoidable flights. The net effect is a transport footprint a fraction of a centralised university's.</p>
+<p class="body-text">The institution's climate commitment extends to its supply chain and procurement. Every contract above $100K requires a carbon disclosure from the supplier, and procurement decisions weight carbon footprint alongside cost and quality. The dining services across all 50 colleges source at least 60% of food from within 500km of each college, reducing transport emissions and supporting local agricultural economies. The construction materials used in building conversions prioritise bio-based and low-carbon alternatives where structurally feasible. These choices are not cost-optimal in the short term — sustainable procurement typically adds 8–12% to supply costs — but they are consistent with the institution's climate commitment and are funded by the operating surplus that the financial model generates. Artemis does not ask others to do what it is unwilling to do itself.</p>
+
+<!-- Chapter 18: The Technology Infrastructure -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Eighteen</div>
+  <div class="chapter-title">The Technology Infrastructure</div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="body-text">A planetary university with 50 colleges across 35 countries requires a technology infrastructure that legacy universities — built around a single campus — never needed. Artemis's technology stack has three layers: the Learning Management System (which delivers synchronised curriculum across all nodes), the Knowledge Core (which archives and publishes all research outputs under the 7-year release policy), and the Operations Platform (which manages enrollment, finance, facilities, and HR across the global network). All three are built in-house, open-source, and designed for replication as part of the Artemis Model blueprint.</p>
+<p class="body-text">The Learning Management System is the academic nervous system. It synchronises curriculum across all 50 colleges so that a student rotating from Berlin to Nairobi continues their course sequence without interruption. It supports the competency-based grading model (tracking mastery against defined standards rather than accumulating points), the Purpose Learning mission-tracking (each student's mission statement, progress, and capstone alignment are visible to advisors and the student), and the AI tutor integration (every course has an AI assistant trained on the Center of Inquiry's domain knowledge, available 24/7 for Socratic guidance). The LMS is built to work in low-bandwidth environments — a non-negotiable requirement given the Tier C colleges in regions with limited connectivity.</p>
+<p class="body-text">The Knowledge Core is the institutional memory. Every research output — datasets, methods, software, papers, designs — is deposited in the Knowledge Core with provenance tracking, version control, and a scheduled release date. The 7-year release policy is enforced automatically: seven years after deposit, the output is published to the public domain under a remix-permissive license, with no manual intervention required. The Knowledge Core also serves as the API-driven interface for the Commons Nodes — the archival layer of the Guild structure that enables global collaboration and remix of Artemis outputs by subsequent cohorts and external researchers.</p>
+<p class="body-text">The Operations Platform manages the institutional plumbing: enrollment and financial aid across 35 countries, faculty payroll in multiple currencies, facilities management for 50 buildings, and compliance reporting for 25 legal jurisdictions. It is the least glamorous but most essential system — without it, the institution cannot function at planetary scale. The platform is built with a single source of truth for every student, faculty member, donor, and facility, enabling the annual impact report to be generated from live data rather than retrospective reconciliation.</p>
+
+<!-- Chapter 19: The Forge and Innovation Ventures -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Nineteen</div>
+  <div class="chapter-title">The Forge and Innovation Ventures</div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="body-text">The Forge is Artemis's translational engine — the institutional mechanism that converts Center of Inquiry research into real-world ventures within twelve months. It is not a traditional university tech-transfer office, which typically takes years, charges licensing fees, and retains restrictive IP. The Forge operates on a different premise: that the fastest path from breakthrough to impact is a venture, that the venture should be independent (not a university subsidiary), and that the university's return should come through equity rather than licensing. This model is designed to produce more ventures, faster, with the university participating in the upside without controlling the execution.</p>
+<p class="body-text">The Forge pipeline has three stages. In the first stage — Discovery — Center of Inquiry investigators flag research outputs with translational potential. A Forge review team (comprising entrepreneurs-in-residence, venture investors, and domain experts) evaluates each flag for venture viability: is there a market, is the IP protectable, is the timing right. Roughly one in ten flagged outputs enters the second stage. In the second stage — Formation — the Forge provides $50K–$250K in seed capital, pairs the founding team with an entrepreneurial mentor, and handles the legal incorporation. The IP is licensed from Artemis to the venture on a royalty-free basis (the university takes equity instead). In the third stage — Launch — the venture operates independently, with the Forge providing follow-on capital and board representation for the first 24 months.</p>
+<p class="body-text">The equity model is the financial engine of the Forge. Artemis takes 5% of every venture's equity at formation, in perpetuity. This equity is held by the endowment — it is not sold, diluted, or monetised in the early years. As ventures grow, raise subsequent rounds, and (in some cases) exit, the endowment's equity position appreciates. By 2030, the Forge portfolio of 40 ventures is generating both direct return (dividends and exits) and indirect return (the appreciated equity position on the endowment balance sheet). The $18M annual innovation income projected in the 2030 financial model is a conservative estimate of this return; the upside if even one venture achieves a unicorn exit is multiples of the entire founding campaign.</p>
+<p class="body-text">The inaugural portfolio illustrates the model. ClimatIQ, spun from the Center for Urban Futures, provides climate-risk analytics to cities and insurers. NeuroBridge, spun from the Center for Synthetic Intelligence, develops brain-computer interfaces for accessibility. BioWeave, spun from the Center for Bio-Regenerative Arts, manufactures mycelium-based textiles. Each addresses a real-world problem, each was spinning within twelve months of the underlying research, and each carries 5% equity for the Artemis endowment. The Forge is not a charity — it is a disciplined investment engine that happens to invest in ventures born from university research, with the returns flowing to scholarships and endowment growth rather than to private shareholders.</p>
+
+<!-- Chapter 20: Accreditation and Quality Assurance -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Twenty</div>
+  <div class="chapter-title">Accreditation and Quality Assurance</div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="body-text">A university's degrees are only as valuable as the accreditation behind them. Artemis's accreditation strategy is jurisdiction-specific: in each of the 35 countries where it operates, it pursues the relevant national or regional accreditation, recognising that a degree recognised in Germany may not be recognised in India without a separate process. The plan targets full accreditation across all operating jurisdictions by 2030, with the first accreditations secured in 2027 (the earliest feasible timeline given that most accrediting bodies require several years of operating history before granting full recognition).</p>
+<p class="body-text">The US accreditation track runs through a regional accreditor (e.g. WASC Senior College and University Commission), which requires institutional self-study, peer review, and site visits. The process typically takes 5–7 years from initial application to full accreditation, with candidacy status achievable earlier. Artemis begins the US process in 2026 (the first year of operation) and targets full accreditation by 2030. The UK track runs through the Office for Students (OfS) and the Quality Assurance Agency (QAA), with a similar timeline. The Swiss track, for the Fondation entity, runs through the Swiss Center of Accreditation and Quality Assurance in Higher Education (OAQ).</p>
+<p class="body-text">Quality assurance is not delegated entirely to external accreditors. Artemis maintains an internal Quality Office that conducts annual program reviews, student outcome assessments, and faculty teaching evaluations. The internal framework is built around the competency-based grading model: every degree program defines a set of competencies that graduates must demonstrate, and the Quality Office tracks the percentage of graduates who achieve mastery in each. If a program's mastery rate falls below 80% in any competency for two consecutive years, the program undergoes a formal review and redesign. This is a stricter standard than most legacy universities apply, and it is public — the mastery rates are published in the annual impact report.</p>
+
+<!-- Chapter 21: Measuring Success -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Twenty-One</div>
+  <div class="chapter-title">Measuring Success</div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="body-text">A strategic plan is only as credible as its measurement framework. Artemis commits to publishing an annual impact report that measures performance against the targets in this plan, audited by a Big Four firm, with no selective reporting. The report will mark each target as met, partially met, or missed, with a candid explanation of any variance. The following key performance indicators define success across the four dimensions of the plan.</p>
+
+<table class="tbl">
+  <thead><tr><th>Dimension</th><th>KPI</th><th>2025 Baseline</th><th>2030 Target</th></tr></thead>
+  <tbody>
+    <tr><td>Academic</td><td>Students enrolled</td><td>120 (admitted)</td><td class="num">60,000</td></tr>
+    <tr><td>Academic</td><td>Faculty (FTE)</td><td>200</td><td class="num">2,000</td></tr>
+    <tr><td>Academic</td><td>Degree programs</td><td>9</td><td class="num">21</td></tr>
+    <tr><td>Academic</td><td>Graduate placement</td><td>—</td><td>90% within 6 mo</td></tr>
+    <tr><td>Financial</td><td>Annual revenue</td><td>$0</td><td class="num">$300M</td></tr>
+    <tr><td>Financial</td><td>Annual surplus</td><td>($100M)</td><td class="num">$262M</td></tr>
+    <tr><td>Financial</td><td>Endowment</td><td>$3M</td><td class="num">$263M</td></tr>
+    <tr><td>Infrastructure</td><td>Colleges operational</td><td>0 (12 acquired)</td><td class="num">50</td></tr>
+    <tr><td>Infrastructure</td><td>Countries</td><td>0</td><td class="num">35</td></tr>
+    <tr><td>Intellectual</td><td>Centers of Inquiry</td><td>0</td><td class="num">19</td></tr>
+    <tr><td>Intellectual</td><td>Forge ventures</td><td>0</td><td class="num">40</td></tr>
+    <tr><td>Intellectual</td><td>Open-knowledge releases</td><td>0</td><td>Annual drops</td></tr>
+    <tr><td>Impact</td><td>Scholarships funded/yr</td><td>120</td><td class="num">13,300</td></tr>
+  </tbody>
+</table>
+
+<p class="body-text">These KPIs are not exhaustive — the full annual report will include dozens of additional metrics on student diversity, faculty publication output, venture performance, and operational efficiency. But the thirteen indicators above are the headline numbers by which the institution will be judged. If any is missed by more than 20% in any year, the annual report must include a remediation plan with specific milestones for recovery. This is the meaning of accountability: not the absence of failure, but the public, structured response to it.</p>
+
+<div class="callout">
+  <div class="callout-label">The Success Standard</div>
+  <p class="body-text" style="margin:0;">The plan succeeds if, by 31 December 2030, the University of Artemis is a fully accredited, self-sustaining institution serving 60,000 students across 50 colleges, with a $263M endowment, publishing its research to the public domain, and having released the Artemis Model as an open blueprint. It fails if any of these conditions is unmet and the institution remains dependent on philanthropic capital to cover operating costs. There is no partial success — the model either achieves self-sufficiency or it does not.</p>
+</div>
+
+<!-- Chapter 22: Beyond 2030 -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Twenty-Two</div>
+  <div class="chapter-title">Beyond 2030</div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="body-text">The strategic plan ends in 2030 because 2030 is the year the institution becomes self-sustaining. But the mission does not end. The second decade of Artemis will be defined by three priorities: deepening the research impact of the 19 Centers of Inquiry, expanding the open-knowledge release program to cover every output produced in the first decade, and supporting the replication of the Artemis Model in regions and disciplines the original network does not serve.</p>
+<p class="body-text">The endowment, building at $60M per year from surplus, will cross $1 billion by 2040 — a figure that transforms the institution from well-endowed to globally consequential. At that scale, the endowment's annual payout ($45M) could fund 15,000 scholarships, 200 distinguished professorships, or 20 new Centers of Inquiry, indefinitely, from investment income alone. The question for the second decade is not whether Artemis can survive, but how it chooses to deploy the resources its survival has generated.</p>
+<p class="body-text">The publication of the Artemis Model in 2030 is the seed of this second decade. If even one other founding group — in a region Artemis does not cover, in a language Artemis does not teach, in a discipline Artemis does not prioritise — uses the blueprint to build a sister institution, then the strategic plan's true measure of success is not the 50 colleges or the 60,000 students or the $263M endowment. It is the existence of a second Artemis, and a third, and a tenth, until the model is no longer Artemis's but humanity's.</p>
+
+<div class="figure">
+  <img src="../public/resources/img/world-night.png" alt="Earth at night, global network of lights">
+  <div class="caption">The goal is not one planetary university. It is a world in which a planetary, need-blind, self-sustaining university is an option available to any community that wants one.</div>
+</div>
+
+<!-- Chapter 23: The Artemis Oath -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Twenty-Three</div>
+  <div class="chapter-title">The Artemis Oath</div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="body-text">Every member of the Artemis community — student, faculty, trustee, staff — takes the Artemis Oath upon entry to the institution. The Oath is not a ceremony or a formality; it is a public, written commitment that defines the ethical standards to which the community holds itself. It is inspired by the Hippocratic Oath of medicine and the engineer's oath, but it is broader: it covers not only the use of knowledge but its pursuit, its dissemination, and its institutional context. The Oath cannot be enforced by legal penalty, but it can be enforced by community — a member who violates it faces peer review and, in serious cases, removal from the institution.</p>
+<p class="body-text">The Oath has five commitments. First, to pursue truth honestly — to follow evidence wherever it leads, to report findings accurately, and to never fabricate or misrepresent data. Second, to share knowledge openly — to deposit all research outputs in the Knowledge Core for scheduled public release, and to never suppress publication for personal or commercial advantage beyond the seven-year window. Third, to respect the dignity of every person — to treat students, colleagues, and the public with fairness, to refuse discrimination, and to protect the vulnerable from harm that knowledge might enable. Fourth, to serve the public good — to direct inquiry toward problems that matter, to translate discovery into benefit, and to resist the capture of knowledge by interests that would use it to diminish rather than elevate. Fifth, to sustain the institution — to act in ways that preserve Artemis for future generations, to avoid decisions that trade long-term integrity for short-term gain, and to hold fellow members to the same standard.</p>
+<p class="body-text">The Oath matters because institutions are defined not by what they claim but by what their members do when no one is watching. A university can have the best governance structure, the most conservative financial model, and the most ambitious strategic plan, and still fail if its community does not internalise a commitment to integrity. The Oath is the mechanism by which Artemis makes that internalisation explicit — not as a guarantee of virtue, but as a shared standard against which behaviour can be measured and, when necessary, corrected. It is the moral architecture that complements the legal, financial, and governance architecture described throughout this plan.</p>
+
+<div class="callout">
+  <div class="callout-label">The Artemis Oath — Summary</div>
+  <p class="body-text" style="margin:0 0 6px 0;"><strong>1. Pursue truth honestly.</strong> Follow evidence. Report accurately. Never fabricate.</p>
+  <p class="body-text" style="margin:0 0 6px 0;"><strong>2. Share knowledge openly.</strong> Deposit in the Knowledge Core. Never suppress beyond seven years.</p>
+  <p class="body-text" style="margin:0 0 6px 0;"><strong>3. Respect every person's dignity.</strong> Refuse discrimination. Protect the vulnerable.</p>
+  <p class="body-text" style="margin:0 0 6px 0;"><strong>4. Serve the public good.</strong> Direct inquiry toward what matters. Resist capture.</p>
+  <p class="body-text" style="margin:0;"><strong>5. Sustain the institution.</strong> Preserve Artemis for the future. Hold others to the standard.</p>
+</div>
+
+<p class="body-text">The Oath is taken at matriculation (for students), at appointment (for faculty and staff), and at investiture (for trustees). It is recorded in the institutional register and renewed annually. The renewal is not a rubber stamp — it is a moment for each member to reflect on whether the past year's work has lived up to the commitment, and to recalibrate for the year ahead. The Oath is also public: the text is published, the names of those who have taken it are recorded, and the community holds itself accountable to the standard it represents. This is not naivety about human nature; it is a recognition that the best defence against institutional decay is a culture that expects integrity and names its absence.</p>
+
+<div class="figure">
+  <img src="../public/resources/img/graduation.png" alt="Graduation ceremony">
+  <div class="caption">Matriculation — where the Oath is first taken. Every student, faculty member, and trustee makes the same public commitment, renewed annually throughout their time at Artemis.</div>
+</div>
+
+<!-- Chapter 24: Conclusion — The Promise -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Twenty-Four</div>
+  <div class="chapter-title">Conclusion — The Promise</div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="lead">This plan is a promise made to three audiences: the donors whose capital funds it, the faculty and students whose lives are shaped by it, and the public whose trust gives it the right to exist. The promise is the same to each: that the University of Artemis will become a permanent, self-sustaining, planetary institution within six years, and that it will publish the blueprint so others can build more.</p>
+<p class="body-text">To the donors, the promise is that the $100M founding campaign is the last capital raise. From 2026 onward, every dollar of operating cost is covered by revenue, and every dollar of surplus builds the endowment, funds scholarships, and capitalises innovation. There will be no annual fund, no capital campaign sequel, no perpetual dependence on philanthropic goodwill. The institution is designed to outlive its donors' lifetimes and their foundations' payout cycles, sustained by its own operating logic rather than by ongoing generosity. This is the highest respect a donor can be paid: the assurance that their gift, once given, is sufficient.</p>
+<p class="body-text">To the faculty and students, the promise is that Artemis will remain what it was founded to be: a place where deep inquiry is possible without grant dependency, where students declare missions rather than majors, where the curriculum is planetary and the grading is competency-based, and where the people who build the institution are treated as co-founders rather than employees. The governance structure — with its independent board, elected senate, and student representation — is designed to protect this promise against the institutional drift that has compromised so many young universities. The founding culture is not a marketing claim; it is encoded in the constitution, and changing it requires a supermajority that no single faction can command.</p>
+<p class="body-text">To the public, the promise is transparency. Every dollar received and disbursed is published. Every target in this plan is reported against annually. Every research output is released to the public domain within seven years. The Artemis Model is published as an open blueprint in 2030. The institution exists not to accumulate prestige or hoard knowledge but to demonstrate that a different kind of university is possible — and to make it possible for others to build one too. If the plan succeeds, the world gains not just one university but a replicable model for a planetary, need-blind, self-sustaining institution that any community can adopt.</p>
+
+<div class="pullquote">
+  The highest respect a donor can be paid is the assurance that their gift, once given, is sufficient.
+  <div class="attribution">— Artemis Strategic Plan, 2025</div>
+</div>
+
+<p class="body-text">The plan begins on 1 January 2025 and ends on 31 December 2030. By that date, the University of Artemis will either be a permanent institution or a documented failure. There is no middle ground, and there is no extension. The clarity of that deadline is the plan's greatest asset: it forces decisions, prevents drift, and ensures that every person involved — trustee, faculty, student, donor — knows exactly what they are building toward and by when. The six years will pass regardless. The only question is whether, at the end of them, the world has a new kind of university or merely another ambitious idea that did not become real. This plan exists to ensure the former.</p>
+
+<div class="figure">
+  <img src="../public/resources/img/venice-node.png" alt="Venice Central Node at dawn">
+  <div class="caption">Venice Central Node — the founding seat. Where the founding document is archived, where the founding donors are engraved, where the plan begins and is remembered.</div>
+</div>
+
+</div>
+
+<!-- ═══ ENDING ═══ -->
+<div class="ending">
+  <div class="ending-tag">Strategic Plan 2025–2030</div>
+  <div class="ending-big">From foundation to permanence in six years.</div>
+  <div class="ending-sub">This plan is a public commitment. Every target will be reported against annually, audited independently, and published without exception.</div>
+  <div class="ending-contact">University of Artemis &nbsp;·&nbsp; advancement@artemisui.org</div>
+</div>
+
+</body>
+</html>

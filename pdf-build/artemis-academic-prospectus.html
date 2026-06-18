@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Academic Prospectus — University of Artemis</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+@page { size: 720px 1020px; margin: 0; }
+@page {
+  @bottom-right {
+    content: counter(page);
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    color: #6b6b6b;
+    padding-right: 28px;
+    padding-bottom: 20px;
+  }
+}
+@page :first {
+  @bottom-right { content: none; }
+}
+:root {
+  --crimson: #8A0000;
+  --crimson-deep: #6B0000;
+  --crimson-soft: #B33A3A;
+  --ink: #141414;
+  --ink-soft: #3a3a3a;
+  --muted: #6b6b6b;
+  --line: #e5e5e5;
+  --bg: #FAFAF8;
+  --bg-dark: #0c0a09;
+  --bg-cream: #F5F2EC;
+  --gold: #b08d57;
+}
+html, body {
+  margin: 0; padding: 0; width: 720px;
+  background: var(--bg-dark); color: var(--ink);
+  font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
+  font-size: 13px; line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+@media screen {
+  html { display: flex; justify-content: center; background: #222; height: auto; }
+  body { margin: 20px auto; box-shadow: 0 0 40px rgba(0,0,0,0.4); }
+}
+.fcpage {
+  width: 720px; height: 1020px; box-sizing: border-box;
+  break-after: page; overflow: hidden; position: relative;
+  background: var(--bg-dark); color: #fff;
+  display: flex; flex-direction: column; justify-content: center; padding: 64px;
+}
+.fcpage .fc-img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; opacity: 0.35; filter: grayscale(0.3);
+}
+.fcpage .fc-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(138,0,0,0.55) 0%, rgba(12,10,9,0.92) 60%, rgba(12,10,9,0.98) 100%);
+}
+.fcpage .fc-content { position: relative; z-index: 2; }
+.fcpage .fc-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.32em;
+  text-transform: uppercase; color: var(--crimson-soft);
+  margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
+}
+.fcpage .fc-tag::before { content: ""; width: 28px; height: 1px; background: var(--crimson); }
+.fcpage h1 {
+  font-family: 'Noto Serif SC', Georgia, serif;
+  font-size: 52px; font-weight: 900; line-height: 1.02;
+  letter-spacing: -0.02em; margin: 0 0 24px; text-transform: none;
+}
+.fcpage .fc-sub {
+  font-size: 15px; color: rgba(255,255,255,0.65); font-weight: 300;
+  line-height: 1.6; max-width: 480px; margin-bottom: 0;
+}
+.fcpage .fc-footer {
+  position: absolute; bottom: 48px; left: 64px; right: 64px;
+  display: flex; justify-content: space-between; align-items: flex-end;
+  z-index: 2; font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: rgba(255,255,255,0.4);
+}
+.fcpage .fc-footer .crest { font-family: 'Noto Serif SC', serif; font-size: 14px; color: rgba(255,255,255,0.7); letter-spacing: 0.15em; }
+.main-content { background: var(--bg); padding: 64px 64px 48px 64px; }
+.chapter-header { break-after: avoid; break-inside: avoid; margin-top: 28px; margin-bottom: 20px; }
+.chapter-header:first-child { margin-top: 0; }
+.chapter-tag {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--crimson);
+  margin-bottom: 10px; display: flex; align-items: center; gap: 10px;
+}
+.chapter-tag::before { content: ""; width: 22px; height: 1px; background: var(--crimson); }
+.chapter-title {
+  font-family: 'Noto Serif SC', Georgia, serif;
+  font-size: 30px; font-weight: 800; line-height: 1.12;
+  letter-spacing: -0.015em; color: var(--ink); margin: 0 0 12px;
+}
+.body-text { font-size: 13px; line-height: 1.72; color: var(--ink-soft); margin: 0 0 12px; }
+.body-text strong { color: var(--ink); font-weight: 600; }
+.lead { font-size: 15px; line-height: 1.65; color: var(--ink); font-weight: 400; margin-bottom: 18px; }
+.pullquote {
+  break-inside: avoid; border-left: 3px solid var(--crimson);
+  padding: 16px 24px; margin: 20px 0;
+  font-family: 'Noto Serif SC', Georgia, serif;
+  font-size: 16px; font-style: italic; line-height: 1.5;
+  color: var(--ink); background: var(--bg-cream);
+}
+.pullquote .attribution { font-size: 11px; font-style: normal; color: var(--muted); margin-top: 10px; letter-spacing: 0.05em; }
+.card {
+  break-inside: avoid; background: #fff;
+  border: 1px solid var(--line); border-radius: 8px;
+  padding: 20px 22px; margin-bottom: 14px;
+}
+.card-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.card-sub { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
+.card-body { font-size: 12px; line-height: 1.6; color: var(--ink-soft); }
+.stat-row { display: flex; gap: 14px; margin: 18px 0; break-inside: avoid; }
+.stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
+.stat .stat-val { font-family: 'Noto Serif SC', serif; font-size: 26px; font-weight: 900; color: var(--crimson); line-height: 1; }
+.stat .stat-label { font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+.progress { break-inside: avoid; margin: 14px 0; }
+.progress-track { height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--crimson); border-radius: 3px; }
+.progress-label { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 6px; color: var(--ink-soft); }
+.tbl { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 11px; break-inside: avoid; }
+.tbl th { text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--ink); padding: 8px 10px; }
+.tbl td { padding: 9px 10px; border-bottom: 1px solid var(--line); color: var(--ink-soft); vertical-align: top; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl .num { font-family: 'Noto Serif SC', serif; font-weight: 700; color: var(--crimson); text-align: right; white-space: nowrap; }
+.tbl .total td { border-top: 2px solid var(--ink); padding-top: 11px; font-weight: 700; color: var(--ink); }
+.figure { break-inside: avoid; margin: 18px 0; }
+.figure img { width: 100%; border-radius: 6px; display: block; }
+.figure .caption { font-size: 10px; color: var(--muted); margin-top: 8px; letter-spacing: 0.03em; line-height: 1.5; }
+.callout {
+  break-inside: avoid; background: var(--bg-cream);
+  border-radius: 8px; padding: 20px 24px; margin: 16px 0;
+}
+.callout .callout-label { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
+.bullets { margin: 10px 0 14px; padding: 0; list-style: none; }
+.bullets li { font-size: 12px; line-height: 1.65; color: var(--ink-soft); padding-left: 18px; position: relative; margin-bottom: 6px; }
+.bullets li::before { content: ""; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; background: var(--crimson); border-radius: 50%; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.ending {
+  width: 720px; height: 1020px; box-sizing: border-box;
+  break-before: page; overflow: hidden;
+  background: var(--bg-dark); color: #fff;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  padding: 64px; text-align: center;
+}
+.ending .ending-tag { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--crimson-soft); margin-bottom: 28px; }
+.ending .ending-big { font-family: 'Noto Serif SC', Georgia, serif; font-size: 38px; font-weight: 800; line-height: 1.15; letter-spacing: -0.015em; max-width: 540px; margin-bottom: 32px; }
+.ending .ending-sub { font-size: 14px; color: rgba(255,255,255,0.5); max-width: 440px; line-height: 1.65; font-weight: 300; }
+.ending .ending-contact { margin-top: 40px; font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; }
+.ending .ending-contact a { color: var(--crimson-soft); text-decoration: none; }
+.dark-section {
+  background: var(--bg-dark); color: #fff;
+  margin: 0 -64px; padding: 48px 64px; break-inside: avoid;
+}
+.dark-section .ds-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--crimson-soft); margin-bottom: 10px; }
+.dark-section .ds-title { font-family: 'Noto Serif SC', serif; font-size: 24px; font-weight: 800; margin-bottom: 12px; }
+.dark-section .ds-body { font-size: 12px; line-height: 1.7; color: rgba(255,255,255,0.7); }
+.dark-section .ds-stat-row { display: flex; gap: 18px; margin-top: 20px; }
+.dark-section .ds-stat-val { font-family: 'Noto Serif SC', serif; font-size: 30px; font-weight: 900; color: var(--crimson-soft); line-height: 1; }
+.dark-section .ds-stat-label { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 6px; }
+/* pillar card with strong accent */
+.pillar-card {
+  break-inside: avoid; background: #fff;
+  border: 1px solid var(--line); border-radius: 8px;
+  padding: 22px 24px; margin-bottom: 14px;
+  border-left: 4px solid var(--crimson);
+}
+.pillar-card .pc-num { font-family: 'Noto Serif SC', serif; font-size: 14px; font-weight: 800; color: var(--crimson); letter-spacing: 0.1em; margin-bottom: 4px; }
+.pillar-card .pc-title { font-family: 'Noto Serif SC', serif; font-size: 19px; font-weight: 800; color: var(--ink); margin-bottom: 10px; }
+.pillar-card .pc-body { font-size: 12.5px; line-height: 1.65; color: var(--ink-soft); }
+/* program card */
+.prog-card {
+  break-inside: avoid; background: #fff;
+  border: 1px solid var(--line); border-radius: 8px;
+  padding: 18px 20px; margin-bottom: 12px;
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.prog-card .pc-tag {
+  font-family: 'Noto Serif SC', serif; font-weight: 900;
+  font-size: 14px; color: var(--crimson);
+  background: var(--bg-cream); border-radius: 4px;
+  padding: 6px 10px; min-width: 64px; text-align: center;
+  letter-spacing: 0.04em;
+}
+.prog-card .pc-main { flex: 1; }
+.prog-card .pc-name { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+.prog-card .pc-meta { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
+.prog-card .pc-desc { font-size: 12px; line-height: 1.55; color: var(--ink-soft); }
+/* rotation city card */
+.city-card {
+  break-inside: avoid; background: #fff;
+  border: 1px solid var(--line); border-radius: 8px;
+  padding: 16px 18px; margin-bottom: 10px;
+  border-top: 3px solid var(--crimson);
+}
+.city-card .cc-name { font-family: 'Noto Serif SC', serif; font-size: 16px; font-weight: 800; color: var(--ink); margin-bottom: 4px; }
+.city-card .cc-role { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--crimson); margin-bottom: 6px; }
+.city-card .cc-body { font-size: 12px; line-height: 1.6; color: var(--ink-soft); }
+/* day schedule */
+.schedule {
+  break-inside: avoid; background: #fff;
+  border: 1px solid var(--line); border-radius: 8px;
+  padding: 16px 20px; margin: 14px 0;
+}
+.schedule .sch-row { display: flex; gap: 14px; padding: 6px 0; border-bottom: 1px dashed var(--line); }
+.schedule .sch-row:last-child { border-bottom: none; }
+.schedule .sch-time { font-family: 'Noto Serif SC', serif; font-weight: 700; color: var(--crimson); width: 80px; font-size: 12px; }
+.schedule .sch-act { font-size: 12px; color: var(--ink-soft); flex: 1; line-height: 1.55; }
+.schedule .sch-act strong { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<!-- ════════════════ COVER ════════════════ -->
+<div class="fcpage">
+  <img class="fc-img" src="../public/resources/img/abstract-crimson.png" alt="">
+  <div class="fc-overlay"></div>
+  <div class="fc-content">
+    <div class="fc-tag">The Founding Campaign &middot; 2025</div>
+    <h1>Academic<br>Prospectus</h1>
+    <div class="fc-sub">
+      Nine programs of study, four curriculum pillars, the tutorial
+      system, competency-based grading, Purpose Learning, and the
+      six-hostel-city rotation &mdash; the complete architecture of an
+      Artemis education.
+    </div>
+  </div>
+  <div class="fc-footer">
+    <div class="crest">University of Artemis</div>
+    <div>Edition I &middot; Founding Document</div>
+  </div>
+</div>
+
+<!-- ════════════════ BODY ════════════════ -->
+<div class="main-content">
+
+<!-- ─── EXECUTIVE SUMMARY ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Executive Summary</div>
+  <div class="chapter-title">A planetary university, in one paragraph.</div>
+</div>
+
+<p class="lead">The University of Artemis is engineered as a single, planetary institution: 60,000 students across 50 colleges on six continents, taught by 2,000 faculty through a curriculum that treats the world as one classroom. Every student studies under the same four curriculum pillars, completes the same Purpose Learning mission, rotates through the same six hostel cities, and graduates with the same Artemis degree. There are no majors in the conventional sense &mdash; only missions, only evidence of competence, only the demonstration that a graduate can reason, build, and contribute across the integrated systems that define the twenty-first century.</p>
+
+<p class="body-text">This prospectus is the complete academic blueprint. It documents the four pillars &mdash; Epistemology, Computational Thinking, Global Systems, Creative Expression &mdash; that structure every course, every tutorial, and every assessment. It catalogs the nine programs of study that frame the formal credential. It describes the Purpose Learning system, in which students declare a mission rather than a major and pursue that mission across the entire curriculum. It explains the tutorial system, modeled on the Oxford tradition and rebuilt for planetary scale. It describes the competency-based grading regime that replaces the GPA with a portfolio of evidence. And it walks through the six-hostel-city rotation &mdash; Venice, San Francisco, Singapore, S&atilde;o Paulo, Cape Town, and Tokyo &mdash; that turns the world into the campus.</p>
+
+<div class="stat-row">
+  <div class="stat">
+    <div class="stat-val">9</div>
+    <div class="stat-label">Programs of Study</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">4</div>
+    <div class="stat-label">Curriculum Pillars</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">6</div>
+    <div class="stat-label">Hostel Cities</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">1:12</div>
+    <div class="stat-label">Tutorial Ratio</div>
+  </div>
+</div>
+
+<p class="body-text">The academic model is not an experiment. It is the deliberate integration of three traditions &mdash; the Oxbridge tutorial, the liberal-arts pillar, and the polytechnic studio &mdash; rebuilt around a single conviction: that a graduate of the next century must reason about how they know what they know, must decompose problems algorithmically, must understand the planetary systems that shape every decision, and must be able to build, compose, and perform what they imagine. The Artemis degree certifies those four competencies, not a departmental label. The label is a story we have agreed to retire.</p>
+
+<div class="callout">
+  <div class="callout-label">The three commitments</div>
+  <p class="body-text" style="margin:0;"><strong>Planetary.</strong> The same curriculum delivered in Venice, San Francisco, and Singapore, by faculty who rotate with the students. <strong>Need-blind.</strong> Tuition of $3,000 per year &mdash; accessible to 90% of qualified students worldwide without aid, with scholarships covering the remaining 10% from operating surplus. <strong>Self-sustaining.</strong> After a single $100M founding campaign, the institution operates on a $300M annual P&amp;L and funds its own expansion forever after.</p>
+</div>
+
+<!-- ─── I. THE FOUR CURRICULUM PILLARS ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter I</div>
+  <div class="chapter-title">The four pillars.</div>
+</div>
+
+<p class="lead">Every Artemis course &mdash; whether in computer science, philosophy, architecture, or biotechnology &mdash; is structured around the same four pillars. The pillars are not electives; they are the substrate of every discipline, taught in concert, and assessed continuously. A student cannot graduate without demonstrating competence in all four.</p>
+
+<p class="body-text">The four pillars were chosen because together they describe the complete cognitive toolkit required of a twenty-first-century graduate. Epistemology ensures that students know the limits of their own knowledge. Computational thinking ensures that they can decompose any problem &mdash; literary, scientific, civic &mdash; into tractable parts. Global systems ensures that they understand the interlocking planetary mechanisms that shape every decision. Creative expression ensures that they can build, write, and perform what they imagine, not merely analyze what others have made. These are not general-education requirements tacked onto a major; they are the major, and the conventional department is the elective.</p>
+
+<div class="pillar-card">
+  <div class="pc-num">Pillar I</div>
+  <div class="pc-title">Epistemology</div>
+  <div class="pc-body">How we know what we know. The foundations of inquiry, evidence, reasoning, and the limits of certainty &mdash; taught not as a philosophy elective but as the substrate of every discipline. At Artemis, epistemology is what opens every program: the first-year cohort, regardless of program, takes the same foundational course on the structure of evidence, the sociology of expertise, and the recurring failure modes of human knowledge. The course asks when a discipline earns its claims, when it merely asserts them, and what to do when the two are indistinguishable. Subsequent courses in every department &mdash; from molecular biology to architectural history &mdash; return explicitly to the epistemic question: what evidence would falsify this? What evidence would strengthen it? What evidence would dissolve the question entirely? Epistemology at Artemis is not a subject; it is a discipline imposed on every other subject.</div>
+</div>
+
+<div class="pillar-card">
+  <div class="pc-num">Pillar II</div>
+  <div class="pc-title">Computational Thinking</div>
+  <div class="pc-body">Not just coding, but the algorithmic decomposition of problems across every field &mdash; from literary analysis to epidemiology to constitutional design. The pillar is delivered through a combination of mandatory programming literacy (every student learns enough Python and SQL to query their own data), formal algorithmic reasoning (complexity, abstraction, recursion), and applied computational methods in the student&rsquo;s own discipline. A philosophy student finishes Artemis able to model a decision-theoretic problem computationally; an architecture student finishes able to script a parametric design and stress-test it against climate data. The pillar rejects the false division between &ldquo;technical&rdquo; and &ldquo;humanistic&rdquo; fields: in a century defined by automation, every graduate must reason about the algorithmic substrate of their work.</div>
+</div>
+
+<div class="pillar-card">
+  <div class="pc-num">Pillar III</div>
+  <div class="pc-title">Global Systems</div>
+  <div class="pc-body">Climate, finance, migration, supply chains, governance. The interlocking systems that define the 21st century, studied as integrated wholes rather than siloed specialties. Every Artemis student takes a three-semester sequence on global systems &mdash; one on the physical systems (climate, biodiversity, biogeochemistry), one on the human systems (finance, migration, trade, governance), and one on the interaction between them. The sequence is co-taught by faculty from across the institution, deliberately breaking the departmental silo. The premise is that no decision of consequence in this century &mdash; whether founding a company, drafting a treaty, designing a building, or prescribing a therapy &mdash; can be made without understanding the systems it touches. Global systems is the pillar that makes the other three honest.</div>
+</div>
+
+<div class="pillar-card">
+  <div class="pc-num">Pillar IV</div>
+  <div class="pc-title">Creative Expression</div>
+  <div class="pc-body">The studio, the workshop, the stage. The conviction that making is knowing, and that every graduate must be able to build, write, compose, and perform &mdash; not merely analyze. The pillar is delivered through mandatory studio practice every semester: a writing studio, a making studio (wood, electronics, code, fabric), and a performance studio (presentation, music, theatre). The studio requirement is non-negotiable because analytical fluency without the ability to render is, in the Artemis view, an incomplete education. A computer scientist who cannot write a coherent technical brief, an architect who cannot compose a compelling argument for their design, a biologist who cannot build the instrument their experiment requires &mdash; these are graduates of a partial century. The studio is the pillar that completes them.</div>
+</div>
+
+<div class="pullquote">
+  The pillars are not requirements. They are the assumption beneath every other thing we teach.
+  <div class="attribution">&mdash; From the Artemis Faculty Charter, Section 2</div>
+</div>
+
+<div class="dark-section">
+  <div class="ds-tag">The structural commitment</div>
+  <div class="ds-title">A graduate who can reason, build, and contribute.</div>
+  <div class="ds-body">The four pillars are not a curriculum; they are a description of what an Artemis graduate is supposed to be able to do at the moment the degree is conferred. Reason: examine evidence, identify the limits of one&rsquo;s own knowledge, and revise beliefs in response to new information. Build: decompose problems algorithmically, render solutions in code or design or prose, and execute against a deadline. Contribute: locate one&rsquo;s work in the planetary systems it touches, and accept responsibility for the consequences. The pillars are how the institution measures itself against its own claim to produce such graduates.</div>
+  <div class="ds-stat-row">
+    <div>
+      <div class="ds-stat-val">4</div>
+      <div class="ds-stat-label">Pillars &middot; Required of Every Graduate</div>
+    </div>
+    <div>
+      <div class="ds-stat-val">3</div>
+      <div class="ds-stat-label">Years &middot; Pillar Sequence Duration</div>
+    </div>
+    <div>
+      <div class="ds-stat-val">1</div>
+      <div class="ds-stat-label">Capstone &middot; Per Pillar, Publicly Defended</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── II. NINE PROGRAMS OF STUDY ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter II</div>
+  <div class="chapter-title">Nine programs of study.</div>
+</div>
+
+<p class="lead">Artemis offers nine undergraduate programs of study. Each is eight semesters long, structured around the four pillars, and culminates in a year-long senior thesis submitted as a public artifact &mdash; not a paper locked in a registrar&rsquo;s vault. The programs are not silos; they are the formal credential structure, and every student is required to complete a meaningful secondary concentration outside their home program.</p>
+
+<p class="body-text">The nine programs were chosen to cover the principal domains of a planetary century: computation, life, environment, society, mind, design, and history. They are deliberately not exhaustive &mdash; Artemis does not offer a program in, for example, accounting or marketing, on the conviction that those are professional practices acquired after a substantive undergraduate education, not disciplines worthy of a four-year degree. Each program is taught by a department-scale faculty cohort (between 80 and 240 members at maturity), and each program&rsquo;s curriculum is co-designed with the relevant Centers of Inquiry to ensure that the teaching reflects the live frontier of the field.</p>
+
+<div class="prog-card">
+  <div class="pc-tag">01</div>
+  <div class="pc-main">
+    <div class="pc-name">B.S. Computer Science</div>
+    <div class="pc-meta">8 Semesters &middot; Computer Science</div>
+    <div class="pc-desc">Integrating deep software systems, data science pipelines, AI/ML, and computational theory with the epistemic foundations of intelligence itself. The program covers the full stack &mdash; from hardware to machine learning &mdash; with a required senior sequence on the ethics and governance of automated systems. Graduates leave able to design, build, and audit software at scale, and able to reason about the social systems their software enters.</div>
+  </div>
+</div>
+
+<div class="prog-card">
+  <div class="pc-tag">02</div>
+  <div class="pc-main">
+    <div class="pc-name">B.S. International Business</div>
+    <div class="pc-meta">8 Semesters &middot; International Business</div>
+    <div class="pc-desc">Empowering future executives with skills in global finance, cross-cultural leadership, and the political economy of interconnected markets. The program treats the firm as a planetary actor, not a national one, and requires all students to complete two overseas internships in different regulatory regimes. Graduates leave fluent in capital structure, supply chain, and the geopolitical context in which both operate.</div>
+  </div>
+</div>
+
+<div class="prog-card">
+  <div class="pc-tag">03</div>
+  <div class="pc-main">
+    <div class="pc-name">B.S. Environmental Science</div>
+    <div class="pc-meta">8 Semesters &middot; Environmental Science</div>
+    <div class="pc-desc">Analyzing complex global ecosystems, climate systems, and biodiversity with fieldwork across six continents. The program is built around the rotation itself: every semester includes a fieldwork component tied to the hostel city, so that a student who rotates through Venice, S&atilde;o Paulo, and Cape Town graduates with firsthand research experience on three biomes. Graduates leave able to design policy, conduct research, and lead conservation work in any ecosystem on Earth.</div>
+  </div>
+</div>
+
+<div class="prog-card">
+  <div class="pc-tag">04</div>
+  <div class="pc-main">
+    <div class="pc-name">B.A. Philosophy, Politics &amp; Economics</div>
+    <div class="pc-meta">8 Semesters &middot; PPE</div>
+    <div class="pc-desc">The integrated study of governance, markets, and ethics &mdash; the classical tripos reimagined for a planetary century. The Artemis PPE program rejects the modular division of the Oxford original; instead, every course is co-taught across the three disciplines, so that students learn to reason simultaneously about normative claims, institutional mechanisms, and price signals. Graduates leave prepared for public service, policy, and the rarefied private-sector roles that require all three lenses.</div>
+  </div>
+</div>
+
+<div class="prog-card">
+  <div class="pc-tag">05</div>
+  <div class="pc-main">
+    <div class="pc-name">B.S. Biotechnology</div>
+    <div class="pc-meta">8 Semesters &middot; Biotechnology</div>
+    <div class="pc-desc">From gene editing to synthetic biology, with deep integration of bioethics and translational innovation. The program is co-located with the Biotech &amp; Life Sciences Center of Inquiry, and every student completes a year-long lab rotation through one of the center&rsquo;s nodes. Graduates leave able to design a genetic circuit, navigate a regulatory submission, and articulate the ethical case for or against deploying either.</div>
+  </div>
+</div>
+
+<div class="prog-card">
+  <div class="pc-tag">06</div>
+  <div class="pc-main">
+    <div class="pc-name">B.A. Architecture &amp; Urban Design</div>
+    <div class="pc-meta">8 Semesters &middot; Architecture</div>
+    <div class="pc-desc">Designing adaptive, regenerative built environments &mdash; studios in six rotating hostel cities. The program treats the city as the canvas and the climate as the brief, requiring every studio project to engage with the local regulatory, ecological, and social context. Graduates leave with a portfolio of built or built-adjacent work across six cities, prepared to practice internationally rather than within a single national tradition.</div>
+  </div>
+</div>
+
+<div class="prog-card">
+  <div class="pc-tag">07</div>
+  <div class="pc-main">
+    <div class="pc-name">B.S. Data Science &amp; Statistics</div>
+    <div class="pc-meta">8 Semesters &middot; Data Science</div>
+    <div class="pc-desc">The mathematical, computational, and ethical foundations of inference at scale. The program is built around a single conviction: that the data scientist of this century must understand not only the mathematics of inference but the social systems their inferences enter. Every student completes a capstone project co-designed with a non-technical partner organization &mdash; a public-health agency, a newsroom, a courts system &mdash; to ensure the work leaves the lab and enters the world responsibly.</div>
+  </div>
+</div>
+
+<div class="prog-card">
+  <div class="pc-tag">08</div>
+  <div class="pc-main">
+    <div class="pc-name">B.A. Global History</div>
+    <div class="pc-meta">8 Semesters &middot; History</div>
+    <div class="pc-desc">World history as an integrated discipline &mdash; not Western civilization plus electives, but a genuinely planetary curriculum. Students study the Indian Ocean, the Sahel, the Andes, and the Pacific with the same rigor traditionally reserved for Europe, and complete a senior thesis using primary sources in at least two languages. Graduates leave prepared for academic research, diplomacy, and the long-arc analysis that public life increasingly demands.</div>
+  </div>
+</div>
+
+<div class="prog-card">
+  <div class="pc-tag">09</div>
+  <div class="pc-main">
+    <div class="pc-name">B.S. Cognitive Science</div>
+    <div class="pc-meta">8 Semesters &middot; Cognitive Science</div>
+    <div class="pc-desc">The mind &mdash; computational, biological, philosophical &mdash; studied as the central mystery of the century. The program integrates neuroscience, machine learning, linguistics, and philosophy of mind, with required lab rotations in both wet and dry research environments. Graduates leave prepared for research careers, clinical training, and the growing intersection of cognitive science with AI safety and design.</div>
+  </div>
+</div>
+
+<!-- ─── III. PURPOSE LEARNING ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter III</div>
+  <div class="chapter-title">Purpose Learning &mdash; missions, not majors.</div>
+</div>
+
+<p class="lead">Artemis has abolished the major. In its place: the mission. Every student, on admission, declares a mission &mdash; a concrete, ambitious, public-facing problem they intend to spend their four years making measurable progress against. The mission is not a thesis topic; it is the integrating question that organizes the student&rsquo;s entire course of study, and it is reviewed by a faculty committee every semester.</p>
+
+<p class="body-text">The Purpose Learning system was designed to address a structural failure of the conventional major: that students acquire a credential without acquiring a reason. A major certifies that a student has passed a sequence of courses in a department; it does not certify that the student can use the discipline to address a problem of consequence. By replacing the major with a mission, Artemis makes the integrating question explicit. A computer science student whose mission is &ldquo;to build the open-source grid management software that lets small island states run on renewable energy&rdquo; takes a different sequence of courses than a computer science student whose mission is &ldquo;to design the cryptographic protocols that protect dissident communications in authoritarian regimes.&rdquo; Both are computer science students. Both graduate with the same degree. But the four years of study have been organized around a question that the student owns, not a sequence the department predefined.</p>
+
+<div class="figure">
+  <img src="../public/resources/img/students-global.png" alt="Students collaborating across cultures">
+  <div class="caption">Purpose Learning makes the integrating question explicit: every Artemis student arrives with a mission and graduates with evidence of progress against it.</div>
+</div>
+
+<p class="body-text">The mission is declared in the admissions process itself. Applicants are not asked to choose a major; they are asked to articulate the problem they intend to work on, and to describe the first concrete step they would take if admitted. The admissions committee evaluates the mission for seriousness, tractability, and fit with the institution&rsquo;s capabilities &mdash; not for prestige or for alignment with any single department. Students whose missions are judged unripe are admitted conditionally, with a year to refine. Students whose missions are clear are admitted outright, with their first-year course sequence designed around the question.</p>
+
+<p class="body-text">The mission is reviewed every semester by a faculty committee &mdash; the student&rsquo;s tutor, a program-area advisor, and an external reviewer drawn from the relevant Center of Inquiry. The committee examines the work the student has completed, the progress against the stated mission, and the obstacles encountered. The mission can be revised &mdash; students are not locked into a question they articulated at seventeen &mdash; but revisions are themselves a matter of record, and a student who revises too frequently is asked to defend the pattern. By graduation, every Artemis student has produced a public portfolio of work explicitly tied to their mission: papers, prototypes, fieldwork, performances, or policy briefs that together constitute evidence of progress against the question they declared on admission.</p>
+
+<div class="callout">
+  <div class="callout-label">Examples of admitted student missions</div>
+  <p class="body-text" style="margin:0;"><strong>&ldquo;To reduce by half the energy cost of smallholder irrigation across the Sahel.&rdquo;</strong> &mdash; Environmental Science, 2026 cohort. <strong>&ldquo;To draft and pilot the model statute for sovereign AI audit in a federation of small states.&rdquo;</strong> &mdash; PPE, 2026 cohort. <strong>&ldquo;To build the first open-source toolkit for rapid retrosynthetic design of generic essential medicines.&rdquo;</strong> &mdash; Biotechnology, 2027 cohort. <strong>&ldquo;To compose a chamber opera that survives translation across four languages without losing dramatic structure.&rdquo;</strong> &mdash; Architecture &amp; Urban Design (Music concentration), 2027 cohort.</p>
+</div>
+
+<p class="body-text">The system has consequences for how the institution measures itself. Artemis does not publish a placement rate or a median starting salary; it publishes a mission-outcomes report, audited externally, that tracks what progress each graduating cohort made against the missions they declared four years earlier. The first such report will be published in 2030; until then, the institution is judged, like its students, on the seriousness of the questions it has chosen to ask.</p>
+
+<!-- ─── IV. THE TUTORIAL SYSTEM ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter IV</div>
+  <div class="chapter-title">The tutorial system.</div>
+</div>
+
+<p class="lead">Every Artemis student meets with a personal tutor, one-on-one or in pairs, for at least ninety minutes every week of every semester. The tutorial is the spine of the institution: not a remedial session for struggling students, but the principal pedagogical unit, modeled on the Oxford tradition and rebuilt for planetary scale.</p>
+
+<p class="body-text">The tutorial is where the curriculum becomes personal. The tutor&rsquo;s role is not to lecture &mdash; the lectures are delivered in the conventional classroom format, in cohorts of 30 to 60 &mdash; but to interrogate the student&rsquo;s understanding of the material, to push the student&rsquo;s mission forward, and to integrate the student&rsquo;s coursework into a coherent intellectual project. A typical tutorial begins with the student presenting a piece of work &mdash; an essay, a code review, a design critique, a lab result &mdash; and proceeds into a sustained conversation about what the work claims, what evidence supports it, what the strongest objection would be, and what the next step should be. The tutorial is the place where Epistemology as a pillar becomes a practice rather than a course.</p>
+
+<p class="body-text">The tutorial ratio at Artemis is 1:12 &mdash; one tutor for every twelve students &mdash; which is approximately twice the Oxford ratio and four times the typical American residential-college ratio. The ratio is made possible by the faculty composition: at maturity, Artemis will employ 2,000 faculty members against 60,000 students, with every faculty member tutoring four to six students per semester in addition to their classroom and research responsibilities. The tutorial is the most labor-intensive element of the Artemis model, and it is the line item the institution will not trade away. Every financial scenario &mdash; from the surplus plan to the contraction plan &mdash; preserves the 1:12 tutorial ratio as a non-negotiable.</p>
+
+<div class="pullquote">
+  A lecture teaches you what is known. A tutorial teaches you how you know it.
+  The second is the only one worth traveling for.
+  <div class="attribution">&mdash; Artemis founding faculty member</div>
+</div>
+
+<p class="body-text">The tutor is assigned at admission and stays with the student through graduation, with provisions for change if the student&rsquo;s mission evolves into a domain outside the tutor&rsquo;s competence. The tutor is the student&rsquo;s principal academic advisor, the chair of the student&rsquo;s mission-review committee, and the signatory on the student&rsquo;s graduation portfolio. The relationship is the closest thing Artemis has to a faculty-student bond in the medieval sense, and it is the structural feature that distinguishes an Artemis education from a lecture-hall education delivered at planetary scale.</p>
+
+<!-- ─── V. COMPETENCY-BASED GRADING ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter V</div>
+  <div class="chapter-title">Competency-based grading.</div>
+</div>
+
+<p class="lead">Artemis does not compute a grade point average. There is no 4.0 scale, no transcript letter grades, no dean&rsquo;s list. In their place: a portfolio of evidence, assessed against a published set of competencies, and signed off by the tutor and an external examiner at the end of each semester.</p>
+
+<p class="body-text">The grading regime is built on a single conviction: that the GPA is a measurement error. A GPA compresses four years of intellectual work into a three-digit number, losing every distinction between a student who learned deeply in a few areas and a student who learned shallowly across many. The GPA rewards strategy over learning, and it produces graduates whose transcripts communicate almost nothing about what they can actually do. Artemis has replaced the GPA with the competency portfolio: a structured record of what the student has demonstrated they can do, signed by the faculty who observed the demonstration.</p>
+
+<p class="body-text">Every Artemis course publishes its competencies in advance &mdash; the specific capabilities a student must demonstrate to receive credit. A student who demonstrates the competencies receives credit; a student who does not is given specific feedback and a revised timeline. There is no curve, no competition for grades, no incentive to take easier courses to protect a number. The transcript records competencies demonstrated, courses completed, and the tutor&rsquo;s semester letter &mdash; a narrative assessment of the student&rsquo;s progress against their mission, written in plain prose and signed by hand.</p>
+
+<table class="tbl">
+  <thead>
+    <tr>
+      <th>Competency Domain</th>
+      <th>Required Demonstrations</th>
+      <th>Assessed By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Epistemic reasoning</td><td>Two sustained critiques of evidence in the student&rsquo;s field</td><td>Tutor + external examiner</td></tr>
+    <tr><td>Computational method</td><td>One substantial software artifact, with documentation</td><td>Program-area faculty</td></tr>
+    <tr><td>Systems analysis</td><td>One written analysis of a planetary system interaction</td><td>Global Systems faculty</td></tr>
+    <tr><td>Creative rendering</td><td>One piece of original work in writing, making, or performance</td><td>Studio faculty</td></tr>
+    <tr><td>Mission progress</td><td>Annual portfolio review against declared mission</td><td>Mission committee</td></tr>
+  </tbody>
+</table>
+
+<p class="body-text">The external examiner is a structural feature borrowed from the British tradition. Every Artemis course is assessed not only by the faculty member who taught it but by an external examiner drawn from another institution, who reviews a sample of student work and certifies that the competencies are being measured at the standard claimed. The external examiner system is the institution&rsquo;s principal defense against the slow drift toward grade inflation that has hollowed out the credential at peer institutions. It is also a structural commitment to honesty: if Artemis cannot defend its standards to an outside eye, the standards are not real.</p>
+
+<div class="callout">
+  <div class="callout-label">What replaces the GPA</div>
+  <p class="body-text" style="margin:0;">The Artemis transcript records: <strong>(1)</strong> competencies demonstrated, with the evidence; <strong>(2)</strong> courses completed, with the faculty signature; <strong>(3)</strong> the tutor&rsquo;s semester letter, in prose; <strong>(4)</strong> the external examiner&rsquo;s annual review; and <strong>(5)</strong> the student&rsquo;s mission-outcome portfolio at graduation. Employers and graduate programs receive the full portfolio on request. There is no number.</p>
+</div>
+
+<!-- ─── VI. THE SIX-HOSTEL-CITY ROTATION ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter VI</div>
+  <div class="chapter-title">The six-hostel-city rotation.</div>
+</div>
+
+<p class="lead">Every Artemis undergraduate spends four years rotating through six hostel cities: Venice, San Francisco, Singapore, S&atilde;o Paulo, Cape Town, and Tokyo. The rotation is not a study-abroad program bolted onto a residential college; it is the residential college. Each student spends two semesters in each city, in a sequence determined by their program and mission, and graduates having lived and studied on four continents.</p>
+
+<p class="body-text">The rotation serves three purposes. First, it ensures that the curriculum is tested against the world: an architecture studio in Venice, an environmental science field semester in Cape Town, a PPE policy lab in S&atilde;o Paulo are not abstractions but live engagements with the regulatory, ecological, and social specificities of each city. Second, it builds the planetary cohort: every student graduates having lived and worked with peers from every region the institution serves, in cities that span the economic and cultural range of the planet. Third, it ensures that no single campus becomes the &ldquo;real&rdquo; Artemis &mdash; the institution is genuinely distributed, and no hostel city is the headquarters.</p>
+
+<div class="figure">
+  <img src="../public/resources/img/campus-architecture.png" alt="Repurposed campus architecture">
+  <div class="caption">Artemis hostel cities are not new construction. Each is a repurposed existing building &mdash; a former customs house, a decommissioned hospital, a renovated warehouse district &mdash; acquired and adapted to academic use.</div>
+</div>
+
+<div class="city-card">
+  <div class="cc-name">Venice</div>
+  <div class="cc-role">European Node &middot; Humanities &amp; Architecture</div>
+  <div class="cc-body">The Venice hostel occupies a renovated medieval complex on the Giudecca, with studio space for Architecture &amp; Urban Design and library holdings in Global History and PPE. Venice hosts the fall semester of the second year for students in those programs. The city&rsquo;s hydrology, governance, and preservation regimes provide the live laboratory for the second-year studio.</div>
+</div>
+
+<div class="city-card">
+  <div class="cc-name">San Francisco</div>
+  <div class="cc-role">North American Node &middot; Computation &amp; Entrepreneurship</div>
+  <div class="cc-body">The San Francisco hostel occupies a converted warehouse district in the Mission, with lab space for Computer Science and Data Science and an incubator floor shared with the Forge. The city hosts the second-year spring semester for CS and DS students, with required industry rotations at partner organizations across the bay.</div>
+</div>
+
+<div class="city-card">
+  <div class="cc-name">Singapore</div>
+  <div class="cc-role">Asian Node &middot; Biotech &amp; Urban Systems</div>
+  <div class="cc-body">The Singapore hostel occupies a converted shipping-complex near Pasir Panjang, with wet-lab space for Biotechnology and Computational Urban Design facilities for Architecture. Singapore hosts the third-year fall semester for Biotech and Architecture students, with research partnerships at A*STAR and the regional ministries.</div>
+</div>
+
+<div class="city-card">
+  <div class="cc-name">S&atilde;o Paulo</div>
+  <div class="cc-role">South American Node &middot; Policy &amp; Environment</div>
+  <div class="cc-body">The S&atilde;o Paulo hostel occupies a renovated industrial building in the Vila Madalena district, with policy-lab space for PPE and field-research facilities for Environmental Science. The city hosts the third-year spring semester for those programs, with required fieldwork in the Atlantic Forest and the Cerrado during the semester break.</div>
+</div>
+
+<div class="city-card">
+  <div class="cc-name">Cape Town</div>
+  <div class="cc-role">African Node &middot; Health &amp; Biodiversity</div>
+  <div class="cc-body">The Cape Town hostel occupies a converted warehouse on the V&amp;A Waterfront, with clinical-rotation facilities for the pre-med track and field stations for Environmental Science in the fynbos and the Karoo. The city hosts the fourth-year fall semester for Environmental Science and Cognitive Science students, with research partnerships at UCT and Stellenbosch.</div>
+</div>
+
+<div class="city-card">
+  <div class="cc-name">Tokyo</div>
+  <div class="cc-role">Asian Node &middot; Design &amp; Cognitive Science</div>
+  <div class="cc-body">The Tokyo hostel occupies a renovated office complex in Toshima, with design studios for Architecture and lab space for Cognitive Science. Tokyo hosts the fourth-year spring semester for those programs, with industry partnerships across the Japanese design and robotics ecosystem and a required cultural-immersion module in the first month.</div>
+</div>
+
+<p class="body-text">The rotation is engineered for cost. Artemis does not build new campuses; it acquires and repurposes existing buildings in each hostel city, with the renovation budget financed by the founding campaign. The total real-estate cost across the six hostel cities is approximately $40M of the $100M founding campaign &mdash; a fraction of what a single new residential campus would cost. The repurposing strategy also ensures that each hostel is rooted in its city, rather than a generic Artemis-branded campus dropped from orbit. A student who has spent a semester in the Venice hostel has lived in a medieval building on the Giudecca; a student who has spent a semester in the Cape Town hostel has lived on the waterfront. The cities are not interchangeable, and the rotation is the institutional commitment to that fact.</p>
+
+<div class="pullquote">
+  We could have built one campus for sixty thousand students.
+  We chose to build six cities, with ten thousand students each,
+  because the world is the only classroom large enough for the
+  curriculum we intend to teach.
+  <div class="attribution">&mdash; From the Artemis Founding Charter</div>
+</div>
+
+<!-- ─── VII. A DAY AND A YEAR ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter VII</div>
+  <div class="chapter-title">A day, a year, a degree.</div>
+</div>
+
+<p class="lead">The Artemis academic year is three terms of eleven weeks each, separated by short inter-session periods for fieldwork, internships, and independent project work. The day is structured to balance the three principal pedagogical modes &mdash; lecture, tutorial, and studio &mdash; with the rotation-specific fieldwork that anchors each hostel city.</p>
+
+<p class="body-text">A typical day for an Artemis student begins with a morning lecture in their core program, attended by the full cohort of 30 to 60 students in the hostel. The lecture is followed by a small-group seminar, led by a teaching fellow, in which the lecture material is interrogated against the assigned readings. Afternoons are reserved for tutorials (one or two per week per student) and studio practice (mandatory every day). Evenings are for independent work, mission-project time, and the public events that the institution runs continuously &mdash; guest lectures, concerts, debates, and the open rehearsals that are themselves part of the curriculum.</p>
+
+<div class="schedule">
+  <div class="sch-row">
+    <div class="sch-time">07:30&ndash;08:30</div>
+    <div class="sch-act"><strong>Morning studio</strong> &mdash; open practice in the student&rsquo;s declared studio (writing, making, performance). Attendance is recorded but ungraded; the work accumulates into the studio portfolio.</div>
+  </div>
+  <div class="sch-row">
+    <div class="sch-time">09:00&ndash;10:30</div>
+    <div class="sch-act"><strong>Core lecture</strong> &mdash; program-area cohort, 30&ndash;60 students. Lectures are recorded and posted, but attendance is strongly expected.</div>
+  </div>
+  <div class="sch-row">
+    <div class="sch-time">11:00&ndash;12:30</div>
+    <div class="sch-act"><strong>Seminar</strong> &mdash; small-group discussion led by a teaching fellow, interrogating the morning lecture against assigned readings and the student&rsquo;s mission.</div>
+  </div>
+  <div class="sch-row">
+    <div class="sch-time">13:00&ndash;14:30</div>
+    <div class="sch-act"><strong>Tutorial</strong> &mdash; one-on-one or pair, with the personal tutor. Two to four times per week per student.</div>
+  </div>
+  <div class="sch-row">
+    <div class="sch-time">15:00&ndash;17:00</div>
+    <div class="sch-act"><strong>Studio / lab / fieldwork</strong> &mdash; the afternoon block is the working time for the student&rsquo;s declared studio, the program-area lab, or the rotation-specific fieldwork component.</div>
+  </div>
+  <div class="sch-row">
+    <div class="sch-time">17:30&ndash;19:00</div>
+    <div class="sch-act"><strong>Mission project time</strong> &mdash; protected independent work on the declared mission. Tutors hold open hours for mission consultation.</div>
+  </div>
+  <div class="sch-row">
+    <div class="sch-time">20:00&ndash;22:00</div>
+    <div class="sch-act"><strong>Public program</strong> &mdash; guest lectures, concerts, open rehearsals, debates. Attendance is optional but the events are part of the curriculum.</div>
+  </div>
+</div>
+
+<p class="body-text">The academic year runs from early September to late July, with three eleven-week terms and two three-week inter-session periods. The first inter-session, in December, is reserved for fieldwork tied to the hostel city: a student in Cape Town spends the inter-session in a fynbos research station; a student in Tokyo spends it in an industry immersion. The second inter-session, in April, is reserved for international internships &mdash; every Artemis student completes two internships before graduation, in different countries, in different sectors, and both tied to the declared mission.</p>
+
+<div class="figure">
+  <img src="../public/resources/img/graduation.png" alt="Graduation ceremony">
+  <div class="caption">The Artemis degree is conferred at a single annual ceremony held in rotating hostel cities. The first graduation, in 2030, will be held in Venice.</div>
+</div>
+
+<!-- ─── VIII. THE FACULTY MODEL ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter VIII</div>
+  <div class="chapter-title">The faculty, and the collegium.</div>
+</div>
+
+<p class="lead">Artemis faculty are not hired into departments. They are hired into the institution, with a primary appointment in one of the nine programs and a secondary affiliation with one or more of the Centers of Inquiry. The structure is designed to break the departmental silo at the level of the faculty career, not merely at the level of the student experience.</p>
+
+<p class="body-text">The faculty model has three structural features. First, every faculty member teaches across the four pillars, not only in their program of appointment: a computer scientist teaches the Computational Thinking pillar in the foundational curriculum; a historian teaches the Epistemology pillar; an architect teaches the Creative Expression pillar. Second, every faculty member is expected to maintain an active research practice, conducted in affiliation with a Center of Inquiry rather than a departmental lab. Third, every faculty member rotates across hostel cities on a three-year cycle, ensuring that no city becomes the seat of a particular discipline and that the planetary distribution of expertise is maintained.</p>
+
+<p class="body-text">At maturity, Artemis will employ 2,000 faculty members. The founding cohort of 200, recruited during 2025 and onboarded in 2026, is drawn from a deliberately international pool, with no more than 25% of the founding faculty holding passports from any single country. The faculty compensation model is published: a starting salary of $135,000, rising to $220,000 at the full-professor level, with no negotiation on entry (the salary is fixed by rank) and a transparent sabbatical cycle of one semester every three years. The compensation model is the institutional commitment that Artemis is competing for the same faculty as the world&rsquo;s leading research universities, on a transparent and equitable basis.</p>
+
+<div class="stat-row">
+  <div class="stat">
+    <div class="stat-val">2,000</div>
+    <div class="stat-label">Faculty at Maturity</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">1:30</div>
+    <div class="stat-label">Faculty-Student Ratio</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">$135K</div>
+    <div class="stat-label">Starting Salary</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">3yr</div>
+    <div class="stat-label">Sabbatical Cycle</div>
+  </div>
+</div>
+
+<p class="body-text">The collegium &mdash; the institutional gathering of the faculty &mdash; meets annually in person, in a rotating hostel city, and continuously online through the institutional governance platform. The collegium has final authority over the curriculum, the degree requirements, and the academic standards; the board of trustees has authority over the financial and structural decisions. The two powers are deliberately separated, on the conviction that academic integrity requires that the faculty own the academic decisions and that the financial model exists to serve those decisions, not the other way around.</p>
+
+<div class="callout">
+  <div class="callout-label">The collegium pledge</div>
+  <p class="body-text" style="margin:0;">Every Artemis faculty member, on appointment, signs the collegium pledge: that they will teach across the four pillars regardless of their primary appointment; that they will rotate across hostel cities on the published cycle; that they will not accept compensation from any source that conflicts with the institutional academic-freedom policy; and that they will participate in the annual collegium meeting for the duration of their appointment. The pledge is the structural commitment that the faculty model is not a recruiting slogan but a binding practice.</p>
+</div>
+
+<!-- ─── IX. ADMISSIONS &amp; FINANCIAL ACCESS ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter IX</div>
+  <div class="chapter-title">Admissions &amp; financial access.</div>
+</div>
+
+<p class="lead">Admission to Artemis is need-blind, planetary, and mission-first. There are no legacy preferences, no athletic recruitment, no geographic quotas. The admissions committee evaluates three things: the seriousness of the applicant&rsquo;s declared mission, the demonstrated capacity to do the work, and the fit between the mission and the institution&rsquo;s capabilities. The committee is blind to the applicant&rsquo;s ability to pay from the first read through the final decision.</p>
+
+<p class="body-text">The admissions process is structured in three rounds. The first round is a written application: a mission statement of no more than 800 words, a transcript of secondary-school work, two pieces of graded academic work, and a single letter of recommendation from a teacher who has observed the applicant in a sustained academic setting. The second round is a proctored written examination &mdash; a three-hour essay on a question released to all applicants simultaneously, administered at partner testing centers in 80 countries. The third round is an interview: a structured conversation with a faculty member and a current student, conducted in person where possible and by video where not, focused on the applicant&rsquo;s mission and the first concrete step they would take if admitted.</p>
+
+<p class="body-text">The financial model is engineered for access. Tuition is set at $3,000 per year &mdash; a figure chosen because it is accessible to 90% of qualified students worldwide without aid. For the remaining 10%, the institution operates a scholarship fund capitalized from operating surplus: at maturity, the $262M annual surplus funds 13,300 scholarships per year, covering full tuition and a stipend for students from households below the planetary median income. The scholarship fund is not need-based in the conventional sense; it is a structural commitment that no qualified student admitted to Artemis will be unable to attend for financial reasons.</p>
+
+<table class="tbl">
+  <thead>
+    <tr>
+      <th>Admissions Round</th>
+      <th>Component</th>
+      <th style="text-align:right;">Weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Round 1</td><td>Written application (mission, transcript, work samples, recommendation)</td><td class="num">40%</td></tr>
+    <tr><td>Round 2</td><td>Proctored written examination (three-hour essay, simultaneous worldwide)</td><td class="num">30%</td></tr>
+    <tr><td>Round 3</td><td>Structured interview with faculty member and current student</td><td class="num">30%</td></tr>
+    <tr class="total"><td>Total</td><td>Need-blind, mission-first, planetary</td><td class="num">100%</td></tr>
+  </tbody>
+</table>
+
+<p class="body-text">The founding cohort, admitted in 2025 and matriculating in 2026, will be 120 students drawn from at least 40 countries. The cohort is small by design &mdash; the institution is being launched at a scale that allows every founding student to be known individually by the founding faculty, and to participate in the institutional design conversation that the first four years will require. The cohort will grow to 20,000 by 2027, 40,000 by 2028, and 60,000 at maturity in 2030. The growth is funded entirely from operating surplus, with no further fundraising required after the founding campaign closes.</p>
+
+<div class="callout">
+  <div class="callout-label">What need-blind means at Artemis</div>
+  <p class="body-text" style="margin:0;">Need-blind means that the admissions committee does not see the applicant&rsquo;s financial information at any stage of the review. It means that admission is independent of ability to pay. It means that admitted students receive a financial-aid package, derived from a published formula, that covers the gap between the $3,000 tuition and what the student&rsquo;s household can contribute. And it means that the institution has committed, in its charter, that no admitted student will be unable to attend for financial reasons. The commitment is structural, not aspirational &mdash; it is funded from the operating surplus, line-item by line-item, in the published financial model.</p>
+</div>
+
+<!-- ─── X. THE GRADUATION PORTFOLIO ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter X</div>
+  <div class="chapter-title">The graduation portfolio.</div>
+</div>
+
+<p class="lead">Every Artemis student graduates with a public portfolio &mdash; not a private transcript. The portfolio is the institutional answer to the question of what a degree actually certifies, and it is the structural feature that makes the competency-based grading regime honest.</p>
+
+<p class="body-text">The portfolio is structured around five elements: the mission statement as declared at admission, with revisions tracked through the four years; the competency record, with the evidence for each demonstrated competency; the senior thesis or capstone artifact, submitted as a public work; the tutor&rsquo;s graduation letter, in prose; and the external examiner&rsquo;s final review. The portfolio is published on the Artemis alumni registry, with the student&rsquo;s consent, and is the principal credential the institution confers. Transcripts are available on request for graduate-school applications, but the portfolio is the public face of the degree.</p>
+
+<p class="body-text">The portfolio is also the institution&rsquo;s accountability mechanism. Every five years, the Artemis Office of Institutional Research samples the graduate portfolios and publishes an outcomes report: what missions were declared, what progress was demonstrably made, what the pattern of revisions tells the institution about the soundness of the admissions process and the curriculum. The first such report will be published in 2030, drawing on the portfolios of the founding cohort. Until then, the institution has explicitly committed to being judged, like its students, on the seriousness of the questions it has chosen to ask.</p>
+
+<div class="pullquote">
+  A degree that cannot survive public scrutiny of the work
+  it claims to certify is not a degree. It is a receipt.
+  Artemis confers degrees, not receipts.
+  <div class="attribution">&mdash; From the Artemis Academic Standards Charter</div>
+</div>
+
+<p class="body-text">The portfolio is the final structural commitment of the academic model: that the institution will produce graduates whose work can be examined, whose competencies can be audited, and whose four years of study have produced a public artifact rather than a private credential. It is the institutional answer to the question of what a planetary university owes its students, its faculty, and the world: not a brand, not a network, not a credential &mdash; but the demonstrated ability to reason, build, and contribute, made visible.</p>
+
+</div>
+
+<!-- ════════════════ ENDING ════════════════ -->
+<div class="ending">
+  <div class="ending-tag">Academic Prospectus &middot; Edition I</div>
+  <div class="ending-big">A degree that survives public scrutiny of the work it certifies.</div>
+  <div class="ending-sub">
+    Nine programs. Four pillars. Six hostel cities. One mission per student.
+    The Artemis degree is conferred on evidence, not on time served.
+  </div>
+  <div class="ending-contact">
+    admissions@artemis.edu &middot; artemis.edu/prospectus
+  </div>
+</div>
+
+</body>
+</html>

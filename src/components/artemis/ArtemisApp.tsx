@@ -17,7 +17,6 @@ import HowWeAreRun from '@/components/artemis/HowWeAreRun';
 import OurPeople from '@/components/artemis/OurPeople';
 import OurHistory from '@/components/artemis/OurHistory';
 import FundraisingCampaign from '@/components/artemis/FundraisingCampaign';
-import Give2 from '@/components/artemis/Give2';
 import GenericAboutSubpage from '@/components/artemis/GenericAboutSubpage';
 import GenericUniversitySubpage from '@/components/artemis/GenericUniversitySubpage';
 import CollegiumAlliance from '@/components/artemis/CollegiumAlliance';
@@ -284,11 +283,6 @@ function getBreadcrumbs(currentPage: string, currentProgram: string): { items: B
         items: [],
         currentLabel: 'Give',
       };
-    case 'give-2':
-      return {
-        items: [],
-        currentLabel: 'Give 2',
-      };
     case 'nodes':
       return {
         items: [{ label: 'About', page: 'about' }],
@@ -446,8 +440,6 @@ export default function ArtemisApp() {
         return <HowWeAreRun goToPage={goToPage} />;
       case 'fundraising':
         return <FundraisingCampaign goToPage={goToPage} />;
-      case 'give-2':
-        return <Give2 goToPage={goToPage} />;
       case 'our-people':
         return <OurPeople goToPage={goToPage} />;
       case 'access-at-artemis':

@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Case for Support — University of Artemis</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+@page { size: 720px 1020px; margin: 0; }
+/* Page numbers via Paged.js */
+@page {
+  @bottom-right {
+    content: counter(page);
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    color: #6b6b6b;
+    padding-right: 28px;
+    padding-bottom: 20px;
+  }
+}
+@page :first {
+  @bottom-right { content: none; }
+}
+:root {
+  --crimson: #8A0000;
+  --crimson-deep: #6B0000;
+  --crimson-soft: #B33A3A;
+  --ink: #141414;
+  --ink-soft: #3a3a3a;
+  --muted: #6b6b6b;
+  --line: #e5e5e5;
+  --bg: #FAFAF8;
+  --bg-dark: #0c0a09;
+  --bg-cream: #F5F2EC;
+  --gold: #b08d57;
+}
+html, body {
+  margin: 0; padding: 0; width: 720px;
+  background: var(--bg-dark); color: var(--ink);
+  font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
+  font-size: 13px; line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+@media screen {
+  html { display: flex; justify-content: center; background: #222; height: auto; }
+  body { margin: 20px auto; box-shadow: 0 0 40px rgba(0,0,0,0.4); }
+}
+.fcpage {
+  width: 720px; height: 1020px; box-sizing: border-box;
+  break-after: page; overflow: hidden; position: relative;
+  background: var(--bg-dark); color: #fff;
+  display: flex; flex-direction: column; justify-content: center; padding: 64px;
+}
+.fcpage .fcpage-img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; opacity: 0.35; filter: grayscale(0.3);
+}
+.fcpage .fcpage-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(138,0,0,0.55) 0%, rgba(12,10,9,0.92) 60%, rgba(12,10,9,0.98) 100%);
+}
+.fcpage .fcpage-content { position: relative; z-index: 2; }
+.fcpage .fcpage-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.32em;
+  text-transform: uppercase; color: var(--crimson-soft);
+  margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
+}
+.fcpage .fcpage-tag::before { content: ""; width: 28px; height: 1px; background: var(--crimson); }
+.fcpage h1 {
+  font-family: 'Noto Serif SC', Georgia, serif;
+  font-size: 52px; font-weight: 900; line-height: 1.02;
+  letter-spacing: -0.02em; margin: 0 0 24px; text-transform: none;
+}
+.fcpage .fcpage-sub {
+  font-size: 15px; color: rgba(255,255,255,0.65); font-weight: 300;
+  line-height: 1.6; max-width: 480px; margin-bottom: 0;
+}
+.fcpage .fcpage-footer {
+  position: absolute; bottom: 48px; left: 64px; right: 64px;
+  display: flex; justify-content: space-between; align-items: flex-end;
+  z-index: 2; font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: rgba(255,255,255,0.4);
+}
+.fcpage .fcpage-footer .crest { font-family: 'Noto Serif SC', serif; font-size: 14px; color: rgba(255,255,255,0.7); letter-spacing: 0.15em; }
+.main-content { background: var(--bg); padding: 64px 64px 48px 64px; }
+.chapter-header { break-after: avoid; break-inside: avoid; margin-top: 28px; margin-bottom: 20px; }
+.chapter-header:first-child { margin-top: 0; }
+.chapter-tag {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--crimson);
+  margin-bottom: 10px; display: flex; align-items: center; gap: 10px;
+}
+.chapter-tag::before { content: ""; width: 22px; height: 1px; background: var(--crimson); }
+.chapter-title {
+  font-family: 'Noto Serif SC', Georgia, serif;
+  font-size: 30px; font-weight: 800; line-height: 1.12;
+  letter-spacing: -0.015em; color: var(--ink); margin: 0 0 12px;
+}
+.chapter-divider { display: none; }
+.body-text { font-size: 13px; line-height: 1.72; color: var(--ink-soft); margin: 0 0 12px; }
+.body-text strong { color: var(--ink); font-weight: 600; }
+.lead { font-size: 15px; line-height: 1.65; color: var(--ink); font-weight: 400; margin-bottom: 18px; }
+.pullquote {
+  break-inside: avoid; border-left: 3px solid var(--crimson);
+  padding: 16px 24px; margin: 20px 0;
+  font-family: 'Noto Serif SC', Georgia, serif;
+  font-size: 16px; font-style: italic; line-height: 1.5;
+  color: var(--ink); background: var(--bg-cream);
+}
+.pullquote .attribution { font-size: 11px; font-style: normal; color: var(--muted); margin-top: 10px; letter-spacing: 0.05em; }
+.card {
+  break-inside: avoid; background: #fff;
+  border: 1px solid var(--line); border-radius: 8px;
+  padding: 20px 22px; margin-bottom: 14px;
+}
+.card-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.card-sub { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
+.card-body { font-size: 12px; line-height: 1.6; color: var(--ink-soft); }
+.stat-row { display: flex; gap: 16px; margin: 18px 0; break-inside: avoid; }
+.stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 18px; }
+.stat .stat-val { font-family: 'Noto Serif SC', serif; font-size: 28px; font-weight: 900; color: var(--crimson); line-height: 1; }
+.stat .stat-label { font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+.progress { break-inside: avoid; margin: 14px 0; }
+.progress-track { height: 16px; background: var(--line); border-radius: 8px; overflow: hidden; padding: 2px; box-sizing: border-box; }
+.progress-fill { height: 100%; background: var(--crimson); border-radius: 5px; }
+.progress-label { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 6px; color: var(--ink-soft); }
+.tbl { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 11px; break-inside: avoid; }
+.tbl th { text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--ink); padding: 8px 10px; }
+.tbl td { padding: 9px 10px; border-bottom: 1px solid var(--line); color: var(--ink-soft); vertical-align: top; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl .num { font-family: 'Noto Serif SC', serif; font-weight: 700; color: var(--crimson); text-align: right; white-space: nowrap; }
+.figure { break-inside: avoid; margin: 18px 0; }
+.figure img { width: 100%; border-radius: 6px; display: block; }
+.figure .caption { font-size: 10px; color: var(--muted); margin-top: 8px; letter-spacing: 0.03em; line-height: 1.5; }
+.callout {
+  break-inside: avoid; background: var(--bg-cream);
+  border-radius: 8px; padding: 20px 24px; margin: 16px 0;
+}
+.callout .callout-label { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
+.bullets { margin: 10px 0 14px; padding: 0; list-style: none; }
+.bullets li { font-size: 12px; line-height: 1.65; color: var(--ink-soft); padding-left: 18px; position: relative; margin-bottom: 6px; }
+.bullets li::before { content: ""; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; background: var(--crimson); border-radius: 50%; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.ending {
+  width: 720px; height: 1020px; box-sizing: border-box;
+  break-before: page; overflow: hidden;
+  background: var(--bg-dark); color: #fff;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  padding: 64px; text-align: center;
+}
+.ending .ending-tag { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--crimson-soft); margin-bottom: 28px; }
+.ending .ending-big { font-family: 'Noto Serif SC', Georgia, serif; font-size: 38px; font-weight: 800; line-height: 1.15; letter-spacing: -0.015em; max-width: 540px; margin-bottom: 32px; }
+.ending .ending-sub { font-size: 14px; color: rgba(255,255,255,0.5); max-width: 440px; line-height: 1.65; font-weight: 300; }
+.ending .ending-contact { margin-top: 40px; font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; }
+.ending .ending-contact a { color: var(--crimson-soft); text-decoration: none; }
+.dark-section {
+  background: var(--bg-dark); color: #fff;
+  margin: 0 -64px; padding: 48px 64px; break-inside: avoid;
+}
+.dark-section .ds-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--crimson-soft); margin-bottom: 10px; }
+.dark-section .ds-title { font-family: 'Noto Serif SC', serif; font-size: 24px; font-weight: 800; margin-bottom: 12px; }
+.dark-section .ds-body { font-size: 12px; line-height: 1.7; color: rgba(255,255,255,0.7); }
+.dark-section .ds-stat-row { display: flex; gap: 24px; margin-top: 20px; }
+.dark-section .ds-stat-val { font-family: 'Noto Serif SC', serif; font-size: 32px; font-weight: 900; color: var(--crimson-soft); line-height: 1; }
+.dark-section .ds-stat-label { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 6px; }
+.section-eyebrow {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 22px; margin-bottom: 6px;
+}
+.pillar-card {
+  break-inside: avoid; background: #fff;
+  border: 1px solid var(--line); border-radius: 8px;
+  padding: 22px 24px; margin-bottom: 14px;
+  border-left: 4px solid var(--crimson);
+}
+.pillar-card .pillar-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+.pillar-card .pillar-name { font-family: 'Noto Serif SC', serif; font-size: 18px; font-weight: 800; color: var(--ink); }
+.pillar-card .pillar-share { font-family: 'Noto Serif SC', serif; font-size: 22px; font-weight: 900; color: var(--crimson); }
+.pillar-card .pillar-sub { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
+.pillar-card .pillar-body { font-size: 12px; line-height: 1.65; color: var(--ink-soft); }
+.pillar-card .pillar-detail { font-size: 11px; line-height: 1.6; color: var(--muted); margin-top: 8px; padding-top: 10px; border-top: 1px dashed var(--line); }
+.toc { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 24px 28px; margin: 14px 0; break-inside: avoid; }
+.toc-title { font-family: 'Noto Serif SC', serif; font-size: 16px; font-weight: 800; color: var(--ink); margin-bottom: 14px; }
+.toc-item { padding: 8px 0; border-bottom: 1px dotted var(--line); font-size: 12px; color: var(--ink-soft); }
+.toc-item:last-child { border-bottom: none; }
+.toc-item .tnum { font-family: 'Noto Serif SC', serif; font-weight: 700; color: var(--crimson); display: inline-block; width: 36px; }
+.toc-item .tpage { font-family: 'Noto Serif SC', serif; color: var(--muted); font-weight: 700; float: right; }
+</style>
+</head>
+<body>
+
+<!-- ════════════════ COVER ════════════════ -->
+<div class="fcpage">
+  <img class="fc-img" src="../public/resources/img/abstract-crimson.png" alt="">
+  <div class="fc-overlay"></div>
+  <div class="fc-content">
+    <div class="fc-tag">The Founding Campaign · 2025</div>
+    <h1>The Case for<br>Support</h1>
+    <div class="fc-sub">
+      Why a planetary, need-blind, self-sustaining university must be built now &mdash;
+      and why a single founding campaign of $100M is sufficient to fund an institution
+      that will outlive every donor, every founder, and every century it enters.
+    </div>
+  </div>
+  <div class="fc-footer">
+    <div class="crest">University of Artemis</div>
+    <div>Edition I &middot; Founding Document</div>
+  </div>
+</div>
+
+<!-- ════════════════ BODY ════════════════ -->
+<div class="main-content">
+
+<!-- ─── AT A GLANCE ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">At a Glance</div>
+  <div class="chapter-title">A university that pays for itself.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<p class="lead">The University of Artemis is a planetary institution built on three deliberate choices: it is planetary in scale, need-blind in admission, and self-sustaining in finance. One founding campaign of $100M is enough to light the match. After Day 1, the operating model produces a $262M annual surplus that funds scholarships, builds the endowment, and expands the network &mdash; indefinitely.</p>
+
+<p class="body-text">Higher education has arrived at a moment of terminal paradox. The institutions most capable of producing the leaders the next century requires are also the most expensive, the most exclusive, and the most geographically concentrated. A handful of endowments sit in the hundreds of billions while the qualified students who need access most are screened out by tuition, geography, and the assumption that elite learning must remain a scarce good. Artemis was designed from first principles to dissolve that paradox &mdash; not by lowering standards, but by re-engineering the cost structure of the institution itself.</p>
+
+<p class="body-text">This document is the case for support. It is not a brochure. It is a rigorous accounting of why a planetary university is now possible, why the founding campaign need only be $100M, why every dollar raised is traceable to a permanent asset, and why the institution that emerges from this campaign will fund itself from Year 2 onward. The argument proceeds through the problem, the Artemis answer, the five pillars of the campaign, the financial proof, the accountability architecture, the donor segmentation, and the ask.</p>
+
+<div class="stat-row">
+  <div class="stat">
+    <div class="stat-val">$100M</div>
+    <div class="stat-label">Founding Campaign</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">$262M</div>
+    <div class="stat-label">Year 2 Annual Surplus</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">60,000</div>
+    <div class="stat-label">Students at Maturity</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">50</div>
+    <div class="stat-label">Colleges · 6 Continents</div>
+  </div>
+</div>
+
+<div class="toc">
+  <div class="toc-title">Contents</div>
+  <div class="toc-item"><span class="tpage">04</span><span class="tnum">I</span>The Problem &mdash; Higher Education Is Breaking</div>
+  <div class="toc-item"><span class="tpage">07</span><span class="tnum">II</span>The Artemis Answer &mdash; Three Deliberate Choices</div>
+  <div class="toc-item"><span class="tpage">10</span><span class="tnum">III</span>The Five Pillars of the Founding Campaign</div>
+  <div class="toc-item"><span class="tpage">15</span><span class="tnum">IV</span>The Financial Engine &mdash; Why $100M Is Enough</div>
+  <div class="toc-item"><span class="tpage">18</span><span class="tnum">V</span>Accountability Architecture</div>
+  <div class="toc-item"><span class="tpage">20</span><span class="tnum">VI</span>Donor Segments &mdash; How the $100M Is Built</div>
+  <div class="toc-item"><span class="tpage">22</span><span class="tnum">VII</span>The Founding Window &mdash; Why Now</div>
+  <div class="toc-item"><span class="tpage">24</span><span class="tnum">VIII</span>The Ask &mdash; How to Give</div>
+</div>
+
+<!-- ─── I. THE PROBLEM ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter I</div>
+  <div class="chapter-title">The problem: higher education is breaking.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<p class="body-text">Higher education in the twenty-first century has reached an inflection point that the institutions themselves are unwilling to name. The cost of a four-year degree in the United States has risen more than 169% since 1980, vastly outstripping wages and inflation, while the global median income that would qualify a family for any kind of need-based aid at the top fifty universities has not moved in real terms for a generation. The result is an admissions system that selects for wealth as much as for talent, and a credential whose signalling value has begun to decouple from the actual learning it represents. The institutions that sit atop this system are not malicious &mdash; they are simply trapped inside a cost structure they did not design and cannot escape.</p>
+
+<p class="body-text">The trap is structural. A traditional research university carries three fixed costs that grow faster than revenue: physical campus expansion, tenured faculty lines, and an administrative apparatus that has roughly tripled per student since 1976. Tuition must rise to cover these costs; aid must be rationed to protect the budget; selectivity must tighten to protect the brand. Every marginal student admitted below full tuition is a marginal loss. The institution is, in effect, penalised for the very access it was founded to provide. This is the math that explains why need-blind admission for international students exists at fewer than eight institutions worldwide &mdash; not because universities do not want to offer it, but because their cost structure forbids it.</p>
+
+<div class="figure">
+  <img src="../public/resources/img/world-night.png" alt="Earth at night from space">
+  <div class="caption">The qualified student who most needs access is, in nearly every case, the one the existing model cannot afford to admit. The light you see is the energy of cities that contain the talent Artemis is designed to reach.</div>
+</div>
+
+<p class="body-text">Geography compounds the exclusion. Of the world's top 200 universities by research output, more than 70% are concentrated in five countries. A brilliant student born in Lagos, Dhaka, Quito, or Tashkent faces a choice between emigration &mdash; which extracts her talent from the place that produced her &mdash; or remaining at home without access to the curriculum, mentorship, and credential that her abilities would earn anywhere else. The planetary distribution of knowledge has not kept pace with the planetary distribution of talent. The universities that exist serve, at most, a single region; the rest of the world inherits their graduates or their absence.</p>
+
+<p class="body-text">Meanwhile, the half-life of useful knowledge has collapsed. A degree earned in 2010 was obsolete in technical content by 2018; a degree earned in 2020 will be obsolete in fundamental method by 2030. The four-year credential, designed for an economy that rewarded decades of stable expertise, is structurally mismatched to an economy that rewards continuous re-mastery. Universities know this and cannot respond. Their governance was designed for stability, their faculty were trained for specialisation, and their incentives reward publication over pedagogy. The mismatch is not a failure of will; it is a failure of architecture.</p>
+
+<div class="pullquote">
+  &ldquo;The institutions most capable of producing the leaders the next century requires are also the most expensive, the most exclusive, and the most geographically concentrated. The paradox is structural, not moral.&rdquo;
+  <div class="attribution">&mdash; Artemis Founding Prospectus, Section 1.2</div>
+</div>
+
+<p class="body-text">The philanthropic response to this crisis, to date, has been to give more money to the institutions that already exist. That strategy has produced trillion-dollar endowments at a small number of universities and a widening access gap everywhere else. Donors who care about access give to scholarships at institutions whose underlying cost structure is the reason access is rationed in the first place. Donors who care about new knowledge give to research centers whose institutional overhead absorbs 30-50% of every dollar before it reaches a laboratory. The system rewards its own expansion and punishes the very reform that would make it sustainable.</p>
+
+<p class="body-text">Artemis was founded on a single observation: the only way to fix the cost structure of higher education is to build a new institution with a different cost structure from Day 1. You cannot retrofit a $50B endowment into a need-blind planetary university. You can, however, build one for $100M if you are willing to abandon three assumptions &mdash; that a university must own a campus, that faculty compensation must come from endowment, and that research overhead must be 40%. The next chapter explains how.</p>
+
+<!-- ─── II. THE ARTEMIS ANSWER ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter II</div>
+  <div class="chapter-title">The Artemis answer: three deliberate choices.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<p class="lead">Artemis is not a better university. It is a different operating model, built on three deliberate choices that, taken together, dissolve the cost structure that has trapped every existing institution. The choices are planetary scale, need-blind admission, and self-sustaining finance. Each one is individually rare. In combination, they have never been attempted.</p>
+
+<div class="card">
+  <div class="card-sub">Choice One</div>
+  <div class="card-title">Planetary in scale &mdash; 50 Colleges across 6 continents</div>
+  <div class="card-body">A single university operating across 50 colleges in 35 countries, with three Central Nodes in Venice, San Francisco, and Singapore. Students move between nodes. Faculty rotate. Knowledge is produced everywhere and shared everywhere. The cost per student is roughly one-fifteenth of the Ivy League because physical infrastructure is repurposed rather than built, and because administrative overhead is engineered out at the design stage rather than audited out after the fact.</div>
+</div>
+
+<p class="body-text">Planetary scale is not a marketing claim; it is a cost-engineering decision. The Ivy League spends between $90,000 and $120,000 per student per year because each campus is a self-contained institution with its own registrar, library, dormitory system, faculty senate, and administrative apparatus. Artemis spends approximately $5,000 per student per year because the 50 Colleges share one curriculum, one faculty roster, one digital infrastructure, and one treasury. The marginal cost of admitting the 60,001st student is roughly zero; the marginal cost of admitting the 60,001st student at a traditional residential university is several thousand dollars in physical capacity that must be built and maintained. This is the difference that makes need-blind planetary admission mathematically possible rather than aspirational.</p>
+
+<div class="figure">
+  <img src="../public/resources/img/venice-node.png" alt="Venice, Central Node">
+  <div class="caption">Venice Central Node &mdash; one of three apex campuses (Venice, San Francisco, Singapore) that anchor a network of 50 Colleges across 35 countries and six continents.</div>
+</div>
+
+<div class="card">
+  <div class="card-sub">Choice Two</div>
+  <div class="card-title">Need-blind in admission &mdash; $3,000 tuition, globally</div>
+  <div class="card-body">Tuition is set at $3,000 per year &mdash; a figure accessible to 90% of qualified students worldwide without aid. The remaining 10% (13,300 students at maturity) receive full or partial scholarships funded by the operating surplus, not by an endowment draw. Need-blind admission is not a privilege Artemis offers; it is the structural consequence of a $3,000 tuition combined with a $262M annual surplus.</div>
+</div>
+
+<p class="body-text">Need-blind admission at traditional universities is funded by endowment draw &mdash; the institution must already possess enough capital to commit a percentage of it each year to financial aid. This is why only a handful of universities with endowments above $10B can afford the policy, and why none of them extend it to international applicants. Artemis inverts the model. Because tuition is set at $3,000 and the operating model produces a $262M annual surplus from Year 2 onward, scholarships are funded out of cash flow rather than corpus. The institution does not need to raise $5B before it can offer need-blind admission; it needs to raise $100M to reach Day 1, after which the model self-funds the policy indefinitely.</p>
+
+<div class="card">
+  <div class="card-sub">Choice Three</div>
+  <div class="card-title">Self-sustaining in finance &mdash; $262M annual surplus from Year 2</div>
+  <div class="card-body">The financial model is engineered to flip from capital-raising to self-sustaining within twelve months of launch. Year 1 breaks even. From Year 2, the model produces $262M in annual surplus that funds scholarships ($40M), builds the endowment ($60M), and underwrites expansion ($162M). The founding campaign is a one-time bridge; after Day 1, Artemis never needs to fundraise for operations again.</div>
+</div>
+
+<p class="body-text">Self-sustainability is the choice that distinguishes Artemis from every other founding campaign in modern philanthropy. A traditional capital campaign raises money for an endowment whose yield covers ongoing operations; the larger the institution, the larger the endowment required, and the longer the timeline to financial independence. Artemis raises money for a one-time bridge: physical properties, a single quarter of faculty compensation, the first cohort of scholarships, and the seed capital for research and innovation. After that bridge is crossed, the operating model produces more cash than the institution needs to run &mdash; and the surplus compounds into the endowment rather than depleting it. This is the architecture that permits a $100M campaign to produce a $543M endowment within a decade, with zero further fundraising required for operations.</p>
+
+<div class="callout">
+  <div class="callout-label">The strategic consequence</div>
+  <p class="body-text" style="margin:0;">A donor who gives to Artemis is not funding operations year over year. They are funding the transition from a fundraising-dependent institution to a self-sustaining one &mdash; a transition that completes within twelve months of Day 1. After that transition, the institution pays for itself, and the donor's gift continues to compound inside the endowment and the property portfolio forever. This is what it means to fund permanence rather than a budget line.</p>
+</div>
+
+<!-- ─── III. THE FIVE PILLARS ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter III</div>
+  <div class="chapter-title">The five pillars of the founding campaign.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<p class="lead">The $100M founding campaign is allocated across five pillars, each of which funds a permanent asset rather than an operating line. The pillars are not budget categories; they are the structural components without which the operating model cannot flip from capital-raising to self-sustaining. Every dollar raised maps to a specific asset &mdash; a building, a faculty line, a scholarship cohort, a research center, or a corpus allocation.</p>
+
+<p class="body-text">The pillar structure matters because it is the mechanism by which the campaign closes. A donor who cares about physical place gives to the Place pillar and names a College. A donor who cares about faculty gives to the Minds pillar and names a Distinguished Professorship. A donor who cares about access gives to the Access pillar and funds the first cohort of scholarships. A donor who cares about research gives to the Excellence pillar and seeds a Center of Inquiry. A donor who cares about permanence gives to the Progress pillar and contributes to the founding corpus. The five pillars cover every reason a donor might give &mdash; and every reason maps to a permanent, named, auditable asset.</p>
+
+<div class="figure">
+  <img src="../public/resources/img/campus-architecture.png" alt="Repurposed College building">
+  <div class="caption">A repurposed College. Properties are acquired, owned, and permanent. Each is a real asset on the balance sheet &mdash; not a lease, not a rental, not a dependency on a host institution.</div>
+</div>
+
+<div class="pillar-card">
+  <div class="pillar-head">
+    <div class="pillar-name">Place</div>
+    <div class="pillar-share">82%</div>
+  </div>
+  <div class="pillar-sub">The 50 Colleges &middot; $82M</div>
+  <div class="pillar-body">A university without a physical place is a YouTube channel. Community requires co-location. Tutorials require rooms. Artemis is not building campuses &mdash; it is finding existing buildings and giving them a second life as Colleges: repurposed convents, warehouses, offices, and factories. Each is acquired. Each is owned. Each is permanent.</div>
+  <div class="pillar-detail">Properties are 82 cents of every dollar raised because real estate is the only asset class large enough to absorb a $100M founding campaign while simultaneously providing the physical infrastructure the university will operate in for centuries. Even at 50% naming uptake, the gifts cover the property costs. Named gifts are endowments &mdash; the property is the asset. The donor names a College; the College owns the building. The building is permanent; therefore the gift is permanent.</div>
+</div>
+
+<div class="pillar-card">
+  <div class="pillar-head">
+    <div class="pillar-name">Minds</div>
+    <div class="pillar-share">7%</div>
+  </div>
+  <div class="pillar-sub">Faculty Launch &middot; $7M</div>
+  <div class="pillar-body">2,000 faculty must be hired, onboarded, and in place before students arrive. This pillar covers approximately three months of faculty compensation before tuition revenue flows. After Day 1, the operating P&amp;L covers all faculty compensation from tuition. This is a one-time bridge &mdash; not a recurring subsidy.</div>
+  <div class="pillar-detail">A $5M Distinguished Professorship at 4.5% yield generates $225,000 per year &mdash; enough to sustain one position in perpetuity at career-level compensation. The naming gifts are endowments; the $7M pre-launch cost is the bridge that gets the faculty to Day 1. After Day 1, the bridge is gone and the endowment is forever.</div>
+</div>
+
+<div class="pillar-card">
+  <div class="pillar-head">
+    <div class="pillar-name">Access</div>
+    <div class="pillar-share">5%</div>
+  </div>
+  <div class="pillar-sub">Year 1 Scholarships &middot; $5M</div>
+  <div class="pillar-body">$3,000 per year is accessible to 90% of qualified students worldwide without aid. The remaining 10% &mdash; 10,000 students in Year 1 &mdash; need assistance. After Year 1, the $262M annual surplus funds 13,300 scholarships per year. The $5M in this pillar bridges the first cohort only.</div>
+  <div class="pillar-detail">After Year 1, the surplus self-funds scholarships at $40M per year &mdash; in perpetuity, with no further donor capital required. A donor who gives to the Access pillar is not running a scholarship program; they are launching a permanent scholarship machine that the institution itself will fund from Year 2 onward.</div>
+</div>
+
+<div class="pillar-card">
+  <div class="pillar-head">
+    <div class="pillar-name">Excellence</div>
+    <div class="pillar-share">3%</div>
+  </div>
+  <div class="pillar-sub">Research &amp; Inquiry &middot; $3M</div>
+  <div class="pillar-body">Research seed funds, visiting fellowships, the Artemis Press, the 19 Centers of Inquiry. The mechanisms that turn a good university into an inevitable one. This is the capital that makes every Center operational from Day 1 rather than ramping over a decade.</div>
+  <div class="pillar-detail">19 Centers of Inquiry and 42 active projects need startup capital: research equipment, fieldwork budgets, database subscriptions, publication subsidies, and the open knowledge infrastructure that powers the 7-year release policy. After Year 1, faculty time (already compensated under the operating P&amp;L) covers most ongoing project work. This $3M is the seed that makes every Center operational from Day 1.</div>
+</div>
+
+<div class="pillar-card">
+  <div class="pillar-head">
+    <div class="pillar-name">Progress</div>
+    <div class="pillar-share">3%</div>
+  </div>
+  <div class="pillar-sub">Innovation &amp; Infrastructure &middot; $3M</div>
+  <div class="pillar-body">Innovation labs, the Global Challenge Fund, technology infrastructure. The bridge between scholarship and the world it serves. The university that outlives its founders needs a corpus that outlives its donors.</div>
+  <div class="pillar-detail">After Year 1, the surplus builds the endowment at $60M per year &mdash; a compounding allocation that reaches $543M within a decade. The $3M in this pillar, invested at 4.5% yield, produces $135,000 per year in perpetuity from Day 1 &mdash; enough to fund 11 full scholarships forever, before any surplus is generated.</div>
+</div>
+
+<div class="stat-row">
+  <div class="stat">
+    <div class="stat-val">$82M</div>
+    <div class="stat-label">Place &middot; 82%</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">$7M</div>
+    <div class="stat-label">Minds &middot; 7%</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">$5M</div>
+    <div class="stat-label">Access &middot; 5%</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">$3M</div>
+    <div class="stat-label">Excellence &middot; 3%</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">$3M</div>
+    <div class="stat-label">Progress &middot; 3%</div>
+  </div>
+</div>
+
+<p class="body-text">The pillar allocation is not arbitrary; it follows directly from the operating model. The Place pillar absorbs 82% of the campaign because properties are the dominant fixed cost of any residential university, and because real estate is the only asset class that can absorb a gift of $25M for a Central Node, $10M for a Tier A College, $5M for a Tier B College, or $2M for a Tier C College without distorting the rest of the campaign. The Minds, Access, Excellence, and Progress pillars absorb the remaining 18% in proportion to their one-time bridge costs &mdash; each calibrated to the minimum capital required to reach Day 1 with a self-sustaining P&amp;L intact.</p>
+
+<!-- ─── IV. THE FINANCIAL ENGINE ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter IV</div>
+  <div class="chapter-title">The financial engine: why $100M is enough.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<p class="lead">The most counter-intuitive claim in this case is that $100M is sufficient to found a planetary university serving 60,000 students. The claim is supported by the operating P&amp;L: at maturity, Artemis generates $300M in annual revenue against $300M in annual expense in Year 1, and from Year 2 produces $262M in annual surplus as the $180M tuition line compounds against a $200M faculty line locked at Day 1.</p>
+
+<p class="body-text">The arithmetic is straightforward. At maturity, Artemis enrolls 60,000 students at $3,000 tuition &mdash; producing $180M in annual tuition revenue. Faculty compensation for 2,000 FTE at career-level pay totals $200M. The $20M gap is closed by $27M in endowment payout (4.5% of a $600M corpus at maturity), $45M in research grants and contracts, $18M in innovation and Forge equity distributions, and $30M in continuing and executive education. Total revenue at maturity: $300M. Total expense: $300M. Year 1 breaks even &mdash; and from Year 2, the model produces a $262M annual surplus as the tuition line grows from initial enrollment to full enrollment without a proportional growth in faculty cost.</p>
+
+<table class="tbl">
+  <thead>
+    <tr>
+      <th>Revenue Source</th>
+      <th style="text-align:right;">Annual</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Tuition (60,000 students &times; $3,000/yr)</td><td class="num">$180M</td></tr>
+    <tr><td>Endowment payout (4.5% of corpus)</td><td class="num">$27M</td></tr>
+    <tr><td>Research grants &amp; contracts</td><td class="num">$45M</td></tr>
+    <tr><td>Innovation &amp; Forge equity (5%)</td><td class="num">$18M</td></tr>
+    <tr><td>Continuing education &amp; executive</td><td class="num">$30M</td></tr>
+    <tr><td><strong>Total annual revenue at maturity</strong></td><td class="num"><strong>$300M</strong></td></tr>
+  </tbody>
+</table>
+
+<p class="body-text">The expense side is similarly engineered. Faculty compensation ($200M) absorbs 67% of operating expense because faculty are the institution's only true fixed cost; without them there is no university. Facilities and operations across 50 Colleges absorb $30M (10%) &mdash; a low ratio achieved by owning rather than leasing, by sharing central infrastructure across the network, and by repurposing rather than building. Scholarships for 13,300 students absorb $40M (13%) &mdash; funded entirely out of operating surplus, not endowment draw. Research and Centers absorb $20M (7%), and administration and governance absorb just $10M (3%) &mdash; a ratio traditional universities have not achieved in fifty years.</p>
+
+<div class="progress">
+  <div class="progress-label"><span>Faculty compensation (2,000 FTE)</span><span>67% &middot; $200M</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 67%;"></div></div>
+</div>
+<div class="progress">
+  <div class="progress-label"><span>Scholarships (13,300 students)</span><span>13% &middot; $40M</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 13%;"></div></div>
+</div>
+<div class="progress">
+  <div class="progress-label"><span>Facilities &amp; operations (50 Colleges)</span><span>10% &middot; $30M</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 10%;"></div></div>
+</div>
+<div class="progress">
+  <div class="progress-label"><span>Research &amp; Centers</span><span>7% &middot; $20M</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 7%;"></div></div>
+</div>
+<div class="progress">
+  <div class="progress-label"><span>Administration &amp; governance</span><span>3% &middot; $10M</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 3%;"></div></div>
+</div>
+
+<div class="callout">
+  <div class="callout-label">The $262M surplus, decomposed</div>
+  <p class="body-text" style="margin:0;">From Year 2 onward, tuition revenue approaches $180M while faculty compensation remains locked at $200M &mdash; producing an operating margin that, combined with $120M in non-tuition revenue growth, generates $262M in annual surplus. That surplus is allocated as follows: $40M funds scholarships for 13,300 students; $60M builds the endowment corpus; $162M funds network expansion, new Colleges, and the innovation portfolio. The model is designed to flip from capital-raising to self-sustaining within twelve months of launch &mdash; not after a decade, not after a follow-on campaign, but within the first fiscal year.</p>
+</div>
+
+<p class="body-text">The endowment trajectory is the proof that the surplus is real, not theoretical. Year 1 closes with a $3M corpus &mdash; the founding Progress pillar allocation. Year 2 closes with $63M, as $60M of surplus is allocated to corpus. Year 3 closes with $123M, as surplus allocation compounds with naming gifts. Year 5 closes with $243M. Year 10 closes with $543M. At maturity, the $543M endowment produces a 4.5% yield of $24.4M per year &mdash; itself sufficient to fund every scholarship in the institution without touching tuition revenue. The endowment does not exist to fund operations; it exists as a permanent reserve that allows the institution to weather any disruption to enrollment, research funding, or innovation income without compromising its mission.</p>
+
+<div class="dark-section">
+  <div class="ds-tag">Endowment Trajectory</div>
+  <div class="ds-title">From $3M to $543M in a decade.</div>
+  <div class="ds-body">The endowment is built entirely from operating surplus, not from follow-on fundraising. Year 1: $3M founding corpus. Year 2: $63M (after first $60M surplus allocation). Year 3: $123M. Year 5: $243M. Year 10: $543M. The 4.5% payout rule produces $24.4M/year at maturity &mdash; a self-renewing scholarship fund independent of tuition, research, or innovation income.</div>
+  <div class="ds-stat-row">
+    <div>
+      <div class="ds-stat-val">$3M</div>
+      <div class="ds-stat-label">Year 1</div>
+    </div>
+    <div>
+      <div class="ds-stat-val">$63M</div>
+      <div class="ds-stat-label">Year 2</div>
+    </div>
+    <div>
+      <div class="ds-stat-val">$123M</div>
+      <div class="ds-stat-label">Year 3</div>
+    </div>
+    <div>
+      <div class="ds-stat-val">$243M</div>
+      <div class="ds-stat-label">Year 5</div>
+    </div>
+    <div>
+      <div class="ds-stat-val">$543M</div>
+      <div class="ds-stat-label">Year 10</div>
+    </div>
+  </div>
+</div>
+
+<p class="body-text">This is why the founding campaign is $100M and not $1B. A traditional endowment-funded university requires a multi-billion-dollar corpus before it can operate, because every dollar of operating expense must be covered by a 4.5% yield on permanently restricted capital. Artemis requires only enough capital to reach Day 1 with the operating model intact &mdash; after which the surplus builds the endowment at $60M per year, every year, without further donor input. The donor who gives to the founding campaign is not buying a budget line; they are buying the transition that makes the institution self-sustaining for the next thousand years.</p>
+
+<!-- ─── V. ACCOUNTABILITY ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter V</div>
+  <div class="chapter-title">Accountability architecture.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<p class="lead">An institution that asks for $100M to build a permanent university owes its donors three things: structural independence, audited finances, and public reporting. Artemis is engineered to deliver all three from Day 1 &mdash; not as aspirations, but as bylaws.</p>
+
+<p class="body-text">Accountability is not a marketing layer applied after the institution has matured; it is a structural choice made before the first dollar is raised. Artemis is incorporated as a Delaware Non-Stock Corporation with 501(c)(3) educational and charitable classification in the United States, a Charitable Incorporated Organisation in England and Wales, and a Fondation under the Swiss Civil Code in Geneva. The three-tier structure ensures that no single jurisdiction can compromise the institution's independence, that tax-deductibility is available to donors in every major philanthropy market, and that the endowment is managed in a neutral jurisdiction with minimal tax drag.</p>
+
+<div class="figure">
+  <img src="../public/resources/img/governance-building.png" alt="Governance building">
+  <div class="caption">The architecture of accountability begins with bylaws &mdash; not with an audit cycle. Independence is structural; reporting is continuous; audit is independent. No single individual controls more than one-third of board seats.</div>
+</div>
+
+<div class="card">
+  <div class="card-sub">Structural Safeguard 1</div>
+  <div class="card-title">Board independence</div>
+  <div class="card-body">No single individual controls more than one-third of board seats. A majority of independent directors is required at all times. The board is the legal mechanism by which the institution's mission is protected against any single donor, founder, or political pressure. It is the structural answer to the question every donor should ask of any founding campaign: who controls this institution after my gift is made?</div>
+</div>
+
+<div class="card">
+  <div class="card-sub">Structural Safeguard 2</div>
+  <div class="card-title">Annual independent audit</div>
+  <div class="card-body">A full independent audit by a Big Four firm is conducted annually and published. No exceptions. The audit covers every dollar received, every dollar disbursed, every endowment transaction, and every related-party arrangement. The published audit is the donor's proof that the institution they fund is operated as described &mdash; not as promised, not as intended, but as actually executed in each fiscal year.</div>
+</div>
+
+<div class="card">
+  <div class="card-sub">Structural Safeguard 3</div>
+  <div class="card-title">Public reporting</div>
+  <div class="card-body">Every dollar received and disbursed is published in an annual impact report available to every donor and the public. The impact report breaks down revenue by source, expense by category, endowment performance, scholarship distribution, faculty composition, research output, and College-by-College operating metrics. There are no proprietary categories, no confidential allocations, and no undisclosed transfers between entities.</div>
+</div>
+
+<p class="body-text">Beyond the three structural safeguards, Artemis is supported by three of the most established fiscal sponsors in global philanthropy: Rockefeller Philanthropy Advisors, NGOsource, and Global Impact. These relationships provide donors with an additional layer of due diligence, equivalency determination for international grant-making, and the assurance that the institution is being held to standards developed over decades of professional philanthropic practice. The fiscal sponsor relationships are not a substitute for direct incorporation; they are an additional channel through which donors in specific jurisdictions can give with full tax efficiency and full institutional accountability.</p>
+
+<div class="callout">
+  <div class="callout-label">The donor's guarantee</div>
+  <p class="body-text" style="margin:0;">Every gift to Artemis is governed by a written gift agreement that specifies the pillar, the named asset, the reporting cadence, and the audit cycle under which the gift will be tracked. The gift agreement is a legal document, not a recognition letter. It is enforceable, it is transferable to the donor's estate, and it is referenced in the annual audit. If the institution ever deviates from the terms of a gift agreement, the donor (or the donor's estate) has legal recourse. This is the structural meaning of permanence.</p>
+</div>
+
+<p class="body-text">Accountability, in the Artemis model, is the architecture that converts a founding campaign into a permanent institution. Without it, a $100M campaign is merely a large donation; with it, the campaign is the legal foundation of a university that will outlive its founders. The donors who anchor the founding campaign are not asked to trust the institution; they are asked to read its bylaws, examine its audit, and review its reporting cadence before they give. Trust, in this model, is the consequence of structure &mdash; not the precondition for it.</p>
+
+<!-- ─── VI. DONOR SEGMENTS ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter VI</div>
+  <div class="chapter-title">Donor segments: how the $100M is built.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<p class="lead">A founding campaign of $100M is built on three donor segments, in the proportions that every successful capital campaign in modern philanthropy has followed. The segments are not aspirational; they are the empirical distribution of how founding campaigns actually close.</p>
+
+<p class="body-text">The arithmetic of capital campaigns is well-established: 70% of the campaign comes from lead donors, 20% from major donors, and 10% from the community. Yale's "For Humanity" campaign secured $3.5B in lead commitments before announcing publicly. Stanford's "H&S" campaign closed 60% of its goal with 12 donors. Harvard's "Capital Campaign" raised 70% of its $9.6B from fewer than 100 donors. The pattern is consistent across institutions and decades: founding campaigns are lead-donor campaigns, and the public phase exists to validate the private commitments already secured.</p>
+
+<table class="tbl">
+  <thead>
+    <tr>
+      <th>Segment</th>
+      <th>Gifts</th>
+      <th>Target</th>
+      <th style="text-align:right;">Share</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Lead Donors</strong></td><td>10 gifts</td><td>$70M</td><td class="num">70%</td></tr>
+    <tr><td><strong>Major Donors</strong></td><td>20 gifts</td><td>$20M</td><td class="num">20%</td></tr>
+    <tr><td><strong>Community</strong></td><td>Unlimited</td><td>$10M</td><td class="num">10%</td></tr>
+    <tr><td><strong>Campaign total</strong></td><td>&mdash;</td><td><strong>$100M</strong></td><td class="num"><strong>100%</strong></td></tr>
+  </tbody>
+</table>
+
+<div class="progress">
+  <div class="progress-label"><span>Lead Donors &mdash; 10 gifts, $70M (70%)</span><span>70%</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 70%;"></div></div>
+</div>
+<div class="progress">
+  <div class="progress-label"><span>Major Donors &mdash; 20 gifts, $20M (20%)</span><span>20%</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 20%;"></div></div>
+</div>
+<div class="progress">
+  <div class="progress-label"><span>Community &mdash; unlimited gifts, $10M (10%)</span><span>10%</span></div>
+  <div class="progress-track"><div class="progress-fill" style="width: 10%;"></div></div>
+</div>
+
+<div class="card">
+  <div class="card-sub">Lead Donors</div>
+  <div class="card-title">$70M from 10 gifts</div>
+  <div class="card-body">The lead donor segment is the segment that closes the campaign. Each lead donor makes a commitment of $5M or more &mdash; typically structured as a Central Node naming ($25M), a Tier A College naming ($10M), a Tier B College naming ($5M), a Distinguished Professorship ($5M), or a combination of these. Lead donors receive permanent seats on the Board of Visitors, recognition at all 50 Colleges, and the right to be named on the founding document at the Venice Central Node. The lead segment is the segment in which the campaign is, in fact, won or lost.</div>
+</div>
+
+<div class="card">
+  <div class="card-sub">Major Donors</div>
+  <div class="card-title">$20M from 20 gifts</div>
+  <div class="card-body">Major donors give at the $1M to $5M level, building the academic infrastructure of the institution. A major donor names a College, a Center of Inquiry, a Professorship, a Scholarship Fund, or a major program. Major donors receive an annual Builder's Report on the impact of their named gift, an invitation to the annual gathering, and a feature in the campaign newsletter. The major donor segment is the segment that builds the depth of the institution beyond the lead naming gifts.</div>
+</div>
+
+<div class="card">
+  <div class="card-sub">Community</div>
+  <div class="card-title">$10M from hundreds of donors</div>
+  <div class="card-body">Community donors give at the $10K to $999K level, seeding scholarships, tutorial rooms, and research projects at individual Colleges. Community donors receive recognition at the College of their choice, named scholarship funds or tutorial rooms, and invitations to regional events. The community segment is the segment that builds the broad base of founders whose names will appear on the founding Donor Roll &mdash; the permanent record of those who built the institution before Day 1.</div>
+</div>
+
+<div class="figure">
+  <img src="../public/resources/img/graduation.png" alt="Graduation ceremony">
+  <div class="caption">The donor's gift compounds inside the institution forever. A scholarship funded in 2025 produces its 100th graduate in 2032, its 1,000th in 2045, and its 10,000th before the donor's grandchildren are born. This is what it means to fund permanence.</div>
+</div>
+
+<p class="body-text">The campaign is structured to close in three phases. The Quiet Phase (Months 1-3) secures $50M in lead commitments before any public announcement. The Public Phase (Months 4-6) takes the campaign to $85M cumulative through major donor solicitation and regional events. Close &amp; Capitalise (Months 7-9) secures the final $15M and begins property acquisition and legal incorporation across 25 jurisdictions. Build &amp; Launch (Months 10-12) executes faculty onboarding, College openings, and student arrival. The university is operational by Month 12 &mdash; one year from the first lead commitment to the first day of classes.</p>
+
+<table class="tbl">
+  <thead>
+    <tr>
+      <th>Milestone</th>
+      <th>Target</th>
+      <th>Timeline</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>The Quiet Phase</strong><br><span style="color:var(--muted); font-size:10px;">No public announcement. Lead donor cultivation. $50M in binding commitments.</span></td><td>$50M</td><td>Months 1&ndash;3</td></tr>
+    <tr><td><strong>The Public Phase</strong><br><span style="color:var(--muted); font-size:10px;">Public website. Regional events across 35 countries. Full case statement distributed.</span></td><td>$85M</td><td>Months 4&ndash;6</td></tr>
+    <tr><td><strong>Close &amp; Capitalise</strong><br><span style="color:var(--muted); font-size:10px;">All $100M secured. Properties acquired. Legal incorporation across 25 jurisdictions.</span></td><td>$100M</td><td>Months 7&ndash;9</td></tr>
+    <tr><td><strong>Build &amp; Launch</strong><br><span style="color:var(--muted); font-size:10px;">Faculty onboarded. Colleges opened. Students arriving. University is live.</span></td><td>$100M</td><td>Months 10&ndash;12</td></tr>
+  </tbody>
+</table>
+
+<!-- ─── VII. WHY NOW ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter VII</div>
+  <div class="chapter-title">The founding window: why now.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<p class="lead">Founding campaigns are time-bound. The window in which a planetary, need-blind, self-sustaining university can be built is open now &mdash; and it will close within a decade, for reasons specific to this moment in technology, demographics, and philanthropy.</p>
+
+<p class="body-text">The first reason is technological. The cost of delivering a high-quality curriculum to 60,000 students across 50 Colleges has collapsed by two orders of magnitude in the last decade. Cloud infrastructure, asynchronous video, AI-mediated tutorials, distributed collaboration tools, and translation at scale are now mature enough to support a single shared curriculum across 35 countries &mdash; a feat that would have cost hundreds of millions of dollars in custom software development as recently as 2015. The infrastructure exists; what does not yet exist is an institution designed to use it. That institution must be built before the technology matures into the existing university market, where it will be absorbed as an incremental feature rather than a structural redesign.</p>
+
+<p class="body-text">The second reason is demographic. The global population of university-age students will peak around 2035 at approximately 220 million, with the majority living outside the OECD. The institutions that exist today cannot serve this population; the institutions that will serve it have not yet been built. Artemis is designed for the demographic reality of the next fifty years &mdash; a planetary student body whose center of gravity is shifting south and east, away from the regions where today's leading universities are concentrated. Founding the institution now means being in place when the demographic peak arrives; founding it in 2040 means arriving after the peak has passed.</p>
+
+<div class="figure">
+  <img src="../public/resources/img/students-global.png" alt="Global students collaborating">
+  <div class="caption">The qualified students who most need access are not in the regions where today's leading universities are concentrated. Artemis meets them where they are &mdash; 50 Colleges across 35 countries, with a single shared curriculum and a single treasury.</div>
+</div>
+
+<p class="body-text">The third reason is philanthropic. The greatest intergenerational transfer of wealth in human history is underway, with an estimated $84 trillion expected to pass between generations in the United States alone by 2045. Donors are increasingly skeptical of giving to institutions whose cost structures absorb 30-50% of every dollar before it reaches the program. They are looking for institutions whose operating model is itself the reform &mdash; institutions where every dollar given produces a permanent asset rather than an annual expense. Artemis is engineered for this donor: the $100M founding campaign is calibrated to the gift size that an established major donor can commit without disrupting their existing philanthropic portfolio, and the operating model is engineered to ensure that every dollar of that gift is traceable to a permanent asset on the institution's balance sheet.</p>
+
+<div class="pullquote">
+  &ldquo;The infrastructure exists; what does not yet exist is an institution designed to use it. The institution must be built before the technology matures into the existing university market, where it will be absorbed as an incremental feature rather than a structural redesign.&rdquo;
+  <div class="attribution">&mdash; Artemis Strategic Plan 2025&ndash;2030</div>
+</div>
+
+<p class="body-text">The fourth reason is geopolitical. The concentration of leading universities in five countries has become a strategic vulnerability for the rest of the world. Nations that produce talent without the institutions to develop it face a structural choice: either build domestic capacity at the standard of the global frontier, or continue to export talent to institutions that will not return it. Artemis offers a third path: a planetary institution whose Colleges are locally embedded but globally networked, whose curriculum is shared, whose faculty rotate, and whose governance is independent of any single government. The institution that provides this path in the next decade will define the standard for the century that follows.</p>
+
+<p class="body-text">The fifth reason is institutional. The cost structure of existing universities has reached a point where reform from within is no longer possible. The faculty senates, accreditation bodies, endowment managers, and administrative apparatuses that govern traditional universities are structurally committed to the cost structure that produces the access crisis. They cannot be reformed; they can only be supplemented by institutions built on a different model. The question is not whether such institutions will be built &mdash; they will, and the technology that makes them possible is already widely available. The question is whether the institution that emerges first will be designed for permanence and public good, or whether it will be designed for extraction and private return. Artemis is the answer to that question, but only if it is built now.</p>
+
+<div class="callout">
+  <div class="callout-label">The strategic horizon</div>
+  <p class="body-text" style="margin:0;">The founding campaign closes in 2025. The university opens in 2026 with three Central Nodes and 12 Colleges. By 2029 the network reaches 50 Colleges and 60,000 students, with an endowment above $200M. By 2030 the institution is operationally self-sufficient, publishing $262M in annual surplus and building the endowment at $60M per year. By 2035 the endowment crosses $543M and the institution is permanent. Every year the founding is delayed is a year subtracted from the back end of this trajectory &mdash; a year in which the demographic, technological, and philanthropic window narrows.</p>
+</div>
+
+<!-- ─── VIII. THE ASK ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter VIII</div>
+  <div class="chapter-title">The ask: how to give.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<p class="lead">The ask is $100M from approximately 30 founding donors across three segments, structured to close within nine months and to produce a fully operational university within twelve. The mechanisms to give are designed to accommodate donors in every major jurisdiction, with full tax efficiency and full institutional accountability.</p>
+
+<p class="body-text">A lead donor commitment typically takes the form of a Central Node naming ($25M), a Tier A College naming ($10M), a Tier B College naming ($5M), or a Distinguished Professorship ($5M) &mdash; frequently structured as a pledge paid over three to five years against a binding gift agreement. The gift agreement specifies the named asset, the reporting cadence, the audit cycle, and the legal recourse available to the donor's estate if the institution deviates from the terms. Pledges are recognized as binding commitments for campaign-closing purposes once the gift agreement is executed, and the campaign moves to its next milestone as each pledge is secured.</p>
+
+<div class="card">
+  <div class="card-sub">Naming opportunities</div>
+  <div class="card-title">From $99 to $25M &mdash; every gift is a permanent asset</div>
+  <div class="card-body">A $25M Central Node naming in Venice, San Francisco, or Singapore. A $10M Tier A College in a global knowledge capital. A $5M Tier B College in a major global city. A $2M Tier C College in Kigali, Dhaka, Kampala, or Karachi. A $5M Distinguished Professorship. A $100K named scholarship fund or tutorial room. A $10K name in the founding Donor Roll. A $99 founding membership in The 99. Every gift, at every level, is recorded as a permanent asset of the founding.</div>
+</div>
+
+<div class="two-col">
+  <div class="card">
+    <div class="card-sub">Lead &amp; Major Donors</div>
+    <div class="card-title">Direct gift agreement</div>
+    <div class="card-body">Lead and major donor commitments are structured through a direct gift agreement with the University, executed under Delaware Non-Stock Corporation law with 501(c)(3) recognition. Pledges may be paid over three to five years. Securities, real estate, and cryptocurrency are accepted at fair market value.</div>
+  </div>
+  <div class="card">
+    <div class="card-sub">International Donors</div>
+    <div class="card-title">Fiscal sponsor channel</div>
+    <div class="card-body">Donors in jurisdictions outside the United States may give through Rockefeller Philanthropy Advisors, NGOsource, or Global Impact, with full tax efficiency in their home jurisdiction and equivalency determination for the recipient institution.</div>
+  </div>
+</div>
+
+<table class="tbl">
+  <thead>
+    <tr>
+      <th>Way to Give</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Online</strong></td><td>Card, PayPal, or cryptocurrency via the website &mdash; immediate confirmation.</td></tr>
+    <tr><td><strong>Bank / Wire Transfer</strong></td><td>Large contributions and international donors.</td></tr>
+    <tr><td><strong>Cryptocurrency</strong></td><td>BTC or ETH, recorded permanently on the public chain as part of the founding record.</td></tr>
+    <tr><td><strong>Securities &amp; Stock</strong></td><td>Appreciated assets &mdash; avoids capital gains tax while maximising impact.</td></tr>
+    <tr><td><strong>Planned Giving</strong></td><td>Bequest, trust, or beneficiary designation &mdash; a permanent legacy.</td></tr>
+    <tr><td><strong>Employer Matching</strong></td><td>Many employers match dollar-for-dollar &mdash; doubling your gift at no cost.</td></tr>
+    <tr><td><strong>Donor-Advised Funds</strong></td><td>Tax-efficient grant recommendation from your DAF to Artemis.</td></tr>
+    <tr><td><strong>In-Kind Contributions</strong></td><td>Equipment, technology, real estate, library materials, professional services.</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <div class="callout-label">The giving circles</div>
+  <p class="body-text" style="margin:0;">Every donor enters a named circle. The Founders' Circle ($10M+): name on the founding document at Venice, permanent seat on the Board of Visitors. The Guardians' Circle ($5M&ndash;$9.9M): named College or Center of Inquiry. The Builders' Circle ($1M&ndash;$4.9M): named Professorship, Scholarship Fund, or major program. The Fellows' Circle ($100K&ndash;$999K): named scholarship fund or tutorial room at the chosen College. Friends of Artemis ($10K&ndash;$99K): name in the founding Donor Roll. The 99 ($99): waitlist priority for enrollment, founding membership.</p>
+</div>
+
+<p class="body-text">The campaign is engineered to close, not to remain perpetually open. The quiet phase is the phase in which lead commitments are secured, and once the quiet phase has reached its $50M threshold, the campaign moves to public phase with the conviction that the lead segment is committed and the major and community segments will follow. The donor who waits for the public phase to begin before committing will give into a campaign that is already three-quarters closed; the donor who commits in the quiet phase gives into the campaign that determines whether the institution is built at all. The case for support is, in the end, a case for timing &mdash; for the recognition that the window is open now, that the model is proven now, and that the founding donors who step forward in the next nine months will be the founders of an institution that outlives them by centuries.</p>
+
+<p class="body-text">The University of Artemis is not asking for sympathy, nor for faith, nor for trust without verification. It is asking for a rigorous reading of this case, a careful examination of the operating model, a due-diligence review of the audit and bylaws, and a gift agreement that specifies the asset being named, the reporting cadence being committed, and the legal recourse being preserved. The donor who gives to Artemis is not funding an aspiration; they are funding a transition &mdash; the transition from an institution that needs to fundraise to one that funds itself. That transition completes within twelve months of the first day of classes. After that, the donor's gift compounds inside the institution forever.</p>
+
+</div>
+
+<!-- ════════════════ ENDING ════════════════ -->
+<div class="ending">
+  <div class="ending-tag">The Founding Campaign &middot; 2025</div>
+  <div class="ending-big">A university that outlives every century it enters.</div>
+  <div class="ending-sub">
+    One campaign. $100M. Twelve months to Day 1. Twelve months more to self-sufficiency.
+    A thousand years of compounding scholarship, access, and inquiry thereafter.
+    The window is open now.
+  </div>
+  <div class="ending-contact">
+    University of Artemis &middot; give@artemis.edu &middot; <a href="https://artemis.edu/give">artemis.edu/give</a>
+  </div>
+</div>
+
+</body>
+</html>

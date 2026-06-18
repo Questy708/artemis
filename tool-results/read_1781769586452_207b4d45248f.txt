@@ -1,0 +1,204 @@
+   312→  <div class="chapter-tag">Chapter III</div>
+   313→  <div class="chapter-title">The three Central Nodes.</div>
+   314→  <div class="chapter-divider"></div>
+   315→</div>
+   316→
+   317→<p class="lead">The three Central Nodes &mdash; Venice, San Francisco, and Singapore &mdash; are the apex of the planetary network. Each Node serves as the regional seat of governance, convocation, and the founding document archive for one third of the planetary university. The Nodes are the structural mechanism by which the institution's governance is distributed across three legally and culturally distinct jurisdictions, preventing capture by any single national government.</p>
+   318→
+   319→<p class="body-text">The three Central Nodes were selected by a single criterion: their capacity to serve as neutral, permanent, geographically distributed seats of the institution. Venice anchors the European and Mediterranean basin and provides the historical and cultural gravitas appropriate to the founding seat. San Francisco anchors the Americas and the Pacific technology arc and provides proximity to Silicon Valley, the Forge incubator, and the computational and biotech research programs. Singapore anchors the Asia-Pacific and the Indian Ocean basin and provides a neutral convening point for the Eastern hemisphere with research focus on fintech, urban futures, and the Indian Ocean region.</p>
+   320→
+   321→<p class="body-text">The tri-continental governance structure is the institutional defense against political capture. A university whose governance is concentrated in a single country is vulnerable to changes in that country's regulatory regime, political climate, or diplomatic posture. A university whose governance rotates physically between three jurisdictions &mdash; with the founding document archived in Venice, the technology charter in San Francisco, and the Asia-Pacific convening seat in Singapore &mdash; is structurally protected against any single government's intervention. The Nodes are not only academic campuses; they are the constitutional architecture of the institution's independence.</p>
+   322→
+   323→<div class="node-card">
+   324→  <div class="nc-head">
+   325→    <div class="nc-name">Venice Central Node</div>
+   326→    <div class="nc-students">~5,000 students</div>
+   327→  </div>
+   328→  <div class="nc-meta">Founding Seat · Governance · Convocation · Archive</div>
+   329→  <div class="nc-body">The founding seat of the planetary university. Venice houses the founding document archive, the convocation hall where the first graduating class is sworn in, and the historical identity of the institution. The Venice Node occupies repurposed Renaissance palazzi along the Grand Canal &mdash; acquired, restored, and operated as the academic heart of the European and Mediterranean basin. The city's geographic isolation from any single national capital, its historical role as the meeting point between East and West, and its architectural inheritance make it the natural seat for an institution whose identity is planetary rather than national.</div>
+   330→</div>
+   331→
+   332→<div class="node-card">
+   333→  <div class="nc-head">
+   334→    <div class="nc-name">San Francisco Central Node</div>
+   335→    <div class="nc-students">~5,000 students</div>
+   336→  </div>
+   337→  <div class="nc-meta">Innovation Seat · Technology · Forge Incubator · Biotech</div>
+   338→  <div class="nc-body">The technology and innovation seat. San Francisco houses the Forge incubator (the institution's startup-spinout engine), the computational and biotech research programs, and the technology charter of the institution. The Node occupies a repurposed industrial complex in the Mission Bay innovation district, with proximity to Silicon Valley, the biotech corridor, and the venture capital community that supports the Forge. The San Francisco Node is the institution's bridge to the technology economy &mdash; the place where the research of the planetary university meets the market for new ventures.</div>
+   339→</div>
+   340→
+   341→<div class="node-card">
+   342→  <div class="nc-head">
+   343→    <div class="nc-name">Singapore Central Node</div>
+   344→    <div class="nc-students">~5,000 students</div>
+   345→  </div>
+   346→  <div class="nc-meta">Asia-Pacific Seat · Neutral Convening · Fintech · Urban Futures</div>
+   347→  <div class="nc-body">The Asia-Pacific seat. Singapore is the neutral convening point for the Eastern hemisphere &mdash; a jurisdiction whose diplomatic posture, regulatory stability, and geographic centrality make it the natural meeting place for students, faculty, and partners from India, China, Southeast Asia, Japan, Korea, and Oceania. The Singapore Node houses the fintech and urban futures research programs, the Asia-Pacific convening hall, and the institution's outreach to the Indian Ocean basin. The city's combination of legal certainty, cultural neutrality, and research infrastructure makes it the indispensable third apex of the planetary network.</div>
+   348→</div>
+   349→
+   350→<div class="pullquote">
+   351→  &ldquo;The three Central Nodes are not three campuses; they are the three legs of a constitutional tripod. Remove any one, and the institution's independence becomes vulnerable. The Nodes exist to ensure that the planetary university cannot be captured by any single government, any single decade, or any single ideological turn.&rdquo;
+   352→  <div class="attribution">&mdash; Artemis Founding Prospectus, Campus Plan Section 3.1</div>
+   353→</div>
+   354→
+   355→<p class="body-text">The three Central Nodes together house approximately 15,000 students &mdash; one quarter of the planetary student body at maturity. Each Node serves a dual function: as an academic campus hosting students and faculty in the regular curriculum, and as the regional seat hosting the institutional functions (governance, convocation, archive, incubator) that rotate between the three. The Nodes are therefore both universities and capitols &mdash; places where students learn and where the institution governs itself. The architectural specification of each Node reflects this dual function: in addition to the standard College facilities (tutorial rooms, lecture halls, library, commons), each Node includes a convocation hall, a governance chamber, and the founding archive appropriate to its regional role.</p>
+   356→
+   357→<!-- ─── IV. THE COLLEGE TIERS ─── -->
+   358→<div class="chapter-header">
+   359→  <div class="chapter-tag">Chapter IV</div>
+   360→  <div class="chapter-title">The College tiers &mdash; A, B, and C.</div>
+   361→  <div class="chapter-divider"></div>
+   362→</div>
+   363→
+   364→<p class="lead">The fifty Colleges are organized into three tiers calibrated to the size, regional role, and acquisition cost of each placement. Tier A flagship Colleges anchor the world's knowledge capitals; Tier B Colleges anchor the major global cities; Tier C Colleges anchor the regional access cities the existing university system has failed to serve. The tier framework is the mechanism by which the planetary network is sized, priced, and sequenced.</p>
+   365→
+   366→<p class="body-text">The tier framework is not a hierarchy of academic quality &mdash; every Artemis College delivers the same curriculum, the same degree, and the same faculty rotation, regardless of tier. The tiers differ along three dimensions: the size of the student body (with Tier A Colleges hosting approximately 2,500 students, Tier B Colleges 2,000, and Tier C Colleges 1,100); the acquisition cost of the building (with Tier A Colleges costing $10M, Tier B $5M, and Tier C $2M); and the regional role (with Tier A Colleges anchoring knowledge capitals, Tier B Colleges anchoring regional commercial capitals, and Tier C Colleges anchoring access cities). A student graduating from a Tier C College in Kigali holds the same degree as a student graduating from a Tier A College in London; the difference is the city, not the credential.</p>
+   367→
+   368→<div class="tier-card">
+   369→  <div class="tc-head">
+   370→    <div class="tc-name">Tier A Colleges</div>
+   371→    <div class="tc-meta">8 Colleges · ~2,500 students each</div>
+   372→  </div>
+   373→  <div class="tc-sub">Flagship · $10M Naming · Knowledge Capitals</div>
+   374→  <div class="tc-body">Flagship Colleges in the world's great knowledge capitals &mdash; London, Tokyo, Berlin, Paris, Toronto, Sydney, Seoul, New York. These cities are not selected because they are underserved &mdash; they are heavily served by existing universities. They are selected because the planetary university cannot be planetary without a permanent, owned, named presence in each of them. Each Tier A College houses approximately 2,500 students and serves as the institution's flagship presence in the city that already defines the global academic conversation.</div>
+   375→</div>
+   376→
+   377→<div class="tier-card">
+   378→  <div class="tc-head">
+   379→    <div class="tc-name">Tier B Colleges</div>
+   380→    <div class="tc-meta">16 Colleges · ~2,000 students each</div>
+   381→  </div>
+   382→  <div class="tc-sub">Major Global Cities · $5M Naming · Regional Capitals</div>
+   383→  <div class="tc-body">Major global cities across all six continents &mdash; Nairobi, Mumbai, São Paulo, Cairo, Istanbul, Buenos Aires, Jakarta, Mexico City, Lagos, Bangkok, Lima, Bogotá, Casablanca, Amman, Hanoi, Manila. Each Tier B College houses approximately 2,000 students and serves as the institution's regional capital presence in a city whose economic gravity shapes an entire sub-continent. The Tier B Colleges are the global-city backbone of the planetary network.</div>
+   384→</div>
+   385→
+   386→<div class="tier-card">
+   387→  <div class="tc-head">
+   388→    <div class="tc-name">Tier C Colleges</div>
+   389→    <div class="tc-meta">23 Colleges · ~1,100 students each</div>
+   390→  </div>
+   391→  <div class="tc-sub">Regional Access · $2M Naming · Emerging Knowledge Cities</div>
+   392→  <div class="tc-body">Regional access colleges in cities the existing university system has failed to serve &mdash; Kigali, Dhaka, Kampala, Karachi, Tashkent, Quito, and emerging knowledge cities across Africa, South Asia, Central Asia, and Latin America. Each Tier C College houses approximately 1,100 students and provides the planetary network's most direct expression of its access mission: frontier curriculum, $3,000 tuition, and need-blind admission in cities where none of these currently exist.</div>
+   393→</div>
+   394→
+   395→<p class="body-text">The tier framework also drives the sequencing of the founding campaign. The three Central Nodes are committed first, because they are the constitutional architecture of the institution. The eight Tier A Colleges are committed next, because they anchor the planetary network in the cities that define the global academic conversation. The sixteen Tier B Colleges follow, because they extend the network into the major regional capitals. The twenty-three Tier C Colleges complete the network, because they are the access layer that fulfills the institution's founding mission. The sequencing reflects the institutional logic of the planetary university: governance first, then flagship presence, then regional capital, then access.</p>
+   396→
+   397→<div class="callout">
+   398→  <div class="callout-label">The total network</div>
+   399→  <p class="body-text" style="margin:0;">3 Central Nodes (15,000 students) + 8 Tier A Colleges (20,000 students) + 16 Tier B Colleges (32,000 students) + 23 Tier C Colleges (25,300 students) = 50 Colleges, 92,300 student capacity, 60,000 enrolled at maturity. The planetary university is sized for the demographic peak of 2035 and the access mission that justifies its founding.</p>
+   400→</div>
+   401→
+   402→<!-- ─── V. VENICE — THE FOUNDING SEAT ─── -->
+   403→<div class="chapter-header">
+   404→  <div class="chapter-tag">Chapter V</div>
+   405→  <div class="chapter-title">Venice &mdash; the founding seat.</div>
+   406→  <div class="chapter-divider"></div>
+   407→</div>
+   408→
+   409→<p class="lead">Venice is the founding seat of the planetary university. The Venice Central Node houses the founding document archive, the convocation hall where the first graduating class is sworn in, and the historical identity of the institution. The Node occupies repurposed Renaissance palazzi along the Grand Canal, restored to house 5,000 students, the governance chamber, and the founding archive.</p>
+   410→
+   411→<p class="body-text">Venice was selected as the founding seat for four reasons. The first is historical: Venice was for five centuries the meeting point between the Latin West, the Byzantine East, and the Islamic South &mdash; the original planetary city, whose identity was defined by its capacity to convene across cultural and religious boundaries. The planetary university inherits that vocation. The second is geographic: Venice is isolated from any single national capital, protected by its lagoon from the political turbulence that has historically affected mainland European cities, and culturally neutral in a way that no national capital can be. The third is architectural: Venice's stock of Renaissance palazzi &mdash; many of them underutilized due to demographic decline and the relocation of commercial functions to the mainland &mdash; provides the building stock the repurposing philosophy requires.</p>
+   412→
+   413→<p class="body-text">The fourth reason is legal. Italy's legal framework for foreign-institution ownership of historically significant buildings is well-established, with the Italian Ministry of Culture maintaining a formal pathway for the acquisition and restoration of palazzi by recognized educational and cultural institutions. The pathway includes tax benefits for restoration expenditures, regulatory protection for the institution's long-term operating control, and the standing of the institution as a recognized cultural custodian of the building. The Venice Node is therefore both a physical campus and a legal instrument &mdash; the mechanism by which the institution's founding seat is anchored in a jurisdiction whose legal framework supports its permanence.</p>
+   414→
+   415→<div class="figure">
+   416→  <img src="../public/resources/img/venice-node.png" alt="Venice Central Node">
+   417→  <div class="caption">Venice Central Node &mdash; the founding seat. Renaissance palazzi along the Grand Canal, repurposed as the academic heart of the European and Mediterranean basin, and the constitutional anchor of the institution's independence.</div>
+   418→</div>
+   419→
+   420→<p class="body-text">The Venice Node houses approximately 5,000 students drawn from across the European and Mediterranean basin, with the curriculum delivered in the standard Artemis format: tutorials, lectures, seminars, and the hybrid-delivery infrastructure that connects the Node to the planetary network. The Node also houses the founding archive &mdash; the physical and digital repository of the institution's founding documents, bylaws, gift agreements, and historical records &mdash; maintained in perpetuity as the institutional record. The archive is open to scholars and donors, with the founding documents available for inspection at any time. The convocation hall hosts the institution's annual founding convocation, the swearing-in of new graduates, and the periodic gathering of the Board of Visitors.</p>
+   421→
+   422→<p class="body-text">The donor who names the Venice Central Node acquires a permanent association with the founding seat of the planetary university. The $25M gift covers campus acquisition, renovation to Central Node specification including the convocation hall and founding archive, and an operating endowment that yields $225K per year in perpetuity to fund the Node's regional convening role. The donor's name is recorded in the founding document at Venice, attached to the Node's convocation hall, and associated with the institution's apex presence in the European and Mediterranean basin. The naming is permanent &mdash; coextensive with the building, which under the institution's design horizon is centuries.</p>
+   423→
+   424→<!-- ─── VI. SAN FRANCISCO — THE INNOVATION SEAT ─── -->
+   425→<div class="chapter-header">
+   426→  <div class="chapter-tag">Chapter VI</div>
+   427→  <div class="chapter-title">San Francisco &mdash; the innovation seat.</div>
+   428→  <div class="chapter-divider"></div>
+   429→</div>
+   430→
+   431→<p class="lead">San Francisco is the technology and innovation seat of the planetary university. The San Francisco Central Node houses the Forge incubator, the computational and biotech research programs, and the technology charter of the institution. The Node occupies a repurposed industrial complex in the Mission Bay innovation district, with proximity to Silicon Valley, the biotech corridor, and the venture capital community.</p>
+   432→
+   433→<p class="body-text">San Francisco was selected as the innovation seat for three reasons. The first is geographic: the San Francisco Bay Area is the global center of the technology economy, with the highest concentration of venture capital, startup activity, and technology talent in the world. Locating the Forge incubator in this ecosystem provides the planetary university's spinout engine with direct access to the capital, talent, and commercialization infrastructure that the technology economy provides. The second is institutional: the Bay Area's existing research universities (Stanford, Berkeley, UCSF) provide a collegial ecosystem of complementary research capacity, with collaboration pathways in biotech, computational science, and adjacent fields.</p>
+   434→
+   435→<p class="body-text">The third reason is symbolic. The planetary university's commitment to innovation as one of its four academic pillars (alongside epistemology, computational thinking, and global systems) requires a permanent physical presence in the geography that has most defined twenty-first-century innovation. San Francisco is not the only city with a technology economy, but it is the city whose identity has been most shaped by the technology economy &mdash; and the institution that anchors its innovation seat there inherits that identity. The Forge incubator, the computational research programs, and the biotech corridor partnerships are the substantive content of the San Francisco Node; the city's symbolic gravity is the institutional context in which that content is delivered.</p>
+   436→
+   437→<p class="body-text">The San Francisco Node houses approximately 5,000 students drawn from across the Americas and the Pacific technology arc, with the curriculum delivered in the standard Artemis format. The Node also houses the Forge incubator &mdash; the institution's startup-spinout engine, which takes research from the planetary university's Centers of Inquiry and develops it into commercial ventures, with the institution retaining a 5% equity stake in each spinout. The Forge equity portfolio is one of the institution's five revenue lines at maturity, projected to generate $18M per year in distributions and exits. The Node also houses the computational and biotech research programs &mdash; including the Synthetic Intelligence Center of Inquiry (San Francisco&ndash;Toronto&ndash;Edinburgh), the Biotech and Life Sciences Center (Cambridge UK&ndash;Basel&ndash;Guangzhou), and the Urban Futures Center (Copenhagen&ndash;Medellín&ndash;Singapore).</p>
+   438→
+   439→<div class="callout">
+   440→  <div class="callout-label">The Forge incubator</div>
+   441→  <p class="body-text" style="margin:0;">The Forge is the institution's startup-spinout engine, housed at the San Francisco Central Node. Research from the planetary university's 19 Centers of Inquiry is developed into commercial ventures, with the institution retaining a 5% equity stake in each spinout. At maturity, the Forge portfolio is projected to generate $18M per year in distributions and exits &mdash; one of the institution's five revenue lines, and the bridge between the scholarship of the university and the world it serves.</p>
+   442→</div>
+   443→
+   444→<p class="body-text">The donor who names the San Francisco Central Node acquires a permanent association with the innovation seat of the planetary university. The $25M gift covers campus acquisition, renovation to Central Node specification including the Forge incubator and computational research facilities, and an operating endowment that yields $225K per year in perpetuity to fund the Node's regional convening role. The donor's name is recorded in the founding document at Venice, attached to the Node's innovation charter, and associated with the institution's apex presence in the Americas and the Pacific technology arc. The naming is permanent &mdash; coextensive with the building, which under the institution's design horizon is centuries.</p>
+   445→
+   446→<!-- ─── VII. SINGAPORE — THE ASIA-PACIFIC SEAT ─── -->
+   447→<div class="chapter-header">
+   448→  <div class="chapter-tag">Chapter VII</div>
+   449→  <div class="chapter-title">Singapore &mdash; the Asia-Pacific seat.</div>
+   450→  <div class="chapter-divider"></div>
+   451→</div>
+   452→
+   453→<p class="lead">Singapore is the Asia-Pacific seat of the planetary university. The Singapore Central Node houses the Asia-Pacific convening hall, the fintech and urban futures research programs, and the institution's outreach to the Indian Ocean basin. The Node occupies a repurposed commercial complex in the city's innovation district, with proximity to the regional headquarters of the global financial and technology firms that anchor Singapore's economy.</p>
+   454→
+   455→<p class="body-text">Singapore was selected as the Asia-Pacific seat for four reasons. The first is geopolitical neutrality: Singapore is a sovereign city-state whose diplomatic posture is independent of any of the major regional powers (China, India, Japan, Indonesia, Australia), and whose regulatory and legal framework is internationally trusted. A university whose Asia-Pacific seat is in Singapore is therefore convening in a jurisdiction that none of the regional powers can claim as their own &mdash; the structural condition for neutral convening in a region whose geopolitical tensions are otherwise unavoidable. The second is geographic centrality: Singapore sits at the meeting point of the Indian Ocean, the South China Sea, and the Pacific, with direct flight connections to every major city in the Eastern hemisphere.</p>
+   456→
+   457→<p class="body-text">The third reason is regulatory: Singapore's legal framework for foreign-institution ownership, research conduct, and intellectual property is among the most stable and well-established in the Asia-Pacific region, providing the institutional certainty required for a permanent campus. The fourth reason is research infrastructure: Singapore's existing research ecosystem &mdash; including the National University of Singapore, Nanyang Technological University, the A*STAR research institutes, and the city's financial and urban-planning agencies &mdash; provides a collegial ecosystem of complementary research capacity, particularly in fintech, urban futures, and the digital infrastructure of the smart city.</p>
+   458→
+   459→<p class="body-text">The Singapore Node houses approximately 5,000 students drawn from across the Asia-Pacific and the Indian Ocean basin, with the curriculum delivered in the standard Artemis format. The Node also houses the Fintech, DeFi, and Economics Center of Inquiry (London&ndash;Singapore&ndash;Lagos), the Urban Futures Center (Copenhagen&ndash;Medellín&ndash;Singapore), and the Bio-Regenerative Arts Center (Venice&ndash;Rotterdam&ndash;Singapore) &mdash; three of the institution's 19 research centers, each distributed across multiple nodes. The Asia-Pacific convening hall hosts the institution's periodic gatherings of students, faculty, and partners from across the Eastern hemisphere, providing the neutral meeting point that the region's diplomatic posture otherwise lacks.</p>
+   460→
+   461→<div class="pullquote">
+   462→  &ldquo;Singapore is the indispensable third apex of the planetary network. Without it, the institution's Asia-Pacific presence would be subject to the geopolitical tensions of whichever major regional power hosted it. With it, the institution convenes in a jurisdiction that none of the regional powers can claim as their own.&rdquo;
+   463→  <div class="attribution">&mdash; Artemis Founding Prospectus, Campus Plan Section 3.3</div>
+   464→</div>
+   465→
+   466→<p class="body-text">The donor who names the Singapore Central Node acquires a permanent association with the Asia-Pacific seat of the planetary university. The $25M gift covers campus acquisition, renovation to Central Node specification including the Asia-Pacific convening hall and the fintech research facilities, and an operating endowment that yields $225K per year in perpetuity to fund the Node's regional convening role. The donor's name is recorded in the founding document at Venice, attached to the Node's Asia-Pacific charter, and associated with the institution's apex presence in the Eastern hemisphere. The naming is permanent &mdash; coextensive with the building, which under the institution's design horizon is centuries.</p>
+   467→
+   468→<!-- ─── VIII. THE GLOBAL NODE NETWORK ─── -->
+   469→<div class="chapter-header">
+   470→  <div class="chapter-tag">Chapter VIII</div>
+   471→  <div class="chapter-title">The global node network.</div>
+   472→  <div class="chapter-divider"></div>
+   473→</div>
+   474→
+   475→<p class="lead">The fifty Colleges and three Central Nodes form a single network &mdash; not a federation of independent institutions, but one university operating across fifty-three physical locations. Students move between nodes. Faculty rotate. Knowledge is produced everywhere and shared everywhere. The network architecture is the mechanism by which the planetary university is planetary rather than merely multicampus.</p>
+   476→
+   477→<p class="body-text">The network operates on a single shared curriculum, a single faculty roster, and a single treasury. Every Artemis College delivers the same nine degree programs, the same four academic pillars, the same tutorial model, and the same graduation requirements &mdash; with local electives that reflect the city's particular intellectual resources (a Berlin College elective in Continental Philosophy, a San Francisco Node elective in Venture Formation, a Nairobi College elective in East African History). The faculty roster is shared: a professor based in Venice may teach a tutorial in Singapore in the fall and a lecture in Berlin in the spring, with the digital infrastructure of the network permitting synchronous and asynchronous delivery across the planetary footprint.</p>
+   478→
+   479→<p class="body-text">Student mobility is a structural feature of the network. Every Artemis student is entitled to spend at least one academic term at a node other than their home College, with the tuition, credit, and financial aid flowing seamlessly across the network. A student who enters at the Kampala College may spend a term at the Venice Central Node, another at the San Francisco Node, and another at the London College &mdash; accumulating the planetary experience that is the credential's distinctive feature. The mobility program is funded by the operating P&amp;L (not by an additional fee), ensuring that the planetary experience is available to every student regardless of financial circumstance.</p>
+   480→
+   481→<div class="figure">
+   482→  <img src="../public/resources/img/world-night.png" alt="Earth at night from space">
+   483→  <div class="caption">The planetary network at night &mdash; fifty Colleges and three Central Nodes across thirty-five countries. The lights are the cities the network is embedded in; the network is the institution that connects them.</div>
+   484→</div>
+   485→
+   486→<p class="body-text">The treasury is single: tuition, endowment payout, research grants, Forge equity distributions, and continuing-education revenue flow into a single institutional treasury, from which faculty compensation, facilities operations, scholarships, research expenditures, and administration are paid. The single-treasury architecture is what permits the operating model to produce the $262M annual surplus from Year 2 onward &mdash; the surplus that funds scholarships, builds the endowment, and underwrites expansion. A federated treasury, with each College managing its own finances, would replicate the cost structure of the existing university system; a single treasury is what permits the planetary university to operate at $5,000 per student per year rather than $90,000.</p>
+   487→
+   488→<p class="body-text">The network's digital infrastructure is the connective tissue that makes the planetary model possible. Every College is equipped with hybrid-delivery lecture halls (permitting a lecture in Venice to be attended live in Nairobi and São Paulo), tutorial rooms with synchronous collaboration tools, and the asynchronous video library that permits every lecture to be reviewed by every student across the network. The digital infrastructure was, until recently, the missing piece that would have made a planetary university impossible: cloud infrastructure, AI-mediated tutorials, distributed collaboration tools, and translation at scale are now mature enough to support a single shared curriculum across thirty-five countries. The campus plan is, in this sense, also a technology plan: the buildings house the digital infrastructure, and the digital infrastructure houses the network.</p>
+   489→
+   490→<div class="callout">
+   491→  <div class="callout-label">The network's compounding advantage</div>
+   492→  <p class="body-text" style="margin:0;">A traditional university adds marginal students at a marginal cost of several thousand dollars per student &mdash; the cost of the physical and administrative capacity required to support them. The Artemis network adds marginal students at a marginal cost approaching zero, because the curriculum, faculty, and digital infrastructure are shared across the network. This is the structural reason the planetary university can offer $3,000 tuition while the Ivy League charges $60,000: the cost per student falls as the network grows, rather than rising as the campus fills.</p>
+   493→</div>
+   494→
+   495→<p class="body-text">The network's expansion path is built into the founding architecture. The fifty Colleges and three Central Nodes are the Year 1 target, but the institution's design horizon extends to a century and beyond. Additional Colleges can be added to the network at marginal cost &mdash; a new College in a city not yet on the map requires acquisition and renovation ($2M&ndash;$25M, depending on tier), connection to the shared digital infrastructure, and integration into the faculty rotation, but does not require additional curriculum development, additional administrative overhead, or additional central infrastructure. The network is therefore not only the founding configuration of the planetary university but the expansion architecture by which the institution grows over the century that follows its founding.</p>
+   496→
+   497→</div>
+   498→
+   499→<!-- ════════════════ ENDING ════════════════ -->
+   500→<div class="ending">
+   501→  <div class="ending-tag">Campus Master Plan · 2025</div>
+   502→  <div class="ending-big">Repurposed, not built. Owned, not leased. Permanent.</div>
+   503→  <div class="ending-sub">
+   504→    Three Central Nodes. Fifty Colleges. Thirty-five countries.
+   505→    One curriculum, one faculty, one treasury &mdash;
+   506→    across a network that compounds into the century ahead.
+   507→  </div>
+   508→  <div class="ending-contact">
+   509→    University of Artemis &middot; give@artemis.edu &middot; <a href="https://artemis.edu/give">artemis.edu/give</a>
+   510→  </div>
+   511→</div>
+   512→
+   513→</body>
+   514→</html>
+   515→

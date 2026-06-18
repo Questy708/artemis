@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Legal Entity Overview — University of Artemis</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+@page { size: 720px 1020px; margin: 0; }
+:root {
+  --crimson: #8A0000; --crimson-deep: #6B0000; --crimson-soft: #B33A3A;
+  --ink: #141414; --ink-soft: #3a3a3a; --muted: #6b6b6b; --line: #e5e5e5;
+  --bg: #FAFAF8; --bg-dark: #0c0a09; --bg-cream: #F5F2EC; --gold: #b08d57;
+}
+html, body { margin: 0; padding: 0; width: 720px; background: var(--bg-dark); color: var(--ink);
+  font-family: 'Inter', -apple-system, sans-serif; font-size: 13px; line-height: 1.65;
+  -webkit-font-smoothing: antialiased; }
+@media screen { html { display: flex; justify-content: center; background: #222; height: auto; }
+  body { margin: 20px auto; box-shadow: 0 0 40px rgba(0,0,0,0.4); } }
+
+/* COVER */
+.cover { width: 720px; height: 1020px; box-sizing: border-box; break-after: page; overflow: hidden;
+  position: relative; background: var(--bg-dark); color: #fff; display: flex; flex-direction: column;
+  justify-content: center; padding: 64px; }
+.cover .cover-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.35; filter: grayscale(0.3); }
+.cover .cover-overlay { position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(138,0,0,0.55) 0%, rgba(12,10,9,0.92) 60%, rgba(12,10,9,0.98) 100%); }
+.cover .cover-content { position: relative; z-index: 2; }
+.cover .cover-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase;
+  color: var(--crimson-soft); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+.cover .cover-tag::before { content: ""; width: 28px; height: 1px; background: var(--crimson); }
+.cover h1 { font-family: 'Noto Serif SC', Georgia, serif; font-size: 52px; font-weight: 900; line-height: 1.02;
+  letter-spacing: -0.02em; margin: 0 0 24px; text-transform: none; }
+.cover .cover-sub { font-size: 15px; color: rgba(255,255,255,0.65); font-weight: 300; line-height: 1.6; max-width: 480px; }
+.cover .cover-footer { position: absolute; bottom: 48px; left: 64px; right: 64px; display: flex;
+  justify-content: space-between; align-items: flex-end; z-index: 2; font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: rgba(255,255,255,0.4); }
+.cover .cover-footer .crest { font-family: 'Noto Serif SC', serif; font-size: 14px; color: rgba(255,255,255,0.7); letter-spacing: 0.15em; }
+.cover .cover-edition { position: absolute; top: 48px; right: 64px; z-index: 2; font-size: 10px;
+  letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-align: right; }
+
+/* CONTENT FLOWS */
+.main-content { background: var(--bg); padding: 64px 64px 48px 64px; }
+
+.chapter-header { break-after: avoid; break-inside: avoid; margin-top: 28px; margin-bottom: 20px; }
+.chapter-header:first-child { margin-top: 0; }
+.chapter-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--crimson); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+.chapter-tag::before { content: ""; width: 22px; height: 1px; background: var(--crimson); }
+.chapter-title { font-family: 'Noto Serif SC', Georgia, serif; font-size: 30px; font-weight: 800;
+  line-height: 1.12; letter-spacing: -0.015em; color: var(--ink); margin: 0 0 12px; }
+.chapter-divider { width: 40px; height: 6px; background: var(--crimson); margin-bottom: 18px; }
+
+.body-text { font-size: 13px; line-height: 1.72; color: var(--ink-soft); margin: 0 0 12px; }
+.body-text strong { color: var(--ink); font-weight: 600; }
+.lead { font-size: 15px; line-height: 1.65; color: var(--ink); font-weight: 400; margin-bottom: 18px; }
+
+.pullquote { break-inside: avoid; border-left: 3px solid var(--crimson); padding: 16px 24px; margin: 20px 0;
+  font-family: 'Noto Serif SC', Georgia, serif; font-size: 16px; font-style: italic; line-height: 1.5;
+  color: var(--ink); background: var(--bg-cream); }
+.pullquote .attribution { font-size: 11px; font-style: normal; color: var(--muted); margin-top: 10px; letter-spacing: 0.05em; }
+
+.card { break-inside: avoid; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 20px 22px; margin-bottom: 14px; }
+.card-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.card-sub { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
+.card-body { font-size: 12px; line-height: 1.6; color: var(--ink-soft); }
+
+.stat-row { display: flex; gap: 12px; margin: 16px 0; break-inside: avoid; }
+.stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 14px; }
+.stat .stat-val { font-family: 'Noto Serif SC', serif; font-size: 18px; font-weight: 900; color: var(--crimson); line-height: 1.1; }
+.stat .stat-label { font-size: 8.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+
+.callout { break-inside: avoid; background: var(--bg-cream); border-radius: 8px; padding: 18px 22px; margin: 14px 0; border-left: 3px solid var(--crimson); }
+.callout .callout-label { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
+.callout .callout-body { font-size: 12px; line-height: 1.65; color: var(--ink-soft); }
+.callout .callout-body strong { color: var(--ink); }
+
+.tbl { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 11px; break-inside: avoid; }
+.tbl th { text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--ink); padding: 8px 10px; }
+.tbl td { padding: 9px 10px; border-bottom: 1px solid var(--line); color: var(--ink-soft); vertical-align: top; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl .num { font-family: 'Noto Serif SC', serif; font-weight: 700; color: var(--crimson); text-align: right; white-space: nowrap; }
+
+.figure { break-inside: avoid; margin: 18px 0; }
+.figure img { width: 100%; border-radius: 6px; display: block; }
+.figure .caption { font-size: 10px; color: var(--muted); margin-top: 8px; letter-spacing: 0.03em; line-height: 1.5; }
+
+.bullets { margin: 10px 0 14px; padding: 0; list-style: none; }
+.bullets li { font-size: 12px; line-height: 1.65; color: var(--ink-soft); padding-left: 18px; position: relative; margin-bottom: 6px; }
+.bullets li::before { content: ""; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; background: var(--crimson); border-radius: 50%; }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+.dark-section { background: var(--bg-dark); color: #fff; margin: 0 -64px; padding: 44px 64px; break-inside: avoid; }
+.dark-section .ds-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--crimson-soft); margin-bottom: 10px; }
+.dark-section .ds-title { font-family: 'Noto Serif SC', serif; font-size: 24px; font-weight: 800; margin-bottom: 12px; line-height: 1.2; }
+.dark-section .ds-body { font-size: 12px; line-height: 1.7; color: rgba(255,255,255,0.72); }
+.dark-section .ds-body strong { color: #fff; }
+
+.entity-card { break-inside: avoid; background: #fff; border: 1px solid var(--line); border-radius: 10px; margin: 16px 0; overflow: hidden; }
+.entity-card .ec-head { padding: 18px 22px; border-bottom: 1px solid var(--line); background: var(--bg-cream); }
+.entity-card .ec-tier { font-size: 9px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--crimson); }
+.entity-card .ec-name { font-family: 'Noto Serif SC', serif; font-size: 18px; font-weight: 800; color: var(--ink); margin-top: 4px; line-height: 1.25; }
+.entity-card .ec-jur { font-size: 11px; color: var(--muted); margin-top: 4px; }
+.entity-card .ec-body { padding: 18px 22px; }
+.entity-card .ec-benefit { font-size: 12px; line-height: 1.65; color: var(--ink); margin-bottom: 12px; }
+.entity-card .ec-benefit strong { color: var(--crimson); }
+
+.timeline-item { break-inside: avoid; display: grid; grid-template-columns: 80px 1fr; gap: 14px; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px dashed var(--line); }
+.timeline-item:last-child { border-bottom: none; }
+.timeline-item .ti-date { font-family: 'Noto Serif SC', serif; font-size: 11px; font-weight: 700; color: var(--crimson); }
+.timeline-item .ti-label { font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
+.timeline-item .ti-body { font-size: 12px; line-height: 1.6; color: var(--ink-soft); }
+
+/* ENDING */
+.ending { width: 720px; height: 1020px; box-sizing: border-box; break-before: page; overflow: hidden;
+  background: var(--bg-dark); color: #fff; display: flex; flex-direction: column; justify-content: center;
+  align-items: center; padding: 64px; text-align: center; }
+.ending .ending-tag { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--crimson-soft); margin-bottom: 28px; }
+.ending .ending-big { font-family: 'Noto Serif SC', Georgia, serif; font-size: 38px; font-weight: 800; line-height: 1.15; letter-spacing: -0.015em; max-width: 540px; margin-bottom: 32px; }
+.ending .ending-sub { font-size: 14px; color: rgba(255,255,255,0.5); max-width: 440px; line-height: 1.65; font-weight: 300; }
+.ending .ending-contact { margin-top: 40px; font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; }
+.ending .ending-contact a { color: var(--crimson-soft); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <img class="cover-img" src="../public/resources/img/governance-building.png" alt="">
+  <div class="cover-overlay"></div>
+  <div class="cover-edition">Edition 2025<br>Vol. VI</div>
+  <div class="cover-content">
+    <div class="cover-tag">Resource Series · No. 6</div>
+    <h1>Legal Entity<br>Overview</h1>
+    <p class="cover-sub">The corporate architecture of the University of Artemis across three jurisdictions — Delaware, England &amp; Wales, and Switzerland — together with the governance documents, fiscal sponsors, and accountability guarantees that secure every gift from incorporation to impact.</p>
+  </div>
+  <div class="cover-footer">
+    <span class="crest">University of Artemis</span>
+    <span>3 Jurisdictions · 22 Pages</span>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="main-content">
+
+  <!-- CHAPTER 1: WHY THREE ENTITIES -->
+  <div class="chapter-header">
+    <div class="chapter-tag">Chapter One · Foundations</div>
+    <h2 class="chapter-title">Why Three Entities</h2>
+    <div class="chapter-divider"></div>
+  </div>
+
+  <p class="lead">A planetary university cannot be incorporated in a single jurisdiction. The legal vehicle that accepts a tax-deductible gift in Delaware is not the same vehicle that issues Gift Aid receipts in London, and neither is the foundation that holds endowment capital under Swiss civil code in Geneva.</p>
+
+  <p class="body-text">The University of Artemis is incorporated as three distinct legal entities, each established under the law of the jurisdiction where it operates, and each performing a specific function within the broader institutional architecture. The <strong>primary entity</strong> is a Delaware Non-Stock Corporation recognised by the United States Internal Revenue Service as a 501(c)(3) public charity; it is the parent operating entity, accepting the largest volume of donations and issuing the deductibility receipts that US taxpayers require. The <strong>secondary entity</strong> is a Charitable Incorporated Organisation registered with the Charity Commission of England &amp; Wales; it is the vehicle through which UK and Commonwealth donors claim Gift Aid and higher-rate relief. The <strong>tertiary entity</strong> is a Fondation constituted under the Swiss Civil Code in the Canton of Geneva; it is the endowment-holding foundation that signals institutional permanence to European and Gulf donors and that benefits from Switzerland's neutrality, stability, and absence of capital gains tax on long-term asset growth.</p>
+
+  <p class="body-text">This three-entity structure is not a contrivance for legal arbitrage. It is the minimum architecture required to operate a university whose donors, students, faculty, and partners span six continents. A donor in Houston expects to write a cheque to a 501(c)(3) and receive a determination-letter receipt; a donor in Edinburgh expects to make a Gift Aid declaration and have the charity reclaim 25% from HMRC; a donor in Geneva expects to give to a Fondation supervised by the federal foundation authority, with the endowment held in Swiss francs under a custodian regulated by FINMA. No single legal entity can satisfy all three expectations simultaneously, and the attempt to do so would expose the university to tax disputes, regulatory penalties, and donor attrition in each of its major markets.</p>
+
+  <p class="body-text">The three entities are operationally unified but legally distinct. They share a common mission statement, common branding, and a common Board of Visitors whose members hold fiduciary responsibility across all three vehicles through coordinated appointments. Each entity is governed by its own board (or trustee council, in the case of the CIO and the Fondation), but the boards overlap sufficiently to ensure that no single jurisdiction's decisions can divert the institution from its founding purpose. The architecture is deliberately redundant: if one entity is delayed by a regulator, suspended by a court, or disrupted by a political event, the other two continue to operate, accept gifts, and disburse funds in furtherance of the university's charitable objects. This redundancy is itself a guarantee to donors that the institution they support will outlast any single jurisdiction's turbulence.</p>
+
+  <div class="pullquote">
+    "A university that intends to outlive every century it enters must be incorporated in more than one. The single-jurisdiction charity is a hostage to the politics of its home."
+    <div class="attribution">— Charter of Incorporation, University of Artemis, 2025</div>
+  </div>
+
+  <p class="body-text">The remaining chapters of this overview describe each entity in detail — its jurisdiction, classification, governance documents, key benefits, and operational structure — followed by the incorporation timeline, the role of fiscal sponsors in jurisdictions where direct registration is pending, and the accountability guarantees that bind all three entities into a single coherent institution. Donors are encouraged to identify the entity most appropriate to their tax residence and to request the full incorporation documents — articles, bylaws, charitable determination letter, and trustee register — from the Office of Gift Planning before making any commitment above $100,000.</p>
+
+  <div class="stat-row">
+    <div class="stat"><div class="stat-val">3</div><div class="stat-label">Legal Entities</div></div>
+    <div class="stat"><div class="stat-val">DE · UK · CH</div><div class="stat-label">Jurisdictions</div></div>
+    <div class="stat"><div class="stat-val">3+</div><div class="stat-label">Board Members Each</div></div>
+    <div class="stat"><div class="stat-val">Big Four</div><div class="stat-label">Annual Audit</div></div>
+  </div>
+
+  <!-- CHAPTER 2: ARCHITECTURE OVERVIEW -->
+  <div class="chapter-header">
+    <div class="chapter-tag">Chapter Two · At a Glance</div>
+    <h2 class="chapter-title">The Three-Entity Architecture</h2>
+    <div class="chapter-divider"></div>
+  </div>
+
+  <p class="body-text">The table below summarises the three entities at a glance. Each is described in full in the chapters that follow, with its governance documents, structure, and operational benefits expanded into prose. Donors unfamiliar with the legal architecture of cross-border charities should read this overview first, then proceed to the entity most relevant to their own giving strategy.</p>
+
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>Tier</th>
+        <th>Entity</th>
+        <th>Jurisdiction</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Primary</strong></td>
+        <td>Delaware Non-Stock Corporation<br><span style="color:var(--muted);font-size:10px;">501(c)(3) Educational &amp; Charitable</span></td>
+        <td>United States</td>
+        <td>Incorporated</td>
+      </tr>
+      <tr>
+        <td><strong>Secondary</strong></td>
+        <td>Charitable Incorporated Organisation<br><span style="color:var(--muted);font-size:10px;">Charity Commission — Advancement of Education</span></td>
+        <td>England &amp; Wales</td>
+        <td>Pre-Filing</td>
+      </tr>
+      <tr>
+        <td><strong>Tertiary</strong></td>
+        <td>Fondation under Swiss Civil Code<br><span style="color:var(--muted);font-size:10px;">International Foundation — Geneva Canton</span></td>
+        <td>Switzerland</td>
+        <td>Planned</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="body-text">The progression from Primary to Tertiary reflects both the order of incorporation and the order of strategic priority. The Delaware corporation was incorporated first because the United States is the world's largest philanthropic market — $499 billion in annual giving as of 2024 — and because US tax deductibility is the single most material factor for the substantial majority of Artemis's founding donors. The UK CIO follows because the United Kingdom is the second-largest source of major philanthropic commitments to global universities and because the Gift Aid mechanism materially improves the efficiency of every UK gift. The Swiss Fondation is the third entity because Switzerland serves as the university's neutral jurisdiction for endowment management and as the institutional face of Artemis to European, Gulf, and Asian donors who prefer to give through a continental foundation.</p>
+
+  <p class="body-text">Each entity's status reflects where it stands in the incorporation process. The Delaware corporation is fully incorporated and has filed IRS Form 1023 for 501(c)(3) determination; it is the active operating entity accepting gifts today. The UK CIO is in pre-filing: the constitutional documents have been drafted by UK counsel and the registration application is being prepared for submission to the Charity Commission. During the pre-filing period, UK donors are accepted through a fiscal sponsorship arrangement (described in Chapter 8) that provides Gift Aid eligibility pending the CIO's own registration. The Swiss Fondation is planned: the founding deed has been drafted in coordination with Geneva counsel, the minimum capital of CHF 50,000 has been pledged, and cantonal authority approval will be sought once the founding board is fully constituted.</p>
+
+  <div class="figure">
+    <img src="../public/resources/img/governance-building.png" alt="Neoclassical institutional building">
+    <div class="caption">The neoclassical architecture of public institutions mirrors the legal architecture of the university: formal, deliberate, and built to endure beyond the lifetimes of its founders. Each column is a jurisdiction; each pediment, a charitable object.</div>
+  </div>
+
+  <p class="body-text">Two architectural principles govern the relationship between the three entities. The first is <strong>functional separation</strong>: each entity has a clearly defined role, and no entity attempts to perform a function that another is better positioned to discharge. The Delaware corporation accepts US deductible gifts and operates the university's US-based programmes. The UK CIO accepts Gift Aid eligible gifts and coordinates with the University of London consortium partnership. The Swiss Fondation holds endowment capital and manages the long-term investment portfolio. Cross-entity transfers are governed by formal inter-charitable agreements that comply with the laws of all three jurisdictions.</p>
+
+  <p class="body-text">The second principle is <strong>governance coherence</strong>: although each entity has its own board, the boards are designed to overlap. A subset of trustees serves on multiple entities' boards, ensuring that strategic decisions are coordinated across jurisdictions. The President of the University of Artemis serves ex officio on all three boards. The chair of each board holds a non-voting observer seat on the others. This structure prevents the entities from drifting apart strategically while preserving the legal independence that each jurisdiction requires.</p>
+
+  <!-- CHAPTER 3: DELAWARE NON-STOCK -->
+  <div class="chapter-header">
+    <div class="chapter-tag">Chapter Three · Primary Entity</div>
+    <h2 class="chapter-title">Delaware Non-Stock Corporation</h2>
+    <div class="chapter-divider"></div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat"><div class="stat-val">USA</div><div class="stat-label">Jurisdiction</div></div>
+    <div class="stat"><div class="stat-val">501(c)(3)</div><div class="stat-label">Classification</div></div>
+    <div class="stat"><div class="stat-val">Incorporated</div><div class="stat-label">Status</div></div>
+    <div class="stat"><div class="stat-val">$499B</div><div class="stat-label">US Annual Giving</div></div>
+  </div>
+
+  <p class="body-text">The Delaware Non-Stock Corporation is the primary legal entity of the University of Artemis. It is incorporated under the Delaware General Corporation Law as a non-stock corporation — a corporate form designed specifically for charitable and educational institutions — and has filed IRS Form 1023 to be recognised as a 501(c)(3) public charity under the United States Internal Revenue Code. The classification is "Educational &amp; Charitable," the broadest and most operationally flexible of the 501(c)(3) categories, allowing the university to conduct teaching, research, scholarship, and direct charitable activities within a single exempt entity.</p>
+
+  <p class="body-text">The key benefit of the Delaware non-stock form is straightforward: it makes every dollar given by a US taxpayer deductible against federal income tax, state income tax (in most states), and — through careful structuring — federal estate tax. In a philanthropic market that recorded $499 billion in annual giving in 2024, deductibility is the operational prerequisite that allows Artemis to compete for major gifts on equal footing with established US universities. A donor who can give $10 million to Harvard, Stanford, or MIT and reduce their federal tax bill by $3.7 million can give the same $10 million to Artemis and reduce their federal tax bill by the same $3.7 million — provided Artemis holds a valid 501(c)(3) determination letter.</p>
+
+  <div class="entity-card">
+    <div class="ec-head">
+      <div class="ec-tier">Entity · Primary</div>
+      <div class="ec-name">Delaware Non-Stock Corporation</div>
+      <div class="ec-jur">United States · 501(c)(3) Educational &amp; Charitable</div>
+    </div>
+    <div class="ec-body">
+      <div class="ec-benefit"><strong>Key benefit:</strong> Tax-deductible donations in the world's largest philanthropy market ($499B in 2024). Every dollar given reduces the donor's US tax liability.</div>
+      <ul class="bullets" style="margin:6px 0 0;">
+        <li>Non-stock corporation — no shareholders, no owner</li>
+        <li>IRS Form 1023 filed for 501(c)(3) determination</li>
+        <li>Retroactive deductibility within 27 months of incorporation</li>
+        <li>Required: 3+ independent board members, no single controller</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="body-text">The structural requirements of the Delaware non-stock form reflect both state corporate law and federal tax law. At the state level, the Delaware General Corporation Law permits incorporation without shareholders and without stock, with the entity instead governed by a self-perpetuating board of directors. The board must have at least three members; Artemis's charter specifies a minimum of seven and a maximum of twenty-five, ensuring sufficient diversity of expertise without becoming unwieldy. At the federal level, IRS regulations require that no single individual control more than one-third of the board, that the entity operate exclusively for exempt purposes, and that no part of the net earnings inure to the benefit of any private shareholder or individual.</p>
+
+  <p class="body-text">A critical operational feature of the 501(c)(3) determination is its retroactivity. The IRS recognises 501(c)(3) status retroactively within 27 months of incorporation, provided Form 1023 is filed within that window and the entity has operated in a manner consistent with exempt purposes throughout the period. This means that donors who give to Artemis during the pre-determination period — exactly the early years when founding donors are making their commitments — can claim deductibility on their US tax returns for those gifts, even before the determination letter is issued. Artemis provides each such donor with a written contingency statement that confirms the filing of Form 1023 and the expectation of retroactive deductibility, with a commitment to issue corrected receipts should the determination be delayed or denied.</p>
+
+  <div class="callout">
+    <div class="callout-label">Worked Example · Delaware Non-Stock</div>
+    <div class="callout-body">
+      <p style="margin:0 0 8px;">A US donor in the 37% federal bracket with $500,000 AGI makes a $100,000 cash gift to the Delaware Non-Stock Corporation. The gift is within the 60%-of-AGI cap and is deductible in the current year. The donor's effective after-tax cost falls to approximately $58,000 after federal and state tax savings — a 42% reduction in the real cost of the gift.</p>
+    </div>
+  </div>
+
+  <p class="body-text">Beyond deductibility, the Delaware non-stock form confers several practical advantages that make it the natural primary vehicle for an institution of Artemis's scope. Delaware corporate law is the most developed and predictable body of corporate jurisprudence in the United States, with the Court of Chancery providing specialised expertise in disputes involving corporate governance. The state's franchise tax regime for non-stock corporations is modest and predictable. The corporate registry at the Delaware Division of Corporations is efficient, with routine filings processed within 24 to 48 hours. For a university that intends to operate for centuries, the legal certainty of the Delaware corporate form is itself a strategic asset.</p>
+
+  <!-- CHAPTER 4: UK CIO -->
+  <div class="chapter-header">
+    <div class="chapter-tag">Chapter Four · Secondary Entity</div>
+    <h2 class="chapter-title">Charitable Incorporated Organisation</h2>
+    <div class="chapter-divider"></div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat"><div class="stat-val">UK</div><div class="stat-label">Jurisdiction</div></div>
+    <div class="stat"><div class="stat-val">25%</div><div class="stat-label">Gift Aid Top-Up</div></div>
+    <div class="stat"><div class="stat-val">Pre-Filing</div><div class="stat-label">Status</div></div>
+    <div class="stat"><div class="stat-val">3+</div><div class="stat-label">Trustees Required</div></div>
+  </div>
+
+  <p class="body-text">The Charitable Incorporated Organisation is the University of Artemis's secondary legal entity, registered (in pre-filing status) with the Charity Commission of England &amp; Wales under the Charities Act 2011. The CIO is a corporate form specifically designed for charities — it provides the limited liability of a company without the regulatory burden of dual registration with both Companies House and the Charity Commission. The classification under the Charities Act is "Advancement of Education," a recognised charitable purpose that aligns directly with the university's mission and allows the CIO to conduct teaching, research, scholarship, and ancillary educational activities within a single registered charity.</p>
+
+  <p class="body-text">The key benefit of the UK CIO is the Gift Aid mechanism, which turns every £1 million given by a UK taxpayer into £1.25 million in the hands of the charity through an automatic HMRC top-up. The donor completes a Gift Aid declaration — a simple administrative step requiring no legal documentation — and the CIO reclaims 25% of the gift from HMRC through the Charities Online portal. For higher-rate and additional-rate taxpayers, a further personal relief is available through self-assessment: a 45% taxpayer giving £10,000 can reclaim £6,250 in personal tax relief, reducing their effective cost to £3,750 while the charity receives £12,500. Few jurisdictions produce a more efficient philanthropic plumbing system than the United Kingdom's Gift Aid regime.</p>
+
+  <div class="entity-card">
+    <div class="ec-head">
+      <div class="ec-tier">Entity · Secondary</div>
+      <div class="ec-name">Charitable Incorporated Organisation</div>
+      <div class="ec-jur">England &amp; Wales · Charity Commission — Advancement of Education</div>
+    </div>
+    <div class="ec-body">
+      <div class="ec-benefit"><strong>Key benefit:</strong> Gift Aid turns every £1M into £1.25M through HMRC top-up. UK donors receive full tax relief. Aligns with University of London consortium partnership.</div>
+      <ul class="bullets" style="margin:6px 0 0;">
+        <li>CIO or Company Limited by Guarantee</li>
+        <li>3+ trustees required with UK registered office</li>
+        <li>Gift Aid eligibility — 25% government supplement</li>
+        <li>Recognised by Commonwealth jurisdictions worldwide</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="body-text">The structural requirements of the CIO form reflect both UK charity law and the Charity Commission's expectations for governance of registered charities. The CIO must have a written constitution (or, in the alternative, must adopt the model constitution published by the Charity Commission) that specifies its charitable objects, its governance structure, and its dissolution provisions. The CIO must maintain a registered office in England or Wales and must have at least three trustees, the majority of whom must not be related to one another or to any employee of the charity. Artemis's CIO has been drafted with seven founding trustees, of whom five are independent of the university's executive leadership and two are members of the Board of Visitors serving in a coordinating capacity.</p>
+
+  <p class="body-text">The choice of CIO form, rather than the alternative Company Limited by Guarantee (CLG), reflects the university's expectation that the secondary entity will engage primarily in charitable activities rather than commercial trading. A CLG must register with both Companies House and the Charity Commission, file accounts with both regulators, and comply with the Companies Act 2006 in addition to the Charities Act 2011. A CIO registers only with the Charity Commission and is regulated solely under charity law, eliminating the dual-regulation burden. If the CIO later develops substantial commercial activities (for example, executive education or licensing of intellectual property), a separate trading subsidiary can be established as a CLG whose profits are gifted back to the CIO under the standard charity-trading structure.</p>
+
+  <p class="body-text">The UK CIO also serves as the formal vehicle for Artemis's partnership with the University of London consortium, through which Artemis students enrolled at the Venice and London nodes are eligible for recognition of their coursework toward University of London awards. The consortium partnership requires a UK-incorporated charitable entity as the contractual counterparty; the CIO satisfies this requirement while providing the Gift Aid eligibility that makes UK donor commitments materially more efficient. The partnership is governed by a memorandum of understanding executed between the CIO and the University of London, with academic oversight provided by a joint committee of faculty from both institutions.</p>
+
+  <div class="callout">
+    <div class="callout-label">Worked Example · UK CIO + Gift Aid</div>
+    <div class="callout-body">
+      <p style="margin:0 0 8px;">A UK additional-rate taxpayer (45%) makes a £10,000 gift to the CIO and completes a Gift Aid declaration. The CIO reclaims £2,500 from HMRC; the donor claims £6,250 of personal relief through self-assessment. The charity receives £12,500; the donor's effective cost is £3,750. Effective tax recovery: 70% of the gross gift.</p>
+    </div>
+  </div>
+
+  <!-- CHAPTER 5: SWISS FONDATION -->
+  <div class="chapter-header">
+    <div class="chapter-tag">Chapter Five · Tertiary Entity</div>
+    <h2 class="chapter-title">Swiss Fondation</h2>
+    <div class="chapter-divider"></div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat"><div class="stat-val">CH</div><div class="stat-label">Jurisdiction</div></div>
+    <div class="stat"><div class="stat-val">CHF 50K</div><div class="stat-label">Min Capital</div></div>
+    <div class="stat"><div class="stat-val">Planned</div><div class="stat-label">Status</div></div>
+    <div class="stat"><div class="stat-val">0%</div><div class="stat-label">Cap Gains Tax</div></div>
+  </div>
+
+  <p class="body-text">The Fondation under the Swiss Civil Code is the University of Artemis's tertiary legal entity, planned for establishment in the Canton of Geneva under the supervision of the Swiss federal foundation authority (the Federal Department of Home Affairs) and the cantonal authority of Geneva. The Fondation is a foundation in the civil-law sense: a dedicated pool of assets entrusted to a foundation board for the pursuit of a specified charitable purpose. Unlike an Anglo-American trust, which separates legal and beneficial ownership, the Swiss Fondation holds assets in its own name and is governed by a foundation board that owes fiduciary duties to the purpose itself rather than to any beneficiary or settlor.</p>
+
+  <p class="body-text">The key benefit of the Swiss Fondation is the combination of endowment management in a neutral jurisdiction with minimal tax drag and the institutional signalling value of a Swiss charitable presence. Switzerland has no capital gains tax on the appreciation of investment assets held by a charitable foundation, no wealth tax on foundation assets at the federal level (cantonal wealth taxes vary but are modest for foundations), and a long history of supervising charitable foundations under the federal foundation authority. Geneva is home to a disproportionate share of the world's international institutions — the World Health Organization, the International Committee of the Red Cross, CERN, the International Olympic Committee — and a charitable Fondation registered in Geneva benefits from the credibility that this institutional ecosystem confers on its peers.</p>
+
+  <div class="entity-card">
+    <div class="ec-head">
+      <div class="ec-tier">Entity · Tertiary</div>
+      <div class="ec-name">Fondation under Swiss Civil Code</div>
+      <div class="ec-jur">Switzerland · International Foundation — Geneva Canton</div>
+    </div>
+    <div class="ec-body">
+      <div class="ec-benefit"><strong>Key benefit:</strong> Endowment management in a neutral jurisdiction with minimal tax drag. Signals institutional permanence to European and Gulf donors. Home to WHO, CERN, IOC.</div>
+      <ul class="bullets" style="margin:6px 0 0;">
+        <li>Minimum CHF 50,000 initial capital</li>
+        <li>Cantonal authority approval required</li>
+        <li>No capital gains tax on endowment growth</li>
+        <li>Governed by Swiss foundation supervision</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="body-text">The structural requirements of the Swiss Fondation are governed by Articles 80 through 89 of the Swiss Civil Code and by the cantonal foundation laws of Geneva. The minimum initial capital is CHF 50,000 (approximately $57,000 at current exchange rates), which must be irrevocably dedicated to the foundation's purpose upon establishment. The foundation is constituted by a founding deed executed before a Swiss notary public, which specifies the foundation's purpose, governance structure, and initial assets. The founding deed is then submitted to the cantonal authority of Geneva, which reviews it for compliance with Swiss foundation law and — upon approval — enters the foundation in the commercial register, at which point the foundation acquires legal personality.</p>
+
+  <p class="body-text">Once established, the Fondation is supervised by the federal foundation authority (in the case of foundations of national importance) or the cantonal authority (in the case of foundations of regional or local significance). Artemis's Fondation is being structured as a foundation of national importance, given the international scope of its purpose, and will therefore be supervised at the federal level. The foundation board — equivalent to a board of directors — must have at least three members and is required to publish annual financial statements and a foundation report describing the foundation's activities and the deployment of its assets in furtherance of its purpose. The supervisory authority retains the power to inspect the foundation's books, to require corrective action if the foundation deviates from its purpose, and in extreme cases to dissolve the foundation and direct its remaining assets to a charitable purpose similar to its original one.</p>
+
+  <p class="body-text">The choice of Switzerland for the endowment-holding entity reflects several strategic considerations. The first is the absence of capital gains tax on the appreciation of investment assets held by a charitable foundation, which materially improves the long-term compounding of the endowment. A foundation that grows its endowment at 7% gross per annum will compound at approximately 7% net in Switzerland; the same foundation, subject to a 20% capital gains tax on realised gains, would compound at approximately 5.6% net — a difference that over 50 years produces an endowment more than three times larger in the tax-free jurisdiction. The second is the political and economic stability of Switzerland, which has not experienced a sovereign default, currency crisis, or significant political disruption in modern recorded history. For a foundation intended to hold endowment capital across centuries, this stability is a structural prerequisite.</p>
+
+  <div class="callout">
+    <div class="callout-label">Why Switzerland · The Compounding Argument</div>
+    <div class="callout-body">
+      <p style="margin:0 0 8px;">A $100 million endowment compounding at 7% gross over 50 years reaches <strong>$2.95 billion</strong> in a tax-free jurisdiction. Subject to a 20% capital gains tax on realised gains, the same endowment compounds at approximately 5.6% net and reaches <strong>$1.80 billion</strong>. The tax-free structure produces a terminal endowment <strong>64% larger</strong> — without any additional donor contribution or investment outperformance.</p>
+    </div>
+  </div>
+
+  <p class="body-text">The third consideration is signalling. A donor in Riyadh, Dubai, Singapore, or Hong Kong evaluating a major gift to Artemis takes note of whether the university maintains an endowment vehicle in a jurisdiction with the institutional credibility of Switzerland. The presence of a Swiss Fondation, supervised by the federal foundation authority and operating alongside the world's most established international institutions, signals that the university is not a transient project but a permanent fixture of the international educational landscape. For major donors whose philanthropic intent extends beyond their own lifetimes, this signalling value is often the determining factor in the choice of recipient institution.</p>
+
+  <!-- CHAPTER 6: GOVERNANCE DOCUMENTS -->
+  <div class="chapter-header">
+    <div class="chapter-tag">Chapter Six · Governance Documents</div>
+    <h2 class="chapter-title">The Constitutional Architecture</h2>
+    <div class="chapter-divider"></div>
+  </div>
+
+  <p class="lead">Each of the three entities is constituted by a foundational legal instrument that defines its purpose, governance structure, and operating constraints. These documents are publicly available and form the constitutional architecture of the university.</p>
+
+  <p class="body-text">The constitutional documents of the three entities are the legal foundation on which every aspect of the university's operations rests. They specify what the entity may do (its charitable objects), how it must be governed (its board structure and trustee duties), how its assets may be deployed (its investment and distribution policies), and what happens to its assets in the event of dissolution. Donors considering major commitments should request and review the constitutional documents of the entity to which they intend to give, as these documents define the legal envelope within which the gift will be received and deployed.</p>
+
+  <div class="card">
+    <div class="card-sub">Delaware · Certificate of Incorporation &amp; Bylaws</div>
+    <div class="card-title">The Founding Charter of the Primary Entity</div>
+    <div class="card-body">
+      The Delaware Non-Stock Corporation is constituted by a Certificate of Incorporation filed with the Delaware Division of Corporations, supplemented by corporate Bylaws adopted by the inaugural board. The Certificate specifies the corporation's name, its non-stock character, its charitable and educational purposes, its registered agent in Delaware, and the initial board of directors. The Bylaws specify the board's structure (size, classes, term limits), the procedures for board and committee meetings, the officers of the corporation and their duties, the indemnification provisions for directors and officers, and the amendment procedures for both documents. The Certificate may be amended by board resolution filed with the Division of Corporations; the Bylaws may be amended by board vote without external filing. Both documents are available on request from the Office of the Corporate Secretary.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-sub">UK · CIO Constitution</div>
+    <div class="card-title">The Trustee Framework of the Secondary Entity</div>
+    <div class="card-body">
+      The Charitable Incorporated Organisation is constituted by a Constitution adopted under the Charities Act 2011 and registered with the Charity Commission. The Constitution specifies the CIO's name, its charitable objects (framed as "the advancement of education"), its powers (the activities the CIO may undertake in furtherance of its objects), the structure and proceedings of the trustee board, the provisions for membership (if any), the financial controls and audit requirements, the dissolution provisions (directing remaining assets to a charity with similar objects), and the amendment procedures (which for certain provisions require Charity Commission consent). The Constitution is a public document available through the Charity Commission's online register; amended versions are filed with the Commission and become publicly available upon registration.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-sub">Switzerland · Founding Deed (Stiftungsurkunde) &amp; Foundation Regulations</div>
+    <div class="card-title">The Civil-Law Charter of the Tertiary Entity</div>
+    <div class="card-body">
+      The Swiss Fondation is constituted by a Founding Deed (Stiftungsurkunde) executed before a Swiss notary public, supplemented by Foundation Regulations (Reglement) adopted by the founding board. The Founding Deed specifies the foundation's name, its purpose, its initial capital, its domicile (Geneva), and the founding board members. The Foundation Regulations specify the board's structure and proceedings, the investment and distribution policies, the financial reporting and audit requirements, the provisions for board succession, and the dissolution provisions (directing remaining assets to a Swiss charitable purpose similar to the foundation's original purpose, as required by Article 57 of the Swiss Civil Code). The Founding Deed is filed with the commercial register and is publicly accessible; the Foundation Regulations are filed with the supervisory authority and are available on request.
+    </div>
+  </div>
+
+  <p class="body-text">The three constitutional documents are designed to be mutually reinforcing. Each specifies the same charitable purpose — the advancement of education through the operation of a planetary university — and each incorporates by reference the founding mission statement of the University of Artemis. The board structures of the three entities overlap sufficiently to ensure strategic coherence while preserving the legal independence required by each jurisdiction's regulator. The dissolution provisions of all three entities direct remaining assets to charitable purposes consistent with the university's mission, ensuring that no dissolution event — however unlikely — could result in the diversion of donor funds to non-charitable uses.</p>
+
+  <p class="body-text">Amendment of the constitutional documents is deliberately constrained. The Delaware Certificate may be amended by board resolution, but amendments affecting the charitable purposes require notice to the IRS and may trigger revocation of 501(c)(3) status. The UK CIO Constitution may be amended by trustee vote, but amendments to the charitable objects, dissolution provisions, or trustee benefits require prior consent of the Charity Commission. The Swiss Founding Deed may be amended only with the approval of the cantonal or federal supervisory authority, and amendments that would alter the foundation's purpose are permitted only in narrowly defined circumstances specified in Article 85 of the Swiss Civil Code. These constraints protect donors against the risk that the entity's purpose could be redirected without regulatory oversight.</p>
+
+  <!-- CHAPTER 7: INCORPORATION DETAILS -->
+  <div class="chapter-header">
+    <div class="chapter-tag">Chapter Seven · Incorporation Timeline</div>
+    <h2 class="chapter-title">From Founding to Recognition</h2>
+    <div class="chapter-divider"></div>
+  </div>
+
+  <p class="body-text">The timeline below records the incorporation milestones of each entity, from the initial drafting of constitutional documents through to regulatory recognition and operational readiness. Donors may consult the timeline to verify the current status of the entity most relevant to their giving strategy and to anticipate the milestones at which additional capabilities (such as direct Gift Aid eligibility or endowment acceptance) come online.</p>
+
+  <div class="card">
+    <div class="card-title">Primary Entity · Delaware Non-Stock Corporation</div>
+    <div class="card-body" style="padding-top:8px;">
+      <div class="timeline-item">
+        <div><div class="ti-date">Q1 2025</div><div class="ti-label">Incorporated</div></div>
+        <div class="ti-body">Certificate of Incorporation filed with the Delaware Division of Corporations; initial board of seven directors constituted; registered agent appointed in Wilmington, Delaware. Entity acquires legal personality upon filing.</div>
+      </div>
+      <div class="timeline-item">
+        <div><div class="ti-date">Q1 2025</div><div class="ti-label">EIN Issued</div></div>
+        <div class="ti-body">Employer Identification Number (EIN) issued by the IRS upon Form SS-4. EIN is the federal tax identifier used on all donor receipts, financial accounts, and regulatory filings.</div>
+      </div>
+      <div class="timeline-item">
+        <div><div class="ti-date">Q2 2025</div><div class="ti-label">Form 1023 Filed</div></div>
+        <div class="ti-body">IRS Form 1023 (Application for Recognition of Exemption) filed within 27 months of incorporation, requesting 501(c)(3) public charity status under Section 509(a)(1) and 170(b)(1)(A)(vi). Retroactive deductibility begins from incorporation date.</div>
+      </div>
+      <div class="timeline-item">
+        <div><div class="ti-date">Q4 2025</div><div class="ti-label">Determination Letter</div></div>
+        <div class="ti-body">Anticipated IRS determination letter recognising 501(c)(3) status. Upon receipt, all donor receipts issued since incorporation are confirmed as deductible; Form 990 annual returns begin in the following fiscal year.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Secondary Entity · UK Charitable Incorporated Organisation</div>
+    <div class="card-body" style="padding-top:8px;">
+      <div class="timeline-item">
+        <div><div class="ti-date">Q2 2025</div><div class="ti-label">Constitution Drafted</div></div>
+        <div class="ti-body">CIO Constitution drafted by UK charity counsel, based on the Charity Commission's model constitution with bespoke modifications for Artemis's objects and governance structure. Trustees identified and consent obtained.</div>
+      </div>
+      <div class="timeline-item">
+        <div><div class="ti-date">Q3 2025</div><div class="ti-label">Registration Filed</div></div>
+        <div class="ti-body">Application for registration filed with the Charity Commission of England &amp; Wales, including the Constitution, trustee declarations, and the charity's governing documents. Registered office established in London.</div>
+      </div>
+      <div class="timeline-item">
+        <div><div class="ti-date">Q4 2025</div><div class="ti-label">Registration Expected</div></div>
+        <div class="ti-body">Anticipated Charity Commission registration. Upon registration, the CIO acquires legal personality, Gift Aid eligibility begins, and HMRC charitable status is automatic. UK donor gifts through fiscal sponsorship during the pre-filing period are retrospectively eligible for Gift Aid treatment in defined circumstances.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Tertiary Entity · Swiss Fondation</div>
+    <div class="card-body" style="padding-top:8px;">
+      <div class="timeline-item">
+        <div><div class="ti-date">Q3 2025</div><div class="ti-label">Founding Deed Drafted</div></div>
+        <div class="ti-body">Founding Deed (Stiftungsurkunde) and Foundation Regulations drafted by Geneva foundation counsel in coordination with the federal foundation authority's informal pre-review. Initial capital of CHF 50,000 pledged by founding donors.</div>
+      </div>
+      <div class="timeline-item">
+        <div><div class="ti-date">Q4 2025</div><div class="ti-label">Notarial Execution</div></div>
+        <div class="ti-body">Founding Deed executed before a Swiss notary public; founding board constituted; application for commercial register entry submitted to the Geneva cantonal authority.</div>
+      </div>
+      <div class="timeline-item">
+        <div><div class="ti-date">Q1 2026</div><div class="ti-label">Commercial Register</div></div>
+        <div class="ti-body">Anticipated entry in the Geneva commercial register. Upon registration, the Fondation acquires legal personality, supervisory authority oversight begins, and the foundation may accept irrevocable endowment commitments from major donors.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="body-text">The timeline reflects realistic estimates based on the typical processing times of each regulator. The IRS determination typically requires 3 to 9 months from Form 1023 filing; the Charity Commission registration typically requires 3 to 6 months from application; the Swiss commercial register entry typically requires 4 to 8 weeks from notarial execution. Delays beyond these ranges may occur if regulators request additional information or if the entity's activities raise novel regulatory questions. Artemis's Office of the Corporate Secretary monitors the status of each application and provides updates to donors on request.</p>
+
+  <!-- CHAPTER 8: FISCAL SPONSORS -->
+  <div class="chapter-header">
+    <div class="chapter-tag">Chapter Eight · Interim Vehicles</div>
+    <h2 class="chapter-title">Fiscal Sponsorship</h2>
+    <div class="chapter-divider"></div>
+  </div>
+
+  <p class="lead">In jurisdictions where Artemis's own charitable registration is pending, the university accepts gifts through established fiscal sponsors — recognised public charities that receive donations on behalf of unincorporated or pre-registration projects and disburse them in furtherance of the project's charitable purpose.</p>
+
+  <p class="body-text">Fiscal sponsorship is a well-established practice in international philanthropy, particularly for projects that operate across multiple jurisdictions or that require time to obtain their own charitable registration. A fiscal sponsor is itself a recognised public charity — typically a large, established institution with a multi-jurisdictional footprint — that agrees to receive donations on behalf of a sponsored project, issue deductibility receipts to donors, and disburse the funds to the project in accordance with the sponsor's own charitable purposes. The sponsor retains fiduciary responsibility for the funds and exercises oversight over the project's activities to ensure they remain consistent with the sponsor's exempt purposes.</p>
+
+  <div class="card">
+    <div class="card-sub">US Fiscal Sponsor</div>
+    <div class="card-title">Rockefeller Philanthropy Advisors</div>
+    <div class="card-body">
+      Rockefeller Philanthropy Advisors (RPA) is one of the world's largest philanthropic advisory and fiscal sponsorship organisations, with offices in New York, San Francisco, and London. RPA's fiscal sponsorship programme accepts donations on behalf of sponsored projects, issues 501(c)(3) deductibility receipts, and provides financial administration, compliance oversight, and grant-making infrastructure. Artemis's sponsorship arrangement with RPA covers the period from incorporation through IRS determination, ensuring that US donors can give with full deductibility throughout the pre-determination window. The arrangement is governed by a written fiscal sponsorship agreement specifying the sponsored activities, the disbursement procedures, and the oversight obligations of both parties.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-sub">Cross-Border Equivalency Sponsor</div>
+    <div class="card-title">NGOsource</div>
+    <div class="card-body">
+      NGOsource is a specialised fiscal sponsorship service operated by the TechSoup Global Network, focused on cross-border equivalency determinations under the US-Mexico-Canada Agreement and the Hague Apostille Convention. NGOsource provides US 501(c)(3) equivalency determinations for foreign charities, allowing US private foundations to make grants to those charities without the burden of individual expenditure responsibility. For Artemis, NGOsource's equivalency determination service will enable US private foundations and donor-advised funds to make grants directly to the UK CIO and the Swiss Fondation once those entities are registered, eliminating the friction that often deters US institutional donors from giving to non-US charities.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-sub">Donor-Advised Fund Integration</div>
+    <div class="card-title">Global Impact</div>
+    <div class="card-body">
+      Global Impact is a US-registered charity that operates a donor-advised fund (DAF) programme and a workplace giving platform with access to more than 1.5 million federal, state, and corporate employees. Artemis's partnership with Global Impact enables donors who hold DAF accounts at Global Impact to recommend grants to the Delaware Non-Stock Corporation through the standard DAF distribution process, and enables federal and corporate employees to designate Artemis as a recipient of workplace giving contributions. The partnership also provides access to Global Impact's verified charity database, which is used by major corporate matching-gift programmes.
+    </div>
+  </div>
+
+  <p class="body-text">The three fiscal sponsor arrangements are designed to be interim, not permanent. As Artemis's own charitable registrations are completed in each jurisdiction, the fiscal sponsor arrangements will be wound down and gifts will be received directly by the relevant Artemis entity. The wind-down is governed by the terms of each fiscal sponsorship agreement and is expected to occur within 12 to 18 months of each entity's own registration. Donors who have given through a fiscal sponsor will receive continuation receipts from the relevant Artemis entity once direct receipting begins, ensuring that there is no gap in the donor's documentation for tax purposes.</p>
+
+  <p class="body-text">Donors should be aware that fiscal sponsorship involves a modest administrative fee — typically 5% to 10% of the gift amount, depending on the sponsor and the scope of services provided. This fee covers the sponsor's charitable oversight, financial administration, audit and compliance costs, and grant-making infrastructure. Artemis has negotiated reduced fees with each of its three fiscal sponsors in exchange for the volume and visibility of the sponsored activities. Donors who prefer to avoid fiscal sponsorship fees may delay their gift until the relevant Artemis entity is registered, or may structure their gift as a pledge payable upon registration.</p>
+
+  <!-- CHAPTER 9: ACCOUNTABILITY -->
+  <div class="chapter-header">
+    <div class="chapter-tag">Chapter Nine · Accountability</div>
+    <h2 class="chapter-title">Guarantees to Donors</h2>
+    <div class="chapter-divider"></div>
+  </div>
+
+  <p class="lead">Three structural guarantees bind all three entities into a single coherent institution: board independence, annual audit, and public reporting. These guarantees are written into the constitutional documents of each entity and are not subject to waiver by board vote.</p>
+
+  <p class="body-text">The accountability architecture of the University of Artemis is designed to provide donors with verifiable assurance that every gift will be received, recorded, deployed, and reported in accordance with the donor's intent and the entity's charitable purposes. The architecture rests on three structural guarantees — board independence, annual audit, and public reporting — each of which is written into the constitutional documents of all three entities and each of which is enforceable by the relevant regulator. Donors may verify compliance with these guarantees by reviewing the annual reports and audited financial statements of the entity to which they have given or intend to give.</p>
+
+  <div class="card">
+    <div class="card-sub">Guarantee One</div>
+    <div class="card-title">Board Independence</div>
+    <div class="card-body">
+      No single individual controls more than one-third of board seats on any of the three entities. The majority of directors on each board are independent — that is, they are not employees of the university, are not related to employees or to one another, and have no material financial relationship with the university other than their board service. The independence requirement is enforced through annual conflict-of-interest disclosures reviewed by the audit committee of each board, and any director found to have an undisclosed conflict is required to recuse from relevant decisions or to resign. The independence requirement exceeds the minimum standards of each jurisdiction's regulator and is designed to ensure that no founder, donor, or executive can divert the entity from its charitable purposes.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-sub">Guarantee Two</div>
+    <div class="card-title">Annual Audit</div>
+    <div class="card-body">
+      Each of the three entities is subject to a full independent financial audit by a Big Four accounting firm — Deloitte, PwC, EY, or KPMG — selected on a rotating basis to ensure independence. The audit covers all revenue, expenses, assets, and liabilities of the entity and includes a review of internal controls, compliance with applicable laws and regulations, and the deployment of restricted (donor-designated) funds in accordance with donor intent. The audited financial statements are published annually and are available without charge to any donor or member of the public on request. No exceptions are permitted to the annual audit requirement, and any qualified audit opinion triggers an immediate review by the board's audit committee and a corrective action plan filed with the relevant regulator.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-sub">Guarantee Three</div>
+    <div class="card-title">Public Reporting</div>
+    <div class="card-body">
+      Every dollar received and disbursed by each of the three entities is published in an annual impact report, available to every donor and to the public. The impact report includes the audited financial statements, a summary of programme activities and outcomes, a list of grants and disbursements above defined thresholds, and a narrative description of the entity's progress against its strategic plan. The report is published within 180 days of the end of each fiscal year and is distributed in print to donors above defined giving thresholds and is made available in digital form to all donors and to the public. The reporting obligation exceeds the minimum standards of each jurisdiction's regulator and is designed to ensure that no gift, however small, is invisible to the donor who gave it.
+    </div>
+  </div>
+
+  <p class="body-text">The three guarantees work together to produce a layered system of accountability. Board independence ensures that strategic decisions are made by a diverse group of fiduciaries accountable to the charitable purpose rather than to any individual. Annual audit ensures that the financial statements are independently verified and that any deviation from accepted accounting standards is detected and reported. Public reporting ensures that the results of both board decisions and financial activity are visible to donors and to the public, enabling external scrutiny by anyone with an interest in the entity's conduct. Together, these guarantees provide a level of assurance that exceeds the minimum standards of any single jurisdiction's regulator and that matches the expectations of the most sophisticated major donors.</p>
+
+  <p class="body-text">Donors who wish to verify compliance with these guarantees may request the most recent annual report and audited financial statements of the entity to which they have given or intend to give. The Office of Gift Planning maintains copies of all such documents and provides them within five business days of any donor request. Donors may also verify the entity's registration status directly with the relevant regulator: the IRS Exempt Organizations Select Check for the Delaware corporation, the Charity Commission online register for the UK CIO, and the Geneva commercial register (Zefix) for the Swiss Fondation. The university welcomes external scrutiny and considers donor verification of its regulatory status a healthy practice that reinforces the accountability architecture.</p>
+
+  <div class="pullquote">
+    "The credibility of a charity is measured not by the eloquence of its case for support but by the precision of its audited statements. We have built Artemis on the second, not the first."
+    <div class="attribution">— Audit Committee Charter, University of Artemis</div>
+  </div>
+
+  <!-- CHAPTER 10: CROSS-BORDER ARCHITECTURE -->
+  <div class="chapter-header">
+    <div class="chapter-tag">Chapter Ten · Cross-Border Giving</div>
+    <h2 class="chapter-title">The Cross-Border Architecture</h2>
+    <div class="chapter-divider"></div>
+  </div>
+
+  <p class="body-text">The three-entity architecture exists not only to serve donors in each jurisdiction but also to enable cross-border giving — gifts from a donor in one jurisdiction to a charitable purpose in another. Cross-border giving is structurally complex because each jurisdiction's tax regime is designed primarily for domestic giving, and the deductibility of a gift to a foreign charity is frequently restricted or denied. The three-entity architecture addresses this complexity by allowing donors to give to the Artemis entity in their own jurisdiction, with the gift then transferred to the entity best positioned to deploy the funds in furtherance of the charitable purpose.</p>
+
+  <p class="body-text">A donor in Houston wishing to support the Venice Central Node, for example, gives to the Delaware Non-Stock Corporation and designates the gift for the Venice Node. The Delaware corporation receives the gift with full US deductibility, then transfers the designated funds to the UK CIO (which coordinates the Venice programme through the University of London consortium) under a formal inter-charitable grant agreement. The UK CIO receives the funds as a restricted grant, deploys them in furtherance of the Venice Node programme, and reports back to the Delaware corporation on the use of the funds. The donor receives a single receipt from the Delaware corporation and may claim full US deductibility on the gift; the cross-border transfer is invisible to the donor's tax return.</p>
+
+  <p class="body-text">The inter-charitable grant agreements that govern cross-border transfers are structured to comply with the laws of both jurisdictions. US 501(c)(3) law permits grants to foreign charities provided that the US grantor exercises expenditure responsibility — that is, maintains oversight of the grant's use and obtains reports on the deployment of the funds — or obtains an equivalency determination from a qualified tax practitioner that the foreign grantee is the equivalent of a US public charity. Artemis's inter-charitable grant agreements satisfy both standards: the granting entity exercises expenditure responsibility through quarterly financial reports and annual programme reports from the receiving entity, and the receiving entity obtains an equivalency determination from NGOsource that is renewed every five years.</p>
+
+  <div class="callout">
+    <div class="callout-label">Worked Example · Cross-Border Gift</div>
+    <div class="callout-body">
+      <p style="margin:0 0 8px;">A US donor gives $1 million to the Delaware Non-Stock Corporation, designating the gift for the Venice Central Node endowment. The Delaware corporation issues a 501(c)(3) receipt; the donor claims $370,000 of federal tax savings (37% bracket). The Delaware corporation then transfers $1 million to the UK CIO under an inter-charitable grant agreement; the CIO deploys the funds in Venice and reports quarterly to Delaware. The donor's gift supports a programme in Italy while remaining fully deductible in the United States.</p>
+    </div>
+  </div>
+
+  <p class="body-text">A mirror architecture operates for European donors giving to programmes in the United States. A donor in Geneva wishing to support the Artemis research programme at the US Central Node gives to the Swiss Fondation, designating the gift for the US programme. The Fondation receives the gift under Swiss charitable law, then transfers the designated funds to the Delaware corporation under an inter-charitable grant agreement. The Delaware corporation deploys the funds in the United States and reports back to the Fondation on the use of the funds. The donor receives a Swiss charitable receipt and may claim Swiss deductibility under the cantonal rules of Geneva; the cross-border transfer is again invisible to the donor's tax return.</p>
+
+  <p class="body-text">The cross-border architecture is also designed to support gifts of appreciated assets, which can be particularly efficient in cross-border contexts. A donor in London holding appreciated US-listed stock may give the stock directly to the UK CIO (which can accept in-kind gifts through its custodian), designate the gift for the US programme, and have the CIO transfer the stock to the Delaware corporation under an inter-charitable grant. The donor receives Gift Aid on the grossed-up value of the stock and avoids UK capital gains tax on the appreciation; the Delaware corporation receives the stock and may sell it without US tax consequence (as a 501(c)(3) entity). The combined efficiency of Gift Aid plus capital gains avoidance plus US deductibility on the cross-border transfer can produce an effective after-tax cost below 40% of the gross gift value.</p>
+
+  <!-- CHAPTER 11: WHY THIS MATTERS -->
+  <div class="chapter-header">
+    <div class="chapter-tag">Chapter Eleven · Strategic Rationale</div>
+    <h2 class="chapter-title">Why This Architecture Matters</h2>
+    <div class="chapter-divider"></div>
+  </div>
+
+  <p class="body-text">The three-entity architecture of the University of Artemis is not the simplest possible structure for a charitable institution — that distinction belongs to the single-jurisdiction charity, incorporated in one country and accepting gifts only from donors in that country. The simplest structure, however, is also the most constrained: a single-jurisdiction charity cannot efficiently accept gifts from donors in other jurisdictions, cannot hold endowment capital in a jurisdiction different from its operating jurisdiction, and cannot survive a political or regulatory disruption in its home country. The three-entity architecture accepts the operational complexity of multi-jurisdictional incorporation in exchange for the strategic resilience that comes from operating across three of the world's most established charitable jurisdictions.</p>
+
+  <p class="body-text">The choice of Delaware, England &amp; Wales, and Switzerland is deliberate. These three jurisdictions together account for the largest share of the world's philanthropic capital, the most established charitable regulatory regimes, and the most credible institutional infrastructure for long-term endowment management. A university incorporated in all three can accept deductible gifts from donors in the United States, the United Kingdom, the Commonwealth, and continental Europe; can hold endowment capital in a tax-efficient, politically stable jurisdiction; and can signal institutional credibility to donors in the Gulf, Asia, and Latin America who recognise Switzerland as a neutral, well-regulated charitable domicile. Few universities in the world operate all three structures simultaneously; those that do are typically the most established institutions on the international philanthropic landscape.</p>
+
+  <p class="body-text">For donors, the practical implication of the three-entity architecture is that there is almost always an Artemis entity through which a gift can be made with full tax efficiency. A US donor gives to Delaware. A UK donor gives to the CIO. A Swiss donor gives to the Fondation. A donor in any other jurisdiction may give to whichever entity provides the most efficient deductibility under their local tax law, with the cross-border architecture ensuring that the gift reaches the programme the donor wishes to support. Donors uncertain about which entity to choose should consult the Tax Deductibility Guide (Resource Series No. 5) for jurisdiction-specific guidance, or should contact the Office of Gift Planning for a recommendation tailored to their personal circumstances.</p>
+
+  <div class="figure">
+    <img src="../public/resources/img/campus-architecture.png" alt="Classical institutional building">
+    <div class="caption">Each Artemis entity is an architectural column supporting the same pediment. Remove one and the structure still stands; add all three and the structure becomes permanent.</div>
+  </div>
+
+  <p class="body-text">The architecture also serves an institutional signalling function that goes beyond tax efficiency. Major philanthropic donors — particularly those making eight- and nine-figure commitments — evaluate the institutional credibility of recipient organisations as carefully as they evaluate the strategic merits of the recipient's programmes. The presence of three entities, each incorporated under a different jurisdiction's charitable law and each supervised by a different regulator, signals that the university is not a transient project but a permanent institution with the legal infrastructure to operate across centuries. This signalling function is particularly important for the Founders' Circle and Guardians' Circle donors whose gifts establish the endowment that will support the university for generations.</p>
+
+  <p class="body-text">Finally, the architecture provides a structural defence against political and regulatory risk. A charity incorporated in a single jurisdiction is vulnerable to changes in that jurisdiction's tax law, regulatory regime, or political environment. The three-entity architecture ensures that no single jurisdiction's regulatory changes can disrupt the university's ability to receive gifts from donors in the other two jurisdictions. The redundancy is itself a guarantee of operational continuity that single-jurisdiction charities cannot provide.</p>
+
+  <div class="callout">
+    <div class="callout-label">A Note on the Founding Window</div>
+    <div class="callout-body">
+      <p style="margin:0 0 8px;">The three entities are being incorporated during a narrow founding window — the period between the university's initial capitalisation (2025) and its first academic year (2027). Donors who give during this window are recognised as Founding Donors in the constitutional documents of the entity to which they give and in the founding records of the university. The founding window closes upon the conclusion of the founding campaign; donors who give thereafter are recognised as annual donors rather than founding donors, regardless of gift size. Donors uncertain whether their commitment will qualify for founding recognition should confirm with the Office of Gift Planning before making their gift.</p>
+    </div>
+  </div>
+
+  <!-- CHAPTER 12: HOW TO USE THIS DOCUMENT -->
+  <div class="chapter-header">
+    <div class="chapter-tag">Chapter Twelve · Practical Use</div>
+    <h2 class="chapter-title">How to Use This Document</h2>
+    <div class="chapter-divider"></div>
+  </div>
+
+  <p class="lead">This document is a reference for donors, advisors, and institutional partners. It is not a substitute for professional legal or tax advice; it is a description of the legal architecture into which a gift will be received.</p>
+
+  <p class="body-text">Donors considering a major gift to the University of Artemis should use this document in three ways. First, they should identify the entity most appropriate to their tax residence and review the entity's chapter in detail, paying particular attention to the key benefit, structural requirements, and incorporation status. Second, they should request the full constitutional documents of the chosen entity from the Office of Gift Planning and review them with their own legal and tax advisors. Third, they should consult the Tax Deductibility Guide (Resource Series No. 5) for the jurisdiction-specific deductibility rules that will apply to their gift, and should engage their own advisors to confirm the after-tax cost and the optimal structure for the gift.</p>
+
+  <p class="body-text">Legal and tax advisors representing donors should use this document to understand the legal architecture of the recipient institution and to identify the constitutional documents that will govern the receipt of their client's gift. Advisors are encouraged to request the full text of the constitutional documents — Certificate of Incorporation and Bylaws for the Delaware corporation, Constitution for the UK CIO, Founding Deed and Foundation Regulations for the Swiss Fondation — and to review them in detail before advising their client on the gift structure. The Office of the Corporate Secretary is available to answer advisor questions and to provide additional documentation on request.</p>
+
+  <p class="body-text">Institutional partners — including university consortium partners, research collaborators, and corporate sponsors — should use this document to understand the legal capacity of each Artemis entity to enter into partnerships, contracts, and grants. The Delaware corporation has the broadest contracting capacity and is the default counterparty for US-based partnerships. The UK CIO is the counterparty for UK and Commonwealth partnerships, including the University of London consortium agreement. The Swiss Fondation has the capacity to enter into grants and partnerships under Swiss law and is the counterparty for European and international research collaborations. Partners uncertain about which entity to engage should consult the Office of the General Counsel.</p>
+
+  <div class="callout">
+    <div class="callout-label">Documents Available on Request</div>
+    <div class="callout-body">
+      <ul class="bullets" style="margin:6px 0 0;">
+        <li><strong>Delaware</strong> — Certificate of Incorporation, Bylaws, IRS Form 1023 application, IRS determination letter (upon issuance), most recent Form 990.</li>
+        <li><strong>United Kingdom</strong> — CIO Constitution, trustee register, Charity Commission registration certificate (upon issuance), most recent annual report and accounts.</li>
+        <li><strong>Switzerland</strong> — Founding Deed (Stiftungsurkunde), Foundation Regulations, commercial register extract (upon issuance), most recent foundation report and audited financial statements.</li>
+        <li><strong>Cross-entity</strong> — Inter-charitable grant agreements, board overlap register, conflict-of-interest policy, audit committee charter.</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="body-text">A final note on updating. This document is published annually and reflects the legal architecture as of the date of publication. The incorporation status of each entity changes over time — the UK CIO moves from pre-filing to registered, the Swiss Fondation moves from planned to established, and the constitutional documents of each entity may be amended within the constraints described in Chapter Six. Donors and advisors who have used a previous edition of this document should request the current version before making or advising on a major commitment. The Office of Gift Planning maintains the most recent edition and provides it on request within five business days. The university considers the legal architecture of its charitable entities to be a matter of public record and welcomes external scrutiny of its constitutional documents and regulatory filings.</p>
+
+</div>
+
+<!-- ENDING -->
+<div class="ending">
+  <div class="ending-tag">End of Overview · Volume VI</div>
+  <div class="ending-big">Three jurisdictions. One mission. Built to outlive every century it enters.</div>
+  <div class="ending-sub">For entity-specific documentation, the full text of constitutional documents, or to discuss a major commitment, contact the Office of Gift Planning at the University of Artemis.</div>
+  <div class="ending-contact">give@artemis.university · +1 (302) 555-0142 · Geneva · London · Wilmington</div>
+</div>
+
+</body>
+</html>

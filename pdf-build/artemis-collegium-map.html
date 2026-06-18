@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Collegium Alliance Map — University of Artemis</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+@page { size: 720px 1020px; margin: 0; }
+@page {
+  @bottom-right {
+    content: counter(page);
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    color: #6b6b6b;
+    padding-right: 28px;
+    padding-bottom: 20px;
+  }
+}
+@page :first { @bottom-right { content: none; } }
+:root {
+  --crimson: #8A0000;
+  --crimson-deep: #6B0000;
+  --crimson-soft: #B33A3A;
+  --ink: #141414;
+  --ink-soft: #3a3a3a;
+  --muted: #6b6b6b;
+  --line: #e5e5e5;
+  --bg: #FAFAF8;
+  --bg-dark: #0c0a09;
+  --bg-cream: #F5F2EC;
+  --gold: #b08d57;
+}
+html, body {
+  margin: 0; padding: 0; width: 720px;
+  background: var(--bg-dark); color: var(--ink);
+  font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
+  font-size: 13px; line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+@media screen {
+  html { display: flex; justify-content: center; background: #222; height: auto; }
+  body { margin: 20px auto; box-shadow: 0 0 40px rgba(0,0,0,0.4); }
+}
+.fcpage {
+  width: 720px; height: 1020px; box-sizing: border-box;
+  break-after: page; overflow: hidden; position: relative;
+  background: var(--bg-dark); color: #fff;
+  display: flex; flex-direction: column; justify-content: center; padding: 64px;
+}
+.fcpage .fc-img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; opacity: 0.35; filter: grayscale(0.3);
+}
+.fcpage .fc-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(138,0,0,0.55) 0%, rgba(12,10,9,0.92) 60%, rgba(12,10,9,0.98) 100%);
+}
+.fcpage .fc-content { position: relative; z-index: 2; }
+.fcpage .fc-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.32em;
+  text-transform: uppercase; color: var(--crimson-soft);
+  margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
+}
+.fcpage .fc-tag::before { content: ""; width: 28px; height: 1px; background: var(--crimson); }
+.fcpage h1 {
+  font-family: 'Noto Serif SC', Georgia, serif;
+  font-size: 52px; font-weight: 900; line-height: 1.02;
+  letter-spacing: -0.02em; margin: 0 0 24px; text-transform: none;
+}
+.fcpage .fc-sub {
+  font-size: 15px; color: rgba(255,255,255,0.65); font-weight: 300;
+  line-height: 1.6; max-width: 480px; margin-bottom: 0;
+}
+.fcpage .fc-footer {
+  position: absolute; bottom: 48px; left: 64px; right: 64px;
+  display: flex; justify-content: space-between; align-items: flex-end;
+  z-index: 2; font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: rgba(255,255,255,0.4);
+}
+.fcpage .fc-footer .crest { font-family: 'Noto Serif SC', serif; font-size: 14px; color: rgba(255,255,255,0.7); letter-spacing: 0.15em; }
+.main-content { background: var(--bg); padding: 64px 64px 48px 64px; }
+.chapter-header { break-after: avoid; break-inside: avoid; margin-top: 28px; margin-bottom: 20px; }
+.chapter-header:first-child { margin-top: 0; }
+.chapter-tag {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--crimson);
+  margin-bottom: 10px; display: flex; align-items: center; gap: 10px;
+}
+.chapter-tag::before { content: ""; width: 22px; height: 1px; background: var(--crimson); }
+.chapter-title {
+  font-family: 'Noto Serif SC', Georgia, serif;
+  font-size: 30px; font-weight: 800; line-height: 1.12;
+  letter-spacing: -0.015em; color: var(--ink); margin: 0 0 12px;
+}
+.chapter-divider { display: none; }
+.body-text { font-size: 13px; line-height: 1.72; color: var(--ink-soft); margin: 0 0 12px; }
+.body-text strong { color: var(--ink); font-weight: 600; }
+.lead { font-size: 15px; line-height: 1.65; color: var(--ink); font-weight: 400; margin-bottom: 18px; }
+.pullquote {
+  break-inside: avoid; border-left: 3px solid var(--crimson);
+  padding: 16px 24px; margin: 20px 0;
+  font-family: 'Noto Serif SC', Georgia, serif;
+  font-size: 16px; font-style: italic; line-height: 1.5;
+  color: var(--ink); background: var(--bg-cream);
+}
+.pullquote .attribution { font-size: 11px; font-style: normal; color: var(--muted); margin-top: 10px; letter-spacing: 0.05em; }
+.card {
+  break-inside: avoid; background: #fff;
+  border: 1px solid var(--line); border-radius: 8px;
+  padding: 20px 22px; margin-bottom: 14px;
+}
+.card-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.card-sub { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
+.card-body { font-size: 12px; line-height: 1.6; color: var(--ink-soft); }
+.stat-row { display: flex; gap: 16px; margin: 18px 0; break-inside: avoid; }
+.stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 18px; }
+.stat .stat-val { font-family: 'Noto Serif SC', serif; font-size: 28px; font-weight: 900; color: var(--crimson); line-height: 1; }
+.stat .stat-label { font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+.tbl { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 11px; break-inside: avoid; }
+.tbl th { text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--ink); padding: 8px 10px; }
+.tbl td { padding: 9px 10px; border-bottom: 1px solid var(--line); color: var(--ink-soft); vertical-align: top; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl .num { font-family: 'Noto Serif SC', serif; font-weight: 700; color: var(--crimson); text-align: right; white-space: nowrap; }
+.tbl .tier-a { color: var(--crimson); font-weight: 700; }
+.tbl .tier-b { color: var(--ink); font-weight: 600; }
+.tbl .tier-c { color: var(--muted); font-weight: 500; }
+.figure { break-inside: avoid; margin: 18px 0; }
+.figure img { width: 100%; border-radius: 6px; display: block; }
+.figure .caption { font-size: 10px; color: var(--muted); margin-top: 8px; letter-spacing: 0.03em; line-height: 1.5; }
+.callout {
+  break-inside: avoid; background: var(--bg-cream);
+  border-radius: 8px; padding: 20px 24px; margin: 16px 0;
+}
+.callout .callout-label { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
+.bullets { margin: 10px 0 14px; padding: 0; list-style: none; }
+.bullets li { font-size: 12px; line-height: 1.65; color: var(--ink-soft); padding-left: 18px; position: relative; margin-bottom: 6px; }
+.bullets li::before { content: ""; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; background: var(--crimson); border-radius: 50%; }
+.ending {
+  width: 720px; height: 1020px; box-sizing: border-box;
+  break-before: page; overflow: hidden;
+  background: var(--bg-dark); color: #fff;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  padding: 64px; text-align: center;
+}
+.ending .ending-tag { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--crimson-soft); margin-bottom: 28px; }
+.ending .ending-big { font-family: 'Noto Serif SC', Georgia, serif; font-size: 38px; font-weight: 800; line-height: 1.15; letter-spacing: -0.015em; max-width: 540px; margin-bottom: 32px; }
+.ending .ending-sub { font-size: 14px; color: rgba(255,255,255,0.5); max-width: 440px; line-height: 1.65; font-weight: 300; }
+.ending .ending-contact { margin-top: 40px; font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; }
+.ending .ending-contact a { color: var(--crimson-soft); text-decoration: none; }
+.dark-section {
+  background: var(--bg-dark); color: #fff;
+  margin: 0 -64px; padding: 48px 64px; break-inside: avoid;
+}
+.dark-section .ds-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--crimson-soft); margin-bottom: 10px; }
+.dark-section .ds-title { font-family: 'Noto Serif SC', serif; font-size: 24px; font-weight: 800; margin-bottom: 12px; }
+.dark-section .ds-body { font-size: 12px; line-height: 1.7; color: rgba(255,255,255,0.7); }
+.continent-card {
+  break-inside: avoid; background: #fff;
+  border: 1px solid var(--line); border-radius: 8px;
+  padding: 22px 24px; margin-bottom: 14px;
+  border-left: 4px solid var(--crimson);
+}
+.continent-card .cc-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+.continent-card .cc-name { font-family: 'Noto Serif SC', serif; font-size: 17px; font-weight: 800; color: var(--ink); }
+.continent-card .cc-count { font-family: 'Noto Serif SC', serif; font-size: 18px; font-weight: 900; color: var(--crimson); }
+.continent-card .cc-meta { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--crimson); margin-bottom: 10px; }
+.continent-card .cc-body { font-size: 12px; line-height: 1.65; color: var(--ink-soft); margin-bottom: 10px; }
+.continent-card .cc-cities { font-size: 11px; line-height: 1.6; color: var(--muted); padding-top: 10px; border-top: 1px dashed var(--line); }
+.continent-card .cc-cities strong { color: var(--ink); font-weight: 700; }
+.city-list { display: flex; flex-wrap: wrap; gap: 6px 12px; margin-top: 8px; }
+.city-chip {
+  display: inline-block; font-size: 10px; font-weight: 600;
+  padding: 3px 8px; border-radius: 4px; letter-spacing: 0.04em;
+}
+.city-chip.cn { background: var(--crimson); color: #fff; }
+.city-chip.a { background: rgba(138,0,0,0.12); color: var(--crimson); border: 1px solid rgba(138,0,0,0.3); }
+.city-chip.b { background: var(--bg-cream); color: var(--ink); border: 1px solid var(--line); }
+.city-chip.c { background: #fff; color: var(--muted); border: 1px solid var(--line); }
+.legend { display: flex; gap: 14px; margin: 12px 0; font-size: 10px; color: var(--muted); break-inside: avoid; align-items: center; }
+.legend-item { display: flex; align-items: center; gap: 6px; }
+.legend-swatch { width: 12px; height: 12px; border-radius: 3px; }
+</style>
+</head>
+<body>
+<!-- KaTeX bypass: pre-set .katex element so html2pdf-next.js skips math rendering (no real math in this document) -->
+<span class="katex" style="display:none" aria-hidden="true"></span>
+
+<!-- ════════════════ COVER ════════════════ -->
+<div class="fcpage">
+  <img class="fc-img" src="../public/resources/img/world-night.png" alt="">
+  <div class="fc-overlay"></div>
+  <div class="fc-content">
+    <div class="fc-tag">Collegium Alliance · Founding Campaign 2025</div>
+    <h1>The Collegium<br>Alliance Map</h1>
+    <div class="fc-sub">
+      A geographic guide to the planetary university &mdash;
+      fifty Colleges across six continents and thirty-five countries,
+      anchored by three Central Nodes in Venice, San Francisco, and Singapore.
+      The atlas of an institution designed to be planetary from the day it opens.
+    </div>
+  </div>
+  <div class="fc-footer">
+    <div class="crest">University of Artemis</div>
+    <div>Edition I &middot; Founding Document</div>
+  </div>
+</div>
+
+<!-- ════════════════ BODY ════════════════ -->
+<div class="main-content">
+
+<!-- ─── AT A GLANCE ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">At a Glance</div>
+  <div class="chapter-title">A planetary footprint, day one.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<p class="lead">The University of Artemis opens its doors with fifty Colleges across thirty-five countries and six continents, anchored by three Central Nodes in Venice, San Francisco, and Singapore. No university in history has opened with a planetary footprint of this scale; the founding configuration is itself the institutional proposition. This document is the geographic guide to that footprint &mdash; the atlas of the planetary university, organized continent by continent, city by city.</p>
+
+<p class="body-text">The Collegium Alliance is the formal name of the planetary network. Each College is a physical campus, owned in fee simple by the institution, hosting between 1,100 and 2,500 students in the standard Artemis curriculum. The three Central Nodes are the apex &mdash; each hosting approximately 5,000 students and serving as the regional seat of governance, convocation, and the founding document archive. Together, the fifty Colleges and three Central Nodes form a single institution operating across fifty-three physical locations, with a single curriculum, a single faculty roster, and a single treasury.</p>
+
+<p class="body-text">The geographic distribution of the Alliance is the result of three principles: continental balance (every inhabited continent hosts at least one College, and no continent hosts more than a third of the total); urban concentration (every College is in a city, not a greenfield campus, because the institution is urbanist by design); and access calibration (the tier framework ensures that the cities the existing university system has underserved are represented alongside the cities it has historically served). The map is therefore neither a list of the world's most prestigious academic cities nor a list of the world's most underserved; it is a calibrated selection that makes the planetary university planetary.</p>
+
+<div class="stat-row">
+  <div class="stat">
+    <div class="stat-val">50</div>
+    <div class="stat-label">Colleges</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">3</div>
+    <div class="stat-label">Central Nodes</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">6</div>
+    <div class="stat-label">Continents</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">35</div>
+    <div class="stat-label">Countries</div>
+  </div>
+</div>
+
+<p class="body-text">The fifty Colleges are organized in three tiers. Eight Tier A flagship Colleges anchor the world's great knowledge capitals (London, Tokyo, Berlin, Paris, Toronto, Sydney, Seoul, New York) at approximately 2,500 students each. Sixteen Tier B Colleges anchor the major regional capitals (Nairobi, Mumbai, São Paulo, Cairo, Istanbul, Buenos Aires, Jakarta, Mexico City, Lagos, Bangkok, Lima, Bogotá, Casablanca, Amman, Hanoi, Manila) at approximately 2,000 students each. Twenty-three Tier C Colleges anchor the regional access cities the existing university system has failed to serve (Kigali, Dhaka, Kampala, Karachi, Tashkent, Quito, and emerging knowledge cities across Africa, South Asia, Central Asia, and Latin America) at approximately 1,100 students each. A student graduating from a Tier C College in Kigali holds the same degree as a student graduating from a Tier A College in London; the difference is the city, not the credential.</p>
+
+<div class="legend">
+  <div class="legend-item"><span class="legend-swatch" style="background:#8A0000;"></span> Central Node</div>
+  <div class="legend-item"><span class="legend-swatch" style="background:rgba(138,0,0,0.2); border:1px solid rgba(138,0,0,0.4);"></span> Tier A (Flagship)</div>
+  <div class="legend-item"><span class="legend-swatch" style="background:#F5F2EC; border:1px solid #e5e5e5;"></span> Tier B (Regional Capital)</div>
+  <div class="legend-item"><span class="legend-swatch" style="background:#fff; border:1px solid #e5e5e5;"></span> Tier C (Access)</div>
+</div>
+
+<div class="callout">
+  <div class="callout-label">The three principles of placement</div>
+  <p class="body-text" style="margin:0;">Continental balance: every inhabited continent hosts at least one College, and no continent hosts more than a third of the total. Urban concentration: every College is in a city, because the planetary university is an urbanist institution by design. Access calibration: the tier framework ensures the cities the existing university system has underserved are represented alongside the cities it has historically served.</p>
+</div>
+
+<!-- ─── I. WHY A PLANETARY MAP ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter I</div>
+  <div class="chapter-title">Why a planetary map &mdash; the geographic logic.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<p class="lead">A university that calls itself planetary must be planetary in its geography, not merely in its aspirations. The map of the Collegium Alliance is the proof that the institution's claim to be planetary is not metaphorical. Fifty Colleges in thirty-five countries, across six continents, anchored by three Central Nodes &mdash; the geographic distribution is the institutional proposition made visible.</p>
+
+<p class="body-text">The planetary map exists for three reasons. The first is structural: a university that operates in a single country is, regardless of its curriculum, a national institution &mdash; subject to that country's regulatory regime, political climate, and diplomatic posture. A university that operates across thirty-five countries is structurally protected against the capture that any single country could attempt. The planetary map is therefore the institutional defense against political risk: distributed geography is the structural condition for institutional independence.</p>
+
+<p class="body-text">The second reason is pedagogical. A planetary university must produce graduates who have lived and studied in multiple cultural contexts, who understand the planetary scale of the problems they will be asked to solve, and who carry the network's perspective into their careers. A single-campus university, however distinguished, cannot produce this experience; the planetary map is the pedagogical instrument by which the institution produces planetary graduates. The student who studies in Kampala, spends a term in Venice, and graduates from a tutorial in Singapore has been formed by a curriculum that no single-campus institution can deliver.</p>
+
+<p class="body-text">The third reason is access. The existing global university system, despite its many achievements, serves approximately 5% of the world's college-age population at the quality tier that the leading research universities represent. The remaining 95% are served by national systems of variable quality, or not served at all. A planetary university that places Colleges in Kigali, Dhaka, and Kampala is making a structural commitment to access that a university concentrated in the global North cannot make. The map is therefore the access mission made geographic &mdash; the cities the existing system has failed are not an afterthought but a founding priority.</p>
+
+<div class="figure">
+  <img src="../public/resources/img/world-night.png" alt="Earth at night from space">
+  <div class="caption">The planetary network at night &mdash; the lights of the cities the Collegium Alliance is embedded in. The map is not a list of the world's most prestigious academic cities; it is a calibrated selection that makes the planetary university planetary.</div>
+</div>
+
+<p class="body-text">The planetary map is also the institutional answer to the question of scale. The traditional research university scales by adding students to a single campus until the campus is full, then stops scaling. The Artemis network scales by adding Colleges to the network, each one a campus of 1,100 to 2,500 students, with the marginal cost of each new College falling as the shared infrastructure (curriculum, faculty, digital platform) is already in place. The map is therefore the scaling architecture of the institution &mdash; the geographic form of the network's compounding advantage.</p>
+
+<div class="callout">
+  <div class="callout-label">The three reasons the map matters</div>
+  <p class="body-text" style="margin:0;">Structural: distributed geography is the institutional defense against political capture. Pedagogical: the planetary experience is the curriculum that no single-campus institution can deliver. Access: the cities the existing system has failed are a founding priority, not an afterthought. The map is the proof that the planetary university is planetary.</p>
+</div>
+
+<!-- ─── II. THE THREE CENTRAL NODES ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter II</div>
+  <div class="chapter-title">The three Central Nodes &mdash; the apex cities.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<p class="lead">The three Central Nodes &mdash; Venice, San Francisco, and Singapore &mdash; are the apex of the planetary network. Each Node serves as the regional seat of governance, convocation, and the founding document archive for one third of the planetary university. The Nodes are the structural mechanism by which the institution's governance is distributed across three legally and culturally distinct jurisdictions, preventing capture by any single national government.</p>
+
+<p class="body-text">Venice anchors the European and Mediterranean basin. The founding seat of the institution, Venice houses the founding document archive, the convocation hall where the first graduating class is sworn in, and the historical identity of the institution. The Venice Node occupies repurposed Renaissance palazzi along the Grand Canal &mdash; acquired, restored, and operated as the academic heart of the European basin. The city's geographic isolation from any single national capital, its historical role as the meeting point between East and West, and its architectural inheritance make it the natural seat for an institution whose identity is planetary rather than national.</p>
+
+<p class="body-text">San Francisco anchors the Americas and the Pacific technology arc. The innovation seat of the institution, San Francisco houses the Forge incubator, the computational and biotech research programs, and the technology charter. The San Francisco Node occupies a repurposed industrial complex in the Mission Bay innovation district, with proximity to Silicon Valley, the biotech corridor, and the venture capital community. The Bay Area's existing research universities (Stanford, Berkeley, UCSF) provide a collegial ecosystem of complementary research capacity, with collaboration pathways in biotech, computational science, and adjacent fields.</p>
+
+<div class="continent-card">
+  <div class="cc-head">
+    <div class="cc-name">Venice Central Node</div>
+    <div class="cc-count">~5,000</div>
+  </div>
+  <div class="cc-meta">Founding Seat · Europe &amp; Mediterranean</div>
+  <div class="cc-body">The founding seat &mdash; governance, convocation, the founding document archive. Canals and Renaissance palazzi repurposed as the academic heart of the European basin, and the constitutional anchor of the institution's independence.</div>
+  <div class="cc-cities"><strong>Tier:</strong> Central Node · <strong>Students:</strong> ~5,000 · <strong>Anchor region:</strong> Europe, Mediterranean, North Africa</div>
+</div>
+
+<div class="continent-card">
+  <div class="cc-head">
+    <div class="cc-name">San Francisco Central Node</div>
+    <div class="cc-count">~5,000</div>
+  </div>
+  <div class="cc-meta">Innovation Seat · Americas &amp; Pacific</div>
+  <div class="cc-body">The technology and innovation seat &mdash; proximity to Silicon Valley, the Forge incubator, biotech and computational research. The Mission Bay innovation district provides direct access to the capital, talent, and commercialization infrastructure of the technology economy.</div>
+  <div class="cc-cities"><strong>Tier:</strong> Central Node · <strong>Students:</strong> ~5,000 · <strong>Anchor region:</strong> North America, Latin America, Pacific technology arc</div>
+</div>
+
+<div class="continent-card">
+  <div class="cc-head">
+    <div class="cc-name">Singapore Central Node</div>
+    <div class="cc-count">~5,000</div>
+  </div>
+  <div class="cc-meta">Asia-Pacific Seat · Eastern Hemisphere</div>
+  <div class="cc-body">The Asia-Pacific seat &mdash; a neutral convening point for the Eastern hemisphere, with research focus on fintech and urban futures. Singapore's diplomatic independence from the major regional powers makes it the indispensable third apex of the planetary network.</div>
+  <div class="cc-cities"><strong>Tier:</strong> Central Node · <strong>Students:</strong> ~5,000 · <strong>Anchor region:</strong> East Asia, Southeast Asia, Indian Ocean basin, Oceania</div>
+</div>
+
+<p class="body-text">Singapore anchors the Asia-Pacific and the Indian Ocean basin. The Asia-Pacific seat of the institution, Singapore houses the Asia-Pacific convening hall, the fintech and urban futures research programs, and the institution's outreach to the Eastern hemisphere. Singapore was selected for four reasons: geopolitical neutrality (independent of the major regional powers), geographic centrality (the meeting point of the Indian Ocean, the South China Sea, and the Pacific), regulatory stability (one of the most trusted legal frameworks in the region), and research infrastructure (NUS, NTU, A*STAR). The donor who names the Singapore Central Node acquires a permanent association with the Asia-Pacific seat of the planetary university.</p>
+
+<div class="pullquote">
+  &ldquo;The three Central Nodes are not three campuses of one university &mdash; they are the three constitutional pillars of a single institution, distributed across three jurisdictions so that none of them, alone, can claim the institution as its own.&rdquo;
+  <div class="attribution">&mdash; Artemis Founding Prospectus, Alliance Map Section 2.4</div>
+</div>
+
+<!-- ─── III. EUROPE ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter III</div>
+  <div class="chapter-title">Europe &mdash; the founding basin.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<p class="lead">Europe is the founding basin of the planetary university. The Venice Central Node anchors the European presence; the Tier A Colleges in London, Berlin, and Paris extend the network into the continent's three knowledge capitals; and Tier B Colleges in Istanbul and Casablanca carry the network into the European-Mediterranean frontier. The European footprint is both the historical foundation of the institution and the gateway to the Mediterranean, North Africa, and the Middle East.</p>
+
+<p class="body-text">Europe's eight Colleges serve approximately 17,000 students across five countries. The Venice Central Node hosts 5,000; the three Tier A Colleges (London, Berlin, Paris) host 7,500 combined; the Tier B Colleges in Istanbul and Casablanca host 4,000 combined; and the Tier C Colleges in Tashkent and Yerevan host approximately 2,200 combined. The European footprint is calibrated to the continent's existing research capacity &mdash; the planet's most concentrated university ecosystem &mdash; while extending the network into the cities where the existing system is weakest.</p>
+
+<div class="continent-card">
+  <div class="cc-head">
+    <div class="cc-name">Europe &amp; Mediterranean</div>
+    <div class="cc-count">8 Colleges</div>
+  </div>
+  <div class="cc-meta">1 Central Node · 3 Tier A · 2 Tier B · 2 Tier C · ~17,200 students</div>
+  <div class="cc-body">The founding basin. Venice anchors the European and Mediterranean presence; London, Berlin, and Paris extend the network into the continent's three knowledge capitals; Istanbul and Casablanca carry the network into the European-Mediterranean frontier; Tashkent and Yerevan complete the eastern European reach.</div>
+  <div class="cc-cities">
+    <div class="city-list">
+      <span class="city-chip cn">Venice · CN</span>
+      <span class="city-chip a">London · A</span>
+      <span class="city-chip a">Berlin · A</span>
+      <span class="city-chip a">Paris · A</span>
+      <span class="city-chip b">Istanbul · B</span>
+      <span class="city-chip b">Casablanca · B</span>
+      <span class="city-chip c">Tashkent · C</span>
+      <span class="city-chip c">Yerevan · C</span>
+    </div>
+  </div>
+</div>
+
+<p class="body-text">Venice is the founding seat because Venice was, for five centuries, the original planetary city &mdash; the meeting point between the Latin West, the Byzantine East, and the Islamic South, whose identity was defined by its capacity to convene across cultural and religious boundaries. The planetary university inherits that vocation. London, Berlin, and Paris are the three European cities whose research universities have most defined the modern academy; the planetary network cannot be planetary without a permanent, owned, named presence in each of them. Istanbul is the bridge between Europe and Asia, the historical capital of two empires, and the city whose contemporary identity most embodies the planetary university's claim to convene across civilizational boundaries.</p>
+
+<p class="body-text">Casablanca carries the network into the Maghreb, with a Tier B College serving as the institution's gateway to North Africa and the francophone Mediterranean. The Casablanca placement is calibrated to the city's status as the economic capital of Morocco, the largest French-speaking city in the Maghreb, and the natural hub for the institution's outreach to francophone West Africa. Tashkent and Yerevan complete the eastern European reach &mdash; cities whose existing university systems are recovering from the post-Soviet transition, and where the planetary university's $3,000 tuition and need-blind admission will have the largest marginal impact on the access pipeline.</p>
+
+<div class="callout">
+  <div class="callout-label">The European strategic significance</div>
+  <p class="body-text" style="margin:0;">Europe is the founding basin not because Europe is the center of the planetary university &mdash; the planetary university has no center &mdash; but because the European-Mediterranean basin is the historical origin of the planetary idea. The Venice Central Node anchors the institution in that history; the London, Berlin, and Paris Tier A Colleges extend it into the present; and the Istanbul, Casablanca, Tashkent, and Yerevan Colleges carry it into the future.</p>
+</div>
+
+<!-- ─── IV. ASIA-PACIFIC ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter IV</div>
+  <div class="chapter-title">Asia-Pacific &mdash; the demographic center of gravity.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<p class="lead">Asia-Pacific is the demographic center of gravity of the planetary university. The Singapore Central Node anchors the Asia-Pacific presence; the Tier A Colleges in Tokyo and Seoul extend the network into the continent's two leading knowledge economies; and Tier B Colleges in Mumbai, Jakarta, Bangkok, Hanoi, and Manila carry the network into the cities whose economic gravity shapes the sub-continent. The Asia-Pacific footprint is the network's largest and most demographically consequential.</p>
+
+<p class="body-text">Asia-Pacific's eleven Colleges serve approximately 22,600 students across nine countries. The Singapore Central Node hosts 5,000; the two Tier A Colleges (Tokyo, Seoul) host 5,000 combined; the five Tier B Colleges (Mumbai, Jakarta, Bangkok, Hanoi, Manila) host 10,000 combined; and the four Tier C Colleges (Dhaka, Karachi, Colombo, Kathmandu) host approximately 4,400 combined. The Asia-Pacific footprint is calibrated to the region's demographic weight &mdash; half of the world's college-age population lives in Asia &mdash; and to the region's strategic centrality to the twenty-first century.</p>
+
+<div class="continent-card">
+  <div class="cc-head">
+    <div class="cc-name">Asia-Pacific</div>
+    <div class="cc-count">11 Colleges</div>
+  </div>
+  <div class="cc-meta">1 Central Node · 2 Tier A · 5 Tier B · 4 Tier C · ~24,400 students</div>
+  <div class="cc-body">The demographic center of gravity. Singapore anchors the regional presence; Tokyo and Seoul extend the network into the continent's leading knowledge economies; Mumbai, Jakarta, Bangkok, Hanoi, and Manila carry the network into the regional commercial capitals; Dhaka, Karachi, Colombo, and Kathmandu complete the South Asian access layer.</div>
+  <div class="cc-cities">
+    <div class="city-list">
+      <span class="city-chip cn">Singapore · CN</span>
+      <span class="city-chip a">Tokyo · A</span>
+      <span class="city-chip a">Seoul · A</span>
+      <span class="city-chip b">Mumbai · B</span>
+      <span class="city-chip b">Jakarta · B</span>
+      <span class="city-chip b">Bangkok · B</span>
+      <span class="city-chip b">Hanoi · B</span>
+      <span class="city-chip b">Manila · B</span>
+      <span class="city-chip c">Dhaka · C</span>
+      <span class="city-chip c">Karachi · C</span>
+      <span class="city-chip c">Colombo · C</span>
+      <span class="city-chip c">Kathmandu · C</span>
+    </div>
+  </div>
+</div>
+
+<p class="body-text">Tokyo and Seoul are the two Asian cities whose research universities have most defined the modern Asian academy; the planetary network cannot be planetary without a permanent, owned, named presence in each of them. Tokyo's placement is calibrated to the city's status as the world's largest metropolitan economy, the historical capital of East Asian modernization, and the natural hub for the institution's outreach to Japan, Korea, and the broader East Asian technology arc. Seoul's placement is calibrated to the city's status as the world's most digitally connected metropolis, the capital of the world's 13th-largest economy, and the gateway to the Korean peninsula's distinctive research culture.</p>
+
+<p class="body-text">Mumbai is the economic capital of India and the demographic capital of South Asia; the Mumbai Tier B College serves as the institution's primary Indian presence, with outreach to the broader South Asian diaspora. Jakarta is the economic capital of Southeast Asia's largest economy and the natural hub for the institution's outreach to the Indonesian archipelago. Bangkok is the historical convening city of mainland Southeast Asia, with a research ecosystem that bridges the Thai, Burmese, Lao, and Cambodian academic communities. Hanoi and Manila carry the network into Vietnam and the Philippines &mdash; the two Southeast Asian countries whose demographic weight and economic trajectory make them central to the region's twenty-first century.</p>
+
+<p class="body-text">Dhaka, Karachi, Colombo, and Kathmandu complete the South Asian access layer. These four cities are home to a combined population of more than 60 million college-age individuals, served by national university systems that the planetary university's $3,000 tuition and need-blind admission will materially expand. The Dhaka College serves Bangladesh's 170 million people; the Karachi College serves Pakistan's 240 million; the Colombo College serves Sri Lanka and the South Indian diaspora; and the Kathmandu College serves Nepal and the Himalayan region. The Tier C Asian footprint is the access mission's largest single regional commitment.</p>
+
+<div class="pullquote">
+  &ldquo;Half of the world's college-age population lives in Asia. A planetary university that is not deeply present in Asia is, by definition, not planetary. The eleven Colleges of the Asia-Pacific footprint are the demographic center of gravity of the institution &mdash; the cities whose students will define the planetary university's first century.&rdquo;
+  <div class="attribution">&mdash; Artemis Founding Prospectus, Alliance Map Section 4.1</div>
+</div>
+
+<!-- ─── V. AFRICA ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter V</div>
+  <div class="chapter-title">Africa &mdash; the access frontier.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<p class="lead">Africa is the access frontier of the planetary university. The continent hosts six Colleges &mdash; two Tier B (Nairobi, Lagos) anchoring the East and West African commercial capitals, two Tier B (Cairo, Accra) anchoring the North and West African cultural capitals, and three Tier C (Kigali, Kampala, Addis Ababa) extending the network into the cities the existing university system has most underserved. The African footprint is the access mission's most direct expression.</p>
+
+<p class="body-text">Africa's seven Colleges serve approximately 13,400 students across seven countries. The Cairo and Lagos Tier B Colleges host 4,000 combined; the Nairobi and Accra Tier B Colleges host 4,000 combined; and the Kigali, Kampala, and Addis Ababa Tier C Colleges host approximately 3,300 combined. The African footprint is calibrated to the continent's demographic trajectory &mdash; Africa will host 32% of the world's college-age population by 2050 &mdash; and to the access mission that is the institution's founding commitment.</p>
+
+<div class="continent-card">
+  <div class="cc-head">
+    <div class="cc-name">Africa</div>
+    <div class="cc-count">7 Colleges</div>
+  </div>
+  <div class="cc-meta">0 Central Node · 0 Tier A · 4 Tier B · 3 Tier C · ~11,300 students</div>
+  <div class="cc-body">The access frontier. Cairo and Lagos anchor the North and West African commercial capitals; Nairobi and Accra anchor the East and West African cultural capitals; Kigali, Kampala, and Addis Ababa extend the network into the cities the existing university system has most underserved. The African footprint is the access mission's most direct expression.</div>
+  <div class="cc-cities">
+    <div class="city-list">
+      <span class="city-chip b">Cairo · B</span>
+      <span class="city-chip b">Lagos · B</span>
+      <span class="city-chip b">Nairobi · B</span>
+      <span class="city-chip b">Accra · B</span>
+      <span class="city-chip c">Kigali · C</span>
+      <span class="city-chip c">Kampala · C</span>
+      <span class="city-chip c">Addis Ababa · C</span>
+    </div>
+  </div>
+</div>
+
+<p class="body-text">Cairo is the historical capital of the Arabic-speaking world and the cultural capital of North Africa; the Cairo Tier B College serves as the institution's primary North African presence, with outreach to the broader Arabic-speaking world. Lagos is the economic capital of West Africa and the demographic capital of Nigeria &mdash; Africa's largest economy and most populous nation; the Lagos Tier B College serves as the institution's primary West African commercial presence. Nairobi is the economic capital of East Africa, the host city of the United Nations Environment Programme, and the natural hub for the institution's outreach to the East African Community. Accra is the capital of Ghana &mdash; West Africa's most stable democracy &mdash; and the gateway to the anglophone West African academic community.</p>
+
+<p class="body-text">Kigali is the capital of Rwanda &mdash; the East African country whose investment in education and technology has made it the region's most consequential developmental story of the past two decades. The Kigali Tier C College serves as a regional access hub for Rwanda, Burundi, and the eastern Democratic Republic of the Congo. Kampala is the capital of Uganda &mdash; the East African country whose Makerere University was historically the region's leading institution &mdash; and the natural hub for the institution's outreach to Uganda, Tanzania, and the broader East African interior. Addis Ababa is the capital of Africa's second-most populous country, the host city of the African Union, and the natural hub for the institution's outreach to the Horn of Africa and the broader continental diplomatic community.</p>
+
+<div class="callout">
+  <div class="callout-label">The access frontier</div>
+  <p class="body-text" style="margin:0;">Africa will host 32% of the world's college-age population by 2050. The seven Colleges of the African footprint are calibrated to that demographic trajectory &mdash; with the Tier B commercial capitals (Cairo, Lagos, Nairobi, Accra) anchoring the regional presence and the Tier C access cities (Kigali, Kampala, Addis Ababa) extending the network into the cities the existing system has most underserved.</p>
+</div>
+
+<p class="body-text">The African footprint is also the institutional commitment to the access mission that the founding document articulates. The planetary university's $3,000 tuition is calibrated to be accessible to 90% of qualified students worldwide; the remaining 10% require scholarship assistance. In Africa, the percentage requiring scholarship assistance is higher &mdash; closer to 30% &mdash; because the continent's per-capita income, while rising rapidly, remains below the global median. The African Colleges are therefore the institutional commitment that the access mission is not a marketing claim but a structural feature of the network's geographic distribution.</p>
+
+<!-- ─── VI. NORTH AMERICA ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter VI</div>
+  <div class="chapter-title">North America &mdash; the innovation anchor.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<p class="lead">North America is the innovation anchor of the planetary university. The San Francisco Central Node hosts the Forge incubator and the computational and biotech research programs; the Tier A Colleges in New York and Toronto extend the network into the two North American knowledge capitals the founding footprint most requires; and the Tier B College in Mexico City carries the network into Latin America's largest Spanish-speaking economy. The North American footprint is calibrated to the continent's research capacity and to the technology economy that the San Francisco Node is embedded in.</p>
+
+<p class="body-text">North America's four Colleges serve approximately 14,500 students across three countries. The San Francisco Central Node hosts 5,000; the two Tier A Colleges (New York, Toronto) host 5,000 combined; the Mexico City Tier B College hosts 2,000; and the Tier C Colleges in Montreal and Guadalajara host approximately 2,500 combined. The North American footprint is calibrated to the continent's existing research capacity &mdash; the planet's most capitalized university ecosystem &mdash; while extending the network into the cities where the existing system is weakest.</p>
+
+<div class="continent-card">
+  <div class="cc-head">
+    <div class="cc-name">North America</div>
+    <div class="cc-count">5 Colleges</div>
+  </div>
+  <div class="cc-meta">1 Central Node · 2 Tier A · 1 Tier B · 2 Tier C · ~14,500 students</div>
+  <div class="cc-body">The innovation anchor. San Francisco hosts the Forge incubator and the computational research programs; New York and Toronto extend the network into the two North American knowledge capitals; Mexico City carries the network into Latin America's largest Spanish-speaking economy; Montreal and Guadalajara complete the francophone and Latin American reach.</div>
+  <div class="cc-cities">
+    <div class="city-list">
+      <span class="city-chip cn">San Francisco · CN</span>
+      <span class="city-chip a">New York · A</span>
+      <span class="city-chip a">Toronto · A</span>
+      <span class="city-chip b">Mexico City · B</span>
+      <span class="city-chip c">Montreal · C</span>
+      <span class="city-chip c">Guadalajara · C</span>
+    </div>
+  </div>
+</div>
+
+<p class="body-text">San Francisco is the innovation seat of the planetary university. The San Francisco Central Node houses the Forge incubator &mdash; the institution's startup-spinout engine, which takes research from the planetary university's Centers of Inquiry and develops it into commercial ventures, with the institution retaining a 5% equity stake in each spinout. The Forge equity portfolio is one of the institution's five revenue lines at maturity, projected to generate $18M per year in distributions and exits. The San Francisco Node also houses the computational and biotech research programs, including the Synthetic Intelligence Center of Inquiry (San Francisco&ndash;Toronto&ndash;Edinburgh) and the Biotech and Life Sciences Center.</p>
+
+<p class="body-text">New York is the financial capital of the world and the host city of the United Nations; the New York Tier A College serves as the institution's primary East Coast American presence, with outreach to the global financial community and the diplomatic community. Toronto is the financial capital of Canada and the most multicultural city in North America; the Toronto Tier A College serves as the institution's primary Canadian presence, with outreach to the country's distinctive immigration-driven research culture and to the broader Canadian academic community. The Toronto placement is also calibrated to the city's status as the home of the largest Synthetic Intelligence research group outside the Bay Area &mdash; the second node of the Synthetic Intelligence Center of Inquiry.</p>
+
+<p class="body-text">Mexico City is the largest Spanish-speaking city in the world and the economic capital of Latin America's second-largest economy; the Mexico City Tier B College serves as the institution's primary Latin American presence, with outreach to the broader Spanish-speaking Americas. Montreal and Guadalajara complete the North American reach. Montreal carries the network into francophone North America, with a Tier C College serving as the institution's primary francophone Canadian presence and outreach to the broader Quebecois academic community. Guadalajara carries the network into Mexico's second-largest metropolitan area and the natural hub for the institution's outreach to the Mexican technology industry.</p>
+
+<div class="callout">
+  <div class="callout-label">The innovation anchor</div>
+  <p class="body-text" style="margin:0;">North America's research capacity &mdash; the planet's most capitalized university ecosystem &mdash; is the institutional context in which the San Francisco Central Node operates. The Forge incubator, the computational and biotech research programs, and the equity portfolio that funds them are the substantive content of the North American footprint; the continent's research gravity is the context in which that content is delivered.</p>
+</div>
+
+<!-- ─── VII. LATIN AMERICA ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter VII</div>
+  <div class="chapter-title">Latin America &mdash; the southern hemisphere reach.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<p class="lead">Latin America is the southern hemisphere reach of the planetary university. Eight Colleges across seven countries extend the network into the continent whose existing university systems have produced some of the world's most distinguished research traditions while remaining underserved by the global academic conversation. The Latin American footprint is calibrated to the continent's cultural and scientific weight and to the access mission that the planetary university's founding document articulates.</p>
+
+<p class="body-text">Latin America's eight Colleges serve approximately 14,400 students across seven countries. The two Tier B Colleges in São Paulo and Buenos Aires host 4,000 combined; the Tier B Colleges in Lima, Bogotá, and Santiago host 6,000 combined; and the three Tier C Colleges in Quito, Medellín, and Asunción host approximately 4,400 combined. The Latin American footprint is calibrated to the continent's distinctive research traditions &mdash; in literature, public health, environmental science, and urban planning &mdash; and to the access mission that the planetary university's $3,000 tuition and need-blind admission will materially expand.</p>
+
+<div class="continent-card">
+  <div class="cc-head">
+    <div class="cc-name">Latin America</div>
+    <div class="cc-count">8 Colleges</div>
+  </div>
+  <div class="cc-meta">0 Central Node · 0 Tier A · 5 Tier B · 3 Tier C · ~14,400 students</div>
+  <div class="cc-body">The southern hemisphere reach. São Paulo and Buenos Aires anchor the continent's two leading commercial capitals; Lima, Bogotá, and Santiago extend the network into the Andean and Southern Cone capitals; Quito, Medellín, and Asunción complete the access layer. The Latin American footprint is calibrated to the continent's distinctive research traditions and to the access mission.</div>
+  <div class="cc-cities">
+    <div class="city-list">
+      <span class="city-chip b">São Paulo · B</span>
+      <span class="city-chip b">Buenos Aires · B</span>
+      <span class="city-chip b">Lima · B</span>
+      <span class="city-chip b">Bogotá · B</span>
+      <span class="city-chip b">Santiago · B</span>
+      <span class="city-chip c">Quito · C</span>
+      <span class="city-chip c">Medellín · C</span>
+      <span class="city-chip c">Asunción · C</span>
+    </div>
+  </div>
+</div>
+
+<p class="body-text">São Paulo is the economic capital of Latin America and the largest Portuguese-speaking city in the world; the São Paulo Tier B College serves as the institution's primary Brazilian presence, with outreach to the broader Lusophone academic community. Buenos Aires is the cultural capital of Spanish-speaking Latin America and the historical host of the continent's most distinguished research universities; the Buenos Aires Tier B College serves as the institution's primary Argentine presence and as the natural hub for the institution's outreach to the Southern Cone. Lima, Bogotá, and Santiago carry the network into the Andean and Southern Cone capitals &mdash; the three cities whose research ecosystems most define the Pacific coast of South America.</p>
+
+<p class="body-text">Quito, Medellín, and Asunción complete the access layer. Quito is the capital of Ecuador &mdash; the Andean country whose geographic and cultural position makes it a natural hub for the institution's outreach to the Andean region. Medellín is the second-largest city of Colombia and the host of the continent's most studied urban transformation &mdash; the city whose investment in public education, transit, and urban design has made it the global reference for the institution's Urban Futures Center of Inquiry. Asunción is the capital of Paraguay &mdash; the South American country whose existing university system is most underserved, and where the planetary university's $3,000 tuition and need-blind admission will have the largest marginal impact on the access pipeline.</p>
+
+<div class="callout">
+  <div class="callout-label">The Latin American research tradition</div>
+  <p class="body-text" style="margin:0;">Latin America's research traditions &mdash; in literature (Borges, García Márquez, Neruda), in public health (the Chilean and Costa Rican models), in environmental science (the Amazonian research community), and in urban planning (Curitiba, Medellín) &mdash; are the substantive content of the Latin American footprint. The planetary network cannot be planetary without a permanent presence in the continent that has produced these traditions.</p>
+</div>
+
+<p class="body-text">The Latin American footprint is also the institutional commitment to the global South. The continent's existing university systems, despite their distinguished research traditions, remain concentrated in the capital cities and largely inaccessible to the rural and indigenous populations that make up a significant share of the demographic base. The Tier C Latin American Colleges are calibrated to extend the network into the cities where the existing system is weakest &mdash; with Quito, Medellín, and Asunción serving as the access layer that fulfills the institution's founding commitment to the continent.</p>
+
+<!-- ─── VIII. MIDDLE EAST ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter VIII</div>
+  <div class="chapter-title">Middle East &amp; North Africa &mdash; the convening geography.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<p class="lead">The Middle East and North Africa region is the convening geography of the planetary university. The Casablanca and Cairo Tier B Colleges anchor the western and eastern Maghreb; the Amman Tier B College serves as the institution's primary Levantine presence; and the Tier C Colleges in Tunis and Beirut extend the network into the cities whose historical role as meeting points between civilizations makes them the natural hubs for the institution's convening mission.</p>
+
+<p class="body-text">The region's five Colleges serve approximately 8,400 students across five countries. The Cairo and Casablanca Tier B Colleges host 4,000 combined; the Amman Tier B College hosts 2,000; and the Tunis and Beirut Tier C Colleges host approximately 2,400 combined. The Middle East and North Africa footprint is calibrated to the region's distinctive position &mdash; the geographic and cultural meeting point between Europe, Africa, and Asia &mdash; and to the institution's convening mission.</p>
+
+<div class="continent-card">
+  <div class="cc-head">
+    <div class="cc-name">Middle East &amp; North Africa</div>
+    <div class="cc-count">5 Colleges</div>
+  </div>
+  <div class="cc-meta">0 Central Node · 0 Tier A · 3 Tier B · 2 Tier C · ~8,400 students</div>
+  <div class="cc-body">The convening geography. Casablanca and Cairo anchor the Maghreb and the Arabic-speaking cultural capital; Amman serves as the Levantine presence; Tunis and Beirut extend the network into the historical meeting points between civilizations. The Middle East and North Africa footprint is calibrated to the institution's convening mission.</div>
+  <div class="cc-cities">
+    <div class="city-list">
+      <span class="city-chip b">Cairo · B</span>
+      <span class="city-chip b">Casablanca · B</span>
+      <span class="city-chip b">Amman · B</span>
+      <span class="city-chip c">Tunis · C</span>
+      <span class="city-chip c">Beirut · C</span>
+    </div>
+  </div>
+</div>
+
+<p class="body-text">Cairo anchors the eastern Maghreb and the Arabic-speaking world. The city's historical role as the cultural and intellectual capital of the Arabic-speaking world &mdash; from the medieval House of Wisdom to the modern American University in Cairo &mdash; makes it the natural hub for the institution's outreach to the 400-million-strong Arabic-speaking demographic. Casablanca anchors the western Maghreb, with outreach to Morocco, Algeria, Tunisia, and the broader francophone Maghreb academic community. Amman serves as the institution's Levantine presence, with outreach to Jordan, Palestine, Lebanon, Syria, and Iraq &mdash; the region whose historical role as the meeting point between civilizations makes it the natural hub for the institution's convening mission.</p>
+
+<p class="body-text">Tunis and Beirut complete the regional reach. Tunis is the capital of Tunisia &mdash; the Maghreb country whose investment in higher education has produced the region's most distinctive research culture &mdash; and the natural hub for the institution's outreach to the western Maghreb. Beirut is the historical convening city of the Levant &mdash; the city whose 19th-century role as the meeting point between the Arabic, French, and Anglo-American academic traditions makes it the natural hub for the institution's outreach to the eastern Mediterranean. The Beirut Tier C College is calibrated to the city's existing research ecosystem, with outreach to the American University of Beirut, the Lebanese American University, and the broader regional academic community.</p>
+
+<div class="pullquote">
+  &ldquo;The Middle East and North Africa region is the convening geography of the planetary university &mdash; the meeting point between Europe, Africa, and Asia, and the historical origin of the planetary idea that the institution inherits. The five Colleges of the regional footprint are calibrated to that role, with Cairo anchoring the Arabic-speaking world, Casablanca anchoring the Maghreb, and Amman, Tunis, and Beirut extending the network into the historical convening cities.&rdquo;
+  <div class="attribution">&mdash; Artemis Founding Prospectus, Alliance Map Section 8.3</div>
+</div>
+
+<!-- ─── IX. OCEANIA ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter IX</div>
+  <div class="chapter-title">Oceania &amp; the Pacific &mdash; the southern anchor.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<p class="lead">Oceania is the southern anchor of the planetary university. The Sydney Tier A College anchors the network's Australian presence; the Tier C College in Auckland extends the network into New Zealand and the broader Pacific. The Oceania footprint is calibrated to the continent's research capacity and to the institution's commitment to represent every inhabited continent in the founding configuration.</p>
+
+<p class="body-text">Oceania's two Colleges serve approximately 3,600 students across two countries. The Sydney Tier A College hosts 2,500; the Auckland Tier C College hosts approximately 1,100. The Oceania footprint is the smallest of the continental footprints, reflecting the continent's smaller population, but is the institutional commitment to the principle that every inhabited continent hosts at least one Tier A flagship College.</p>
+
+<div class="continent-card">
+  <div class="cc-head">
+    <div class="cc-name">Oceania &amp; the Pacific</div>
+    <div class="cc-count">2 Colleges</div>
+  </div>
+  <div class="cc-meta">0 Central Node · 1 Tier A · 0 Tier B · 1 Tier C · ~3,600 students</div>
+  <div class="cc-body">The southern anchor. Sydney anchors the network's Australian presence and serves as the institution's primary Southern Hemisphere Tier A flagship; Auckland extends the network into New Zealand and the broader Pacific. The Oceania footprint is calibrated to the continent's research capacity and to the principle that every inhabited continent hosts at least one Tier A College.</div>
+  <div class="cc-cities">
+    <div class="city-list">
+      <span class="city-chip a">Sydney · A</span>
+      <span class="city-chip c">Auckland · C</span>
+    </div>
+  </div>
+</div>
+
+<p class="body-text">Sydney is the financial capital of Australia and the host city of the country's largest research university &mdash; the University of Sydney, founded in 1850 and the oldest university in the country. The Sydney Tier A College serves as the institution's primary Australian presence, with outreach to the broader Australian research community and to the Pacific Island nations whose academic ecosystem is most directly served from Sydney. The Sydney placement is also calibrated to the city's status as the largest city in the Southern Hemisphere &mdash; the natural anchor for the institution's southern hemisphere reach.</p>
+
+<p class="body-text">Auckland extends the network into New Zealand and the broader Pacific. The Auckland Tier C College serves as the institution's primary New Zealand presence, with outreach to the country's distinctive bicultural research tradition and to the Pacific Island nations whose academic ecosystem is most directly served from Auckland. The Auckland placement is calibrated to the city's status as the largest Polynesian city in the world &mdash; the natural hub for the institution's outreach to the broader Pacific Island demographic.</p>
+
+<div class="callout">
+  <div class="callout-label">The principle of continental representation</div>
+  <p class="body-text" style="margin:0;">Every inhabited continent hosts at least one Tier A flagship College in the founding configuration. The Oceania footprint &mdash; though small in absolute terms &mdash; is the institutional commitment to that principle. A planetary university that has no presence in Australia is, by definition, not planetary; the Sydney Tier A College is the institutional answer to that requirement.</p>
+</div>
+
+<!-- ─── X. THE NORTHERN AND SOUTHERN HEMISPHERES ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter X</div>
+  <div class="chapter-title">Northern and Southern hemispheres &mdash; the planetary balance.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<p class="lead">The planetary university is calibrated to balance the Northern and Southern hemispheres &mdash; the demographic weight of the global North with the demographic trajectory of the global South. The fifty-three campuses of the founding configuration are distributed across both hemispheres, with the Northern hemisphere hosting the majority (reflecting the planet's population distribution) and the Southern hemisphere hosting a calibrated minority (reflecting the access mission's commitment to the global South).</p>
+
+<p class="body-text">The Northern hemisphere hosts 41 of the 53 campuses &mdash; approximately 77% of the planetary footprint. This distribution reflects the planet's population: roughly 88% of the world's population lives in the Northern hemisphere. The Northern footprint is concentrated in Europe (8 Colleges), Asia-Pacific (11 Colleges), North America (5 Colleges), and the northern portions of Africa and the Middle East. The Northern hemisphere's research capacity &mdash; the planet's most capitalized university ecosystem &mdash; is also the institutional context in which the founding configuration operates.</p>
+
+<p class="body-text">The Southern hemisphere hosts 12 of the 53 campuses &mdash; approximately 23% of the planetary footprint. This distribution is calibrated to the access mission: the Southern hemisphere hosts a disproportionate share of the planetary university's Tier C Colleges, reflecting the institution's commitment to the cities the existing university system has most underserved. The Southern footprint is concentrated in Latin America (8 Colleges), Oceania (2 Colleges), and the southern portions of Africa (2 Colleges). The Sydney Tier A College serves as the Southern hemisphere's flagship presence &mdash; the institutional commitment that the Southern hemisphere is represented in the network's apex tier.</p>
+
+<div class="stat-row">
+  <div class="stat">
+    <div class="stat-val">41</div>
+    <div class="stat-label">Northern Hemisphere Campuses</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">12</div>
+    <div class="stat-label">Southern Hemisphere Campuses</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">88%</div>
+    <div class="stat-label">Global Population (Northern)</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">23%</div>
+    <div class="stat-label">Network Footprint (Southern)</div>
+  </div>
+</div>
+
+<p class="body-text">The Northern-Southern balance is also a temporal balance. The Northern hemisphere's existing university systems are mature &mdash; the planet's most capitalized research infrastructure, the most distinguished research traditions, and the most established academic cultures. The Southern hemisphere's university systems are emerging &mdash; with the demographic trajectory, the economic growth, and the intellectual ambition that will define the twenty-first century. The planetary university's calibration &mdash; 77% Northern, 23% Southern &mdash; is the institutional commitment to be present in both the mature and the emerging research ecosystems, and to bridge them through the network's shared curriculum and faculty rotation.</p>
+
+<p class="body-text">The calibration is also reflected in the convocation calendar. The three Central Nodes &mdash; Venice (Northern), San Francisco (Northern), and Singapore (Northern) &mdash; are all in the Northern hemisphere, reflecting the planet's demographic distribution. The annual convocation calendar &mdash; Venice in October, San Francisco in February, Singapore in June &mdash; is calibrated to the Northern hemisphere's academic year, with the founding cohort admitted in the Northern autumn. The Southern hemisphere's academic year (which begins in the Southern autumn) is integrated into the network's calendar through the flexibility of the tutorial system and the asynchronous video library that permits every lecture to be reviewed by every student across the network.</p>
+
+<div class="callout">
+  <div class="callout-label">The planetary balance</div>
+  <p class="body-text" style="margin:0;">The 77-23 Northern-Southern calibration is the institutional commitment to be present in both the mature and the emerging research ecosystems. The Northern hemisphere's research capacity is the institutional context; the Southern hemisphere's demographic trajectory is the institutional future. The planetary university bridges the two through the network's shared curriculum, faculty rotation, and convocation calendar.</p>
+</div>
+
+<!-- ─── XI. STUDENT MOBILITY ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter XI</div>
+  <div class="chapter-title">How students move between continents.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<p class="lead">The planetary map is not a static catalog of campuses but a living network through which students, faculty, and ideas move continuously. Every Artemis student is entitled to spend at least one academic term at a node other than their home College, with tuition, credit, and financial aid flowing seamlessly across the network. The mobility program is the pedagogical instrument by which the planetary map becomes the planetary experience.</p>
+
+<p class="body-text">The mobility program is structured around three tiers of movement. The first tier is the term-abroad program: every Artemis student is entitled to spend one term at a node other than their home College, with the cost of travel, housing, and tuition covered by the operating P&amp;L (not by an additional fee). The term-abroad program is the institutional commitment that the planetary experience is available to every student, regardless of financial circumstance. A student who enters at the Kampala College may spend a term at the Venice Central Node; a student who enters at the Singapore Central Node may spend a term at the São Paulo College.</p>
+
+<p class="body-text">The second tier is the multi-node pathway: students who demonstrate the academic preparation and the personal maturity may construct a multi-node pathway that takes them through three or more Colleges across their degree. The multi-node pathway is the institutional mechanism for producing the planetary graduate &mdash; the student who has been formed by the curriculum of multiple continents, who carries the network's perspective into their career, and who serves as the institutional ambassador to the next generation of applicants. The multi-node pathway is competitive, with approximately 20% of each cohort participating, and is the institutional commitment to producing graduates whose formation is genuinely planetary.</p>
+
+<div class="figure">
+  <img src="../public/resources/img/students-global.png" alt="Students collaborating across the planetary network">
+  <div class="caption">The mobility program in practice &mdash; students from the Kampala College spend a term at the Venice Central Node, students from the Singapore Node spend a term at the São Paulo College, and the network's shared curriculum ensures that credit, tuition, and financial aid flow seamlessly across the planetary footprint.</div>
+</div>
+
+<p class="body-text">The third tier is the research rotation: graduate students and senior undergraduates are entitled to spend research terms at any of the institution's nineteen Centers of Inquiry, which are distributed across multiple nodes. A graduate student working on the Synthetic Intelligence Center may spend a term at San Francisco (the lead node), a term at Toronto (the second node), and a term at Edinburgh (the third node) &mdash; accumulating the research experience that is the credential's distinctive feature at the graduate level. The research rotation is funded by the Center's endowment, not by the student's home College, ensuring that the planetary research experience is available to every graduate student regardless of their home institution.</p>
+
+<p class="body-text">The mobility program is the pedagogical answer to the question that the planetary map poses. A university that operates fifty-three campuses across thirty-five countries could, in principle, be a federation of fifty-three independent institutions &mdash; each campus a separate university, sharing only a name. The mobility program is the institutional commitment that the Collegium Alliance is not a federation but a single institution: a student who enters at any College carries the institution's degree, the institution's curriculum, and the institution's network into their career. The map is therefore not only geographic but pedagogical &mdash; the architecture by which the planetary university produces planetary graduates.</p>
+
+<div class="callout">
+  <div class="callout-label">The three tiers of movement</div>
+  <p class="body-text" style="margin:0;">Term-abroad: one term at a non-home node, funded from the operating P&amp;L. Multi-node pathway: three or more Colleges across the degree, competitive admission, approximately 20% participation. Research rotation: terms at any of the 19 Centers of Inquiry, funded by the Center's endowment. Together, these three tiers convert fifty-three campuses into a single pedagogical institution.</p>
+</div>
+
+<!-- ─── XII. THE SECOND WAVE ─── -->
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter XII</div>
+  <div class="chapter-title">The second wave &mdash; decade-two expansion cities.</div>
+  <div class="chapter-divider"></div>
+</div>
+
+<p class="lead">The fifty-three campuses of Year 1 are the founding configuration, not the final configuration. The institution's design horizon extends to a century and beyond, with the network architecture permitting expansion at marginal cost as new cities are added. This chapter previews the second-wave cities that will join the Collegium Alliance in the decade following the founding &mdash; the next tier of placements that will extend the planetary footprint into the regions the founding fifty does not reach.</p>
+
+<p class="body-text">The second-wave priorities are organized by the same three principles that guide the founding footprint: continental balance, urban concentration, and access calibration. In sub-Saharan Africa, the second wave targets Accra (already in the founding footprint as a Tier B), Addis Ababa (already in the founding footprint as a Tier C), Dakar, Dar es Salaam, Lusaka, and Maputo &mdash; cities whose demographic trajectory and existing research ecosystems make them the natural second-decade placements. In South Asia, the second wave targets Colombo and Kathmandu (already in the founding footprint as Tier C), plus Chandigarh, Pune, and Chittagong &mdash; cities whose population and economic gravity make them the natural Indian-subcontinent second wave.</p>
+
+<p class="body-text">In Latin America, the second wave targets Medellín (already in the founding footprint as a Tier C), Curitiba, Monterrey, Valparaíso, and La Paz &mdash; cities whose existing research traditions and demographic weight make them the natural Latin American second wave. In Southeast Asia, the second wave targets Ho Chi Minh City, Surabaya, and Yangon &mdash; cities whose demographic trajectory and economic integration make them the natural Southeast Asian second wave. In Europe, the second wave targets Edinburgh (already a node of the Synthetic Intelligence Center), Copenhagen (already a node of the Urban Futures Center), Madrid, Vienna, and Dublin &mdash; cities whose existing research ecosystems make them the natural European second wave.</p>
+
+<div class="callout">
+  <div class="callout-label">The marginal cost of expansion</div>
+  <p class="body-text" style="margin:0;">The marginal cost of adding the fifty-fourth College is on the order of $5M &mdash; acquisition, renovation, and integration into the existing network. The shared curriculum, faculty, and digital infrastructure are already in place. The second wave is therefore not a fundraising challenge but an operational one: the institution adds Colleges as the founding configuration stabilizes, the endowment grows, and the access mission's next tier of cities is identified.</p>
+</div>
+
+<p class="body-text">The second wave is sequenced to maintain the founding commitment: governance first, then flagship presence, then regional capital, then access. The second decade is weighted toward access &mdash; the cities the founding fifty does not reach, with the planetary university's $3,000 tuition and need-blind admission continuing to expand the access pipeline. The second wave is also weighted toward the Southern hemisphere, with five of the twelve priority second-decade cities in the Southern hemisphere &mdash; extending the planetary balance toward the demographic trajectory of the global South.</p>
+
+<p class="body-text">The century-scale design horizon is the institutional commitment that motivates the second wave. The fifty-three campuses of Year 1 are the seed; the second wave is the institution's first decade of growth; the century ahead is the institution's actual horizon. The Collegium Alliance Map is therefore not a fixed catalog but a living document &mdash; the atlas of an institution that intends to grow into the century it enters, and that calibrates its geographic footprint to the demographic, scientific, and access priorities of each decade it lives through.</p>
+
+<div class="pullquote">
+  &ldquo;The fifty-three campuses of Year 1 are the seed of an institution that intends to grow into the century it enters. The Collegium Alliance Map is not a fixed catalog but a living document &mdash; the atlas of a planetary university that calibrates its geographic footprint to the demographic, scientific, and access priorities of each decade it lives through.&rdquo;
+  <div class="attribution">&mdash; Artemis Founding Prospectus, Alliance Map Section 12.4</div>
+</div>
+
+</div>
+
+<!-- ════════════════ ENDING ════════════════ -->
+<div class="ending">
+  <div class="ending-tag">Collegium Alliance Map · 2025</div>
+  <div class="ending-big">Fifty Colleges. Six continents. Thirty-five countries. One university.</div>
+  <div class="ending-sub">
+    The atlas of a planetary institution &mdash;
+    calibrated to continental balance, urban concentration, and access.
+    The map is the proof that the planetary university is planetary.
+  </div>
+  <div class="ending-contact">
+    University of Artemis &middot; give@artemis.edu &middot; <a href="https://artemis.edu/give">artemis.edu/give</a>
+  </div>
+</div>
+
+</body>
+</html>

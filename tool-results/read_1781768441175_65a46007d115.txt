@@ -1,0 +1,640 @@
+     1→<!DOCTYPE html>
+     2→<html lang="en">
+     3→<head>
+     4→<meta charset="UTF-8">
+     5→<title>Tax Deductibility Guide — University of Artemis</title>
+     6→<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="stylesheet">
+     7→<style>
+     8→@page { size: 720px 1020px; margin: 0; }
+     9→:root {
+    10→  --crimson: #8A0000; --crimson-deep: #6B0000; --crimson-soft: #B33A3A;
+    11→  --ink: #141414; --ink-soft: #3a3a3a; --muted: #6b6b6b; --line: #e5e5e5;
+    12→  --bg: #FAFAF8; --bg-dark: #0c0a09; --bg-cream: #F5F2EC; --gold: #b08d57;
+    13→}
+    14→html, body { margin: 0; padding: 0; width: 720px; background: var(--bg-dark); color: var(--ink);
+    15→  font-family: 'Inter', -apple-system, sans-serif; font-size: 13px; line-height: 1.65;
+    16→  -webkit-font-smoothing: antialiased; }
+    17→@media screen { html { display: flex; justify-content: center; background: #222; height: auto; }
+    18→  body { margin: 20px auto; box-shadow: 0 0 40px rgba(0,0,0,0.4); } }
+    19→
+    20→/* COVER */
+    21→.cover { width: 720px; height: 1020px; box-sizing: border-box; break-after: page; overflow: hidden;
+    22→  position: relative; background: var(--bg-dark); color: #fff; display: flex; flex-direction: column;
+    23→  justify-content: center; padding: 64px; }
+    24→.cover .cover-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.35; filter: grayscale(0.3); }
+    25→.cover .cover-overlay { position: absolute; inset: 0;
+    26→  background: linear-gradient(135deg, rgba(138,0,0,0.55) 0%, rgba(12,10,9,0.92) 60%, rgba(12,10,9,0.98) 100%); }
+    27→.cover .cover-content { position: relative; z-index: 2; }
+    28→.cover .cover-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase;
+    29→  color: var(--crimson-soft); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+    30→.cover .cover-tag::before { content: ""; width: 28px; height: 1px; background: var(--crimson); }
+    31→.cover h1 { font-family: 'Noto Serif SC', Georgia, serif; font-size: 52px; font-weight: 900; line-height: 1.02;
+    32→  letter-spacing: -0.02em; margin: 0 0 24px; text-transform: none; }
+    33→.cover .cover-sub { font-size: 15px; color: rgba(255,255,255,0.65); font-weight: 300; line-height: 1.6; max-width: 480px; }
+    34→.cover .cover-footer { position: absolute; bottom: 48px; left: 64px; right: 64px; display: flex;
+    35→  justify-content: space-between; align-items: flex-end; z-index: 2; font-size: 10px; letter-spacing: 0.2em;
+    36→  text-transform: uppercase; color: rgba(255,255,255,0.4); }
+    37→.cover .cover-footer .crest { font-family: 'Noto Serif SC', serif; font-size: 14px; color: rgba(255,255,255,0.7); letter-spacing: 0.15em; }
+    38→.cover .cover-edition { position: absolute; top: 48px; right: 64px; z-index: 2; font-size: 10px;
+    39→  letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-align: right; }
+    40→
+    41→/* CONTENT FLOWS */
+    42→.main-content { background: var(--bg); padding: 64px 64px 48px 64px; }
+    43→
+    44→.chapter-header { break-after: avoid; break-inside: avoid; margin-top: 28px; margin-bottom: 20px; }
+    45→.chapter-header:first-child { margin-top: 0; }
+    46→.chapter-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase;
+    47→  color: var(--crimson); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+    48→.chapter-tag::before { content: ""; width: 22px; height: 1px; background: var(--crimson); }
+    49→.chapter-title { font-family: 'Noto Serif SC', Georgia, serif; font-size: 30px; font-weight: 800;
+    50→  line-height: 1.12; letter-spacing: -0.015em; color: var(--ink); margin: 0 0 12px; }
+    51→.chapter-divider { width: 40px; height: 6px; background: var(--crimson); margin-bottom: 18px; }
+    52→
+    53→.body-text { font-size: 13px; line-height: 1.72; color: var(--ink-soft); margin: 0 0 12px; }
+    54→.body-text strong { color: var(--ink); font-weight: 600; }
+    55→.lead { font-size: 15px; line-height: 1.65; color: var(--ink); font-weight: 400; margin-bottom: 18px; }
+    56→
+    57→.pullquote { break-inside: avoid; border-left: 3px solid var(--crimson); padding: 16px 24px; margin: 20px 0;
+    58→  font-family: 'Noto Serif SC', Georgia, serif; font-size: 16px; font-style: italic; line-height: 1.5;
+    59→  color: var(--ink); background: var(--bg-cream); }
+    60→.pullquote .attribution { font-size: 11px; font-style: normal; color: var(--muted); margin-top: 10px; letter-spacing: 0.05em; }
+    61→
+    62→.card { break-inside: avoid; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 20px 22px; margin-bottom: 14px; }
+    63→.card-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+    64→.card-sub { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
+    65→.card-body { font-size: 12px; line-height: 1.6; color: var(--ink-soft); }
+    66→
+    67→.stat-row { display: flex; gap: 12px; margin: 16px 0; break-inside: avoid; }
+    68→.stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 14px; }
+    69→.stat .stat-val { font-family: 'Noto Serif SC', serif; font-size: 18px; font-weight: 900; color: var(--crimson); line-height: 1.1; }
+    70→.stat .stat-label { font-size: 8.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+    71→
+    72→.callout { break-inside: avoid; background: var(--bg-cream); border-radius: 8px; padding: 18px 22px; margin: 14px 0; border-left: 3px solid var(--crimson); }
+    73→.callout .callout-label { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
+    74→.callout .callout-body { font-size: 12px; line-height: 1.65; color: var(--ink-soft); }
+    75→.callout .callout-body strong { color: var(--ink); }
+    76→.callout .calc-line { font-family: 'Noto Serif SC', serif; font-size: 12px; color: var(--ink); margin: 4px 0; }
+    77→.callout .calc-result { font-family: 'Noto Serif SC', serif; font-size: 14px; font-weight: 700; color: var(--crimson); margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--line); }
+    78→
+    79→.tbl { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 11px; break-inside: avoid; }
+    80→.tbl th { text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--ink); padding: 8px 10px; }
+    81→.tbl td { padding: 9px 10px; border-bottom: 1px solid var(--line); color: var(--ink-soft); vertical-align: top; }
+    82→.tbl tr:last-child td { border-bottom: none; }
+    83→.tbl .num { font-family: 'Noto Serif SC', serif; font-weight: 700; color: var(--crimson); text-align: right; white-space: nowrap; }
+    84→
+    85→.figure { break-inside: avoid; margin: 18px 0; }
+    86→.figure img { width: 100%; border-radius: 6px; display: block; }
+    87→.figure .caption { font-size: 10px; color: var(--muted); margin-top: 8px; letter-spacing: 0.03em; line-height: 1.5; }
+    88→
+    89→.bullets { margin: 10px 0 14px; padding: 0; list-style: none; }
+    90→.bullets li { font-size: 12px; line-height: 1.65; color: var(--ink-soft); padding-left: 18px; position: relative; margin-bottom: 6px; }
+    91→.bullets li::before { content: ""; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; background: var(--crimson); border-radius: 50%; }
+    92→
+    93→.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    94→
+    95→.dark-section { background: var(--bg-dark); color: #fff; margin: 0 -64px; padding: 44px 64px; break-inside: avoid; }
+    96→.dark-section .ds-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--crimson-soft); margin-bottom: 10px; }
+    97→.dark-section .ds-title { font-family: 'Noto Serif SC', serif; font-size: 24px; font-weight: 800; margin-bottom: 12px; line-height: 1.2; }
+    98→.dark-section .ds-body { font-size: 12px; line-height: 1.7; color: rgba(255,255,255,0.72); }
+    99→.dark-section .ds-body strong { color: #fff; }
+   100→
+   101→.jur-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 0; break-inside: avoid; }
+   102→.jur-mini { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 12px 10px; text-align: center; }
+   103→.jur-mini .jm-flag { font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--crimson); }
+   104→.jur-mini .jm-name { font-family: 'Noto Serif SC', serif; font-size: 12px; font-weight: 700; color: var(--ink); margin-top: 4px; line-height: 1.2; }
+   105→.jur-mini .jm-pct { font-size: 10px; color: var(--muted); margin-top: 4px; }
+   106→
+   107→/* ENDING */
+   108→.ending { width: 720px; height: 1020px; box-sizing: border-box; break-before: page; overflow: hidden;
+   109→  background: var(--bg-dark); color: #fff; display: flex; flex-direction: column; justify-content: center;
+   110→  align-items: center; padding: 64px; text-align: center; }
+   111→.ending .ending-tag { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--crimson-soft); margin-bottom: 28px; }
+   112→.ending .ending-big { font-family: 'Noto Serif SC', Georgia, serif; font-size: 38px; font-weight: 800; line-height: 1.15; letter-spacing: -0.015em; max-width: 540px; margin-bottom: 32px; }
+   113→.ending .ending-sub { font-size: 14px; color: rgba(255,255,255,0.5); max-width: 440px; line-height: 1.65; font-weight: 300; }
+   114→.ending .ending-contact { margin-top: 40px; font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; }
+   115→.ending .ending-contact a { color: var(--crimson-soft); text-decoration: none; }
+   116→</style>
+   117→</head>
+   118→<body>
+   119→
+   120→<!-- COVER -->
+   121→<div class="cover">
+   122→  <img class="cover-img" src="../public/resources/img/governance-building.png" alt="">
+   123→  <div class="cover-overlay"></div>
+   124→  <div class="cover-edition">Edition 2025<br>Vol. V</div>
+   125→  <div class="cover-content">
+   126→    <div class="cover-tag">Resource Series · No. 5</div>
+   127→    <h1>Tax Deductibility<br>Guide</h1>
+   128→    <p class="cover-sub">A jurisdiction-by-jurisdiction reference for donors to the University of Artemis. Twelve regimes, twelve worked examples, one unified mission: making every gift count toward the future of higher education.</p>
+   129→  </div>
+   130→  <div class="cover-footer">
+   131→    <span class="crest">University of Artemis</span>
+   132→    <span>12 Jurisdictions · 22 Pages</span>
+   133→  </div>
+   134→</div>
+   135→
+   136→<!-- BODY -->
+   137→<div class="main-content">
+   138→
+   139→  <!-- INTRO CHAPTER 1 -->
+   140→  <div class="chapter-header">
+   141→    <div class="chapter-tag">Chapter One · Foundations</div>
+   142→    <h2 class="chapter-title">Why Tax Treatment Matters</h2>
+   143→    <div class="chapter-divider"></div>
+   144→  </div>
+   145→
+   146→  <p class="lead">A gift to a university is a statement about what the donor believes civilization ought to preserve. Tax treatment is the mechanism by which sovereign states agree — or refuse to agree — that this statement deserves public encouragement.</p>
+   147→
+   148→  <p class="body-text">Every dollar given to a recognised charitable institution reduces the donor's taxable income, taxable estate, or taxable capital gains, depending on the jurisdiction. The practical consequence is that the after-tax cost of philanthropy is frequently far lower than the headline gift amount. A donor in the United Kingdom giving £10,000 to a Gift-Aid-eligible charity does not actually spend £10,000; between basic-rate relief and the HMRC top-up, the effective cost can fall to £5,000 or less. A donor in Singapore, where the deduction is 250% of the gift, may recover more than half of a substantial donation through reduced income tax liability.</p>
+   149→
+   150→  <p class="body-text">This asymmetry between the gross gift and the net cost is not a loophole. It is a deliberate policy choice by which governments delegate the allocation of public resources to private donors. Rather than collecting tax revenue and then disbursing it through a ministry, the state forgoes revenue on the condition that the donor directs the same funds toward a recognised public purpose — education, scientific research, poverty relief, the arts. The donor gains influence over the use of resources that would otherwise have been allocated by the political process; the state gains the leverage of private capital without the friction of public procurement. Both parties accept that the transaction must be transparent, audited, and confined to the charitable objects registered with the regulator.</p>
+   151→
+   152→  <p class="body-text">For the University of Artemis, the geometry of tax deductibility determines where, when, and how we accept gifts. A £5 million commitment from a UK donor is most efficiently channelled through a Charitable Incorporated Organisation recognised by the Charity Commission, where it attracts Gift Aid at 25% and higher-rate relief through self-assessment. The same commitment from a donor in São Paulo must pass through an OSCIP-qualified entity under Brazilian civil society law, where deductibility is structurally narrower but still material for corporate donors. Designing the right vehicle in the right jurisdiction is not a back-office compliance exercise; it is the architecture of philanthropy itself.</p>
+   153→
+   154→  <div class="pullquote">
+   155→    "Tax deductibility is the silent partner in every major gift. The donor writes the cheque; the Exchequer shares the cost."
+   156→    <div class="attribution">— Office of the President, University of Artemis</div>
+   157→  </div>
+   158→
+   159→  <p class="body-text">This guide documents the deductibility rules in twelve jurisdictions where Artemis has, or is constructing, a recognised charitable presence. For each jurisdiction we describe the qualifying vehicle, the percentage or cap on deductibility, the practical notes that govern eligibility, and a worked numeric example showing the effective cost to the donor. The figures are illustrative — they assume marginal rates and ordinary income — and donors should treat them as a starting point for advice from their own advisors, not as a substitute for it. What this guide does provide is a common reference frame across borders, so that a Founders' Circle donor in Geneva and a Guardians' Circle donor in Mumbai can both see how their gift will be treated before they make it.</p>
+   160→
+   161→  <div class="stat-row">
+   162→    <div class="stat"><div class="stat-val">12</div><div class="stat-label">Jurisdictions</div></div>
+   163→    <div class="stat"><div class="stat-val">250%</div><div class="stat-label">Best Deduction · Singapore</div></div>
+   164→    <div class="stat"><div class="stat-val">60%</div><div class="stat-label">US AGI Cap · Cash</div></div>
+   165→    <div class="stat"><div class="stat-val">5 yr</div><div class="stat-label">Common Carryforward</div></div>
+   166→  </div>
+   167→
+   168→  <p class="body-text">Two structural themes recur across the twelve regimes. The first is the carryforward: most jurisdictions allow unused deductions to be carried forward for five tax years, which means that a donor making a large gift in a year of modest income can still capture the full benefit when their income recovers. The second is the asymmetry between cash and appreciated assets: in many regimes, gifts of long-held publicly traded securities are deductible at fair market value while avoiding capital gains tax on the appreciation, producing a double benefit that can exceed the equivalent cash gift by tens of percentage points. Donors considering gifts above $100,000 should always evaluate the asset class before the cash amount.</p>
+   169→
+   170→  <!-- INTRO CHAPTER 2 — AT A GLANCE -->
+   171→  <div class="chapter-header">
+   172→    <div class="chapter-tag">Chapter Two · At a Glance</div>
+   173→    <h2 class="chapter-title">Twelve Regimes, One Reference</h2>
+   174→    <div class="chapter-divider"></div>
+   175→  </div>
+   176→
+   177→  <p class="body-text">The grid below summarises the deductibility cap and qualifying vehicle for each of the twelve jurisdictions covered in this guide. Each card is expanded into a full chapter with worked example in the pages that follow. Donors are encouraged to read the chapter relevant to their primary tax residence, then scan the others to understand how a relocation, a second residence, or a cross-border corporate gift might be structured for maximum efficiency.</p>
+   178→
+   179→  <div class="jur-grid">
+   180→    <div class="jur-mini"><div class="jm-flag">United States</div><div class="jm-name">501(c)(3)</div><div class="jm-pct">60% AGI</div></div>
+   181→    <div class="jur-mini"><div class="jm-flag">United Kingdom</div><div class="jm-name">CIO</div><div class="jm-pct">Gift Aid + relief</div></div>
+   182→    <div class="jur-mini"><div class="jm-flag">Canada</div><div class="jm-name">CRA</div><div class="jm-pct">75% net income</div></div>
+   183→    <div class="jur-mini"><div class="jm-flag">Australia</div><div class="jm-name">DGR</div><div class="jm-pct">No % cap</div></div>
+   184→    <div class="jur-mini"><div class="jm-flag">Germany</div><div class="jm-name">gGmbH / e.V.</div><div class="jm-pct">20% income</div></div>
+   185→    <div class="jur-mini"><div class="jm-flag">Switzerland</div><div class="jm-name">Fondation</div><div class="jm-pct">10–20% income</div></div>
+   186→    <div class="jur-mini"><div class="jm-flag">Singapore</div><div class="jm-name">IPC</div><div class="jm-pct">250%</div></div>
+   187→    <div class="jur-mini"><div class="jm-flag">Hong Kong</div><div class="jm-name">s88</div><div class="jm-pct">25% of income</div></div>
+   188→    <div class="jur-mini"><div class="jm-flag">UAE / Gulf</div><div class="jm-name">DIFC / ADGM</div><div class="jm-pct">Zakat alignment</div></div>
+   189→    <div class="jur-mini"><div class="jm-flag">Brazil</div><div class="jm-name">OSCIP</div><div class="jm-pct">2% revenue (corp.)</div></div>
+   190→    <div class="jur-mini"><div class="jm-flag">South Africa</div><div class="jm-name">s18A PBO</div><div class="jm-pct">10% income</div></div>
+   191→    <div class="jur-mini"><div class="jm-flag">India</div><div class="jm-name">12A / 80G</div><div class="jm-pct">50% (80G)</div></div>
+   192→  </div>
+   193→
+   194→  <p class="body-text">Three observations bear highlighting before donors reach the jurisdiction-specific chapters. First, the highest nominal deductibility is found in Singapore (250%) and Hong Kong (100% with a 25%-of-income cap), reflecting explicit policy decisions by those governments to attract philanthropic capital into the Asian region. Second, the most operationally complex regime is Brazil, where deductibility for individuals is severely restricted but corporate giving under OSCIP qualification can be material for medium and large enterprises. Third, the Swiss regime is cantonal rather than federal, with Geneva and Zurich offering the most generous treatment for foundations — a structural reason why Artemis has chosen Switzerland for its tertiary endowment vehicle.</p>
+   195→
+   196→  <div class="figure">
+   197→    <img src="../public/resources/img/world-night.png" alt="Earth at night from space">
+   198→    <div class="caption">Artemis accepts gifts across twelve tax regimes spanning six continents. The dark patches of unlit ocean between the luminous cities are precisely where the university's mission — universal access to rigorous higher education — is most needed.</div>
+   199→  </div>
+   200→
+   201→  <!-- JURISDICTION 1: UNITED STATES -->
+   202→  <div class="chapter-header">
+   203→    <div class="chapter-tag">Jurisdiction 01 · North America</div>
+   204→    <h2 class="chapter-title">United States</h2>
+   205→    <div class="chapter-divider"></div>
+   206→  </div>
+   207→
+   208→  <div class="stat-row">
+   209→    <div class="stat"><div class="stat-val">501(c)(3)</div><div class="stat-label">Vehicle</div></div>
+   210→    <div class="stat"><div class="stat-val">60% AGI</div><div class="stat-label">Cash Cap</div></div>
+   211→    <div class="stat"><div class="stat-val">30% AGI</div><div class="stat-label">Appreciated Assets</div></div>
+   212→  </div>
+   213→
+   214→  <p class="body-text">The United States is the world's largest philanthropic market, with $499 billion in annual giving recorded in 2024. The 501(c)(3) public charity is the workhorse vehicle: a non-stock corporation that has filed IRS Form 1023 and received a determination letter recognising its exempt purpose. Once recognised, the charity issues deductibility receipts that donors may use against federal income tax, state income tax (in most states), and — through careful structuring — federal estate tax. The vehicle is administratively heavy but extraordinarily well understood by US tax practitioners, donor-advised funds, and private foundations alike.</p>
+   215→
+   216→  <p class="body-text">Cash gifts to a 501(c)(3) public charity are deductible up to 60% of the donor's adjusted gross income (AGI) in the year of the gift. Appreciated long-term assets — publicly traded stock held for more than one year — are deductible at fair market value up to 30% of AGI, and crucially, the unrealised capital gain is not subject to tax. This dual benefit means that a donor holding stock with a low cost basis can frequently give more to charity at a lower after-tax cost than by selling the stock and donating the proceeds. Unused deductions carry forward for five years, allowing donors to time large gifts against expected future income.</p>
+   217→
+   218→  <p class="body-text">A critical operational point: the IRS recognises 501(c)(3) status retroactively within 27 months of incorporation, provided Form 1023 is filed within that window. This means that during the early life of a charity — exactly the period when Artemis is being established — donors can make qualifying gifts and receive deductibility even before the determination letter arrives. The retroactive window is generous but not indefinite, and any donor making a seven-figure commitment during the pre-determination period should obtain written confirmation from the charity that Form 1023 has been filed.</p>
+   219→
+   220→  <div class="callout">
+   221→    <div class="callout-label">Worked Example · United States</div>
+   222→    <div class="callout-body">
+   223→      <p style="margin:0 0 8px;">A donor in the 37% federal bracket with $500,000 AGI makes a $100,000 cash gift to Artemis's 501(c)(3). The gift is within the 60%-of-AGI cap ($300,000 ceiling), so the full amount is deductible in the current year.</p>
+   224→      <div class="calc-line">Gross gift: <strong>$100,000</strong></div>
+   225→      <div class="calc-line">Federal tax savings (37%): <strong>$37,000</strong></div>
+   226→      <div class="calc-line">State tax savings (~5% est.): <strong>$5,000</strong></div>
+   227→      <div class="calc-result">Effective after-tax cost: $58,000</div>
+   228→    </div>
+   229→  </div>
+   230→
+   231→  <p class="body-text">For donors giving appreciated stock instead of cash, the arithmetic improves further. The same donor with $100,000 of stock originally purchased for $30,000 avoids the 20% long-term capital gains tax on the $70,000 of appreciation ($14,000 saved), while still claiming a $100,000 charitable deduction producing the $42,000 of income-tax savings above. The combined benefit reaches $56,000, reducing the effective cost of the gift to $44,000. This is why the substantial majority of seven-figure gifts to US universities are delivered as appreciated securities rather than cash.</p>
+   232→
+   233→  <!-- JURISDICTION 2: UNITED KINGDOM -->
+   234→  <div class="chapter-header">
+   235→    <div class="chapter-tag">Jurisdiction 02 · Europe</div>
+   236→    <h2 class="chapter-title">United Kingdom</h2>
+   237→    <div class="chapter-divider"></div>
+   238→  </div>
+   239→
+   240→  <div class="stat-row">
+   241→    <div class="stat"><div class="stat-val">CIO</div><div class="stat-label">Vehicle</div></div>
+   242→    <div class="stat"><div class="stat-val">25%</div><div class="stat-label">Gift Aid Top-Up</div></div>
+   243→    <div class="stat"><div class="stat-val">Higher</div><div class="stat-label">Rate Relief</div></div>
+   244→  </div>
+   245→
+   246→  <p class="body-text">The United Kingdom operates one of the most structurally elegant charitable tax regimes in the world, anchored by the Gift Aid mechanism. A donation made by a UK taxpayer to a Gift-Aid-eligible charity triggers an automatic 25% government top-up: the charity may reclaim from HMRC an amount equal to one-quarter of the gift, on the assumption that the donor has already paid basic-rate income tax on the income from which the gift was made. The donor's gift of £1,000 therefore becomes £1,250 in the hands of the charity without any further action on the donor's part.</p>
+   247→
+   248→  <p class="body-text">Higher-rate and additional-rate taxpayers then claim further personal relief on the grossed-up donation through self-assessment. A donor paying tax at 45% can reclaim the difference between the basic rate (20%) and their marginal rate on the grossed-up amount, reducing their personal tax bill by a further 25 percentage points. The combined effect is that a £10,000 donation by a 45% taxpayer produces £2,500 of HMRC top-up to the charity and £6,250 of personal tax relief to the donor, bringing the donor's effective cost down to £3,750. Few jurisdictions produce a more efficient philanthropic plumbing system.</p>
+   249→
+   250→  <p class="body-text">Artemis's UK vehicle is structured as a Charitable Incorporated Organisation, a legal form introduced in 2013 specifically for charities that wish to incorporate without the dual regulation of the Charity Commission and Companies House. A CIO requires a minimum of three trustees, a UK registered office, and charitable objects falling within the advancement of education. Once registered, it is eligible for Gift Aid, recognised by Commonwealth jurisdictions worldwide, and serves as a natural bridge for donors across the Anglophone world who maintain UK tax residence.</p>
+   251→
+   252→  <div class="callout">
+   253→    <div class="callout-label">Worked Example · United Kingdom</div>
+   254→    <div class="callout-body">
+   255→      <p style="margin:0 0 8px;">A donor in the 45% additional-rate band makes a £10,000 Gift-Aid donation to Artemis's CIO.</p>
+   256→      <div class="calc-line">Donor cash outlay: <strong>£10,000</strong></div>
+   257→      <div class="calc-line">HMRC top-up to charity (25%): <strong>+£2,500</strong> → charity receives £12,500</div>
+   258→      <div class="calc-line">Donor personal relief (45%−20% on £12,500): <strong>−£3,125</strong></div>
+   259→      <div class="calc-result">Effective donor cost: £6,875 · Charity receives: £12,500</div>
+   260→    </div>
+   261→  </div>
+   262→
+   263→  <p class="body-text">The UK regime also supports the donation of listed shares, land, and certain other assets with no capital gains tax on the appreciation and full income-tax relief on the market value of the asset. This makes the UK one of the most attractive jurisdictions for donors seeking to give a meaningful position in a publicly traded company without triggering a taxable disposal. For Artemis, this matters because several prospective Guardians' Circle donors hold concentrated positions in FTSE-listed equities that would generate substantial capital gains if sold.</p>
+   264→
+   265→  <!-- JURISDICTION 3: CANADA -->
+   266→  <div class="chapter-header">
+   267→    <div class="chapter-tag">Jurisdiction 03 · North America</div>
+   268→    <h2 class="chapter-title">Canada</h2>
+   269→    <div class="chapter-divider"></div>
+   270→  </div>
+   271→
+   272→  <div class="stat-row">
+   273→    <div class="stat"><div class="stat-val">CRA</div><div class="stat-label">Vehicle</div></div>
+   274→    <div class="stat"><div class="stat-val">75%</div><div class="stat-label">Net Income Cap</div></div>
+   275→    <div class="stat"><div class="stat-val">5 yr</div><div class="stat-label">Carryforward</div></div>
+   276→  </div>
+   277→
+   278→  <p class="body-text">Canada regulates charities through the Canada Revenue Agency, which maintains the public list of registered charities and issues official donation receipts that donors use to claim the Charitable Donations Tax Credit (for individuals) or Charitable Deduction (for corporations). A registered charity must be resident in Canada, governed by a board that operates at arm's length from any benefit-conferring party, and confined to charitable purposes defined under common law. Artemis's Canadian activities are conducted through a CRA-registered entity that issues receipts recognised by both federal and provincial tax authorities.</p>
+   279→
+   280→  <p class="body-text">The deductibility ceiling in Canada is 75% of the donor's net income in the year of the gift, a more generous cap than the US 60%-of-AGI limit on cash. Donations of publicly traded securities listed on a designated stock exchange receive a special benefit: the inclusion rate on the capital gain is reduced to zero, eliminating capital gains tax on the appreciation while still permitting a donation receipt for the full fair market value. Combined with the federal charitable tax credit (15% on the first $200 and 29% above) and provincial credits that range from 5% to 25%, the effective savings on a large gift typically fall between 40% and 50% depending on the province of residence.</p>
+   281→
+   282→  <p class="body-text">An important structural feature of the Canadian regime is the US-Canada Tax Treaty, which provides reciprocal recognition of charitable organisations. A Canadian donor may deduct gifts to a US 501(c)(3) charity against Canadian income up to 75% of net income, provided the donor has US-source income against which to claim the deduction, and vice versa. This reciprocity is critical for cross-border families — for example, a Canadian executive who has moved to New York but retains Canadian-source income — and is one reason Artemis maintains both a Delaware non-stock corporation and a CRA-registered charity in parallel.</p>
+   283→
+   284→  <div class="callout">
+   285→    <div class="callout-label">Worked Example · Canada</div>
+   286→    <div class="callout-body">
+   287→      <p style="margin:0 0 8px;">An Ontario resident with $250,000 of net income donates $50,000 in cash to Artemis's Canadian registered charity. The gift is within the 75%-of-net-income ceiling.</p>
+   288→      <div class="calc-line">Federal credit (15% on first $200, 29% on $49,800): <strong>$14,467</strong></div>
+   289→      <div class="calc-line">Ontario provincial credit (~11.16% blended): <strong>$5,580</strong></div>
+   290→      <div class="calc-result">Effective after-tax cost: ~$29,953 · Tax recovered: ~40%</div>
+   291→    </div>
+   292→  </div>
+   293→
+   294→  <p class="body-text">If the same donor instead gifts $50,000 of publicly traded shares with a cost base of $20,000, the donation receipt is still for $50,000 but the $30,000 capital gain is entirely tax-free. The donor saves the credit calculations above plus the capital gains tax that would otherwise have applied (typically 15% to 25% of the gain depending on the inclusion rate and province), reducing the effective cost of the gift to roughly $22,000. Few structures in global philanthropy beat the Canadian gifts-of-securities regime for donors with appreciated public holdings.</p>
+   295→
+   296→  <!-- JURISDICTION 4: AUSTRALIA -->
+   297→  <div class="chapter-header">
+   298→    <div class="chapter-tag">Jurisdiction 04 · Oceania</div>
+   299→    <h2 class="chapter-title">Australia</h2>
+   300→    <div class="chapter-divider"></div>
+   301→  </div>
+   302→
+   303→  <div class="stat-row">
+   304→    <div class="stat"><div class="stat-val">DGR</div><div class="stat-label">Vehicle</div></div>
+   305→    <div class="stat"><div class="stat-val">$2 min</div><div class="stat-label">No % Cap</div></div>
+   306→    <div class="stat"><div class="stat-val">ATO</div><div class="stat-label">Regulator</div></div>
+   307→  </div>
+   308→
+   309→  <p class="body-text">Australia operates a distinctive deductibility regime organised around the concept of the Deductible Gift Recipient. Not every registered charity is a DGR; the designation must be separately endorsed by the Australian Taxation Office, and only gifts to endorsed DGRs generate an income-tax deduction for the donor. The system is selective by design: the Australian Parliament periodically reviews which categories of organisation qualify for DGR status, with educational institutions falling within a long-established eligible category.</p>
+   310→
+   311→  <p class="body-text">The most striking feature of the Australian regime is the absence of a percentage cap. Gifts of $2 or more to a DGR are deductible in full against the donor's taxable income, with no ceiling expressed as a percentage of income. Donors whose taxable income is high enough to absorb a large gift can deduct the entire amount in a single year, a structural feature particularly attractive to entrepreneurs realising a one-off capital event. Unused deductions carry forward for up to five years, allowing donors to spread the benefit across years of varying income.</p>
+   312→
+   313→  <p class="body-text">Australia also offers a specialised structure for donors of significant appreciated assets: the cultural gifts program for tangible cultural property, and a more general rule that gifts of property valued above $5,000 (or independently valued) attract a deduction equal to the market value without triggering capital gains tax on the appreciation. For Artemis, the DGR endorsement is being pursued as part of the Australian operational presence, with the expectation that gifts from Australian alumni and prospective Fellows' Circle donors will become fully deductible within the standard endorsement window of 12 to 18 months from application.</p>
+   314→
+   315→  <div class="callout">
+   316→    <div class="callout-label">Worked Example · Australia</div>
+   317→    <div class="callout-body">
+   318→      <p style="margin:0 0 8px;">An Australian donor in the 45% top marginal bracket (plus 2% Medicare levy) makes a $100,000 cash gift to an Artemis-affiliated DGR-endorsed entity. There is no percentage cap, so the full $100,000 is deductible.</p>
+   319→      <div class="calc-line">Gross gift: <strong>$100,000</strong></div>
+   320→      <div class="calc-line">Tax saving (47% marginal): <strong>$47,000</strong></div>
+   321→      <div class="calc-result">Effective after-tax cost: $53,000</div>
+   322→    </div>
+   323→  </div>
+   324→
+   325→  <p class="body-text">For a donor who has just sold a business and faces a one-off spike in taxable income, the absence of a cap can produce dramatic effective rates of recovery. A $5 million gift in a year of $10 million of taxable income, with a top marginal rate of 47% including the Medicare levy, produces an income-tax saving of $2.35 million. The donor's effective cost falls to $2.65 million, while the charity receives the full $5 million. This is the structural reason why Australia consistently over-indexes on large one-off philanthropic gifts relative to the size of its economy.</p>
+   326→
+   327→  <!-- JURISDICTION 5: GERMANY -->
+   328→  <div class="chapter-header">
+   329→    <div class="chapter-tag">Jurisdiction 05 · Europe</div>
+   330→    <h2 class="chapter-title">Germany</h2>
+   331→    <div class="chapter-divider"></div>
+   332→  </div>
+   333→
+   334→  <div class="stat-row">
+   335→    <div class="stat"><div class="stat-val">gGmbH</div><div class="stat-label">Vehicle</div></div>
+   336→    <div class="stat"><div class="stat-val">20%</div><div class="stat-label">Income Cap</div></div>
+   337→    <div class="stat"><div class="stat-val">5 yr</div><div class="stat-label">Carryforward</div></div>
+   338→  </div>
+   339→
+   340→  <p class="body-text">Germany regulates charitable organisations under the gemeinnützigkeitsrecht, a body of tax law that confers exempt status on entities pursuing charitable, benevolent, or religious purposes. The two dominant corporate forms are the gemeinnützige GmbH (a non-profit limited liability company) and the eingetragener Verein (a registered association). Both are eligible to issue Spendenbescheinigungen — formal donation receipts — that donors attach to their income tax return to claim the deduction. Artemis's German presence is structured as a gGmbH, which combines the governance flexibility of a GmbH with full charitable status.</p>
+   341→
+   342→  <p class="body-text">The deductibility ceiling in Germany is 20% of the donor's total income (Gesamtbetrag der Einkünfte) in the year of the gift. Unused deductions carry forward for five years. An alternative calculation permits deductions of up to 0.4% of the sum of the donor's turnover and wages paid, which can be more generous for business owners with high turnover but moderate taxable income. The top marginal income tax rate in Germany, including the solidarity surcharge, is approximately 45%, so the effective tax saving on a deductible gift can approach 45% of the gift amount for top-bracket donors.</p>
+   343→
+   344→  <p class="body-text">An important German-specific feature is the simplified donation receipt (vereinfachter Zuwendungsnachweis), introduced in 2017. For donations below €300, the donor no longer needs the formal Spendenbescheinigung; a simple bank statement or booking confirmation is sufficient proof for the tax office. For gifts above €300, the formal receipt remains mandatory, and the donor must retain it for at least ten years in case of audit. Artemis issues both forms automatically, depending on the gift size, so that donors receive exactly the documentation the Finanzamt will accept.</p>
+   345→
+   346→  <div class="callout">
+   347→    <div class="callout-label">Worked Example · Germany</div>
+   348→    <div class="callout-body">
+   349→      <p style="margin:0 0 8px;">A German donor with €400,000 of total income donates €80,000 to Artemis's gGmbH. The gift is exactly at the 20% income ceiling (€80,000).</p>
+   350→      <div class="calc-line">Gross gift: <strong>€80,000</strong></div>
+   351→      <div class="calc-line">Marginal rate (top bracket + solidarity): ~45%</div>
+   352→      <div class="calc-line">Income tax saving: <strong>€36,000</strong></div>
+   353→      <div class="calc-result">Effective after-tax cost: €44,000</div>
+   354→    </div>
+   355→  </div>
+   356→
+   357→  <p class="body-text">For donors whose intended gift exceeds the 20% ceiling, the five-year carryforward becomes the strategic lever. A donor with €400,000 of income wishing to give €200,000 can spread the deduction across three years (€80,000 in year one, €80,000 in year two, €40,000 in year three), assuming income remains constant, capturing the full benefit at the top marginal rate. This timing discipline is one of the more important value-added services a German tax advisor provides to a major donor.</p>
+   358→
+   359→  <!-- JURISDICTION 6: SWITZERLAND -->
+   360→  <div class="chapter-header">
+   361→    <div class="chapter-tag">Jurisdiction 06 · Europe</div>
+   362→    <h2 class="chapter-title">Switzerland</h2>
+   363→    <div class="chapter-divider"></div>
+   364→  </div>
+   365→
+   366→  <div class="stat-row">
+   367→    <div class="stat"><div class="stat-val">Fondation</div><div class="stat-label">Vehicle</div></div>
+   368→    <div class="stat"><div class="stat-val">10–20%</div><div class="stat-label">Cantonal Cap</div></div>
+   369→    <div class="stat"><div class="stat-val">GE / ZH</div><div class="stat-label">Most Favourable</div></div>
+   370→  </div>
+   371→
+   372→  <p class="body-text">Switzerland occupies a singular position in global philanthropy: a neutral, politically stable jurisdiction with no capital gains tax on the growth of endowment assets held by a Swiss fondation. Charitable foundations are constituted under articles 80 and following of the Swiss Civil Code, with cantonal authority approval required for formation. Initial capital of at least CHF 50,000 must be irrevocably dedicated to the foundation's purpose, and the foundation becomes subject to supervision by the cantonal foundation authority (Stiftungsaufsicht) for the duration of its existence. Artemis's tertiary vehicle is established in the Canton of Geneva, leveraging both the canton's favourable deductibility regime and its international institutional signalling value.</p>
+   373→
+   374→  <p class="body-text">Deductibility in Switzerland is determined canton by canton rather than federally, with most cantons permitting deductions of 10% to 20% of net income. Geneva and Zurich are the most generous: both permit deductions of up to 20% of net income for donations to qualifying Swiss charities, with a five-year carryforward for unused amounts. The federal deductibility ceiling, applicable in addition to the cantonal one, is 20% of net income. Because Switzerland has no capital gains tax on the sale of privately held or publicly traded securities by individuals (with limited exceptions for qualified business holdings), donors giving appreciated assets to a Swiss fondation effectively face no tax drag on the gift at all.</p>
+   375→
+   376→  <p class="body-text">The strategic significance of the Swiss vehicle extends beyond domestic deductibility. A Geneva-based fondation signals institutional permanence to European and Gulf donors in a way that no Delaware or London structure can replicate. Geneva is home to the World Health Organization, CERN, the International Olympic Committee, and dozens of other international institutions, and the cantonal authority is familiar with foundations operating across borders. This familiarity reduces the operational friction of accepting gifts from donors in jurisdictions without a dedicated Artemis vehicle, who may channel their giving through the Swiss fondation under private client arrangements.</p>
+   377→
+   378→  <div class="callout">
+   379→    <div class="callout-label">Worked Example · Switzerland</div>
+   380→    <div class="callout-body">
+   381→      <p style="margin:0 0 8px;">A Geneva-resident donor with CHF 1,000,000 of taxable income donates CHF 200,000 to Artemis's Geneva fondation. The gift is within the 20%-of-income ceiling.</p>
+   382→      <div class="calc-line">Gross gift: <strong>CHF 200,000</strong></div>
+   383→      <div class="calc-line">Combined marginal rate (federal+cantonal+communal): ~40%</div>
+   384→      <div class="calc-line">Tax saving: <strong>CHF 80,000</strong></div>
+   385→      <div class="calc-result">Effective after-tax cost: CHF 120,000</div>
+   386→    </div>
+   387→  </div>
+   388→
+   389→  <p class="body-text">A frequently overlooked feature of the Swiss regime is the absence of gift tax on transfers to qualifying charities in most cantons, including Geneva. Donors wishing to make a substantial lifetime transfer to the fondation — for example, an endowment contribution of CHF 5 million in cash and securities — can do so without incurring the gift tax that would otherwise apply to inter vivos transfers above the cantonal exemption thresholds. This makes the Swiss fondation an attractive vehicle for donors who wish to see their gift deployed during their lifetime while preserving the option to direct the fondation's grant-making through their advisory role.</p>
+   390→
+   391→  <!-- MID DARK SECTION BREAK -->
+   392→  <div class="dark-section">
+   393→    <div class="ds-tag">Interlude · Asia-Pacific</div>
+   394→    <div class="ds-title">The Singapore & Hong Kong Advantage</div>
+   395→    <div class="ds-body">The next two jurisdictions — Singapore and Hong Kong — operate two of the most philanthropically generous tax regimes in the world. Singapore's 250% deduction and Hong Kong's 100% deductibility (capped at 25% of assessable income) reflect explicit policy decisions by their respective governments to position the region as a hub for Asian philanthropic capital. For Artemis, both jurisdictions are critical: Singapore anchors our Southeast Asian operations, while Hong Kong provides the natural bridge to mainland Chinese and broader East Asian donors.</div>
+   396→  </div>
+   397→
+   398→  <!-- JURISDICTION 7: SINGAPORE -->
+   399→  <div class="chapter-header">
+   400→    <div class="chapter-tag">Jurisdiction 07 · Asia-Pacific</div>
+   401→    <h2 class="chapter-title">Singapore</h2>
+   402→    <div class="chapter-divider"></div>
+   403→  </div>
+   404→
+   405→  <div class="stat-row">
+   406→    <div class="stat"><div class="stat-val">IPC</div><div class="stat-label">Vehicle</div></div>
+   407→    <div class="stat"><div class="stat-val">250%</div><div class="stat-label">Deduction</div></div>
+   408→    <div class="stat"><div class="stat-val">2026</div><div class="stat-label">Enhanced Through</div></div>
+   409→  </div>
+   410→
+   411→  <p class="body-text">Singapore operates one of the most generous charitable tax regimes in the world. A donor making a qualifying gift to an Institution of a Public Character may deduct 250% of the gift amount against their taxable income, an enhancement originally introduced as a temporary crisis measure during the COVID-19 period and extended through 2026 in successive budgets. The 250% rate means that a donor giving S$100,000 reduces their taxable income by S$250,000 — a substantial multiplier without parallel among major OECD jurisdictions. Artemis's Singapore operations are conducted through an IPC-registered entity, ensuring that every dollar given by Singapore-resident donors qualifies for the enhanced rate.</p>
+   412→
+   413→  <p class="body-text">The IPC designation is selective. To qualify, an organisation must satisfy the Commissioner of Charities that its activities serve a public benefit purpose and that its governance meets prescribed standards. IPC status is granted for a fixed term (typically five years) and must be renewed on application. Donors should always confirm that the IPC designation is current at the time of the gift, because lapsed IPCs cannot issue valid donation receipts. Artemis publishes its IPC renewal status in real time on the donor portal, eliminating any ambiguity.</p>
+   414→
+   415→  <p class="body-text">The 250% deduction is subject to the standard cap that total donations may not reduce a donor's taxable income below zero in a given year. Unused deductions can be carried forward for up to five years, subject to the same continuity-of-ownership rules that apply to general loss carryforwards. For high-net-worth donors with substantial taxable income, the 250% rate frequently produces tax savings in excess of 100% of the gift's nominal value when calculated against the top marginal rate of 24% (including the IRAS surcharge that applies to high earners).</p>
+   416→
+   417→  <div class="callout">
+   418→    <div class="callout-label">Worked Example · Singapore</div>
+   419→    <div class="callout-body">
+   420→      <p style="margin:0 0 8px;">A Singapore-resident donor in the 24% top marginal bracket makes a S$100,000 cash gift to Artemis's IPC. The deduction is 250% of the gift.</p>
+   421→      <div class="calc-line">Gross gift: <strong>S$100,000</strong></div>
+   422→      <div class="calc-line">Deductible amount (250%): <strong>S$250,000</strong></div>
+   423→      <div class="calc-line">Tax saving (24% × S$250,000): <strong>S$60,000</strong></div>
+   424→      <div class="calc-result">Effective after-tax cost: S$40,000 · Tax recovered: 60%</div>
+   425→    </div>
+   426→  </div>
+   427→
+   428→  <p class="body-text">The structural implication of the 250% rate is that philanthropic giving in Singapore is effectively subsidised by the state at a higher rate than the donor's own marginal tax rate. This inversion of the usual "state shares the cost" model means that Singapore-based donors can be exceptionally generous at a comparatively low personal cost. For Artemis, this makes the Singapore vehicle the most efficient entry point for prospective Fellows' Circle and Builders' Circle donors whose taxable income arises substantially within Singapore.</p>
+   429→
+   430→  <!-- JURISDICTION 8: HONG KONG -->
+   431→  <div class="chapter-header">
+   432→    <div class="chapter-tag">Jurisdiction 08 · Asia-Pacific</div>
+   433→    <h2 class="chapter-title">Hong Kong</h2>
+   434→    <div class="chapter-divider"></div>
+   435→  </div>
+   436→
+   437→  <div class="stat-row">
+   438→    <div class="stat"><div class="stat-val">s88</div><div class="stat-label">Vehicle</div></div>
+   439→    <div class="stat"><div class="stat-val">100%</div><div class="stat-label">Deductible</div></div>
+   440→    <div class="stat"><div class="stat-val">25%</div><div class="stat-label">Income Cap</div></div>
+   441→  </div>
+   442→
+   443→  <p class="body-text">Hong Kong's charitable regime is administered by the Inland Revenue Department under section 88 of the Inland Revenue Ordinance. A charitable institution exempt under s88 may issue receipts that donors deduct against their assessable income. The deductibility rate is 100% of the gift, capped at 25% of the donor's assessable income in the year of the gift. Unused deductions may be carried forward for an unlimited period, a structural feature that makes Hong Kong attractive for donors planning multi-year commitments.</p>
+   444→
+   445→  <p class="body-text">Hong Kong's tax system is structurally simple: a flat salaries tax of 15% (capped at standard rate on net income) and a profits tax of 16.5% on corporations. The marginal rates are low by international standards, so the absolute tax saving per dollar donated is correspondingly smaller than in higher-rate jurisdictions. What Hong Kong offers instead is administrative simplicity, legal certainty, and a well-developed ecosystem of private foundations and family offices that have made the city the principal philanthropic hub for Greater China and the broader East Asian diaspora.</p>
+   446→
+   447→  <p class="body-text">Artemis's Hong Kong presence is structured to accept gifts in HKD, USD, and RMB, with the s88 entity issuing bilingual receipts (English and Traditional Chinese) recognised by both the IRD and by donor-advised funds operating in the region. For donors with assessable income above HKD 4 million, the 25% cap permits gifts of up to approximately HKD 1 million per year at full deductibility, with carryforward enabling larger multi-year commitments without losing the deduction. The unlimited carryforward is particularly valuable for donors whose income fluctuates — for example, founders whose liquidity events occur in irregular intervals.</p>
+   448→
+   449→  <div class="callout">
+   450→    <div class="callout-label">Worked Example · Hong Kong</div>
+   451→    <div class="callout-body">
+   452→      <p style="margin:0 0 8px;">A Hong Kong-resident donor with HKD 4,000,000 of assessable income donates HKD 1,000,000 to Artemis's s88 entity. The gift is exactly at the 25%-of-income ceiling.</p>
+   453→      <div class="calc-line">Gross gift: <strong>HKD 1,000,000</strong></div>
+   454→      <div class="calc-line">Marginal rate (standard): 15%</div>
+   455→      <div class="calc-line">Tax saving: <strong>HKD 150,000</strong></div>
+   456→      <div class="calc-result">Effective after-tax cost: HKD 850,000</div>
+   457→    </div>
+   458→  </div>
+   459→
+   460→  <p class="body-text">Although the headline 15% rate produces a smaller percentage saving than Singapore's 250%-multiplied regime, Hong Kong's combination of unlimited carryforward, no capital gains tax on the disposal of securities, and the absence of estate duty (abolished in 2006) makes the jurisdiction especially powerful for legacy gifts and endowment contributions. A donor in Hong Kong wishing to leave a HKD 50 million bequest to Artemis can do so entirely free of estate duty, with the full amount reaching the university — a structural advantage unavailable in most jurisdictions that retain an estate or inheritance tax.</p>
+   461→
+   462→  <!-- JURISDICTION 9: UAE / GULF -->
+   463→  <div class="chapter-header">
+   464→    <div class="chapter-tag">Jurisdiction 09 · Middle East</div>
+   465→    <h2 class="chapter-title">UAE / Gulf</h2>
+   466→    <div class="chapter-divider"></div>
+   467→  </div>
+   468→
+   469→  <div class="stat-row">
+   470→    <div class="stat"><div class="stat-val">DIFC / ADGM</div><div class="stat-label">Structure</div></div>
+   471→    <div class="stat"><div class="stat-val">0%</div><div class="stat-label">Income Tax</div></div>
+   472→    <div class="stat"><div class="stat-val">Zakat</div><div class="stat-label">Alignment</div></div>
+   473→  </div>
+   474→
+   475→  <p class="body-text">The United Arab Emirates and the broader Gulf region present a fundamentally different philanthropic geometry from the Western jurisdictions covered above. The UAE levies no personal income tax on individuals, and the federal corporate income tax introduced in 2023 applies only to business profits exceeding AED 375,000. The result is that the conventional Western calculus — donate to reduce income tax liability — does not apply. Instead, philanthropic giving in the Gulf is structured around three distinct but overlapping frameworks: institutional CSR obligations for corporations, Zakat for Muslim donors, and the strategic signalling value of recognised foreign charitable vehicles.</p>
+   476→
+   477→  <p class="body-text">Artemis's Gulf operations are structured through DIFC and ADGM-registered vehicles, allowing institutional donors — sovereign wealth funds, family offices, and corporations — to channel commitments through common-law jurisdictions with familiar corporate governance frameworks. The DIFC and ADGM regimes permit foreign charities to operate with full recognition, and institutional donors can deduct qualifying charitable contributions as legitimate business expenses where they align with documented CSR strategies. The absence of personal income tax means that individual donors face no tax-driven calculus, but the institutional pathway remains material for corporate giving at scale.</p>
+   478→
+   479→  <p class="body-text">For Muslim donors, the alignment with Zakat — the obligatory annual charitable contribution calculated as 2.5% of qualifying wealth — provides a parallel framework. While Zakat is not a tax deduction in the Western sense (because no income tax exists against which to deduct it), the disciplined annual cadence of Zakat calculation creates a natural rhythm for charitable giving that Artemis honours through dedicated Zakat-eligible programming. Donors may direct their Zakat toward specific Artemis programmes — scholarships for underrepresented students, food and housing support for enrolled students, or the operational costs of educational delivery — that align with the eight categories of Zakat recipients defined in Islamic jurisprudence.</p>
+   480→
+   481→  <div class="callout">
+   482→    <div class="callout-label">Worked Example · UAE / Gulf</div>
+   483→    <div class="callout-body">
+   484→      <p style="margin:0 0 8px;">A Dubai-based family office with AED 50 million of qualifying wealth calculates annual Zakat at the standard 2.5% rate and directs it to Artemis's Zakat-eligible scholarship fund. Separately, a DIFC-incorporated corporation with AED 100 million of taxable profit makes a AED 5 million CSR contribution to Artemis's DIFC vehicle.</p>
+   485→      <div class="calc-line">Family Zakat contribution: <strong>AED 1,250,000</strong> (no income tax, but Zakat obligation fulfilled)</div>
+   486→      <div class="calc-line">Corporate CSR contribution: <strong>AED 5,000,000</strong> (deductible as business expense, saving AED 315,000 in 9% corporate tax)</div>
+   487→      <div class="calc-result">Combined charitable flow: AED 6,250,000 · No personal income-tax friction</div>
+   488→    </div>
+   489→  </div>
+   490→
+   491→  <p class="body-text">The strategic significance of the Gulf for Artemis extends beyond the dollar value of individual gifts. Gulf sovereign wealth funds and family offices manage some of the largest pools of patient capital in the world, and their philanthropic commitments — increasingly structured around education, scientific research, and intergenerational knowledge transfer — align closely with Artemis's mission. The absence of personal income tax in the Gulf removes the time-sensitive tax-planning pressure that drives year-end giving in Western jurisdictions, allowing for more deliberative, multi-year commitments on the timeline that genuinely large philanthropy requires.</p>
+   492→
+   493→  <!-- JURISDICTION 10: BRAZIL -->
+   494→  <div class="chapter-header">
+   495→    <div class="chapter-tag">Jurisdiction 10 · South America</div>
+   496→    <h2 class="chapter-title">Brazil</h2>
+   497→    <div class="chapter-divider"></div>
+   498→  </div>
+   499→
+   500→  <div class="stat-row">
+   501→    <div class="stat"><div class="stat-val">OSCIP</div><div class="stat-label">Vehicle</div></div>
+   502→    <div class="stat"><div class="stat-val">2%</div><div class="stat-label">Corp Revenue Cap</div></div>
+   503→    <div class="stat"><div class="stat-val">PRONON</div><div class="stat-label">Special Caps</div></div>
+   504→  </div>
+   505→
+   506→  <p class="body-text">Brazil regulates civil society organisations under Law 9.790/1999, which established the Organização da Sociedade Civil de Interesse Público (OSCIP) qualification. OSCIP status is granted by the Ministry of Justice after a documented review of the organisation's governance, purpose, and operational transparency. The qualification does not in itself confer tax deductibility; rather, it permits corporate donors to deduct qualifying contributions up to 2% of operational profit (not gross revenue), computed according to a specific formula in the corporate income tax return. For individual donors, deductibility is more constrained, with the principal routes being PRONON and PRONAS — dedicated funds for health-related causes that do not currently encompass Artemis's educational mission.</p>
+   507→
+   508→  <p class="body-text">The structural narrowness of individual deductibility in Brazil reflects a deliberate policy choice by the Receita Federal to scrutinise charitable deductions closely, given historical concerns about abuse. Donors seeking to make qualifying gifts at the individual level often do so through PJ (pessoa jurídica) entities — family holding companies or investment vehicles — that can access the corporate deductibility route. For a family holding company with R$50 million of operational profit, the 2% ceiling permits a R$1 million annual qualifying contribution, producing a tax saving at the 34% combined corporate rate of approximately R$340,000.</p>
+   509→
+   510→  <p class="body-text">Artemis's Brazilian presence is structured as an OSCIP-qualified entity with federal recognition, enabling the corporate deductibility route for institutional donors. The OSCIP qualification also signals compliance with the rigorous governance standards required under Brazilian civil society law, including mandatory publication of annual activity reports, independent audit for entities above a revenue threshold, and a board composition that includes representatives of civil society beyond the founders. For prospective Brazilian donors — particularly family offices in São Paulo and Rio de Janeiro with international philanthropic interests — the OSCIP vehicle offers a recognised route for domestic giving alongside any international commitments through Artemis's Delaware or Geneva entities.</p>
+   511→
+   512→  <div class="callout">
+   513→    <div class="callout-label">Worked Example · Brazil</div>
+   514→    <div class="callout-body">
+   515→      <p style="margin:0 0 8px;">A Brazilian corporation with R$100 million of operational profit makes a R$2 million qualifying contribution to Artemis's OSCIP-qualified entity. The gift is exactly at the 2%-of-operating-profit ceiling.</p>
+   516→      <div class="calc-line">Gross contribution: <strong>R$2,000,000</strong></div>
+   517→      <div class="calc-line">Combined corporate tax rate (IRPJ + CSLL): 34%</div>
+   518→      <div class="calc-line">Tax saving: <strong>R$680,000</strong></div>
+   519→      <div class="calc-result">Effective after-tax cost: R$1,320,000</div>
+   520→    </div>
+   521→  </div>
+   522→
+   523→  <p class="body-text">For donors whose giving exceeds the 2% corporate ceiling, the residual amount is treated as a non-deductible expense for tax purposes but remains a legitimate operational outflow. Brazilian tax advisors frequently structure multi-year pledges to maximise the deductible portion in each tax year, treating the OSCIP ceiling as a recurring annual allowance rather than a one-time cap. This approach is particularly relevant for Artemis's Guardians' Circle and Builders' Circle commitments, where a five-year pledge of R$10 million can be structured as R$2 million per year, each tranche fully deductible against the corresponding year's operational profit.</p>
+   524→
+   525→  <!-- JURISDICTION 11: SOUTH AFRICA -->
+   526→  <div class="chapter-header">
+   527→    <div class="chapter-tag">Jurisdiction 11 · Africa</div>
+   528→    <h2 class="chapter-title">South Africa</h2>
+   529→    <div class="chapter-divider"></div>
+   530→  </div>
+   531→
+   532→  <div class="stat-row">
+   533→    <div class="stat"><div class="stat-val">s18A</div><div class="stat-label">Vehicle</div></div>
+   534→    <div class="stat"><div class="stat-val">10%</div><div class="stat-label">Taxable Income Cap</div></div>
+   535→    <div class="stat"><div class="stat-val">SARS</div><div class="stat-label">Regulator</div></div>
+   536→  </div>
+   537→
+   538→  <p class="body-text">South Africa regulates charitable tax deductibility through Section 18A of the Income Tax Act, which permits donors to deduct qualifying donations to approved Public Benefit Organisations up to 10% of their taxable income in the year of the gift. An organisation must be separately approved under Section 18A — PBO approval under Section 30 is necessary but not sufficient — and must confine its activities to one or more of the approved PBA (Public Benefit Activities) listed in the Ninth Schedule, which includes the advancement of education. The South African Revenue Service issues Section 18A receipts that donors attach to their income tax return to claim the deduction.</p>
+   539→
+   540→  <p class="body-text">The 10%-of-taxable-income ceiling is comparatively tight by international standards, but unused deductions carry forward for five years, allowing donors to time substantial gifts across multiple tax years. The top marginal income tax rate in South Africa is 45%, so the effective tax saving on a deductible gift can reach 45% of the gift amount. For donors giving appreciated assets — an option available under the Section 18A framework — the absence of capital gains tax on the donation (the disposition is treated as a "no gain/no loss" event for CGT purposes) provides an additional benefit that can materially improve the after-tax cost of a major gift.</p>
+   541→
+   542→  <p class="body-text">Artemis's South African presence is structured as a Section 18A-approved PBO with its principal place of operations in Cape Town, a deliberate choice reflecting the city's concentration of philanthropic infrastructure, academic institutions, and the regulatory familiarity of the SARS Western Cape office with cross-border educational charities. The Section 18A receipt issued by the South African entity is recognised by SARS for both individual and corporate donors, and the entity's PBO status ensures that its own investment income is exempt from income tax, preserving the full value of donor contributions for mission delivery.</p>
+   543→
+   544→  <div class="callout">
+   545→    <div class="callout-label">Worked Example · South Africa</div>
+   546→    <div class="callout-body">
+   547→      <p style="margin:0 0 8px;">A South African donor with R3,000,000 of taxable income donates R300,000 in cash to Artemis's Section 18A PBO. The gift is exactly at the 10%-of-taxable-income ceiling.</p>
+   548→      <div class="calc-line">Gross gift: <strong>R300,000</strong></div>
+   549→      <div class="calc-line">Top marginal rate: 45%</div>
+   550→      <div class="calc-line">Tax saving: <strong>R135,000</strong></div>
+   551→      <div class="calc-result">Effective after-tax cost: R165,000 · Tax recovered: 45%</div>
+   552→    </div>
+   553→  </div>
+   554→
+   555→  <p class="body-text">For a donor whose intended gift exceeds the 10% ceiling — for example, a R1 million commitment in a year of R3 million taxable income — the unused R700,000 carries forward. In the following year, assuming the donor again earns R3 million, the new 10% ceiling (R300,000) absorbs the carried-forward amount, and the full R1 million gift is deducted over two years. This carryforward discipline is particularly important for South African donors, where the relatively low ceiling forces multi-year planning for any gift above approximately R300,000 at typical income levels.</p>
+   556→
+   557→  <!-- JURISDICTION 12: INDIA -->
+   558→  <div class="chapter-header">
+   559→    <div class="chapter-tag">Jurisdiction 12 · Asia</div>
+   560→    <h2 class="chapter-title">India</h2>
+   561→    <div class="chapter-divider"></div>
+   562→  </div>
+   563→
+   564→  <div class="stat-row">
+   565→    <div class="stat"><div class="stat-val">12A / 80G</div><div class="stat-label">Vehicle</div></div>
+   566→    <div class="stat"><div class="stat-val">50%</div><div class="stat-label">Deduction (80G)</div></div>
+   567→    <div class="stat"><div class="stat-val">10%</div><div class="stat-label">Income Cap</div></div>
+   568→  </div>
+   569→
+   570→  <p class="body-text">India's charitable tax regime operates on a dual registration model under the Income Tax Act. Section 12A confers tax-exempt status on the charitable organisation itself, while Section 80G confers deductibility on the donor. Both registrations are administered by the Income Tax Department and must be renewed periodically. Donors giving to an 80G-registered entity may deduct 50% of the gift amount (subject to a 10%-of-income ceiling and qualifying conditions), with some sub-categories of 80G permitting 100% deduction for gifts to specifically listed institutions. Artemis's Indian operations are conducted through a registered society with both 12A and 80G approvals, ensuring deductibility for domestic donors.</p>
+   571→
+   572→  <p class="body-text">The 50%-of-gift deduction under Section 80G is subject to a 10%-of-gross-total-income ceiling, meaning that a donor with ₹50 lakh of income may deduct donations up to ₹5 lakh in the year of the gift, with the deductible portion being 50% of the donated amount (i.e., the donor effectively reduces taxable income by ₹2.5 lakh on a ₹5 lakh gift). The top marginal income tax rate in India, including the surcharge and cess applicable to high-income individuals, can exceed 30%, producing a tax saving of approximately ₹75,000 on a ₹5 lakh gift. Unused deductions do not carry forward, so donors must time gifts to fall within the year of sufficient taxable income.</p>
+   573→
+   574→  <p class="body-text">A critical Indian-specific consideration is the Foreign Contribution Regulation Act (FCRA), which governs the acceptance of foreign contributions by Indian entities. Foreign donors wishing to give to an Indian charitable organisation must route the gift through an FCRA-approved bank account, and the recipient organisation must hold a valid FCRA registration. Artemis's Indian entity maintains active FCRA registration, permitting both inbound gifts from foreign donors and outbound partnerships with international educational institutions. The FCRA framework imposes stringent reporting obligations — quarterly returns, annual audits, and prohibitions on certain uses of foreign funds — that are integrated into Artemis's compliance calendar as a matter of course.</p>
+   575→
+   576→  <div class="callout">
+   577→    <div class="callout-label">Worked Example · India</div>
+   578→    <div class="callout-body">
+   579→      <p style="margin:0 0 8px;">An Indian resident donor with ₹50,00,000 (₹50 lakh) of gross total income makes a ₹5,00,000 cash donation to Artemis's 80G-registered entity. The gift is exactly at the 10%-of-income ceiling.</p>
+   580→      <div class="calc-line">Gross gift: <strong>₹5,00,000</strong></div>
+   581→      <div class="calc-line">Deductible portion (50% of gift): <strong>₹2,50,000</strong></div>
+   582→      <div class="calc-line">Marginal rate (30% + surcharge + cess): ~30%</div>
+   583→      <div class="calc-line">Tax saving: <strong>₹75,000</strong></div>
+   584→      <div class="calc-result">Effective after-tax cost: ₹4,25,000 · Tax recovered: 15%</div>
+   585→    </div>
+   586→  </div>
+   587→
+   588→  <p class="body-text">The Indian regime's relatively modest effective tax recovery — typically 10% to 15% of the gift amount — reflects the policy decision to limit deductibility to 50% of the gift rather than 100%. Donors in India frequently structure major commitments through a combination of domestic 80G giving (for the deductible portion) and direct international giving through Artemis's Delaware or Geneva vehicles (for amounts above the 10% ceiling or for donors who prefer the simplicity of a single cross-border gift). This hybrid approach has become standard practice among Indian philanthropists with global education objectives, and Artemis's multi-jurisdictional footprint is designed precisely to support it.</p>
+   589→
+   590→  <!-- CLOSING CHAPTER: CONSULTING ADVISORS -->
+   591→  <div class="chapter-header">
+   592→    <div class="chapter-tag">Chapter Fifteen · Professional Advice</div>
+   593→    <h2 class="chapter-title">Consulting Your Advisors</h2>
+   594→    <div class="chapter-divider"></div>
+   595→  </div>
+   596→
+   597→  <p class="lead">This guide is a reference document, not a substitute for professional advice. Every donor's circumstances are unique, and the interaction between tax residence, asset composition, and the timing of a major gift can materially change the optimal structure.</p>
+   598→
+   599→  <p class="body-text">A donor considering a gift of $100,000 or more should engage three professional advisors in parallel: a tax accountant familiar with the donor's primary jurisdiction, a lawyer qualified to draft or review the gift instrument (pledge agreement, deed of trust, or charitable trust instrument), and where the gift involves appreciated assets, a wealth manager able to execute the transfer efficiently. The cost of this advice — typically $5,000 to $25,000 for a major gift — is modest relative to the gift itself and routinely pays for itself through optimisation of the asset class, the timing, and the receiving vehicle. Donors who attempt to navigate a seven-figure gift without professional advice frequently leave material benefits on the table.</p>
+   600→
+   601→  <p class="body-text">For cross-border donors — those with tax residence in one jurisdiction and assets or income in another — the calculus becomes more complex. A donor resident in Singapore with significant US-source income may need to coordinate between a Singapore tax advisor (for the IPC deduction) and a US tax advisor (for the foreign tax credit interaction). A donor resident in the UK with a US 501(c)(3) gift may need to consider the dual-cap rules that limit UK deductibility on gifts to non-UK charities. Artemis's Office of Gift Planning maintains a roster of vetted advisors in each of the twelve jurisdictions covered in this guide and is available to make warm introductions on request.</p>
+   602→
+   603→  <p class="body-text">The single most important conversation a major donor can have — often overlooked in the technical tax planning — is with the recipient charity itself. Artemis's gift officers are trained to discuss the timing, structure, and recognition preferences of each commitment before any legal documentation is drafted, ensuring that the gift serves the donor's philanthropic intent as much as it satisfies the tax code. A 30-minute conversation at the outset routinely identifies structuring opportunities — a blended gift of cash and appreciated stock, a multi-year pledge to maximise carryforward, or a named endowment aligned with a specific Artemis programme — that no tax advisor working in isolation could propose.</p>
+   604→
+   605→  <div class="callout">
+   606→    <div class="callout-label">Practical Checklist · Before You Give</div>
+   607→    <div class="callout-body">
+   608→      <ul class="bullets" style="margin:6px 0 0;">
+   609→        <li><strong>Confirm vehicle eligibility</strong> — verify the receiving entity's qualification status (501(c)(3), CIO, DGR, OSCIP, etc.) for the current tax year.</li>
+   610→        <li><strong>Calculate your cap</strong> — determine your AGI / net income / assessable income ceiling for the year, including any carried-forward deductions.</li>
+   611→        <li><strong>Evaluate asset class</strong> — compare the after-tax cost of cash, appreciated stock, real estate, and (where relevant) private business interests.</li>
+   612→        <li><strong>Time the gift</strong> — coordinate the gift date with your income trajectory to maximise the deductible portion against the highest marginal rate.</li>
+   613→        <li><strong>Document recognition</strong> — confirm with the charity how the gift will be recognised (named endowment, founding donor roll, etc.) and obtain written confirmation before transfer.</li>
+   614→        <li><strong>Retain receipts</strong> — keep donation receipts and substantiation documents for the statutory retention period (typically 5 to 10 years, depending on jurisdiction).</li>
+   615→      </ul>
+   616→    </div>
+   617→  </div>
+   618→
+   619→  <p class="body-text">A final note on dynastic and legacy giving. Donors structuring gifts through their estate plan — bequests, charitable remainder trusts, or private foundation distributions — should ensure that the receiving charity is named with sufficient precision to avoid ambiguity at the time of distribution. "University of Artemis, a Delaware non-stock corporation" is unambiguous; "Artemis University" is not. Artemis's Office of Gift Planning provides sample bequest language for each of its twelve jurisdictions, drafted by local counsel, that donors and their estate lawyers may adopt directly into wills, trusts, and codicils. Donors who contemplate a legacy commitment should request this language early in the planning process to avoid the costly and time-consuming corrections that arise when imprecise charitable designations must be remediated after the donor's death.</p>
+   620→
+   621→  <div class="pullquote">
+   622→    "The art of major giving is the art of asking the right questions early. Tax treatment is the answer; intent is the question."
+   623→    <div class="attribution">— Office of Gift Planning, University of Artemis</div>
+   624→  </div>
+   625→
+   626→  <p class="body-text">Artemis publishes revised editions of this guide annually, reflecting changes in tax law, the maturation of new charitable vehicles, and the addition of jurisdictions where the university establishes a recognised presence. Donors who have used a previous edition should request the current version before making a new commitment, particularly if their personal circumstances — tax residence, asset composition, or family structure — have changed. The Office of Gift Planning is available by appointment, in person at any of the university's hostels, or by encrypted video conference for donors whose schedules or privacy preferences make in-person meetings impractical. The university considers the tax efficiency of every gift to be a shared responsibility: the donor's advisors provide the technical expertise, and Artemis provides the operational infrastructure that ensures the gift is received, receipted, and deployed in accordance with the donor's intent.</p>
+   627→
+   628→</div>
+   629→
+   630→<!-- ENDING -->
+   631→<div class="ending">
+   632→  <div class="ending-tag">End of Guide · Volume V</div>
+   633→  <div class="ending-big">Every gift, every jurisdiction, every dollar accounted for.</div>
+   634→  <div class="ending-sub">For donor-specific structuring advice, contact the Office of Gift Planning at the University of Artemis. This guide is updated annually and reflects tax law as of the 2025 edition.</div>
+   635→  <div class="ending-contact">give@artemis.university · +1 (302) 555-0142</div>
+   636→</div>
+   637→
+   638→</body>
+   639→</html>
+   640→

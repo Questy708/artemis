@@ -1,0 +1,508 @@
+     1→     1→<!DOCTYPE html>
+     2→     2→<html lang="en">
+     3→     3→<head>
+     4→     4→<meta charset="UTF-8">
+     5→     5→<title>Giving Circles Benefits Guide — University of Artemis</title>
+     6→     6→<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="stylesheet">
+     7→     7→<style>
+     8→     8→@page { size: 720px 1020px; margin: 0; }
+     9→     9→:root {
+    10→    10→  --crimson: #8A0000; --crimson-deep: #6B0000; --crimson-soft: #B33A3A;
+    11→    11→  --ink: #141414; --ink-soft: #3a3a3a; --muted: #6b6b6b; --line: #e5e5e5;
+    12→    12→  --bg: #FAFAF8; --bg-dark: #0c0a09; --bg-cream: #F5F2EC; --gold: #b08d57;
+    13→    13→}
+    14→    14→html, body { margin: 0; padding: 0; width: 720px; background: var(--bg-dark); color: var(--ink);
+    15→    15→  font-family: 'Inter', -apple-system, sans-serif; font-size: 13px; line-height: 1.65;
+    16→    16→  -webkit-font-smoothing: antialiased; }
+    17→    17→@media screen { html { display: flex; justify-content: center; background: #222; height: auto; }
+    18→    18→  body { margin: 20px auto; box-shadow: 0 0 40px rgba(0,0,0,0.4); } }
+    19→    19→
+    20→    20→/* COVER */
+    21→    21→.cover { width: 720px; height: 1020px; box-sizing: border-box; break-after: page; overflow: hidden;
+    22→    22→  position: relative; background: var(--bg-dark); color: #fff; display: flex; flex-direction: column;
+    23→    23→  justify-content: center; padding: 64px; }
+    24→    24→.cover .cover-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.35; filter: grayscale(0.3); }
+    25→    25→.cover .cover-overlay { position: absolute; inset: 0;
+    26→    26→  background: linear-gradient(135deg, rgba(138,0,0,0.55) 0%, rgba(12,10,9,0.92) 60%, rgba(12,10,9,0.98) 100%); }
+    27→    27→.cover .cover-content { position: relative; z-index: 2; }
+    28→    28→.cover .cover-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase;
+    29→    29→  color: var(--crimson-soft); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+    30→    30→.cover .cover-tag::before { content: ""; width: 28px; height: 1px; background: var(--crimson); }
+    31→    31→.cover h1 { font-family: 'Noto Serif SC', Georgia, serif; font-size: 52px; font-weight: 900; line-height: 1.02;
+    32→    32→  letter-spacing: -0.02em; margin: 0 0 24px; text-transform: none; }
+    33→    33→.cover .cover-sub { font-size: 15px; color: rgba(255,255,255,0.65); font-weight: 300; line-height: 1.6; max-width: 480px; }
+    34→    34→.cover .cover-footer { position: absolute; bottom: 48px; left: 64px; right: 64px; display: flex;
+    35→    35→  justify-content: space-between; align-items: flex-end; z-index: 2; font-size: 10px; letter-spacing: 0.2em;
+    36→    36→  text-transform: uppercase; color: rgba(255,255,255,0.4); }
+    37→    37→.cover .cover-footer .crest { font-family: 'Noto Serif SC', serif; font-size: 14px; color: rgba(255,255,255,0.7); letter-spacing: 0.15em; }
+    38→    38→.cover .cover-edition { position: absolute; top: 48px; right: 64px; z-index: 2; font-size: 10px;
+    39→    39→  letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-align: right; }
+    40→    40→
+    41→    41→/* CONTENT FLOWS */
+    42→    42→.main-content { background: var(--bg); padding: 64px 64px 48px 64px; }
+    43→    43→
+    44→    44→.chapter-header { break-after: avoid; break-inside: avoid; margin-top: 28px; margin-bottom: 20px; }
+    45→    45→.chapter-header:first-child { margin-top: 0; }
+    46→    46→.chapter-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase;
+    47→    47→  color: var(--crimson); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+    48→    48→.chapter-tag::before { content: ""; width: 22px; height: 1px; background: var(--crimson); }
+    49→    49→.chapter-title { font-family: 'Noto Serif SC', Georgia, serif; font-size: 30px; font-weight: 800;
+    50→    50→  line-height: 1.12; letter-spacing: -0.015em; color: var(--ink); margin: 0 0 12px; }
+    51→    51→.chapter-divider { width: 40px; height: 6px; background: var(--crimson); margin-bottom: 18px; }
+    52→    52→
+    53→    53→.body-text { font-size: 13px; line-height: 1.72; color: var(--ink-soft); margin: 0 0 12px; }
+    54→    54→.body-text strong { color: var(--ink); font-weight: 600; }
+    55→    55→.lead { font-size: 15px; line-height: 1.65; color: var(--ink); font-weight: 400; margin-bottom: 18px; }
+    56→    56→
+    57→    57→.pullquote { break-inside: avoid; border-left: 3px solid var(--crimson); padding: 16px 24px; margin: 20px 0;
+    58→    58→  font-family: 'Noto Serif SC', Georgia, serif; font-size: 16px; font-style: italic; line-height: 1.5;
+    59→    59→  color: var(--ink); background: var(--bg-cream); }
+    60→    60→.pullquote .attribution { font-size: 11px; font-style: normal; color: var(--muted); margin-top: 10px; letter-spacing: 0.05em; }
+    61→    61→
+    62→    62→.card { break-inside: avoid; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 20px 22px; margin-bottom: 14px; }
+    63→    63→.card-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+    64→    64→.card-sub { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
+    65→    65→.card-body { font-size: 12px; line-height: 1.6; color: var(--ink-soft); }
+    66→    66→
+    67→    67→.stat-row { display: flex; gap: 12px; margin: 16px 0; break-inside: avoid; }
+    68→    68→.stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 14px; }
+    69→    69→.stat .stat-val { font-family: 'Noto Serif SC', serif; font-size: 18px; font-weight: 900; color: var(--crimson); line-height: 1.1; }
+    70→    70→.stat .stat-label { font-size: 8.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+    71→    71→
+    72→    72→.callout { break-inside: avoid; background: var(--bg-cream); border-radius: 8px; padding: 18px 22px; margin: 14px 0; border-left: 3px solid var(--crimson); }
+    73→    73→.callout .callout-label { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
+    74→    74→.callout .callout-body { font-size: 12px; line-height: 1.65; color: var(--ink-soft); }
+    75→    75→.callout .callout-body strong { color: var(--ink); }
+    76→    76→
+    77→    77→.tbl { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 11px; break-inside: avoid; }
+    78→    78→.tbl th { text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--ink); padding: 8px 10px; }
+    79→    79→.tbl td { padding: 9px 10px; border-bottom: 1px solid var(--line); color: var(--ink-soft); vertical-align: top; }
+    80→    80→.tbl tr:last-child td { border-bottom: none; }
+    81→    81→.tbl .num { font-family: 'Noto Serif SC', serif; font-weight: 700; color: var(--crimson); text-align: right; white-space: nowrap; }
+    82→    82→
+    83→    83→.figure { break-inside: avoid; margin: 18px 0; }
+    84→    84→.figure img { width: 100%; border-radius: 6px; display: block; }
+    85→    85→.figure .caption { font-size: 10px; color: var(--muted); margin-top: 8px; letter-spacing: 0.03em; line-height: 1.5; }
+    86→    86→
+    87→    87→.bullets { margin: 10px 0 14px; padding: 0; list-style: none; }
+    88→    88→.bullets li { font-size: 12px; line-height: 1.65; color: var(--ink-soft); padding-left: 18px; position: relative; margin-bottom: 6px; }
+    89→    89→.bullets li::before { content: ""; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; background: var(--crimson); border-radius: 50%; }
+    90→    90→
+    91→    91→.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    92→    92→
+    93→    93→.dark-section { background: var(--bg-dark); color: #fff; margin: 0 -64px; padding: 44px 64px; break-inside: avoid; }
+    94→    94→.dark-section .ds-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--crimson-soft); margin-bottom: 10px; }
+    95→    95→.dark-section .ds-title { font-family: 'Noto Serif SC', serif; font-size: 24px; font-weight: 800; margin-bottom: 12px; line-height: 1.2; }
+    96→    96→.dark-section .ds-body { font-size: 12px; line-height: 1.7; color: rgba(255,255,255,0.72); }
+    97→    97→.dark-section .ds-body strong { color: #fff; }
+    98→    98→
+    99→    99→/* Circle summary grid */
+   100→   100→.circle-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0; break-inside: avoid; }
+   101→   101→.circle-mini { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; border-top: 3px solid var(--crimson); }
+   102→   102→.circle-mini .cm-name { font-family: 'Noto Serif SC', serif; font-size: 13px; font-weight: 800; color: var(--ink); line-height: 1.2; }
+   103→   103→.circle-mini .cm-range { font-size: 11px; color: var(--crimson); font-weight: 700; margin-top: 4px; }
+   104→   104→.circle-mini .cm-tag { font-size: 9px; color: var(--muted); margin-top: 6px; letter-spacing: 0.06em; }
+   105→   105→
+   106→   106→/* Circle chapter header with accent */
+   107→   107→.circle-header { break-inside: avoid; break-after: avoid; margin-top: 28px; margin-bottom: 18px; padding: 18px 22px 16px; background: #fff; border-left: 5px solid var(--crimson); border-radius: 4px; }
+   108→   108→.circle-header:first-of-type { margin-top: 0; }
+   109→   109→.circle-header .ch-tier { font-size: 9px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--crimson); }
+   110→   110→.circle-header .ch-name { font-family: 'Noto Serif SC', Georgia, serif; font-size: 28px; font-weight: 800; line-height: 1.12; letter-spacing: -0.015em; color: var(--ink); margin: 6px 0 6px; }
+   111→   111→.circle-header .ch-range { font-size: 13px; color: var(--ink-soft); }
+   112→   112→.circle-header .ch-range strong { color: var(--crimson); font-family: 'Noto Serif SC', serif; font-weight: 700; }
+   113→   113→
+   114→   114→/* Benefit card */
+   115→   115→.benefit-card { break-inside: avoid; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 18px 22px; margin-bottom: 14px; }
+   116→   116→.benefit-card .bc-label { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--crimson); margin-bottom: 10px; }
+   117→   117→
+   118→   118→.recognition-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 14px 0; break-inside: avoid; }
+   119→   119→.recognition-tile { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 14px 12px; text-align: center; }
+   120→   120→.recognition-tile .rt-icon { font-family: 'Noto Serif SC', serif; font-size: 18px; color: var(--crimson); font-weight: 900; }
+   121→   121→.recognition-tile .rt-label { font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+   122→   122→.recognition-tile .rt-desc { font-size: 10px; color: var(--ink-soft); margin-top: 4px; line-height: 1.4; }
+   123→   123→
+   124→   124→/* ENDING */
+   125→   125→.ending { width: 720px; height: 1020px; box-sizing: border-box; break-before: page; overflow: hidden;
+   126→   126→  background: var(--bg-dark); color: #fff; display: flex; flex-direction: column; justify-content: center;
+   127→   127→  align-items: center; padding: 64px; text-align: center; }
+   128→   128→.ending .ending-tag { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--crimson-soft); margin-bottom: 28px; }
+   129→   129→.ending .ending-big { font-family: 'Noto Serif SC', Georgia, serif; font-size: 38px; font-weight: 800; line-height: 1.15; letter-spacing: -0.015em; max-width: 540px; margin-bottom: 32px; }
+   130→   130→.ending .ending-sub { font-size: 14px; color: rgba(255,255,255,0.5); max-width: 440px; line-height: 1.65; font-weight: 300; }
+   131→   131→.ending .ending-contact { margin-top: 40px; font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; }
+   132→   132→.ending .ending-contact a { color: var(--crimson-soft); text-decoration: none; }
+   133→   133→</style>
+   134→   134→</head>
+   135→   135→<body>
+   136→   136→
+   137→   137→<!-- COVER -->
+   138→   138→<div class="cover">
+   139→   139→  <img class="cover-img" src="../public/resources/img/graduation.png" alt="">
+   140→   140→  <div class="cover-overlay"></div>
+   141→   141→  <div class="cover-edition">Edition 2025<br>Vol. VIII</div>
+   142→   142→  <div class="cover-content">
+   143→   143→    <div class="cover-tag">Resource Series · No. 8</div>
+   144→   144→    <h1>Giving Circles<br>Benefits Guide</h1>
+   145→   145→    <p class="cover-sub">Six circles of founding support for the University of Artemis — from the Founders' Circle at ten million dollars to The 99 at ninety-nine. Each a community of recognition, each a permanent record of the people who built a planetary university.</p>
+   146→   146→  </div>
+   147→   147→  <div class="cover-footer">
+   148→   148→    <span class="crest">University of Artemis</span>
+   149→   149→    <span>6 Circles · 22 Pages</span>
+   150→   150→  </div>
+   151→   151→</div>
+   152→   152→
+   153→   153→<!-- BODY -->
+   154→   154→<div class="main-content">
+   155→   155→
+   156→   156→  <!-- CHAPTER 1: WHY GIVING CIRCLES -->
+   157→   157→  <div class="chapter-header">
+   158→   158→    <div class="chapter-tag">Chapter One · Foundations</div>
+   159→   159→    <h2 class="chapter-title">Why Giving Circles</h2>
+   160→   160→    <div class="chapter-divider"></div>
+   161→   161→  </div>
+   162→   162→
+   163→   163→  <p class="lead">A giving circle is not a pricing tier. It is a community of recognition — a way for a university to say, with permanence and precision, that this person, at this level of commitment, helped to build what now stands.</p>
+   164→   164→
+   165→   165→  <p class="body-text">The University of Artemis has structured its founding campaign around six giving circles, each defined by a commitment threshold and each carrying a specific set of recognitions, privileges, and community memberships. The circles are not transactional: a donor does not purchase a benefit by giving a particular amount. Rather, the circles are the institutional vocabulary by which the university acknowledges that different scales of commitment make different scales of impact possible, and that the appropriate recognition for a $50,000 commitment is not the same as the appropriate recognition for a $10 million commitment. To treat them as identical would be to dishonor both.</p>
+   166→   166→
+   167→   167→  <p class="body-text">The six circles range from the Founders' Circle at $10 million and above, through the Guardians' Circle ($5 million to $9.9 million), the Builders' Circle ($1 million to $4.9 million), the Fellows' Circle ($100,000 to $999,000), and Friends of Artemis ($10,000 to $99,000), down to The 99 at $99 — the entry-level commitment that establishes a place on the waitlist for enrollment and a permanent mark on the founding community wall. Each circle has its own accent color, its own recognition package, and its own annual rhythm of events and communications. Together, the six circles compose the full founding community: 360 individuals and institutions whose commitments, large and small, have built the university from its first charter to its first academic year.</p>
+   168→   168→
+   169→   169→  <div class="pullquote">
+   170→   170→    "The size of a gift is not a measure of the donor's worth. It is a measure of the responsibility the university accepts in their name."
+   171→   171→    <div class="attribution">— Charter of the Founding Campaign, University of Artemis, 2025</div>
+   172→   172→  </div>
+   173→   173→
+   174→   174→  <p class="body-text">Three principles govern the design of the circles. The first is <strong>permanence</strong>: every recognition, from the engraved name on the founding document to the digital mark on the community wall, is intended to outlast the donor's lifetime and the university's first century. The founding community is being recorded as a permanent historical fact, not as a fundraising tactic. The second is <strong>community</strong>: each circle is not merely a list of names but a network of donors who share a common commitment to the university's mission and who meet, correspond, and collaborate through the circle's annual events. The third is <strong>proportion</strong>: the recognitions, privileges, and access associated with each circle are calibrated to the scale of the commitment, ensuring that no donor receives either too little or too much acknowledgment for what they have given.</p>
+   175→   175→
+   176→   176→  <p class="body-text">The chapters that follow describe each circle in detail. For each, you will find the commitment range, the recognition package, the annual events and communications, the community composition, and the strategic role that the circle plays within the broader founding campaign. Donors considering a commitment at any level should read the chapter for the circle they expect to enter and the chapter for the circle above it, since the recognition packages are designed to be aspirational rather than transactional — a donor considering a $1 million commitment should understand both what Builders' Circle recognition includes and what Guardians' Circle recognition would add, in case the donor's circumstances permit a larger commitment.</p>
+   177→   177→
+   178→   178→  <div class="stat-row">
+   179→   179→    <div class="stat"><div class="stat-val">6</div><div class="stat-label">Giving Circles</div></div>
+   180→   180→    <div class="stat"><div class="stat-val">$99 → $10M+</div><div class="stat-label">Range</div></div>
+   181→   181→    <div class="stat"><div class="stat-val">360</div><div class="stat-label">Founding Donors</div></div>
+   182→   182→    <div class="stat"><div class="stat-val">50</div><div class="stat-label">Colleges</div></div>
+   183→   183→  </div>
+   184→   184→
+   185→   185→  <!-- CHAPTER 2: AT A GLANCE -->
+   186→   186→  <div class="chapter-header">
+   187→   187→    <div class="chapter-tag">Chapter Two · At a Glance</div>
+   188→   188→    <h2 class="chapter-title">The Six Circles</h2>
+   189→   189→    <div class="chapter-divider"></div>
+   190→   190→  </div>
+   191→   191→
+   192→   192→  <p class="body-text">The grid below summarises the six circles at a glance. Each is described in full in the chapters that follow. Donors uncertain about which circle their commitment will qualify for should consult the Office of Gift Planning for confirmation before making their gift, particularly if the commitment involves a multi-year pledge or a blended structure of cash and appreciated assets.</p>
+   193→   193→
+   194→   194→  <div class="circle-grid">
+   195→   195→    <div class="circle-mini" style="border-top-color:#8A0000;">
+   196→   196→      <div class="cm-name">The Founders' Circle</div>
+   197→   197→      <div class="cm-range">$10M+</div>
+   198→   198→      <div class="cm-tag">Founding document · Board seat</div>
+   199→   199→    </div>
+   200→   200→    <div class="circle-mini" style="border-top-color:#6B0000;">
+   201→   201→      <div class="cm-name">The Guardians' Circle</div>
+   202→   202→      <div class="cm-range">$5M – $9.9M</div>
+   203→   203→      <div class="cm-tag">Named College or Center</div>
+   204→   204→    </div>
+   205→   205→    <div class="circle-mini" style="border-top-color:#7c2d12;">
+   206→   206→      <div class="cm-name">The Builders' Circle</div>
+   207→   207→      <div class="cm-range">$1M – $4.9M</div>
+   208→   208→      <div class="cm-tag">Named Professorship or Scholarship</div>
+   209→   209→    </div>
+   210→   210→    <div class="circle-mini" style="border-top-color:#0e7490;">
+   211→   211→      <div class="cm-name">The Fellows' Circle</div>
+   212→   212→      <div class="cm-range">$100K – $999K</div>
+   213→   213→      <div class="cm-tag">Named scholarship or tutorial room</div>
+   214→   214→    </div>
+   215→   215→    <div class="circle-mini" style="border-top-color:#15803d;">
+   216→   216→      <div class="cm-name">Friends of Artemis</div>
+   217→   217→      <div class="cm-range">$10K – $99K</div>
+   218→   218→      <div class="cm-tag">Founding Donor Roll</div>
+   219→   219→    </div>
+   220→   220→    <div class="circle-mini" style="border-top-color:#6b7280;">
+   221→   221→      <div class="cm-name">The 99</div>
+   222→   222→      <div class="cm-range">$99</div>
+   223→   223→      <div class="cm-tag">Waitlist priority · Community wall</div>
+   224→   224→    </div>
+   225→   225→  </div>
+   226→   226→
+   227→   227→  <p class="body-text">Three observations frame the structure of the six circles. First, the threshold amounts are calibrated to the recognitions offered: the Founders' Circle, which confers a permanent seat on the Board of Visitors and naming of an endowment fund, requires a commitment sufficient to endow a substantial programme in perpetuity — $10 million produces approximately $400,000 in annual spendable income at a 4% spending policy, enough to fund a named professorship, a scholarship fund, or a small center of inquiry. Second, the circles are designed to be inclusive at the lower end and exclusive at the upper end: The 99 admits anyone willing to make a $99 commitment, while the Founders' Circle will likely include fewer than twenty-five individuals worldwide at the close of the founding campaign. Third, the recognitions compound across circles — a Founders' Circle donor receives all of the recognitions offered to the lower circles, plus the Founders' Circle-specific privileges.</p>
+   228→   228→
+   229→   229→  <div class="figure">
+   230→   230→    <img src="../public/resources/img/students-global.png" alt="Diverse students collaborating">
+   231→   231→    <div class="caption">Every giving circle exists to enlarge this scene — the moment a student from any continent enters the university and finds a community ready to receive them. The circles are the architecture; the students are the purpose.</div>
+   232→   232→  </div>
+   233→   233→
+   234→   234→  <p class="body-text">The founding community — the donors across all six circles whose commitments are recorded during the founding campaign — will be permanently recorded in the university's founding documents, in the inscription at the Venice Central Node, and in the digital founding records maintained by the Office of Gift Planning. Donors who give after the close of the founding campaign will be recognised as annual donors rather than founding donors, regardless of the size of their commitment. The founding window is the period between the university's initial capitalisation in 2025 and the conclusion of the founding campaign, anticipated in 2028; donors uncertain whether their commitment will qualify for founding recognition should confirm with the Office of Gift Planning before making their gift.</p>
+   235→   235→
+   236→   236→  <!-- CHAPTER 3: FOUNDERS' CIRCLE -->
+   237→   237→  <div class="circle-header" style="border-left-color:#8A0000;">
+   238→   238→    <div class="ch-tier">Circle 01 · Highest Tier</div>
+   239→   239→    <div class="ch-name">The Founders' Circle</div>
+   240→   240→    <div class="ch-range"><strong>$10 million and above</strong></div>
+   241→   241→  </div>
+   242→   242→
+   243→   243→  <p class="body-text">The Founders' Circle is the highest tier of recognition in the University of Artemis founding campaign. It is reserved for donors whose commitments reach or exceed $10 million — a threshold calibrated to the cost of endowing a substantial academic programme in perpetuity. A $10 million endowment at a 4% spending policy produces approximately $400,000 in annual spendable income, sufficient to fund a named professorship, a scholarship programme supporting 10 to 20 students annually, or the operating costs of a small center of inquiry. The Founders' Circle will likely include fewer than twenty-five individuals, families, and foundations at the close of the founding campaign, making it the most exclusive community within the university's founding record.</p>
+   244→   244→
+   245→   245→  <p class="body-text">To enter the Founders' Circle is to become a permanent fixture of the university's institutional memory. Founders' Circle donors have their names engraved on the university's founding document at the Venice Central Node — a physical inscription intended to endure for the lifetime of the institution and visible to every student, faculty member, and visitor who passes through the central node. They receive a permanent seat on the Board of Visitors, the advisory body that provides strategic counsel to the President and the Board of Directors. They are invited to a private annual dinner with the President, hosted at a rotating Central Node (Venice, London, or the third Central Node), where the year's strategic developments are presented and discussed. They may name an endowment fund or an equivalent naming opportunity within the university, choosing from a portfolio of available professorships, scholarships, programs, and capital projects.</p>
+   246→   246→
+   247→   247→  <p class="body-text">Beyond the formal recognitions, the Founders' Circle is a community of peers. The donors in this circle share a level of commitment to the university's mission that few others in the world will match; their annual dinners become forums not only for institutional updates but for substantive conversation about the future of higher education, the challenges facing the next generation of students, and the strategic priorities that the university should pursue in the decade ahead. Founders' Circle donors frequently become the university's most trusted advisors on questions of strategy, governance, and external relations — roles that the President and Board of Directors cultivate deliberately through individual briefings, private consultations, and inclusion in the university's most consequential decisions.</p>
+   248→   248→
+   249→   249→  <div class="benefit-card">
+   250→   250→    <div class="bc-label">Recognition Package · Founders' Circle</div>
+   251→   251→    <ul class="bullets" style="margin:6px 0 0;">
+   252→   252→      <li>Name engraved on the university's founding document at Venice Central Node</li>
+   253→   253→      <li>Permanent seat on Board of Visitors</li>
+   254→   254→      <li>Private annual dinner with the President at rotating Central Node</li>
+   255→   255→      <li>Named endowment fund or equivalent naming opportunity</li>
+   256→   256→      <li>Recognition plaque at all 50 Colleges</li>
+   257→   257→      <li>Biographical feature in annual campaign report</li>
+   258→   258→    </ul>
+   259→   259→  </div>
+   260→   260→
+   261→   261→  <p class="body-text">The recognition package for the Founders' Circle is the most comprehensive offered by the university and is intended to reflect the institutional significance of the commitment. The engraved name on the founding document is the highest permanent honour the university can confer; the Board of Visitors seat ensures ongoing institutional involvement; the annual dinner creates a recurring personal connection to the President; the named endowment fund perpetuates the donor's intent across generations; the recognition plaques at all 50 Colleges ensure that the donor's name is visible at every node of the university's network; and the biographical feature in the annual campaign report records the donor's story for the historical record.</p>
+   262→   262→
+   263→   263→  <div class="recognition-row">
+   264→   264→    <div class="recognition-tile"><div class="rt-icon">∞</div><div class="rt-label">Legacy</div><div class="rt-desc">Permanent engraving at Venice Node</div></div>
+   265→   265→    <div class="recognition-tile"><div class="rt-icon">★</div><div class="rt-label">Influence</div><div class="rt-desc">Board of Visitors seat</div></div>
+   266→   266→    <div class="recognition-tile"><div class="rt-icon">◈</div><div class="rt-label">Community</div><div class="rt-desc">Annual President's dinner</div></div>
+   267→   267→  </div>
+   268→   268→
+   269→   269→  <p class="body-text">The Founders' Circle is the strategic apex of the founding campaign. The donors in this circle are the individuals whose commitments have made the university possible at the scale required to launch a planetary institution: their gifts have funded the acquisition and renovation of the Central Nodes, the establishment of the first 50 Colleges, the recruitment of the founding faculty, and the capitalisation of the endowment that will support the university's operations in perpetuity. Without the Founders' Circle, the university as presently constituted would not exist; with it, the university has the foundation on which to build across centuries. The Office of the President maintains personal relationships with every Founders' Circle donor and is available to them at any time, for any reason, on any matter within the university's purview.</p>
+   270→   270→
+   271→   271→  <!-- CHAPTER 4: GUARDIANS' CIRCLE -->
+   272→   272→  <div class="circle-header" style="border-left-color:#6B0000;">
+   273→   273→    <div class="ch-tier">Circle 02 · Leadership Tier</div>
+   274→   274→    <div class="ch-name">The Guardians' Circle</div>
+   275→   275→    <div class="ch-range"><strong>$5 million to $9.9 million</strong></div>
+   276→   276→  </div>
+   277→   277→
+   278→   278→  <p class="body-text">The Guardians' Circle is the leadership tier of the founding campaign, recognising donors whose commitments reach between $5 million and $9.9 million. The threshold is calibrated to the cost of naming a College or a Center of Inquiry — the operational units that constitute the academic core of the university. A $5 million endowment produces approximately $200,000 in annual spendable income, sufficient to support the discretionary budget of a College (the residential and tutorial community of 80 to 120 students) or to fund a Center of Inquiry (the research unit that brings together 5 to 15 faculty around a substantive intellectual question). The Guardians' Circle will likely include between thirty and sixty donors at the close of the founding campaign.</p>
+   279→   279→
+   280→   280→  <p class="body-text">Guardians' Circle donors name a College or a Center of Inquiry, choosing from a portfolio of available naming opportunities across the university's three Central Nodes and fifty Colleges. The named College or Center carries the donor's name in perpetuity — in the university's directory, on its buildings, on its correspondence, and in the academic records of every student and faculty member who passes through it. The naming is not merely honorific: it confers on the donor a degree of institutional identification that few other philanthropic acts can match. The donors whose names are attached to Colleges and Centers become, in a real sense, the institutional ancestors of the academic communities that bear their names — the people who, by their commitment, made possible the place where a particular cohort of students lived and studied and where a particular line of research was pursued.</p>
+   281→   281→
+   282→   282→  <p class="body-text">Guardians' Circle donors are also honoured through the annual Guardian's Lecture — a public lecture series named by the donor, hosted at the Central Node of the donor's choice, and delivered by a scholar or public figure selected in consultation with the donor and the university's academic leadership. The Guardian's Lecture is intended to become an annual intellectual event, attracting audiences from across the university's hostels and the broader public, and providing a recurring platform for the donor's intellectual and philanthropic interests to be expressed through the choice of speaker and topic. The lecture is published annually in the university's journal and is recorded for permanent archival access.</p>
+   283→   283→
+   284→   284→  <div class="benefit-card">
+   285→   285→    <div class="bc-label">Recognition Package · Guardians' Circle</div>
+   286→   286→    <ul class="bullets" style="margin:6px 0 0;">
+   287→   287→      <li>Named College or Center of Inquiry</li>
+   288→   288→      <li>Recognition plaque at all 50 Colleges</li>
+   289→   289→      <li>Annual Guardian's Lecture — a public lecture series named by you</li>
+   290→   290→      <li>Annual private briefing with the President</li>
+   291→   291→      <li>Named endowment fund</li>
+   292→   292→    </ul>
+   293→   293→  </div>
+   294→   294→
+   295→   295→  <p class="body-text">In addition to the named College or Center and the Guardian's Lecture, donors in this circle receive a recognition plaque at all 50 Colleges — a visible acknowledgment at every node of the university's residential network that ensures the donor's name is encountered by every student in the university's first cohorts. The annual private briefing with the President provides a recurring opportunity for substantive conversation about the university's strategic direction, the performance of the named College or Center, and the donor's ongoing interests in the institution. The named endowment fund allows the donor to direct a portion of their commitment toward a specific academic purpose — a scholarship, a professorship, or a research fund — that operates in perpetuity within the named College or Center.</p>
+   296→   296→
+   297→   297→  <div class="callout">
+   298→   298→    <div class="callout-label">Annual Impact · A Named College</div>
+   299→   299→    <div class="callout-body">
+   300→   300→      A $5 million endowment supporting a named College produces approximately <strong>$200,000 in annual spendable income</strong>. Over a 50-year horizon, the College will host approximately <strong>4,000 students</strong> (80 students per cohort × 50 cohorts) and will graduate alumni who carry the College's name — and the donor's — into their professional lives across six continents. The naming is a permanent contribution to the institutional memory of every student who passes through.
+   301→   301→    </div>
+   302→   302→  </div>
+   303→   303→
+   304→   304→  <p class="body-text">The Guardians' Circle community meets annually in conjunction with the President's briefing, with the venue rotating among the three Central Nodes. These meetings provide an opportunity for Guardians to meet one another, to learn from the experiences of other named entities within the university, and to participate in substantive conversations about the future of the institution they have helped to build. The Office of Gift Planning curates these meetings to ensure that they are substantive rather than ceremonial, and that the Guardians leave each meeting with a deeper understanding of the university's strategic position and a stronger network of peer relationships within the founding community.</p>
+   305→   305→
+   306→   306→  <!-- CHAPTER 5: BUILDERS' CIRCLE -->
+   307→   307→  <div class="circle-header" style="border-left-color:#7c2d12;">
+   308→   308→    <div class="ch-tier">Circle 03 · Principal Tier</div>
+   309→   309→    <div class="ch-name">The Builders' Circle</div>
+   310→   310→    <div class="ch-range"><strong>$1 million to $4.9 million</strong></div>
+   311→   311→  </div>
+   312→   312→
+   313→   313→  <p class="body-text">The Builders' Circle is the principal tier of the founding campaign, recognising donors whose commitments reach between $1 million and $4.9 million. The threshold is calibrated to the cost of naming a professorship, a scholarship fund, or a major programme — the academic units that constitute the operational fabric of the university. A $1 million endowment produces approximately $40,000 in annual spendable income, sufficient to support a named scholarship covering the full cost of attendance for one student annually, to fund a named professorship at a partial level, or to underwrite a programme of academic conferences, publications, or research initiatives. The Builders' Circle is the largest of the seven-figure circles and will likely include between 100 and 200 donors at the close of the founding campaign.</p>
+   314→   314→
+   315→   315→  <p class="body-text">Builders' Circle donors may name a professorship, a scholarship fund, or a major programme, choosing from a portfolio of available opportunities across the university's academic units. The named professorship allows the donor to support the recruitment or retention of a senior faculty member whose work the donor wishes to honour — typically endowed at $2 million to $3 million for a full professorship and $1 million to $1.5 million for an early-career professorship. The named scholarship fund allows the donor to support students on a recurring basis — typically endowed at $1 million for a full-cost scholarship fund supporting one student per cohort in perpetuity. The named programme allows the donor to underwrite a sustained academic initiative — a conference series, a research programme, a publication, or a public lecture series — typically endowed at $1 million to $2 million depending on the scope.</p>
+   316→   316→
+   317→   317→  <p class="body-text">The Builders' Circle is the working backbone of the founding community. The donors in this circle are the people whose commitments have funded the operational machinery of the university: the professorships that attracted the founding faculty, the scholarships that brought the founding cohort of students, the programmes that established the university's intellectual identity in its first years. Builders' Circle donors are recognised not only through the formal naming opportunities but through an annual Builder's Report — a detailed impact report on the named gift, prepared by the academic unit that received the funds and delivered to the donor each year. The report describes the activities supported by the gift, the outcomes achieved, the students or faculty affected, and the strategic developments within the academic unit.</p>
+   318→   318→
+   319→   319→  <div class="benefit-card">
+   320→   320→    <div class="bc-label">Recognition Package · Builders' Circle</div>
+   321→   321→    <ul class="bullets" style="margin:6px 0 0;">
+   322→   322→      <li>Named Professorship, Scholarship Fund, or major program</li>
+   323→   323→      <li>Recognition plaque at all 50 Colleges</li>
+   324→   324→      <li>Annual Builder's Report — detailed impact report on your named gift</li>
+   325→   325→      <li>Invitation to annual gathering</li>
+   326→   326→      <li>Feature in campaign newsletter</li>
+   327→   327→    </ul>
+   328→   328→  </div>
+   329→   329→
+   330→   330→  <p class="body-text">The recognition plaque at all 50 Colleges ensures that Builders' Circle donors are visible across the university's residential network, alongside the Founders' Circle and Guardians' Circle donors whose commitments have established the larger institutional architecture. The annual gathering brings Builders' Circle donors together at one of the Central Nodes for a programme of substantive engagement with the university's leadership, faculty, and students, and provides an opportunity for the donors to meet the direct beneficiaries of their commitments. The feature in the campaign newsletter provides ongoing public recognition of the donor's commitment and the academic unit it supports.</p>
+   331→   331→
+   332→   332→  <p class="body-text">The Builders' Circle community is the most active of the six circles in terms of ongoing engagement with the university's academic life. Donors in this circle frequently develop substantive relationships with the academic units their gifts support — attending conferences, hosting faculty at their homes, mentoring scholarship recipients, and participating in the intellectual life of the named programme. The Office of Gift Planning facilitates these relationships and ensures that Builders' Circle donors receive the access and engagement appropriate to their level of commitment, without imposing on the time of the faculty and students whose work the gifts support.</p>
+   333→   333→
+   334→   334→  <div class="callout">
+   335→   335→    <div class="callout-label">Annual Impact · A Named Scholarship</div>
+   336→   336→    <div class="callout-body">
+   337→   337→      A $1 million endowed scholarship fund produces approximately <strong>$40,000 in annual spendable income</strong>, sufficient to cover the full cost of attendance for one student per cohort in perpetuity. Over a 50-year horizon, the fund will support <strong>50 students</strong> through their full degree programmes, with each cohort's scholarship recipient carrying the donor's name on their academic record and into their professional life. The compounding effect: the donor's commitment produces a permanent community of named alumni.
+   338→   338→    </div>
+   339→   339→  </div>
+   340→   340→
+   341→   341→  <!-- CHAPTER 6: FELLOWS' CIRCLE -->
+   342→   342→  <div class="circle-header" style="border-left-color:#0e7490;">
+   343→   343→    <div class="ch-tier">Circle 04 · Sustaining Tier</div>
+   344→   344→    <div class="ch-name">The Fellows' Circle</div>
+   345→   345→    <div class="ch-range"><strong>$100,000 to $999,000</strong></div>
+   346→   346→  </div>
+   347→   347→
+   348→   348→  <p class="body-text">The Fellows' Circle is the sustaining tier of the founding campaign, recognising donors whose commitments reach between $100,000 and $999,000. The threshold is calibrated to the cost of naming a scholarship fund or a tutorial room at a chosen College — the smaller-scale naming opportunities that allow donors to make a permanent mark on a specific academic community within the university. A $100,000 commitment produces approximately $4,000 in annual spendable income at a 4% spending policy, sufficient to support a partial scholarship, a tutorial programme, or a recurring academic event; larger commitments within the range may support a fully endowed tutorial room, a multi-year scholarship, or a smaller programme endowment.</p>
+   349→   349→
+   350→   350→  <p class="body-text">Fellows' Circle donors may name a scholarship fund or a tutorial room at their chosen College, selecting from the portfolio of 50 Colleges across the three Central Nodes. The named scholarship fund supports one or more students at the College on a recurring basis, with the donor's name attached to the scholarship in the university's financial aid records and in the academic records of the recipients. The named tutorial room — a physical space within the College where small-group teaching takes place — carries the donor's name on a permanent plaque and is the venue for the College's daily intellectual life. Both naming opportunities allow the donor to identify with a specific College community within the larger university.</p>
+   351→   351→
+   352→   352→  <p class="body-text">The Fellows' Circle community is the most geographically distributed of the six circles, with donors located across the university's full network of hostels and beyond. The circle's annual communications — the Fellow's Newsletter from the President, the regional events, the invitations to online briefings — are designed to sustain the donor's connection to the university despite the geographic dispersion. Regional events are hosted in major cities where clusters of Fellows' Circle donors are located, providing opportunities for in-person engagement with the university's leadership, faculty, and other donors without requiring travel to a Central Node. The Fellow's Newsletter, sent quarterly, provides substantive updates on the university's strategic developments, the activities of the Colleges, and the impact of donor commitments across the founding campaign.</p>
+   353→   353→
+   354→   354→  <div class="benefit-card">
+   355→   355→    <div class="bc-label">Recognition Package · Fellows' Circle</div>
+   356→   356→    <ul class="bullets" style="margin:6px 0 0;">
+   357→   357→      <li>Named scholarship fund or tutorial room at chosen College</li>
+   358→   358→      <li>Recognition at chosen College</li>
+   359→   359→      <li>Annual Fellow's Newsletter from the President</li>
+   360→   360→      <li>Invitation to regional events</li>
+   361→   361→    </ul>
+   362→   362→  </div>
+   363→   363→
+   364→   364→  <p class="body-text">The Fellows' Circle is the entry point to substantive naming recognition within the university. Donors in this circle are the first tier at which a donor's name becomes permanently attached to a specific academic asset — a scholarship, a tutorial room, a College-level fund — that operates within the daily life of the institution. The recognition at the chosen College ensures that the donor's name is visible to the students and faculty of that College, creating a personal connection to a specific academic community that endures beyond the donor's lifetime. The regional events provide opportunities for ongoing engagement with the university's leadership and other Fellows without the travel burden that would be imposed by events exclusively at the Central Nodes.</p>
+   365→   365→
+   366→   366→  <div class="callout">
+   367→   367→    <div class="callout-label">Annual Impact · A Named Tutorial Room</div>
+   368→   368→    <div class="callout-body">
+   369→   369→      A $150,000 commitment endows a named tutorial room at a chosen College. The room hosts approximately <strong>20 tutorials per week</strong> during term — roughly <strong>600 tutorials per year</strong> and <strong>30,000 tutorials over 50 years</strong>. Each tutorial brings together 2 to 4 students and a faculty member for the small-group teaching that is the core of the Artemis pedagogical model. The donor's name, on the plaque at the door, becomes part of the daily intellectual rhythm of the College.
+   370→   370→    </div>
+   371→   371→  </div>
+   372→   372→
+   373→   373→  <!-- CHAPTER 7: FRIENDS OF ARTEMIS -->
+   374→   374→  <div class="circle-header" style="border-left-color:#15803d;">
+   375→   375→    <div class="ch-tier">Circle 05 · Community Tier</div>
+   376→   376→    <div class="ch-name">Friends of Artemis</div>
+   377→   377→    <div class="ch-range"><strong>$10,000 to $99,000</strong></div>
+   378→   378→  </div>
+   379→   379→
+   380→   380→  <p class="body-text">Friends of Artemis is the community tier of the founding campaign, recognising donors whose commitments reach between $10,000 and $99,000. The threshold is calibrated to the level at which a commitment becomes material to the university's founding capitalisation while remaining accessible to a broad community of supporters — alumni of other universities who believe in the Artemis mission, parents of prospective students, faculty peers at other institutions, and members of the public who wish to be recorded as founding supporters of a planetary university. Friends of Artemis will likely include several hundred donors at the close of the founding campaign, making it the largest of the named circles below the Founders' Circle.</p>
+   381→   381→
+   382→   382→  <p class="body-text">Friends of Artemis donors are recorded in the founding Donor Roll — a permanent digital and print record of the founding community that will be maintained by the Office of Gift Planning in perpetuity. The Donor Roll is published in the university's annual report, displayed at the Venice Central Node, and made available in digital form through the university's website. Each donor's name is recorded alongside their commitment tier, the year of their gift, and (at the donor's option) a brief biographical note. The Donor Roll is the historical record of the founding community; the donors whose names appear on it will be remembered as the people who, at whatever scale their circumstances permitted, helped to build the University of Artemis.</p>
+   383→   383→
+   384→   384→  <p class="body-text">Friends of Artemis donors receive a digital certificate of founding support, suitable for printing and display, that records the donor's commitment and their inclusion in the founding community. The certificate is signed by the President of the university and carries the university's seal; it is intended as a tangible acknowledgment that the donor's commitment has been received, recorded, and recognised. Quarterly progress updates provide ongoing information about the university's strategic developments, the founding campaign's progress against its goals, and the impact of the founding community's collective commitments. Donors in this tier are also invited to online events — briefings, lectures, and conversations hosted by the university's leadership and faculty — that provide substantive engagement with the university's intellectual life without requiring travel.</p>
+   385→   385→
+   386→   386→  <div class="benefit-card">
+   387→   387→    <div class="bc-label">Recognition Package · Friends of Artemis</div>
+   388→   388→    <ul class="bullets" style="margin:6px 0 0;">
+   389→   389→      <li>Name in founding Donor Roll (permanent digital and print record)</li>
+   390→   390→      <li>Digital certificate of founding support</li>
+   391→   391→      <li>Quarterly progress updates</li>
+   392→   392→      <li>Invitation to online events</li>
+   393→   393→    </ul>
+   394→   394→  </div>
+   395→   395→
+   396→   396→  <p class="body-text">Friends of Artemis is the tier at which a donor's commitment becomes part of the permanent historical record of the university's founding, while remaining within reach of a broad community of supporters. The threshold of $10,000 is set deliberately: it is the level at which a donor can be acknowledged as a founding supporter with formal recognition, while being accessible to donors whose circumstances do not permit a six-figure commitment. The four recognition elements — Donor Roll, certificate, quarterly updates, online events — are designed to provide ongoing engagement with the university's life at a level appropriate to the commitment, without imposing administrative burdens that would divert resources from the university's core academic mission.</p>
+   397→   397→
+   398→   398→  <p class="body-text">Friends of Artemis donors who later increase their commitment to the threshold of a higher circle are recognised in the higher circle and receive all of the higher circle's recognitions prospectively; their Donor Roll entry is updated to reflect the upgraded commitment. Donors who wish to make a multi-year pledge that will qualify them for a higher circle at the conclusion of the pledge period may do so, with the pledge documented in writing and the recognitions activated upon completion of the pledge. The Office of Gift Planning is available to discuss pledge structures and recognition timing with any donor considering a multi-year commitment.</p>
+   399→   399→
+   400→   400→  <!-- CHAPTER 8: THE 99 -->
+   401→   401→  <div class="circle-header" style="border-left-color:#6b7280;">
+   402→   402→    <div class="ch-tier">Circle 06 · Entry Tier</div>
+   403→   403→    <div class="ch-name">The 99</div>
+   404→   404→    <div class="ch-range"><strong>$99 · The entry commitment</strong></div>
+   405→   405→  </div>
+   406→   406→
+   407→   407→  <p class="body-text">The 99 is the entry tier of the founding campaign — a $99 commitment that establishes the donor's place in the founding community and confers waitlist priority for enrollment in the university's first academic cohort. The threshold is deliberately set at $99 to be accessible to anyone in the world who wishes to be recorded as a founding supporter of the University of Artemis, regardless of their circumstances, geography, or financial capacity. The 99 is the most inclusive of the six circles by design: it is the tier at which a commitment to the university's mission is acknowledged as a founding contribution, at whatever scale the donor can sustain.</p>
+   408→   408→
+   409→   409→  <p class="body-text">Donors in The 99 receive waitlist priority for enrollment — a tangible operational benefit that places them ahead of the general applicant pool when the university begins admitting students for its first academic year. The waitlist priority is recorded against the donor's name in the university's enrollment system and is activated when the donor (or the donor's designated beneficiary) applies for admission. The priority is not a guarantee of admission — admission to the University of Artemis is governed by the university's standard admissions process, including academic assessment and interview — but it does ensure that the donor's application is reviewed ahead of the general pool and that the donor receives an admissions decision earlier than they otherwise would.</p>
+   410→   410→
+   411→   411→  <p class="body-text">Donors in The 99 are recognised on the community wall — a digital display maintained by the university that records the names of every donor in this tier, alongside their city of origin and the date of their commitment. The community wall is publicly accessible through the university's website and is updated in real time as new commitments are received. The wall is intended as a permanent record of the founding community at its broadest scale: the thousands of individuals worldwide who, by their $99 commitment, declared their support for the university's mission and their desire to be part of its founding story. Monthly community updates provide ongoing information about the university's progress, the founding campaign's status, and the activities of the founding community.</p>
+   412→   412→
+   413→   413→  <div class="benefit-card">
+   414→   414→    <div class="bc-label">Recognition Package · The 99</div>
+   415→   415→    <ul class="bullets" style="margin:6px 0 0;">
+   416→   416→      <li>Waitlist priority for enrollment</li>
+   417→   417→      <li>Digital recognition on community wall</li>
+   418→   418→      <li>Monthly community updates</li>
+   419→   419→      <li>The knowledge that you were first in line</li>
+   420→   420→    </ul>
+   421→   421→  </div>
+   422→   422→
+   423→   423→  <p class="body-text">The final recognition — "the knowledge that you were first in line" — is intentionally phrased. The 99 is the tier that records the donor's intention to be part of the university's founding community at the earliest possible moment, before the first academic year, before the first cohort of students, before the university's future was anything more than a charter and a campaign. Donors in The 99 are the people who chose to commit before there was proof of concept, before there were buildings or faculty or students, before the institutional credibility that subsequent years will establish. The university considers this early commitment a foundational act that deserves its own form of recognition, distinct from the recognition packages offered at higher tiers but no less meaningful as a historical fact.</p>
+   424→   424→
+   425→   425→  <div class="callout">
+   426→   426→    <div class="callout-label">Why $99?</div>
+   427→   427→    <div class="callout-body">
+   428→   428→      The figure of $99 is symbolic. It is below the threshold at which most jurisdictions require formal charitable receipts (typically $100 or $250), allowing the commitment to be processed with minimal administrative overhead. It is accessible in every currency in which the university accepts donations, with no meaningful variation in purchasing power across the university's hostel cities. And it is a figure that is easy to remember — a small, specific, exact commitment that signals seriousness without imposing burden. The 99 is the entry point to the founding community; it is not a donation tier but a declaration of intent.
+   429→   429→    </div>
+   430→   430→  </div>
+   431→   431→
+   432→   432→  <p class="body-text">The 99 community is the broadest base of the founding campaign and the tier most directly engaged with the university's future student community. A substantial share of The 99 donors are prospective students, parents of prospective students, or recent alumni of other universities who are considering the University of Artemis for graduate study. The waitlist priority is therefore not merely a recognition benefit but a functional feature of the donor's relationship with the university — a structural advantage in the admissions process that rewards the donor's early commitment. The Office of Admissions coordinates with the Office of Gift Planning to ensure that The 99 donors receive accurate information about the admissions process and that their waitlist priority is honoured when they apply.</p>
+   433→   433→
+   434→   434→  <!-- CHAPTER 9: RECOGNITION, COMMUNITY, LEGACY -->
+   435→   435→  <div class="chapter-header">
+   436→   436→    <div class="chapter-tag">Chapter Nine · The Architecture of Recognition</div>
+   437→   437→    <h2 class="chapter-title">Recognition, Community, Legacy</h2>
+   438→   438→    <div class="chapter-divider"></div>
+   439→   439→  </div>
+   440→   440→
+   441→   441→  <p class="lead">The six giving circles are the architecture through which the University of Artemis constructs three things at once: the recognition of individual donors, the formation of a community among them, and the legacy they collectively leave to the institution they have built.</p>
+   442→   442→
+   443→   443→  <p class="body-text">Recognition is the most visible of the three. Each circle carries a defined package of recognitions — engraved names, named entities, board seats, lectures, certificates, plaques, and entries on the Donor Roll — that publicly records the donor's commitment and its institutional significance. The recognitions are designed to be permanent: the engraved name at the Venice Central Node is intended to endure for the lifetime of the institution; the named College or professorship operates in perpetuity under the donor's name; the Donor Roll is maintained as a permanent historical record. Recognition at the University of Artemis is not a fundraising tactic but a historical inscription — the university's formal acknowledgment that this person, at this level, helped to build what now stands.</p>
+   444→   444→
+   445→   445→  <p class="body-text">Community is the second function of the circles. Each circle is a network of donors who share a common level of commitment to the university's mission and who meet, correspond, and collaborate through the circle's annual events, briefings, and communications. The Founders' Circle meets annually at a rotating Central Node for a private dinner with the President. The Guardians' Circle meets annually in conjunction with the President's briefing. The Builders' Circle gathers annually at one of the Central Nodes. The Fellows' Circle meets at regional events in major cities. Friends of Artemis and The 99 convene through online events and monthly or quarterly communications. The community function is what transforms a list of donors into a network of peers — people who know one another, who share substantive interests, and who together constitute the founding community of the university.</p>
+   446→   446→
+   447→   447→  <div class="figure">
+   448→   448→    <img src="../public/resources/img/graduation.png" alt="Graduation ceremony">
+   449→   449→    <div class="caption">Every giving circle exists for this moment — the day a student crosses the stage and becomes an alumnus of the institution the donors built. Recognition records the donor; community sustains them; legacy outlives them.</div>
+   450→   450→  </div>
+   451→   451→
+   452→   452→  <p class="body-text">Legacy is the third and most consequential function. A donor's commitment to the University of Artemis is recorded not only in the recognitions and the community of their own circle but in the permanent architecture of the institution they have helped to build. The Founders' Circle donor whose name is engraved on the founding document is remembered as long as the university endures. The Guardians' Circle donor whose name is attached to a College is remembered by every student who passes through that College. The Builders' Circle donor whose name is attached to a scholarship is remembered by every student who receives it. The Friends of Artemis donor whose name is on the Donor Roll is remembered as part of the founding community. The donor in The 99 is remembered as one of the first to declare their support. Legacy is what remains when the donor is gone; the circles are the architecture by which the university ensures that something remains.</p>
+   453→   453→
+   454→   454→  <p class="body-text">The three functions — recognition, community, legacy — operate at every tier of the giving circles, but they operate differently at each tier. At the Founders' Circle, recognition is institutional (a Board seat, an engraved name), community is intimate (a small group of peers meeting annually with the President), and legacy is architectural (the foundation on which the university itself rests). At The 99, recognition is collective (a place on the community wall), community is broad (a global network of early supporters), and legacy is declarative (the assertion that this donor was first in line). The difference is one of scale, not of kind: every donor, at every tier, is recognised, is part of a community, and leaves a legacy. The circles are the structure through which the university ensures that all three functions are discharged with appropriate proportion to the commitment that activated them.</p>
+   455→   455→
+   456→   456→  <div class="pullquote">
+   457→   457→    "We do not raise money. We record commitments. The money is the means; the recording is the act."
+   458→   458→    <div class="attribution">— Office of Gift Planning, University of Artemis</div>
+   459→   459→  </div>
+   460→   460→
+   461→   461→  <p class="body-text">Donors considering a commitment at any tier of the giving circles are encouraged to think beyond the recognition package to the community and legacy functions that the commitment will activate. The recognition package is what the donor receives in the year of the gift; the community is what the donor becomes part of for the years that follow; the legacy is what the donor leaves to the institution and to the students who will inhabit it for generations. The recognition package is documented in the chapters above; the community is experienced through the events, briefings, and communications described therein; the legacy is the permanent architectural fact of the donor's name on the founding record of a planetary university. The Office of Gift Planning is available to discuss any of these dimensions with any donor at any time, and to facilitate the donor's engagement with the community and the legacy appropriate to their commitment.</p>
+   462→   462→
+   463→   463→  <!-- CHAPTER 10: HOW TO ENTER A CIRCLE -->
+   464→   464→  <div class="chapter-header">
+   465→   465→    <div class="chapter-tag">Chapter Ten · Practical Steps</div>
+   466→   466→    <h2 class="chapter-title">How to Enter a Circle</h2>
+   467→   467→    <div class="chapter-divider"></div>
+   468→   468→  </div>
+   469→   469→
+   470→   470→  <p class="lead">Entering a giving circle is a formal act: a documented commitment, a recognition agreement, and an entry in the university's founding records. The process is designed to be substantive rather than transactional.</p>
+   471→   471→
+   472→   472→  <p class="body-text">The process of entering a giving circle begins with a conversation. Donors considering a commitment at any tier are encouraged to contact the Office of Gift Planning to discuss their interests, the recognition package appropriate to their commitment level, and the timing of the gift relative to the founding campaign's closing window. For commitments at the Founders' Circle and Guardians' Circle levels, this conversation typically involves the President or a senior gift officer and may extend over several meetings as the donor's strategic interests, recognition preferences, and structuring options are explored. For commitments at the Builders' Circle and Fellows' Circle levels, the conversation is typically conducted by a senior gift officer and may be completed in a single meeting. For commitments at Friends of Artemis and The 99, the conversation is conducted through the university's online giving portal and may be completed in a single session.</p>
+   473→   473→
+   474→   474→  <p class="body-text">Following the initial conversation, the donor and the university execute a written gift agreement that documents the commitment amount, the payment schedule (immediate, multi-year pledge, or deferred), the recognition package, and any restrictions on the use of the gift. The gift agreement is the formal instrument by which the donor's commitment is recorded and the university's recognition obligations are established. For commitments at the Founders' Circle and Guardians' Circle levels, the gift agreement is typically a bespoke document drafted by counsel for the donor and reviewed by the university's Office of the General Counsel. For commitments at lower tiers, the gift agreement is the university's standard form, available through the Office of Gift Planning. Donors are encouraged to review the gift agreement with their own legal and tax advisors before signing.</p>
+   475→   475→
+   476→   476→  <p class="body-text">Upon execution of the gift agreement and receipt of the initial payment, the donor is formally entered into the appropriate giving circle and the recognition package is activated. The donor's name is added to the founding Donor Roll, the appropriate naming opportunity (if any) is reserved, the engraved recognition (if any) is scheduled for installation, and the donor's entry into the founding community is recorded in the university's permanent records. The Office of Gift Planning provides the donor with written confirmation of the entry into the circle and a schedule of the recognition activations, including the dates by which each recognition element will be delivered. Donors may request updates on the status of their recognition activations at any time.</p>
+   477→   477→
+   478→   478→  <div class="callout">
+   479→   479→    <div class="callout-label">Practical Checklist · Entering a Circle</div>
+   480→   480→    <div class="callout-body">
+   481→   481→      <ul class="bullets" style="margin:6px 0 0;">
+   482→   482→        <li><strong>Initial conversation</strong> — contact the Office of Gift Planning to discuss the commitment, recognition package, and timing.</li>
+   483→   483→        <li><strong>Choose the structure</strong> — immediate gift, multi-year pledge, blended gift of cash and appreciated assets, or deferred (bequest) commitment.</li>
+   484→   484→        <li><strong>Review the gift agreement</strong> — examine the documentation with your own legal and tax advisors before signing.</li>
+   485→   485→        <li><strong>Execute and pay</strong> — sign the gift agreement and make the initial payment; the circle entry is activated upon receipt.</li>
+   486→   486→        <li><strong>Receive recognition</strong> — the Office of Gift Planning provides a schedule of recognition activations and updates on delivery.</li>
+   487→   487→        <li><strong>Engage with the community</strong> — attend the annual events, briefings, and communications appropriate to your circle.</li>
+   488→   488→      </ul>
+   489→   489→    </div>
+   490→   490→  </div>
+   491→   491→
+   492→   492→  <p class="body-text">A note on multi-year pledges. Donors may structure their commitment as a multi-year pledge — typically over three to five years, though longer periods are negotiable for Founders' Circle and Guardians' Circle commitments — with the circle entry activated upon execution of the gift agreement and the initial payment. The recognitions are activated when the pledge reaches the relevant threshold (e.g., a donor pledging $5 million over five years enters the Guardians' Circle upon execution of the pledge and payment of the first $1 million instalment). The naming opportunities (if any) are reserved for the donor upon execution of the pledge and are activated when the pledge is fulfilled. Donors who default on a pledge without renegotiation may have their recognitions suspended, though the university's practice is to work with donors in financial difficulty to find alternative arrangements rather than to revoke recognitions already delivered.</p>
+   493→   493→
+   494→   494→  <p class="body-text">A final note on anonymity. Donors who wish to remain anonymous may do so at any tier, with the recognition package adapted accordingly. Anonymous donors are recorded in the university's internal records by name but are publicly identified only by a coded entry (e.g., "A Founders' Circle Donor") on the Donor Roll and in public recognitions. The university's staff are bound by confidentiality obligations with respect to anonymous donors' identities, and the donor's anonymity is preserved in perpetuity unless the donor subsequently authorises disclosure. Anonymous donors receive all of the substantive recognitions (Board seat, named entities, etc.) appropriate to their tier; only the public attribution is withheld. Donors considering anonymity should discuss the practical implications with the Office of Gift Planning before finalising their commitment.</p>
+   495→   495→
+   496→   496→</div>
+   497→   497→
+   498→   498→<!-- ENDING -->
+   499→   499→<div class="ending">
+   500→   500→  <div class="ending-tag">End of Guide · Volume VIII</div>
+   501→   501→  <div class="ending-big">Every circle is a community. Every name is a record. Every gift is a foundation.</div>
+   502→   502→  <div class="ending-sub">To discuss a commitment at any tier of the giving circles, contact the Office of Gift Planning at the University of Artemis. The founding community is being recorded now; the founding window closes upon the conclusion of the founding campaign.</div>
+   503→   503→  <div class="ending-contact">give@artemis.university · +1 (302) 555-0142 · give.artemis.university</div>
+   504→   504→</div>
+   505→   505→
+   506→   506→</body>
+   507→   507→</html>
+   508→   508→

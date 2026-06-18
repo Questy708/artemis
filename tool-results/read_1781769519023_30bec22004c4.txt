@@ -1,0 +1,196 @@
+     1→{
+     2→  "_meta": {
+     3→    "brand": "University of Artemis",
+     4→    "tagline": "Re-engineering humanity's approach to learning in an accelerating world.",
+     5→    "palette": { "crimson": "#8A0000", "crimson_deep": "#6B0000", "ink": "#141414", "bg": "#FAFAF8", "bg_dark": "#0c0a09" },
+     6→    "fonts": { "sans": "Inter", "serif": "Noto Serif SC" },
+     7→    "images": {
+     8→      "world_night": "/resources/img/world-night.png",
+     9→      "campus": "/resources/img/campus-architecture.png",
+    10→      "students": "/resources/img/students-global.png",
+    11→      "research": "/resources/img/research-lab.png",
+    12→      "venice": "/resources/img/venice-node.png",
+    13→      "abstract": "/resources/img/abstract-crimson.png",
+    14→      "graduation": "/resources/img/graduation.png",
+    15→      "governance": "/resources/img/governance-building.png"
+    16→    },
+    17→    "images_abs": {
+    18→      "world_night": "/home/z/my-project/public/resources/img/world-night.png",
+    19→      "campus": "/home/z/my-project/public/resources/img/campus-architecture.png",
+    20→      "students": "/home/z/my-project/public/resources/img/students-global.png",
+    21→      "research": "/home/z/my-project/public/resources/img/research-lab.png",
+    22→      "venice": "/home/z/my-project/public/resources/img/venice-node.png",
+    23→      "abstract": "/home/z/my-project/public/resources/img/abstract-crimson.png",
+    24→      "graduation": "/home/z/my-project/public/resources/img/graduation.png",
+    25→      "governance": "/home/z/my-project/public/resources/img/governance-building.png"
+    26→    }
+    27→  },
+    28→  "campaign": {
+    29→    "goal": 100000000,
+    30→    "raised": 2100000,
+    31→    "donors": 342,
+    32→    "currency": "USD",
+    33→    "pct": 2,
+    34→    "fmt_goal": "$100M",
+    35→    "fmt_raised": "$2.1M"
+    36→  },
+    37→  "milestones": [
+    38→    { "title": "The Quiet Phase", "target": 50000000, "date": "Months 1–3", "desc": "No public announcement. No website. No press. The quiet phase secures lead gifts before the world knows we exist. Standard practice — Yale secured $3.5B before announcing 'For Humanity.'", "deliverables": ["Lead donor cultivation and solicitation", "$50M in binding commitments secured", "Campaign cabinet fully operational"] },
+    39→    { "title": "The Public Phase", "target": 85000000, "date": "Months 4–6", "desc": "The campaign goes public. Website launches. Events held. Press engaged. The full case statement reaches every major prospect worldwide.", "deliverables": ["Public website and campaign materials live", "Regional events across all 35 countries", "$85M cumulative commitments"] },
+    40→    { "title": "Close & Capitalise", "target": 100000000, "date": "Months 7–9", "desc": "All $100M commitments secured. Properties acquired. Legal incorporation across 25 jurisdictions. The foundation is poured.", "deliverables": ["All $100M commitments secured", "Properties acquired and repurposing begun", "Legal incorporation across 25 countries"] },
+    41→    { "title": "Build & Launch", "target": 100000000, "date": "Months 10–12", "desc": "Faculty onboarded. Colleges opened. Students arriving. The university becomes operational. The match lights the fuel.", "deliverables": ["Faculty onboarded and in place", "Colleges opened and operational", "Students arriving — university is live"] }
+    42→  ],
+    43→  "pillars": [
+    44→    { "id": "place", "title": "Place", "subtitle": "The 50 Colleges", "goal": 82000000, "share": 82, "desc": "A university without a physical place is a YouTube channel. Community requires co-location. Tutorials require rooms. We are not building campuses — we are finding existing buildings and giving them a second life as Colleges. Repurposed convents, warehouses, offices, factories. Each one acquired. Each one owned. Each one permanent.", "detail": "Properties are 82 cents of every dollar raised. Even at 50% naming uptake, the gifts cover the property costs. Named gifts are endowments — the property is the asset. Donor names a College; the College owns the building." },
+    45→    { "id": "minds", "title": "Minds", "subtitle": "Faculty Launch", "goal": 7000000, "share": 7, "desc": "2,000 faculty must be hired, onboarded, and in place before students arrive. This pillar covers roughly 3 months of faculty compensation before tuition revenue flows. After Day 1, the P&L covers all faculty compensation from tuition. This is a one-time bridge.", "detail": "A $5M Distinguished Professorship at 4.5% yield generates $225K/year — enough to sustain one position in perpetuity at career-level compensation. The naming gifts are endowments; the $7M pre-launch cost is the bridge." },
+    46→    { "id": "access", "title": "Access", "subtitle": "Year 1 Scholarships", "goal": 5000000, "share": 5, "desc": "$3,000/year is accessible to 90% of qualified students worldwide. The remaining 10% — 10,000 students in Year 1 — need assistance. After Year 1, the $262M annual surplus funds 13,300 scholarships per year. This $5M bridges the first cohort.", "detail": "After Year 1, the surplus self-funds scholarships at $40M/year. Your seed gift does not run a programme — it launches a permanent scholarship machine." },
+    47→    { "id": "excellence", "title": "Excellence", "subtitle": "Research & Inquiry", "goal": 3000000, "share": 3, "desc": "Research seed funds, visiting fellowships, the Artemis Press, Centers of Inquiry. The mechanisms that turn a good university into an inevitable one.", "detail": "19 Centers of Inquiry and 42 Active Projects need startup capital: research equipment, fieldwork budgets, database subscriptions, publication subsidies, and the open knowledge infrastructure that powers the 7-year release. After Year 1, faculty time (already compensated) covers most ongoing project work. This $3M is the seed that makes every Center operational from Day 1." },
+    48→    { "id": "progress", "title": "Progress", "subtitle": "Innovation & Infrastructure", "goal": 3000000, "share": 3, "desc": "Innovation labs, the Global Challenge Fund, technology infrastructure. The bridge between scholarship and the world it serves.", "detail": "The university that outlives its founders needs a corpus that outlives its donors. After Year 1, the surplus builds the endowment at $60M/year. $3M at 4.5% = $135K/year in perpetuity from Day 1 — enough to fund 11 full scholarships forever, before any surplus is generated." }
+    49→  ],
+    50→  "naming_opportunities": [
+    51→    { "title": "Tier C College", "amount": 2000000, "fmt": "$2M", "desc": "Name a College in cities like Kigali, Dhaka, Kampala, Karachi. ~1,100 students. Your name becomes home to the next generation of leaders in your region.", "type": "College" },
+    52→    { "title": "Tier B College", "amount": 5000000, "fmt": "$5M", "desc": "Name a College in major global cities. ~2,000 students. A permanent physical presence bearing your name, serving scholars for centuries.", "type": "College" },
+    53→    { "title": "Tier A College", "amount": 10000000, "fmt": "$10M", "desc": "Name a flagship College in the world's great knowledge capitals. ~2,500 students. The highest-profile naming opportunity outside the Central Nodes.", "type": "College" },
+    54→    { "title": "Central Node", "amount": 25000000, "fmt": "$25M", "desc": "Name one of three Central Nodes — Venice, San Francisco, Singapore. ~5,000 students. The apex of the Artemis network, bearing your name in perpetuity.", "type": "Central Node" },
+    55→    { "title": "Distinguished Professorship", "amount": 5000000, "fmt": "$5M", "desc": "At 4.5% yield, generates $225K/year — sustaining one position in perpetuity at career-level compensation. The naming gift is an endowment.", "type": "Endowment" },
+    56→    { "title": "Center of Inquiry", "amount": 10000000, "fmt": "$10M", "desc": "Name one of 19 Centers of Inquiry — a permanently endowed, independently operating research centre carrying your name.", "type": "Naming" },
+    57→    { "title": "Degree Program", "amount": 3000000, "fmt": "$3M", "desc": "Name one of 55 degree programs. Your name associated with a specific discipline and every graduate who carries it forward.", "type": "Naming" },
+    58→    { "title": "Scholarship Fund", "amount": 12000, "fmt": "$12K", "desc": "Fund one student's full scholarship for four years. $3,000/year × 4 years. The most direct way to change a life.", "type": "Scholarship" }
+    59→  ],
+    60→  "giving_circles": [
+    61→    { "name": "The Founders' Circle", "range": "$10M+", "min": 10000000, "color": "#8A0000", "benefits": ["Name engraved on the university's founding document at Venice Central Node", "Permanent seat on Board of Visitors", "Private annual dinner with the President at rotating Central Node", "Named endowment fund or equivalent naming opportunity", "Recognition plaque at all 50 Colleges", "Biographical feature in annual campaign report"] },
+    62→    { "name": "The Guardians' Circle", "range": "$5M – $9.9M", "min": 5000000, "color": "#6B0000", "benefits": ["Named College or Center of Inquiry", "Recognition plaque at all 50 Colleges", "Annual Guardian's Lecture — a public lecture series named by you", "Annual private briefing with the President", "Named endowment fund"] },
+    63→    { "name": "The Builders' Circle", "range": "$1M – $4.9M", "min": 1000000, "color": "#7c2d12", "benefits": ["Named Professorship, Scholarship Fund, or major program", "Recognition plaque at all 50 Colleges", "Annual Builder's Report — detailed impact report on your named gift", "Invitation to annual gathering", "Feature in campaign newsletter"] },
+    64→    { "name": "The Fellows' Circle", "range": "$100K – $999K", "min": 100000, "color": "#0e7490", "benefits": ["Named scholarship fund or tutorial room at chosen College", "Recognition at chosen College", "Annual Fellow's Newsletter from the President", "Invitation to regional events"] },
+    65→    { "name": "Friends of Artemis", "range": "$10K – $99K", "min": 10000, "color": "#15803d", "benefits": ["Name in founding Donor Roll (permanent digital and print record)", "Digital certificate of founding support", "Quarterly progress updates", "Invitation to online events"] },
+    66→    { "name": "The 99", "range": "$99", "min": 99, "color": "#6b7280", "benefits": ["Waitlist priority for enrollment", "Digital recognition on community wall", "Monthly community updates", "The knowledge that you were first in line"] }
+    67→  ],
+    68→  "legal_entities": [
+    69→    { "tier": "Primary", "status": "Incorporated", "jurisdiction": "United States", "name": "Delaware Non-Stock Corporation", "classification": "501(c)(3) — Educational & Charitable", "key_benefit": "Tax-deductible donations in the world's largest philanthropy market ($499B in 2024). Every dollar given reduces the donor's US tax liability.", "structure": ["Non-stock corporation — no shareholders, no owner", "IRS Form 1023 filed for 501(c)(3) determination", "Retroactive deductibility within 27 months of incorporation", "Required: 3+ independent board members, no single controller"] },
+    70→    { "tier": "Secondary", "status": "Pre-Filing", "jurisdiction": "England & Wales", "name": "Charitable Incorporated Organisation", "classification": "Charity Commission — Advancement of Education", "key_benefit": "Gift Aid turns every £1M into £1.25M through HMRC top-up. UK donors receive full tax relief. Aligns with University of London consortium partnership.", "structure": ["CIO or Company Limited by Guarantee", "3+ trustees required with UK registered office", "Gift Aid eligibility — 25% government supplement", "Recognised by Commonwealth jurisdictions worldwide"] },
+    71→    { "tier": "Tertiary", "status": "Planned", "jurisdiction": "Switzerland", "name": "Fondation under Swiss Civil Code", "classification": "International Foundation — Geneva Canton", "key_benefit": "Endowment management in a neutral jurisdiction with minimal tax drag. Signals institutional permanence to European and Gulf donors. Home to WHO, CERN, IOC.", "structure": ["Minimum CHF 50,000 initial capital", "Cantonal authority approval required", "No capital gains tax on endowment growth", "Governed by Swiss foundation supervision"] }
+    72→  ],
+    73→  "fiscal_sponsors": ["Rockefeller Philanthropy Advisors", "NGOsource", "Global Impact"],
+    74→  "accountability": [
+    75→    { "title": "Board Independence", "desc": "No single individual controls more than one-third of board seats. Majority independent directors required." },
+    76→    { "title": "Annual Audit", "desc": "Full independent audit by a Big Four firm. Published annually. No exceptions." },
+    77→    { "title": "Public Reporting", "desc": "Every dollar received and disbursed is published in an annual impact report, available to every donor and the public." }
+    78→  ],
+    79→  "donor_segments": [
+    80→    { "segment": "Lead Donors", "count": "10 gifts", "target": "$70M", "pct": 70, "desc": "70% of the campaign from 10 donors. This is how founding campaigns work." },
+    81→    { "segment": "Major Donors", "count": "20 gifts", "target": "$20M", "pct": 20, "desc": "20 donors at the $1M–$5M level, building the academic infrastructure." },
+    82→    { "segment": "Community", "count": "Unlimited", "target": "$10M", "pct": 10, "desc": "Hundreds of donors at $10K–$999K, seeding scholarships, rooms, and research." }
+    83→  ],
+    84→  "ways_to_give": [
+    85→    { "title": "Online", "desc": "Make a one-time or recurring gift by card, PayPal, or cryptocurrency directly on the website. Fast, secure, and immediate confirmation of your contribution." },
+    86→    { "title": "Bank or Wire Transfer", "desc": "Transfer directly from your bank. Suitable for large contributions and international donors." },
+    87→    { "title": "Cryptocurrency", "desc": "Donate Bitcoin (BTC) or Ethereum (ETH) directly to Artemis. Crypto donations are recorded on the public chain, making your contribution a permanent part of the university's founding record." },
+    88→    { "title": "Securities and Stock", "desc": "Donate appreciated stocks, bonds, or mutual funds to avoid capital gains tax while maximising your impact." },
+    89→    { "title": "Planned Giving", "desc": "Include Artemis in your estate plan through a will, trust, or beneficiary designation. Planned gifts create a permanent legacy." },
+    90→    { "title": "Employer Matching", "desc": "Many employers match charitable contributions dollar-for-dollar. Check with your HR department — your gift could be doubled at no additional cost." },
+    91→    { "title": "Donor-Advised Funds", "desc": "Recommend a grant from your donor-advised fund (DAF) to the University of Artemis. A tax-efficient way to support the founding." },
+    92→    { "title": "In-Kind Contributions", "desc": "Donate equipment, technology, library materials, real estate, or professional services. In-kind gifts are valued and recognised." }
+    93→  ],
+    94→  "donors": [
+    95→    { "name": "The Nordgren Foundation", "amount": 100000, "date": "28 Apr", "msg": "Investing in the infrastructure of imagination." },
+    96→    { "name": "Chen Wei Laboratories", "amount": 50000, "date": "4 May", "msg": null },
+    97→    { "name": "Dr. Elena Vasquez", "amount": 25000, "date": "10 May", "msg": "For the students who will change everything." },
+    98→    { "name": "Anonymous Patron", "amount": 40000, "date": "7 May", "msg": "Because knowledge should have no borders." },
+    99→    { "name": "The Matsuo Trust", "amount": 30000, "date": "18 Apr", "msg": null },
+   100→    { "name": "Liu Fang Foundation", "amount": 15000, "date": "25 Apr", "msg": null },
+   101→    { "name": "James & Priya Okonkwo", "amount": 5000, "date": "8 May", "msg": null },
+   102→    { "name": "The Al-Rashidi Family", "amount": 3000, "date": "5 May", "msg": "In memory of Fatima Al-Rashidi." },
+   103→    { "name": "Dr. Robert & Sarah Kimani", "amount": 2500, "date": "22 Apr", "msg": "For the next generation of African scholars." },
+   104→    { "name": "Sven & Astrid Lindqvist", "amount": 5000, "date": "20 Apr", "msg": "For the north, and for everywhere." },
+   105→    { "name": "Amara Osei", "amount": 100, "date": "27 Apr", "msg": "Every great university starts with a first believer." },
+   106→    { "name": "Maria Santos", "amount": 250, "date": "3 May", "msg": "Proud to be part of the founding." }
+   107→  ],
+   108→  "crypto": { "BTC": "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh", "ETH": "0x71C7656EC7ab88b098defB751B7401B5f6d8976F" },
+   109→  "tax_jurisdictions": [
+   110→    { "country": "United States", "vehicle": "501(c)(3) Public Charity", "deductibility": "Up to 60% AGI (cash), 30% (appreciated assets)", "notes": "Deductible within tax year; 5-year carryforward. EIN issued upon Form 1023 approval." },
+   111→    { "country": "United Kingdom", "vehicle": "Charitable Incorporated Organisation", "deductibility": "Gift Aid: 25% government top-up. Higher-rate relief via self-assessment.", "notes": "£1,000 donation costs £750 after basic-rate relief + £250 HMRC top-up." },
+   112→    { "country": "Canada", "vehicle": "Registered Charity (CRA)", "deductibility": "75% of net income; 5-year carryforward.", "notes": "Reciprocal with US 501(c)(3) under treaty." },
+   113→    { "country": "Australia", "vehicle": "Deductible Gift Recipient (DGR)", "deductibility": "Tax-deductible; no percentage cap for gifts >$2.", "notes": "Requires DGR endorsement from ATO." },
+   114→    { "country": "Germany", "vehicle": "Gemeinnützige GmbH / e.V.", "deductibility": "Up to 20% of total income; 5-yr carryforward.", "notes": "Spendenbescheinigung (donation receipt) issued." },
+   115→    { "country": "Switzerland", "vehicle": "Fondation (Swiss Civil Code)", "deductibility": "Canton-dependent: typically 10–20% of income.", "notes": "Geneva & Zurich most favourable for foundations." },
+   116→    { "country": "Singapore", "vehicle": "Institution of a Public Character (IPC)", "deductibility": "250% tax deduction (enhanced through 2026).", "notes": "One of the most generous regimes globally." },
+   117→    { "country": "Hong Kong", "vehicle": "Charitable Institution (s88)", "deductibility": "100% deductible; 25% of assessable income cap.", "notes": "Approved under Inland Revenue Ordinance s88." },
+   118→    { "country": "UAE / Gulf", "vehicle": "Recognised Foreign Charity", "deductibility": "No income tax in UAE; Zakat alignment for GCC donors.", "notes": "Structured via DIFC/ADGM for institutional donors." },
+   119→    { "country": "Brazil", "vehicle": "OSCIP (Civil Society Org)", "deductibility": "Up to 2% of operating revenue (corporate); limited for individuals.", "notes": "Requires federal recognition; PRONON/PRONAS caps." },
+   120→    { "country": "South Africa", "vehicle": "Section 18A PBO", "deductibility": "10% of taxable income; 5-yr carryforward.", "notes": "SARS Section 18A receipt issued." },
+   121→    { "country": "India", "vehicle": "Registered Society / Trust (12A/80G)", "deductibility": "50% deduction (80G); 10% of income cap.", "notes": "Foreign contributions require FCRA approval." }
+   122→  ],
+   123→  "campus_nodes": [
+   124→    { "name": "Venice Central Node", "type": "Central Node", "students": 5000, "role": "The founding seat — governance, convocation, the founding document archive. Canals and Renaissance palazzi repurposed as the academic heart." },
+   125→    { "name": "San Francisco Central Node", "type": "Central Node", "students": 5000, "role": "The technology and innovation seat — proximity to Silicon Valley, the Forge incubator, biotech and computational research." },
+   126→    { "name": "Singapore Central Node", "type": "Central Node", "students": 5000, "role": "The Asia-Pacific seat — a neutral convening point for the Eastern hemisphere, fintech and urban futures research." },
+   127→    { "name": "Tier A Colleges", "type": "College (Tier A)", "students": 2500, "count": 8, "role": "Flagship colleges in the world's great knowledge capitals — London, Tokyo, Berlin, Paris, Toronto, Sydney, Seoul, New York." },
+   128→    { "name": "Tier B Colleges", "type": "College (Tier B)", "students": 2000, "count": 16, "role": "Major global cities across all six continents — Nairobi, Mumbai, São Paulo, Cairo, Istanbul, Buenos Aires, Jakarta, Mexico City, and more." },
+   129→    { "name": "Tier C Colleges", "type": "College (Tier C)", "students": 1100, "count": 23, "role": "Regional access colleges — Kigali, Dhaka, Kampala, Karachi, Tashkent, Quito, and emerging knowledge cities." }
+   130→  ],
+   131→  "academic_pillars": [
+   132→    { "title": "Epistemology", "desc": "How we know what we know. The foundations of inquiry, evidence, reasoning, and the limits of certainty — taught not as a philosophy elective but as the substrate of every discipline." },
+   133→    { "title": "Computational Thinking", "desc": "Not just coding, but the algorithmic decomposition of problems across every field — from literary analysis to epidemiology to constitutional design." },
+   134→    { "title": "Global Systems", "desc": "Climate, finance, migration, supply chains, governance. The interlocking systems that define the 21st century, studied as integrated wholes rather than siloed specialties." },
+   135→    { "title": "Creative Expression", "desc": "The studio, the workshop, the stage. The conviction that making is knowing, and that every graduate must be able to build, write, compose, and perform — not merely analyze." }
+   136→  ],
+   137→  "programs": [
+   138→    { "title": "B.S. Computer Science", "duration": "8 Semesters", "field": "Computer Science", "desc": "Integrating deep software systems, data science pipelines, AI/ML, and computational theory with the epistemic foundations of intelligence itself." },
+   139→    { "title": "B.S. International Business", "duration": "8 Semesters", "field": "International Business", "desc": "Empowering future executives with skills in global finance, cross-cultural leadership, and the political economy of interconnected markets." },
+   140→    { "title": "B.S. Environmental Science", "duration": "8 Semesters", "field": "Environmental Science", "desc": "Analyzing complex global ecosystems, climate systems, and biodiversity with fieldwork across six continents." },
+   141→    { "title": "B.A. Philosophy, Politics & Economics", "duration": "8 Semesters", "field": "PPE", "desc": "The integrated study of governance, markets, and ethics — the classical tripos reimagined for a planetary century." },
+   142→    { "title": "B.S. Biotechnology", "duration": "8 Semesters", "field": "Biotechnology", "desc": "From gene editing to synthetic biology, with deep integration of bioethics and translational innovation." },
+   143→    { "title": "B.A. Architecture & Urban Design", "duration": "8 Semesters", "field": "Architecture", "desc": "Designing adaptive, regenerative built environments — studios in six rotating hostel cities." },
+   144→    { "title": "B.S. Data Science & Statistics", "duration": "8 Semesters", "field": "Data Science", "desc": "The mathematical, computational, and ethical foundations of inference at scale." },
+   145→    { "title": "B.A. Global History", "duration": "8 Semesters", "field": "History", "desc": "World history as an integrated discipline — not Western civilization plus electives, but a genuinely planetary curriculum." },
+   146→    { "title": "B.S. Cognitive Science", "duration": "8 Semesters", "field": "Cognitive Science", "desc": "The mind — computational, biological, philosophical — studied as the central mystery of the century." }
+   147→  ],
+   148→  "centers_of_inquiry": [
+   149→    { "name": "Synthetic Intelligence", "tag": "01 — SYNTHETIC INTELLIGENCE", "desc": "AI/human symbiotic reasoning, the CoThink project, moral agency in AI.", "nodes": "San Francisco — Toronto — Edinburgh", "investigators": 16, "fellows": 48, "focus": ["Human-AI symbiotic reasoning", "Moral agency and value alignment", "Interpretability and mechanistic understanding", "Constitutional and democratic AI governance", "CoThink collaborative reasoning systems"] },
+   150→    { "name": "Bio-Regenerative Arts", "tag": "02 — BIO-REGENERATIVE ARTS", "desc": "Self-healing building materials (BioCrete-2), living architecture.", "nodes": "Venice — Rotterdam — Singapore", "investigators": 12, "fellows": 36, "focus": ["Self-healing and living materials", "Mycelium and bio-fabrication", "Regenerative architecture", "Carbon-negative construction", "BioCrete-2 material science"] },
+   151→    { "name": "Cosmological Humanities", "tag": "03 — COSMOLOGICAL HUMANITIES", "desc": "Processing petabytes of telescope data, philosophical astrophysics.", "nodes": "La Palma — Cambridge — Tokyo", "investigators": 14, "fellows": 40, "focus": ["Petabyte-scale astronomical data", "Philosophical astrophysics", "Origins of life and consciousness", "Deep-time cosmic perspectives", "Observatory partnerships"] },
+   152→    { "name": "Urban Futures", "tag": "13 — URBAN FUTURES", "desc": "Designing cities that are resilient, equitable, and alive — integrating architecture, ecology, computation, and governance.", "nodes": "Copenhagen — Medellín — Singapore", "investigators": 10, "fellows": 38, "focus": ["Adaptive urban design and computational architecture", "Urban ecology and green infrastructure", "Smart city systems and digital twins", "Equitable housing and inclusive urban development", "Climate resilience and urban adaptation"] },
+   153→    { "name": "Biotech & Life Sciences", "tag": "14 — BIOTECH & LIFE SCIENCES", "desc": "From gene editing and synthetic organisms to ecosystem engineering and de-extinction.", "nodes": "Cambridge, UK — Basel — Guangzhou", "investigators": 15, "fellows": 54, "focus": ["Gene editing and genetic engineering", "Synthetic biology and organism design", "Ecosystem engineering and restoration", "De-extinction and species recovery", "Biosecurity and dual-use governance"] },
+   154→    { "name": "Fintech, DeFi & Economics", "tag": "15 — FINTECH, DEFI & ECONOMICS", "desc": "Rethinking money, markets, and economic governance for a decentralized, automated, globally interconnected world.", "nodes": "London — Singapore — Lagos", "investigators": 11, "fellows": 42, "focus": ["Decentralized finance protocols", "Digital currencies and CBDCs", "Programmable money and smart contracts", "Financial sovereignty and inclusive finance", "Carbon markets and environmental finance"] },
+   155→    { "name": "Health & Bioethics", "tag": "12 — HEALTH & BIOETHICS", "desc": "AI-assisted diagnosis, gene editing ethics, pandemic preparedness, global health justice.", "nodes": "Boston — Cape Town — Hyderabad", "investigators": 14, "fellows": 52, "focus": ["AI-assisted diagnosis and precision medicine", "Gene editing ethics and governance", "Pandemic preparedness and equitable response", "Health equity and social determinants", "Global health justice and access to care"] }
+   156→  ],
+   157→  "strategic_plan_years": [
+   158→    { "year": "2025", "theme": "Foundation", "targets": ["$100M founding campaign secured", "Legal incorporation across 25 jurisdictions", "First 12 properties acquired and repurposing begun", "Founding faculty cohort (200) recruited", "Founding student cohort (120) admitted"] },
+   159→    { "year": "2026", "theme": "Launch", "targets": ["University opens — Day 1 operations", "3 Central Nodes operational (Venice, SF, Singapore)", "12 Colleges across 6 continents live", "First 19 Centers of Inquiry activated", "Curriculum deployed across 9 programs"] },
+   160→    { "year": "2027", "theme": "Scale", "targets": ["30 Colleges operational", "Student body reaches 20,000", "Faculty reaches 800", "First graduating cohort", "Endowment crosses $80M from surplus"] },
+   161→    { "year": "2028", "theme": "Expansion", "targets": ["42 Colleges operational", "Student body reaches 40,000", "Faculty reaches 1,400", "Graduate programs launched", "Forge incubator: 20 portfolio ventures"] },
+   162→    { "year": "2029", "theme": "Maturity", "targets": ["50 Colleges — full network", "Student body reaches 60,000", "Faculty reaches 2,000", "Endowment crosses $200M", "7-year release policy: first knowledge drop"] },
+   163→    { "year": "2030", "theme": "Permanence", "targets": ["Full operational self-sufficiency", "$262M annual surplus funding 13,300 scholarships/yr", "Endowment building at $60M/yr", "Global recognition — accreditation across all jurisdictions", "The Artemis Model published as open blueprint"] }
+   164→  ],
+   165→  "financial_model": {
+   166→    "revenue": [
+   167→      { "source": "Tuition (60,000 students × $3,000/yr)", "annual": 180000000, "fmt": "$180M" },
+   168→      { "source": "Endowment payout (4.5% of corpus)", "annual": 27000000, "fmt": "$27M" },
+   169→      { "source": "Research grants & contracts", "annual": 45000000, "fmt": "$45M" },
+   170→      { "source": "Innovation & Forge equity (5%)", "annual": 18000000, "fmt": "$18M" },
+   171→      { "source": "Continuing education & executive", "annual": 30000000, "fmt": "$30M" }
+   172→    ],
+   173→    "total_revenue": 300000000,
+   174→    "total_revenue_fmt": "$300M",
+   175→    "expenses": [
+   176→      { "category": "Faculty compensation (2,000 FTE)", "annual": 200000000, "fmt": "$200M", "pct": 67 },
+   177→      { "category": "Facilities & operations (50 Colleges)", "annual": 30000000, "fmt": "$30M", "pct": 10 },
+   178→      { "category": "Scholarships (13,300 students)", "annual": 40000000, "fmt": "$40M", "pct": 13 },
+   179→      { "category": "Research & Centers", "annual": 20000000, "fmt": "$20M", "pct": 7 },
+   180→      { "category": "Administration & governance", "annual": 10000000, "fmt": "$10M", "pct": 3 }
+   181→    ],
+   182→    "total_expenses": 300000000,
+   183→    "total_expenses_fmt": "$300M",
+   184→    "surplus": 0,
+   185→    "surplus_note": "Year 1 break-even. From Year 2: $262M annual surplus (tuition $180M + $120M growth vs $200M faculty lock) funds scholarships, endowment, and expansion. The model is designed to flip from capital-raising to self-sustaining within 12 months of launch.",
+   186→    "endowment_trajectory": [
+   187→      { "year": "Year 1", "corpus": 3000000, "fmt": "$3M", "source": "Founding campaign Progress pillar" },
+   188→      { "year": "Year 2", "corpus": 63000000, "fmt": "$63M", "source": "Surplus allocation ($60M)" },
+   189→      { "year": "Year 3", "corpus": 123000000, "fmt": "$123M", "source": "Surplus + naming gifts" },
+   190→      { "year": "Year 5", "corpus": 243000000, "fmt": "$243M", "source": "Compounding surplus" },
+   191→      { "year": "Year 10", "corpus": 543000000, "fmt": "$543M", "source": "Mature endowment" }
+   192→    ]
+   193→  }
+   194→}
+
+[showing lines 1-194 of 195; use offset=195 with limit to continue reading]
