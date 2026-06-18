@@ -31,3 +31,37 @@ Stage Summary:
   4. Prisma DB write works — `POST /api/subscribe` returned `{success:true, id:...}` and the row was confirmed persisted in SQLite (INSERT logged in dev.log, direct DB read returned the record).
 - Artifacts produced: full University of Artemis site running at `/`, 22 API routes, 70 React components, 13 Prisma models, public PDF resources.
 - Known limitation: `stripe` npm package could not be installed (sandbox network timeout). The donation flow is therefore limited to the "not configured" graceful fallback until STRIPE_SECRET_KEY + the stripe package are added; all other site features (AI chat, LMS, applications, subscribe, contact, admin) are fully functional.
+
+---
+Task ID: 2
+Agent: main (Z.ai Code)
+Task: Remove the Dashboard / Applicant Portal; build a new modern "Give 2" page (better layout & aesthetics, functional for the course, content remixed from the existing Give page) while maintaining the original Give page.
+
+Work Log:
+- Located the "Applicant Portal": it IS the `Dashboard` component — `Dashboard.tsx` renders an h1 "Applicant Portal" and is routed via `case 'dashboard'` in ArtemisApp, reached from a "Dashboard" nav button in Header (desktop) + a "Portal" button (mobile).
+- Removed the Applicant Portal:
+  - Deleted `src/components/artemis/Dashboard.tsx`.
+  - Removed `import Dashboard` and `case 'dashboard': return <Dashboard .../>` from `ArtemisApp.tsx`.
+  - Removed the desktop "Dashboard" nav button and the mobile "Portal" action button from `Header.tsx`.
+  - Verified zero remaining references to the artemis Applicant Portal / `@/components/artemis/Dashboard` (only the unrelated LMS/Admin dashboards remain).
+- Built `src/components/artemis/Give2.tsx` (new, ~730 lines, 'use client'). Modern editorial aesthetic remixing FundraisingCampaign content:
+  - **Hero**: dark gradient w/ blurred crimson orbs, scroll-fade opacity, "For Civilization." display headline, two CTAs, and a sticky live-progress strip with animated counters (Raised / Goal / Donors / %) + gradient progress bar.
+  - **Case for support**: two-column with narrative + a side card showing per-pillar progress bars.
+  - **Five Pillars bento**: featured large dark tile (Place, 82%) + 4 white cards (Minds/Access/Excellence/Progress) with hover lift.
+  - **Giving Circles**: 6-circle grid with accent-colored icon chips + perk checklists.
+  - **Donor wall**: dark section with 6 recent-founder cards (quote-styled messages).
+  - **Give form**: sticky left column (amount presets $99–$25K + custom input, live "Your impact" preview card that updates with amount, giving-circle badge via AnimatePresence, one-time/recurring + monthly/yearly toggles) and right column (name/email, anonymous checkbox, message, 4 payment-method buttons, animated result banner, dynamic "GIVE $X" submit). Wired to `POST /api/stripe/checkout` with the full payload (donorEmail, donorName, isAnonymous, amount, currency, paymentMethod, perkId derived from circle, isRecurring, recurringFreq, message).
+  - **Contact**: two-column with contact info + a contact form wired to `POST /api/contact`.
+  - Used a state-based `useInView` hook (IntersectionObserver, no ref-during-render) to satisfy React 19's stricter lint rules; `Counter` animates on scroll-into-view.
+- Registered the route: added `import Give2`, a `case 'give-2'` in `renderPage`, and a `case 'give-2'` breadcrumb entry in `ArtemisApp.tsx`.
+- Added nav: a "Give 2" desktop button (crimson outline) next to the existing "Give" button in `Header.tsx`, plus a "Give 2" mobile action button replacing the old "Portal" slot. The original "Give" → `goToPage('fundraising')` is untouched.
+- Lint: `Give2.tsx` passes `eslint` with zero errors (fixed one `react-hooks/set-state-in-effect` by dropping the unnecessary SSR IntersectionObserver guard in the client-only hook).
+
+Stage Summary:
+- Browser-verified end-to-end (agent-browser):
+  1. **Dashboard/Applicant Portal removed** — nav snapshot shows "GIVE", "GIVE 2", "APPLY" but NO "Dashboard"/"Portal".
+  2. **New Give 2 page renders** — "For Civilization." hero, "Five pillars. Every dollar accounted for.", giving circles, donor wall, and full donation form (amount presets, custom amount, frequency toggle, name/email, anonymous, message, CARD/PAYPAL/BANK/CRYPTO, dynamic "GIVE $250" submit). Screenshot saved to `give2-hero.png`.
+  3. **Donation API integration works** — filled email, clicked "GIVE $250" → `POST /api/stripe/checkout 200 in 312ms`, Prisma `INSERT INTO Donation` logged, DB read-back confirmed the row (`amount:250, method:card, status:pending, perkId:"the-99"`, one-time), and the green success banner rendered: "Thank you! Your donation has been recorded. We will follow up with payment details."
+  4. **Original Give page maintained** — clicked "GIVE" → original `FundraisingCampaign` loads with "FOR CIVILIZATION" hero, "GIVE NOW"/"READ THE CASE", Five Pillars / The Ask / Give Now sidebar intact.
+- Dev server: clean compiles, no errors, all 200s.
+- Artifacts: `src/components/artemis/Give2.tsx` (new), `ArtemisApp.tsx` (+route +breadcrumb), `Header.tsx` (nav swap), `Dashboard.tsx` (deleted).

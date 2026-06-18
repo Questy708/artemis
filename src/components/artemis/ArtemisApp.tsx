@@ -17,6 +17,7 @@ import HowWeAreRun from '@/components/artemis/HowWeAreRun';
 import OurPeople from '@/components/artemis/OurPeople';
 import OurHistory from '@/components/artemis/OurHistory';
 import FundraisingCampaign from '@/components/artemis/FundraisingCampaign';
+import Give2 from '@/components/artemis/Give2';
 import GenericAboutSubpage from '@/components/artemis/GenericAboutSubpage';
 import GenericUniversitySubpage from '@/components/artemis/GenericUniversitySubpage';
 import CollegiumAlliance from '@/components/artemis/CollegiumAlliance';
@@ -28,7 +29,6 @@ import ProgramsOfStudy from '@/components/artemis/ProgramsOfStudy';
 
 import ProgramDetail from '@/components/artemis/ProgramDetail';
 import Apply from '@/components/artemis/Apply';
-import Dashboard from '@/components/artemis/Dashboard';
 import SchoolDetail from '@/components/artemis/SchoolDetail';
 import AdmissionsSubpage from '@/components/artemis/AdmissionsSubpage';
 import CentersOfInquiry from '@/components/artemis/CentersOfInquiry';
@@ -284,6 +284,11 @@ function getBreadcrumbs(currentPage: string, currentProgram: string): { items: B
         items: [],
         currentLabel: 'Give',
       };
+    case 'give-2':
+      return {
+        items: [],
+        currentLabel: 'Give 2',
+      };
     case 'nodes':
       return {
         items: [{ label: 'About', page: 'about' }],
@@ -395,8 +400,6 @@ export default function ArtemisApp() {
         return <UndergraduateStudy goToPage={goToPage} />;
       case 'undergraduate_curriculum':
         return <UndergraduateCurriculum goToPage={goToPage} />;
-      case 'dashboard':
-        return <Dashboard goToPage={goToPage} />;
       case 'programs':
         return <ProgramsOfStudy goToPage={goToPage} />;
       case 'program_detail':
@@ -443,6 +446,8 @@ export default function ArtemisApp() {
         return <HowWeAreRun goToPage={goToPage} />;
       case 'fundraising':
         return <FundraisingCampaign goToPage={goToPage} />;
+      case 'give-2':
+        return <Give2 goToPage={goToPage} />;
       case 'our-people':
         return <OurPeople goToPage={goToPage} />;
       case 'access-at-artemis':
