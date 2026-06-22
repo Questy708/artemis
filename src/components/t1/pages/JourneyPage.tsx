@@ -1,612 +1,173 @@
 'use client';
 
-import React, { useRef, useState, useEffect, useMemo } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence, useSpring } from 'framer-motion';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import {
   Lock, Users, Clock, TrendingDown, AlertTriangle, X,
   Sparkles, ChevronDown, ArrowRight, CheckCircle2, Infinity as InfinityIcon,
-  BookOpen, FlaskConical, Target, Brain, Zap, Heart, Globe, Compass,
-  GraduationCap, Rocket, User, Briefcase
+  BookOpen, FlaskConical, Target, Brain, Zap, Heart, Globe,
+  Rocket, User, Briefcase, Quote
 } from 'lucide-react';
 
-// ═══════════════════════════════════════════════════════════
-// TYPES
-// ═══════════════════════════════════════════════════════════
 interface Persona {
-  role: string;
-  perspective: string;
+  name: string; fullName: string; background: string;
 }
-
 interface StepData {
-  num: string;
-  age: string;
-  phase: string;
-  title: string;
-  desc: string;
-  detail: string;
-  consequence: string;
-  success: string;
-  image: string;
-  icon: React.ElementType;
-  student: Persona;
-  tutor: Persona;
+  num: string; age: string; phase: string; title: string; desc: string;
+  detail: string; consequence: string; success: string;
+  image: string; icon: React.ElementType;
+  studentName: string; studentQuote: string; studentExperience: string;
+  educatorName: string; educatorQuote: string; educatorExperience: string;
 }
 
-// ═══════════════════════════════════════════════════════════
-// TRADITIONAL STEPS
-// ═══════════════════════════════════════════════════════════
+const T_PERSONA = { student: { name: 'Amara', fullName: 'Amara Okafor', background: '18 years old. Lagos, Nigeria. First in her family to apply to university. Brilliant at mathematics. Her mother sells fabric at the market.' } as Persona, educator: { name: 'Mr. Okonkwo', fullName: 'Mr. Chidi Okonkwo', background: 'Secondary school teacher for 22 years. Teaches 60 students per class. Cares deeply but is ground down by a system that measures him by exam scores.' } as Persona };
+const A_PERSONA = { student: { name: 'Kwame', fullName: 'Kwame Mensah', background: '19 years old. Accra, Ghana. Declared mission: "To build AI systems that serve underserved communities." Rotating through Nairobi this semester.' } as Persona, educator: { name: 'Dr. Osei', fullName: 'Dr. Abena Osei', background: 'Core Investigator at the Center for Synthetic Intelligence. Holds a renewable 7-year appointment. Teaches tutorials of 3. No grant writing. Pure research and teaching.' } as Persona };
+
 const TRADITIONAL_STEPS: StepData[] = [
-  {
-    num: '01', age: 'Age 5–11', phase: 'Primary School',
-    title: 'The Sorting Begins',
-    desc: 'Children are placed into age-based cohorts and sorted by standardized tests that measure conformity over curiosity.',
-    detail: 'From the first day of primary school, children are grouped not by interest or ability but by birth year. A child fascinated by astronomy sits beside a child who cannot yet read, both taught the same curriculum at the same pace. Standardized tests begin early, sorting children into "gifted" and "regular" tracks — labels that often stick for life.',
-    consequence: 'Curiosity is replaced by compliance. Children who do not fit the age-based mold learn that they are "not smart," regardless of their actual potential.',
-    success: 'Success means scoring well on standardized tests and being labeled "gifted." The child learns that their worth is a number.',
-    image: 'https://sfile.chatglm.cn/images-ppt/1477a32b7b80.jpg',
-    icon: Lock,
-    student: { role: 'The Student', perspective: 'I loved asking questions. Then they gave me a test and told me I was average. I stopped asking.' },
-    tutor: { role: 'The Educator', perspective: 'I can see the spark in some children dying. But the curriculum says move on. The test is coming. We must prepare.' },
-  },
-  {
-    num: '02', age: 'Age 12–17', phase: 'Secondary School',
-    title: 'The Exam Gauntlet',
-    desc: 'Years of schooling are reduced to a single metric: exam scores. Learning becomes test preparation.',
-    detail: 'Secondary school is dominated by the exam gauntlet. Every lesson, every homework assignment, every extracurricular activity is ultimately evaluated by how it contributes to a test score. Students learn to optimize for the test, not for understanding. They memorize, regurgitate, and forget.',
-    consequence: 'Students develop test-taking skills, not life skills. They can pass exams but cannot think critically, solve real problems, or adapt to change.',
-    success: 'Success means a high exam score that secures a place at a selective university. The student learns that the destination matters more than the journey.',
-    image: 'https://sfile.chatglm.cn/images-ppt/c5e720f31370.jpg',
-    icon: AlertTriangle,
-    student: { role: 'The Student', perspective: 'I memorized 200 pages of biology for the exam. Two weeks later, I remembered none of it. But I got an A.' },
-    tutor: { role: 'The Educator', perspective: 'I know this content will be forgotten. But my performance review is tied to their test scores. I teach to the test because I must.' },
-  },
-  {
-    num: '03', age: 'Age 17–18', phase: 'University Applications',
-    title: 'The Gatekeeper',
-    desc: 'A single application, a single test score, a single admissions decision determines the trajectory of a lifetime.',
-    detail: 'The university admissions process is a gatekeeper of life chances. A single standardized test score — the SAT, A-Levels, Gaokao, JEE — can open or close doors to elite institutions, which in turn gatekeep access to elite careers. The system claims to be meritocratic, but it rewards those who can afford test prep and cultural capital.',
-    consequence: 'Talent is wasted. Brilliant students from poor backgrounds are filtered out not by lack of ability but by lack of access to test preparation.',
-    success: "Success means admission to a prestigious university — regardless of whether that university will actually serve the student's growth. The gate is the goal.",
-    image: 'https://sfile.chatglm.cn/images-ppt/a46d47ba293a.jpg',
-    icon: Lock,
-    student: { role: 'The Student', perspective: 'My friend scored higher because her parents paid $5,000 for a tutor. I scored lower because I worked after school. They call that merit.' },
-    tutor: { role: 'The Educator', perspective: 'I write recommendation letters knowing they matter more than what the student actually learned in my class. The system is broken, but I am part of it.' },
-  },
-  {
-    num: '04', age: 'Age 18–19', phase: 'Year 1 — Foundation',
-    title: 'The Lecture Hall',
-    desc: '200 students in a lecture hall. One professor at the front. Content that could be a YouTube video.',
-    detail: 'The first year of university is dominated by the lecture hall. Hundreds of students sit in tiered rows while a professor speaks at them for 50 minutes. The content is often identical to what is available for free on YouTube. Questions are discouraged by the format. The student is a passive recipient.',
-    consequence: 'Students learn to be passive consumers of information, not active creators of knowledge. The habit of passive learning persists for life.',
-    success: 'Success means passing the first-year exams with a GPA high enough to stay. The student has survived; whether they have learned is secondary.',
-    image: 'https://sfile.chatglm.cn/images-ppt/60c58320d536.jpg',
-    icon: Users,
-    student: { role: 'The Student', perspective: 'I sit in the back. The professor does not know my name. I watch videos on my phone. Nobody notices. Nobody cares.' },
-    tutor: { role: 'The Educator', perspective: 'I have 300 students. I cannot learn their names. I deliver the lecture, write the exam, grade the exam. The system does not let me teach — it lets me process.' },
-  },
-  {
-    num: '05', age: 'Age 19–20', phase: 'Year 2 — Declaring a Major',
-    title: 'The Silo',
-    desc: 'Students must choose a single discipline — and are locked into it. Cross-disciplinary curiosity becomes a scheduling nightmare.',
-    detail: 'In the second year, students are forced to declare a major. This choice, made at age 19, determines the courses they will take, the faculty they will interact with, and the degree they will receive. A computer science student who discovers a passion for philosophy must navigate bureaucratic hurdles. Departments are silos with their own faculty and curricula.',
-    consequence: 'Graduates think in silos. The most consequential problems of the 21st century — climate, AI governance, pandemics — span disciplines that the silo model cannot address.',
-    success: 'Success means completing the major requirements with a competitive GPA. The student has checked the boxes; whether the boxes were worth checking is not asked.',
-    image: 'https://sfile.chatglm.cn/images-ppt/76dbdb01b7b4.png',
-    icon: Lock,
-    student: { role: 'The Student', perspective: 'I wanted to study both computer science and philosophy. They told me to pick one. I picked the one that pays more. I lost something.' },
-    tutor: { role: 'The Educator', perspective: 'A student from another department asked to join my seminar. The registrar said no — it is not in their degree plan. I am not allowed to teach the students who want to learn.' },
-  },
-  {
-    num: '06', age: 'Age 20–21', phase: 'Year 3 — The GPA Game',
-    title: 'Grade Point Average',
-    desc: 'Learning is reduced to a number. The GPA becomes the sole metric of academic worth, driving strategic course selection.',
-    detail: 'By the third year, the GPA has become the student\'s identity. Every course is evaluated not by what it teaches but by how it affects the GPA. Students select "easy A" courses to protect their average. Collaboration is discouraged — if you help a peer, you might curve yourself down. The system is a zero-sum competition.',
-    consequence: 'Students optimize for grades, not for learning. They avoid risk, avoid challenge, and avoid the kind of intellectual struggle that produces genuine growth.',
-    success: 'Success means a 3.8+ GPA that keeps professional school or elite employer options open. The number, not the knowledge, is the achievement.',
-    image: 'https://sfile.chatglm.cn/images-ppt/bebbcf66b86a.jpg',
-    icon: TrendingDown,
-    student: { role: 'The Student', perspective: 'I stopped helping my classmates because the curve punishes generosity. I take easy courses to protect my GPA. I have become a worse person.' },
-    tutor: { role: 'The Educator', perspective: 'I know students take my class because it is an easy A. I could make it harder, more honest. But then enrollment drops, and my department loses funding.' },
-  },
-  {
-    num: '07', age: 'Age 21–22', phase: 'Year 4 — The Job Hunt',
-    title: 'The Credential',
-    desc: 'The degree is a signal to employers, not a measure of capability. The job hunt reduces four years to a single line on a resume.',
-    detail: 'In the final year, the purpose of the degree becomes clear: it is a credential, a signal to employers. The four years of lectures, exams, and GPAs are reduced to a single line on a resume. Employers use the degree as a filter, not because it indicates capability but because it indicates conformity.',
-    consequence: 'Employers hire credentials, not capability. Graduates who passed through the system without acquiring real skills are indistinguishable from those who did.',
-    success: 'Success means a job offer from a recognized employer. The degree has been converted into income — the only metric the system recognizes.',
-    image: 'https://sfile.chatglm.cn/images-ppt/7921490a0b19.jpg',
-    icon: X,
-    student: { role: 'The Student', perspective: 'I spent four years here and the recruiter only asked about my GPA and my school name. Nothing about what I actually know or can do.' },
-    tutor: { role: 'The Educator', perspective: 'I see brilliant students who cannot get interviews because their school is not prestigious enough. And I see mediocre students from elite schools who get every interview. The system rewards the brand, not the brain.' },
-  },
-  {
-    num: '08', age: 'Age 22', phase: 'Graduation',
-    title: 'The Identical Caps',
-    desc: 'Hundreds of identical caps and gowns. A ceremony that celebrates conformity, not individuality.',
-    detail: 'Graduation is the culmination of the system. Hundreds of students wear identical caps and gowns, walk across a stage in identical fashion, and receive identical-looking diplomas. The ceremony celebrates the completion of a standardized process. The individuality, curiosity, and potential that each student brought to the institution has been processed into a uniform output.',
-    consequence: 'Graduates enter the world as standardized products, not as the unique thinkers and makers the world needs.',
-    success: 'Success means walking across the stage, receiving the diploma, and having your photo taken. The ceremony confirms you are done.',
-    image: 'https://sfile.chatglm.cn/images-ppt/8883bca2004b.jpg',
-    icon: Users,
-    student: { role: 'The Student', perspective: 'We all look the same. Same cap, same gown, same diploma. Four years and I am one of hundreds. I do not feel special. I feel processed.' },
-    tutor: { role: 'The Educator', perspective: 'I watch them walk across the stage and wonder how many I actually taught. Some I never met. The ceremony celebrates the institution, not the learner.' },
-  },
-  {
-    num: '09', age: 'Age 22–25', phase: 'Early Career',
-    title: 'The Cubicle',
-    desc: 'The degree gets you the interview. The cubicle is the reward. The work often has nothing to do with what you studied.',
-    detail: 'The degree gets the graduate an interview. The interview gets them a job. The job, more often than not, is a cubicle — a standardized workspace in a standardized organization doing standardized work. The specific knowledge acquired over four years is rarely used. What matters is that the graduate can survive a bureaucratic process.',
-    consequence: 'Graduates spend their most energetic years in environments that do not use their talents, do not challenge them to grow, and do not connect their work to anything they care about.',
-    success: "Success means a stable salary, benefits, and a career trajectory. The cubicle is not a failure — it is the system's intended outcome.",
-    image: 'https://sfile.chatglm.cn/images-ppt/7a15e7d450af.jpg',
-    icon: Lock,
-    student: { role: 'The Student', perspective: 'I studied biology for four years. Now I enter data into spreadsheets. Nobody asks what I think. Nobody cares what I know.' },
-    tutor: { role: 'The Educator', perspective: 'I hear from alumni. They are grateful for the degree but lost in the cubicle. I wonder if I prepared them for a career or for a cage.' },
-  },
-  {
-    num: '10', age: 'Age 22–30', phase: 'The Debt',
-    title: 'The Chain',
-    desc: 'The average US graduate carries $37,000 in student debt. The degree that was supposed to be an investment becomes a chain.',
-    detail: 'The financial consequence of the traditional path is debt. In the United States, the average graduate carries $37,000 in student loans; many carry $100,000 or more. This debt shapes every decision: the jobs they can afford to take, the risks they can afford to take, the businesses they can afford to start. The degree that was supposed to be an investment in freedom becomes a chain.',
-    consequence: 'Debt strips graduates of the freedom to take risks, pursue purpose, or change direction. The system that promised upward mobility delivers indentured servitude.',
-    success: 'Success means paying off the student loans — eventually. Financial freedom, not intellectual freedom, becomes the life goal.',
-    image: 'https://sfile.chatglm.cn/images-ppt/42109eba11ca.jpg',
-    icon: AlertTriangle,
-    student: { role: 'The Student', perspective: 'I wanted to start a company. I wanted to work at a nonprofit. But I have $45,000 in loans. I took the corporate job. I had no choice.' },
-    tutor: { role: 'The Educator', perspective: 'I tell my students to follow their dreams. Then I remember they will graduate with more debt than I earned in my first five years of teaching. I feel like a fraud.' },
-  },
-  {
-    num: '11', age: 'Age 30–50', phase: 'Mid-Career Stagnation',
-    title: 'The Plateau',
-    desc: 'The skills that got you the job are obsolete. The system that trained you offers no path to re-learn.',
-    detail: 'By mid-career, the skills acquired in university are obsolete. The technology has changed, the field has evolved. But the traditional system offers no path to re-learn. Continuing education is expensive, inconvenient, and disconnected from the workplace. The graduate is stuck with a 15-year-old education in a 40-year-old world.',
-    consequence: 'Millions of professionals in their peak years are intellectually stagnant, trapped by a system that educated them once and then abandoned them.',
-    success: 'Success means a promotion, a title, a corner office. The metrics of success are external, defined by the organization, not the individual.',
-    image: 'https://sfile.chatglm.cn/images-ppt/a62337fe896d.png',
-    icon: TrendingDown,
-    student: { role: 'The Student', perspective: 'I have been doing the same work for 12 years. I am good at it. But I am bored. And the skills I learned in school are useless now. Nobody offers me a way to re-learn.' },
-    tutor: { role: 'The Educator', perspective: 'Alumni come back and ask about continuing education. We have a program. It costs $15,000 and takes two years. They cannot afford the time or the money. I have nothing to offer them.' },
-  },
-  {
-    num: '12', age: 'Age 65+', phase: 'Retirement',
-    title: 'The Exit',
-    desc: 'After 40 years in the system, retirement is the exit. Learning is over. Contribution is over. The mind is left to atrophy.',
-    detail: 'Retirement is the final stage of the traditional path. After 40 years of work, the graduate exits the workforce. In the traditional model, this is the end of learning and contribution. The skills are obsolete, the network is retired, and the mind is left to atrophy. The wisdom accumulated over a lifetime has no outlet.',
-    consequence: 'Society loses the wisdom, mentorship, and ongoing contribution of its elders — the very people best positioned to provide perspective and intergenerational knowledge transfer.',
-    success: 'Success means a pension and a comfortable retirement. Learning is over; the goal is to rest after 40 years of the system.',
-    image: 'https://sfile.chatglm.cn/images-ppt/2547658d53eb.jpg',
-    icon: X,
-    student: { role: 'The Student', perspective: 'I retired last year. I have wisdom, experience, things to teach. But nobody asks. Society says I am done. I am not done.' },
-    tutor: { role: 'The Educator', perspective: 'The best teachers are the elders who have lived it. But the system retires them at 65 and replaces them with me — someone who has read about it but not lived it. We waste our greatest resource.' },
-  },
+  { num: '01', age: 'Age 6', phase: 'Primary School', title: 'The Sorting Begins', desc: 'Children are placed into age-based cohorts and sorted by standardized tests.', detail: 'Amara enters primary school in Lagos. She is placed in a class of 60 children, all born in the same year. A standardized test in Year 2 sorts the children into tracks. Amara scores well in math but poorly in English — the test is in English, her third language. She is placed in the "regular" track.', consequence: 'Curiosity is replaced by compliance. Children who do not fit the mold learn they are "not smart."', success: 'Success means scoring well on the standardized test. The child learns their worth is a number.', image: '/resources/img/journey/t01.jpg', icon: Lock, studentName: 'Amara', studentQuote: 'I loved numbers. But the test said I was average because I could not read English fast enough.', studentExperience: 'Amara sits in a classroom of 60 children. The teacher writes on the blackboard. Amara copies. She does not understand all the words because they are in English, her third language after Yoruba and Igbo. She scores 48% on the placement test. The label "regular track" follows her for the next 10 years.', educatorName: 'Mr. Okonkwo', educatorQuote: 'I can see Amara is brilliant. But I have 60 students and one curriculum. The test does not measure what she knows.', educatorExperience: 'Mr. Okonkwo has 60 students. He knows Amara is gifted at mathematics — she solves problems in her head that take others three minutes on paper. But the system requires him to teach to the test, in English, at a pace set by the curriculum, not by the children.' },
+  { num: '02', age: 'Age 14', phase: 'Secondary School', title: 'The Exam Gauntlet', desc: 'Years of schooling reduced to exam scores. Learning becomes test preparation.', detail: 'Amara is now 14. Everything is preparation for the WAEC exam. She memorizes formulas, dates, and definitions. She does not understand why they matter. She studies 6 hours every night after school.', consequence: 'Students develop test-taking skills, not life skills. They memorize, regurgitate, and forget.', success: 'Success means a high exam score that secures a university place.', image: '/resources/img/journey/t02.jpg', icon: AlertTriangle, studentName: 'Amara', studentQuote: 'I memorized 200 pages of biology. Two weeks after the exam, I remembered nothing. But I got an A.', studentExperience: 'Amara studies until midnight every night. Her mother brings her food. The pressure is immense — if she does not score well on the WAEC, university is closed to her. She memorizes without understanding. She loses weight. She develops anxiety. She is 14 years old.', educatorName: 'Mr. Okonkwo', educatorQuote: 'I know this content will be forgotten. But my performance review is tied to their exam scores. I teach to the test because I must.', educatorExperience: 'Mr. Okonkwo drills his students on past exam questions. He knows they will forget the content within weeks. He knows the exam tests memorization, not understanding. But his job, his salary, his reputation — all depend on his students exam scores. He is 47 and has been teaching this way for 22 years.' },
+  { num: '03', age: 'Age 17', phase: 'University Applications', title: 'The Gatekeeper', desc: 'A single test score determines the trajectory of a lifetime.', detail: 'Amara scores 265 out of 400 on the JAMB. The cutoff for her preferred university is 270. She misses by 5 points. She is offered a place at a lesser institution. Her mother cannot afford to send her anyway. Amara takes a job at a fabric shop.', consequence: 'Talent is wasted. Brilliant students from poor backgrounds are filtered out by a single test score.', success: 'Success means admission to a prestigious university. The gate is the goal.', image: '/resources/img/journey/t03.jpg', icon: Lock, studentName: 'Amara', studentQuote: 'I missed the cutoff by 5 points. Five points decided my entire future.', studentExperience: 'Amara checks the JAMB results on her phone. 265. The cutoff is 270. She stares at the screen. She does not cry. She goes to work at the fabric shop. Her mathematics teacher once told her she was the most talented student he had ever taught. It does not matter now.', educatorName: 'Mr. Okonkwo', educatorQuote: 'Amara was the most gifted mathematics student I have ever taught. She missed the cutoff by 5 points. The system failed her.', educatorExperience: 'Mr. Okonkwo hears about Amara score. He is not surprised — the JAMB tests speed and memorization, not mathematical thinking. He has seen this happen to brilliant students every year for 22 years. He writes a letter of recommendation, but there is nowhere to send it. The gate is closed.' },
+  { num: '04', age: 'Age 19', phase: 'Year 1', title: 'The Lecture Hall', desc: '200 students in a hall. One professor at the front. Passive learning.', detail: 'Amara eventually saves enough to attend a local polytechnic. She sits in a lecture hall with 200 other students. The professor reads from a PowerPoint. Amara cannot ask questions. She copies notes. She is passive. She is invisible.', consequence: 'Students learn to be passive consumers of information. The habit persists for life.', success: 'Success means passing the first-year exams. Survival, not learning.', image: '/resources/img/journey/t04.jpg', icon: Users, studentName: 'Amara', studentQuote: 'The professor does not know my name. I sit in the back. Nobody notices. Nobody cares.', studentExperience: 'Amara sits in the back row. The professor drones through a 50-minute lecture. She has questions — she always has questions — but there are 200 students and no time. She stops raising her hand. She stops asking. She copies the notes, memorizes them for the exam, and forgets them the next day.', educatorName: 'Mr. Okonkwo', educatorQuote: 'I have 300 students. I cannot learn their names. I deliver the lecture, write the exam, grade the exam.', educatorExperience: 'Mr. Okonkwo, now an adjunct lecturer, faces 300 students in a hall designed for 150. He delivers the same lecture he has given for 5 years. He cannot see the back row. He cannot answer questions. He grades 300 exams in a weekend. He does not know if any of them learned anything.' },
+  { num: '05', age: 'Age 20', phase: 'Year 2', title: 'The Silo', desc: 'Students must choose a single discipline and are locked into it.', detail: 'Amara must declare a specialization. She wants to study both computer science and economics. The registrar says she must choose one. She chooses computer science because it pays more. She never takes an economics course.', consequence: 'Graduates think in silos. The most consequential problems span disciplines.', success: 'Success means completing the major requirements with a competitive GPA.', image: '/resources/img/journey/t05.jpg', icon: Lock, studentName: 'Amara', studentQuote: 'I wanted to study both computer science and economics. They told me to pick one. I lost something.', studentExperience: 'Amara fills out the specialization form. She writes "Computer Science." She hesitates — she also loves economics. But the form has one line. She chooses. She will never sit in an economics class. She will never understand the financial system that shapes her world.', educatorName: 'Mr. Okonkwo', educatorQuote: 'A student from another department asked to join my seminar. The registrar said no.', educatorExperience: 'Mr. Okonkwo wants to open his seminar to students from other departments. The registrar refuses — it is not in their degree plan, it would disrupt credit accumulation. The system is designed to keep students in their lanes. Interdisciplinary curiosity is a scheduling problem.' },
+  { num: '06', age: 'Age 21', phase: 'Year 3', title: 'The GPA Game', desc: 'Learning reduced to a number. The GPA drives strategic course selection.', detail: 'Amara has a 3.4 GPA. She needs 3.5 for an internship. She drops a challenging AI course that interests her and takes an easy A elective instead. She stops helping classmates — the curve is competitive.', consequence: 'Students optimize for grades, not learning. They avoid risk and challenge.', success: 'Success means a 3.8+ GPA. The number, not the knowledge, is the achievement.', image: '/resources/img/journey/t06.jpg', icon: TrendingDown, studentName: 'Amara', studentQuote: 'I dropped the AI course I loved to take an easy elective. I stopped helping my classmates. I became a worse person.', studentExperience: 'Amara checks her GPA: 3.4. She needs 3.5. She looks at the catalog. There is an AI course she has been wanting to take — it is known to be hard. She selects "Introduction to Crafts" instead. She hates herself a little. She also stops sharing notes — the curve punishes generosity.', educatorName: 'Mr. Okonkwo', educatorQuote: 'I know students take my class because it is an easy A. I could make it harder. But then enrollment drops.', educatorExperience: 'Mr. Okonkwo sees his enrollment: 45 students, up from 30. He knows why — his course has a reputation for being easy. He could make it rigorous. But if enrollment drops below 25, the department cuts his section. He keeps it easy.' },
+  { num: '07', age: 'Age 22', phase: 'Year 4', title: 'The Credential', desc: 'The degree is a signal to employers, not a measure of capability.', detail: 'Amara graduates. She applies for 40 jobs. Recruiters ask for her degree, GPA, and university name. Her polytechnic is not prestigious. She gets 3 interviews. The first question is always "Where did you study?" not "What can you build?"', consequence: 'Employers hire credentials, not capability.', success: 'Success means a job offer from a recognized employer.', image: '/resources/img/journey/t07.jpg', icon: X, studentName: 'Amara', studentQuote: 'I spent four years here and the recruiter only asked about my school name.', studentExperience: 'Amara sits across from a recruiter. She has built three apps, contributed to open-source, taught herself machine learning. The recruiter asks: "What university did you attend?" Amara names the polytechnic. The interview is effectively over. The brand matters more than the brain.', educatorName: 'Mr. Okonkwo', educatorQuote: 'Brilliant students from less prestigious schools cannot get interviews. Mediocre students from elite schools get every interview.', educatorExperience: 'Mr. Okonkwo writes reference letters for his best students. He writes about their projects, their thinking, their creativity. He knows the letters will not be read. Employers filter by university name and GPA. The reference letter is a ritual, not a signal.' },
+  { num: '08', age: 'Age 22', phase: 'Graduation', title: 'The Identical Caps', desc: 'A ceremony that celebrates conformity, not individuality.', detail: 'Amara walks across the stage. She wears the same cap and gown as 300 others. She has a job at a mid-tier company — not the one she wanted, but the one that said yes. She feels relieved, not proud. She feels processed.', consequence: 'Graduates enter the world as standardized products.', success: 'Success means walking across the stage and receiving the diploma.', image: '/resources/img/journey/t08.jpg', icon: Users, studentName: 'Amara', studentQuote: 'We all look the same. Same cap, same gown, same diploma. I feel processed.', studentExperience: 'Amara walks across the stage. Her mother is in the audience, crying with pride. Amara smiles for the photo. But inside, she feels something is wrong. She spent four years memorizing, cramming, strategizing for a GPA. She cannot remember the last time she was genuinely curious. The spark she had at age 6 — the love of numbers — is gone.', educatorName: 'Mr. Okonkwo', educatorQuote: 'I watch them walk across the stage and wonder how many I actually taught.', educatorExperience: 'Mr. Okonkwo attends the ceremony. He watches 300 identical caps cross the stage. He thinks about Amara — the 6-year-old who could solve equations in her head, now processed into a 22-year-old with a credential and a job she does not love. He wonders if he is complicit.' },
+  { num: '09', age: 'Age 23', phase: 'Early Career', title: 'The Cubicle', desc: 'The degree gets the interview. The cubicle is the reward.', detail: 'Amara works at a mid-tier tech company. She enters data into systems. She does not build anything. She does not use the mathematics she loved. She sits in a cubicle from 8am to 5pm. She is bored.', consequence: 'Graduates spend their most energetic years in environments that do not use their talents.', success: 'Success means a stable salary and benefits.', image: '/resources/img/journey/t09.jpg', icon: Lock, studentName: 'Amara', studentQuote: 'I studied computer science for four years. Now I enter data into spreadsheets.', studentExperience: 'Amara sits in her cubicle. She has been here 8 months. Her job is to maintain a legacy system — fixing bugs in code written before she was born. She is not learning. She is not building. She is not using the mathematical mind Mr. Okonkwo called the most gifted he had ever seen.', educatorName: 'Mr. Okonkwo', educatorQuote: 'Alumni say they are grateful for the degree but lost in the cubicle. I wonder if I prepared them for a career or for a cage.', educatorExperience: 'Mr. Okonkwo runs into Amara at a reunion. She tells him about the cubicle. She tells him she is bored, underused, losing her edge. He has no advice. The system he taught her in produced exactly this outcome.' },
+  { num: '10', age: 'Age 25', phase: 'The Debt', title: 'The Chain', desc: 'Student debt strips graduates of freedom.', detail: 'Amara owes the equivalent of a year salary. She cannot afford to start a business. She cannot afford to take a lower-paying but more meaningful job. She must pay the debt. The degree that was supposed to be freedom is a chain.', consequence: 'Debt strips graduates of the freedom to take risks or pursue purpose.', success: 'Success means paying off the loans — eventually.', image: '/resources/img/journey/t10.jpg', icon: AlertTriangle, studentName: 'Amara', studentQuote: 'I wanted to start a company. But I have loans. I took the safe job. I had no choice.', studentExperience: 'Amara has an idea for a mobile app that could help market traders like her mother. She sketches it at night. She wants to build it. But she owes the bank, and the payment is due every month. She cannot afford to quit. She puts the sketches in a drawer.', educatorName: 'Mr. Okonkwo', educatorQuote: 'I tell my students to follow their dreams. Then I remember they will graduate with debt. I feel like a fraud.', educatorExperience: 'Mr. Okonkwo tells his current students to follow their dreams. Then he thinks of Amara — brilliant, indebted, stuck in a cubicle, her app sketches in a drawer. He continues the lecture. He does not mention Amara.' },
+  { num: '11', age: 'Age 35', phase: 'Mid-Career', title: 'The Plateau', desc: 'Skills are obsolete. The system offers no path to re-learn.', detail: 'Amara is 35. She has been at the same company for 12 years. The technology has changed — AI, cloud, mobile — but her skills have not. She is too expensive to fire and too outdated to promote. There is no institution that will help her re-learn.', consequence: 'Millions of professionals in their peak years are intellectually stagnant.', success: 'Success means a promotion and a title.', image: '/resources/img/journey/t11.jpg', icon: TrendingDown, studentName: 'Amara', studentQuote: 'I have been doing the same work for 12 years. I am bored. My skills are obsolete. Nobody offers me a way to re-learn.', studentExperience: 'Amara is 35. A younger colleague shows her a new AI tool. Amara does not understand it. She pretends she does. She goes home and tries to learn from YouTube, but the videos assume knowledge she does not have. There is no course she can afford. She is stuck.', educatorName: 'Mr. Okonkwo', educatorQuote: 'Alumni ask about continuing education. Our program costs money and takes two years. They cannot afford either.', educatorExperience: 'Mr. Okonkwo receives an email from Amara. She asks if the polytechnic offers continuing education in AI. He checks. There is a program — it costs two years salary and requires full-time attendance. He replies: "I am sorry. We have nothing for you."' },
+  { num: '12', age: 'Age 65', phase: 'Retirement', title: 'The Exit', desc: 'Retirement is the exit. Learning is over. Wisdom has no outlet.', detail: 'Amara retires at 65. She has wisdom, experience, and things to teach. But society says she is done. No institution asks her to mentor. Her mind — sharp, experienced, full of perspective — is left to atrophy.', consequence: 'Society loses the wisdom and mentorship of its elders.', success: 'Success means a pension and rest. Learning is over.', image: '/resources/img/journey/t12.jpg', icon: X, studentName: 'Amara', studentQuote: 'I have wisdom, experience, things to teach. But nobody asks. Society says I am done. I am not done.', studentExperience: 'Amara is 65. She retires. She has 40 years of experience. She wants to mentor young people. She contacts schools, programs, organizations. Nobody responds. The system that used her youth has no use for her elderhood. She sits at home. Her mind, once the most gifted Mr. Okonkwo had ever seen, is left to atrophy.', educatorName: 'Mr. Okonkwo', educatorQuote: 'The best teachers are the elders who have lived it. But the system retires them at 65.', educatorExperience: 'Mr. Okonkwo, long retired, hears from Amara. She is 65, retired, wants to teach. He smiles bitterly. He has been in the same position — experienced, wise, willing to mentor, and completely unwanted by a system that retires people at 65.' },
 ];
 
-// ═══════════════════════════════════════════════════════════
-// ARTEMIS STEPS
-// ═══════════════════════════════════════════════════════════
 const ARTEMIS_STEPS: StepData[] = [
-  {
-    num: '01', age: 'Lifelong', phase: 'Open-Loop Learning',
-    title: 'The Infinite Continuum',
-    desc: 'Learning begins at birth and never ends. There is no "first day of school" — only the continuation of a natural process.',
-    detail: 'Artemis rejects the idea that learning has a start date and an end date. The Infinite Learning Continuum treats learning as a lifelong process that begins at birth and continues until death. A 7-year-old, a 17-year-old, a 37-year-old, and a 70-year-old are all learners, all in different stages of the same journey, all able to learn from and teach each other.',
-    consequence: 'No one is "too young" or "too old" to learn. The intergenerational exchange enriches everyone.',
-    success: 'Success means the child retains their curiosity, asks questions fearlessly, and sees themselves as a lifelong learner — not as a test score.',
-    image: 'https://sfile.chatglm.cn/images-ppt/e7445750dbd4.jpg',
-    icon: InfinityIcon,
-    student: { role: 'The Student', perspective: 'My grandmother is in my learning circle. She teaches me history. I teach her technology. We are both learners. Nobody is done.' },
-    tutor: { role: 'The Educator', perspective: 'I teach a circle that includes a 19-year-old and a 68-year-old. The 19-year-old brings energy; the 68-year-old brings wisdom. I facilitate both. This is what teaching should be.' },
-  },
-  {
-    num: '02', age: 'All Ages', phase: 'Adaptive Paced Learning',
-    title: 'Your Rhythm, Not the Clock',
-    desc: 'Students progress when they master the material, not when the semester ends. No one is "behind" or "ahead."',
-    detail: 'Adaptive Paced Learning replaces the factory-model clock. Students do not progress through material at a uniform pace determined by the academic calendar. They progress when they have demonstrated mastery of the current material. A student who masters algebra in three months moves on. A student who needs six months gets six months. No one is "behind" because there is no behind.',
-    consequence: 'No student is left behind by the clock, and no student is held back by it. Mastery, not time, is the metric.',
-    success: 'Success means the student has genuinely mastered the material at their own pace, with deep understanding rather than superficial memorization.',
-    image: 'https://sfile.chatglm.cn/images-ppt/d5c47a826274.jpg',
-    icon: Clock,
-    student: { role: 'The Student', perspective: 'I struggled with calculus. In the old system, I would have failed. Here, I got three extra months. Now I understand it deeply. Nobody rushed me. Nobody shamed me.' },
-    tutor: { role: 'The Educator', perspective: 'I do not teach to a calendar. I teach to mastery. When a student gets it, we move on. When they do not, we stay. I have never seen students learn this deeply.' },
-  },
-  {
-    num: '03', age: 'Age 17+', phase: 'Purpose Learning',
-    title: 'Declare a Mission, Not a Major',
-    desc: 'Students do not choose a major. They declare a mission — a real-world problem they commit to advancing.',
-    detail: 'Purpose Learning replaces the major with the mission. A student does not declare "Computer Science." They declare: "To make clean water accessible across the Sahel." The mission, not a departmental curriculum, shapes the student\'s course selection, capstone project, and Center of Inquiry affiliation. The education serves the mission.',
-    consequence: 'Graduates know what they are working toward and why. The education is not a credential but a toolkit for purpose.',
-    success: 'Success means the student has found a mission that ignites their passion — and built a curriculum that serves it, not the other way around.',
-    image: 'https://sfile.chatglm.cn/images-ppt/74b9fa64a49f.jpg',
-    icon: Target,
-    student: { role: 'The Student', perspective: 'I do not have a major. I have a mission: to build AI systems that serve underserved communities. Every course I take serves that mission. I have never been more motivated.' },
-    tutor: { role: 'The Educator', perspective: 'Students ask me what courses to take. I ask them what problem they want to solve. The answer shapes everything. This is education with direction.' },
-  },
-  {
-    num: '04', age: 'Year 1–2', phase: 'Four-Pillar Foundation',
-    title: 'Epistemology, Computation, Systems, Expression',
-    desc: 'Every Artemis graduate completes a four-pillar foundation: how to know, how to compute, how to see systems, how to make.',
-    detail: 'The four-pillar curriculum provides the shared intellectual substrate. Epistemology: how we know what we know. Computational Thinking: the algorithmic decomposition of problems. Global Systems: the interlocking systems of the planetary century. Creative Expression: making as knowing. Every graduate can reason across these four dimensions.',
-    consequence: 'Graduates can think across disciplines. They have the tools to approach any problem, in any field, with any team.',
-    success: 'Success means the student can reason epistemologically, computationally, systemically, and creatively — the foundation for any future inquiry.',
-    image: 'https://sfile.chatglm.cn/images-ppt/bcba72be5b41.png',
-    icon: BookOpen,
-    student: { role: 'The Student', perspective: 'I came here to study engineering. Now I am also studying philosophy, climate systems, and design. I did not expect to love all four. I do. They connect.' },
-    tutor: { role: 'The Educator', perspective: 'I teach epistemology to engineering students. At first they resist. Then they realize that understanding how we know changes how they engineer. The pillars are not separate — they are one foundation.' },
-  },
-  {
-    num: '05', age: 'Weekly', phase: 'The Tutorial System',
-    title: 'Three Students, One Faculty Member',
-    desc: 'Weekly 75-minute tutorials in groups of three. Socratic inquiry, not passive lecture. Every student accountable every week.',
-    detail: 'The tutorial is the core of the Artemis pedagogy. Every student meets weekly in a tutorial of three students and one faculty member — a 75-minute deep discussion. The tutorial is not a mini-lecture; it is a Socratic interrogation. The 3:1 ratio means no one can hide. Every student is accountable every week.',
-    consequence: 'Students learn to think on their feet, articulate their reasoning, and defend their ideas — the skills that matter in the real world.',
-    success: 'Success means the student can articulate, defend, and refine their ideas in real-time — the skill that defines leadership in every field.',
-    image: 'https://sfile.chatglm.cn/images-ppt/f41d2efe3144.jpg',
-    icon: Users,
-    student: { role: 'The Student', perspective: 'Three of us, one professor, 75 minutes. She asks me a question. I have to answer. I cannot hide. It is terrifying. It is the best learning I have ever had.' },
-    tutor: { role: 'The Educator', perspective: 'I know every student by name. I know what they understand and what they do not. I can push each one individually. This is why I became a teacher.' },
-  },
-  {
-    num: '06', age: '24/7', phase: 'The AI Tutor',
-    title: 'Socratic Guidance, Anytime',
-    desc: 'Every course is paired with an AI tutor that asks questions, never gives answers. Available at 2am when you are stuck.',
-    detail: 'Every Artemis course is paired with an AI assistant — a large language model fine-tuned on the Center of Inquiry\'s domain knowledge and the Socratic method. The AI tutor is available 24/7, not to deliver answers but to ask questions. When a student is stuck at 2am, the AI asks: "What have you tried?" "What assumption are you making?" It is calibrated to the student\'s competency level.',
-    consequence: 'Every student has a personal tutor that never sleeps, never tires, and never judges — but always pushes them to think harder.',
-    success: 'Success means the student is never stuck, never alone with a problem — the AI tutor ensures thinking never stops, even at 2am.',
-    image: 'https://sfile.chatglm.cn/images-ppt/6e9ff026f6c0.jpg',
-    icon: Brain,
-    student: { role: 'The Student', perspective: 'I was stuck on a problem at 2am. The AI tutor did not give me the answer. It asked me three questions. By the third question, I had figured it out myself. That felt amazing.' },
-    tutor: { role: 'The Educator', perspective: 'The AI handles the repetitive clarification so I can focus on the deep Socratic work in tutorials. It is not replacing me — it is freeing me to do what only I can do.' },
-  },
-  {
-    num: '07', age: '4 Years', phase: 'Six-City Rotation',
-    title: 'Six Cities, Four Continents',
-    desc: 'Undergraduate students rotate through six hostel cities — Valletta, Berlin, Nairobi, Singapore, São Paulo, Vancouver.',
-    detail: 'The Darwin Voyage is the physical expression of the planetary mandate. Undergraduate students rotate through six cities over four years — Valletta, Berlin, Nairobi, Singapore, São Paulo, Vancouver — spending two semesters in each. Each city hosts a residential college with full academic facilities, and the curriculum is synchronised so the student continues their course sequence seamlessly.',
-    consequence: 'Graduates have lived in six countries, speak multiple languages, and understand the world from multiple cultural perspectives — not from a textbook.',
-    success: 'Success means the student has lived in six countries, speaks multiple languages, and understands the world not from a book but from experience.',
-    image: 'https://sfile.chatglm.cn/images-ppt/ccd09531d741.jpg',
-    icon: Globe,
-    student: { role: 'The Student', perspective: 'I lived in Nairobi for a year. I worked with a local water utility on distribution modeling. I learned more about global systems in that year than in any classroom.' },
-    tutor: { role: 'The Educator', perspective: 'I teach in Berlin this semester, Nairobi next. The students who arrive from São Paulo bring perspectives my Berlin students have never heard. The rotation is the curriculum.' },
-  },
-  {
-    num: '08', age: 'All Years', phase: 'Centers of Inquiry',
-    title: 'No Departments, Only Problems',
-    desc: '19 interdisciplinary Centers replace departments. Faculty are appointed to Centers, not silos. Research flows across boundaries.',
-    detail: 'The 19 Centers of Inquiry replace traditional academic departments. Each Center is an interdisciplinary hub organised around a problem domain: Synthetic Intelligence, Bio-Regenerative Arts, Cosmological Humanities, Urban Futures, and more. Faculty are appointed to Centers, not departments. Students affiliate with the Center whose research agenda most aligns with their mission.',
-    consequence: 'Research and teaching are organized around the world\'s problems, not around 19th-century disciplinary boundaries.',
-    success: 'Success means the student has contributed to real research at the frontier of human knowledge — not merely studied what others have done.',
-    image: 'https://sfile.chatglm.cn/images-ppt/c54aa4b2c65e.jpg',
-    icon: FlaskConical,
-    student: { role: 'The Student', perspective: 'My Center combines biology, architecture, and materials science. We are developing self-healing concrete. No department could do this. The Center makes it possible.' },
-    tutor: { role: 'The Educator', perspective: 'I am a biologist working alongside architects and artists. In my old department, I never met them. Here, we share a lab, share students, share problems. The boundaries are gone.' },
-  },
-  {
-    num: '09', age: 'All Years', phase: 'Competency-Based Grading',
-    title: 'Mastery, Not Ranking',
-    desc: 'No GPA. No class rank. No curve. Students are assessed against mastery standards — "mastery," "proficiency," or "in progress."',
-    detail: 'SkillPrints replaces the GPA with competency-based assessment. Students are not ranked against each other; they are assessed against published mastery standards. A student demonstrates mastery of a competency through coursework, projects, and oral examinations, and receives a designation of "mastery," "proficiency," or "in progress." The transcript describes what the student can actually do, not how they ranked.',
-    consequence: 'Collaboration replaces competition. Students help each other because helping does not lower your grade. The transcript is a skill portfolio, not a ranking.',
-    success: 'Success means the student has a portfolio of demonstrated competencies — what they can do, not how they ranked.',
-    image: 'https://sfile.chatglm.cn/images-ppt/14bd7911f75e.png',
-    icon: CheckCircle2,
-    student: { role: 'The Student', perspective: 'I help my classmates because it does not hurt me. My transcript says what I can do, not how I ranked. I have never been more collaborative or more honest.' },
-    tutor: { role: 'The Educator', perspective: 'I assess what students can do, not how they compare. A mastery designation means the same thing in 2026 and 2050. The standard is absolute. I can finally be honest about what a student has learned.' },
-  },
-  {
-    num: '10', age: 'Final Year', phase: 'The Capstone',
-    title: 'Advance Your Mission',
-    desc: 'Every student completes a capstone that advances their declared mission. Evaluated on epistemic contribution and civic impact.',
-    detail: 'The capstone is the culmination of the Artemis education. Every student completes a capstone project in their final year, and the capstone must advance the student\'s declared mission. This is not a thesis — it is a contribution. A water-access student might design and prototype a low-cost filtration system deployed in a Sahel community. The capstone is evaluated on a dual criterion: epistemic contribution and civic impact.',
-    consequence: 'Graduates leave with a portfolio of real work, not just a transcript. They have already made a contribution before they graduate.',
-    success: 'Success means the student has advanced their mission — made a real contribution to a real problem before they even graduate.',
-    image: 'https://sfile.chatglm.cn/images-ppt/313d3da6e819.jpg',
-    icon: Rocket,
-    student: { role: 'The Student', perspective: 'My capstone is a water filtration prototype deployed in three Sahel communities. Real people are using it. This is not a paper. This is impact.' },
-    tutor: { role: 'The Educator', perspective: 'I do not grade capstones. I evaluate them the way I evaluate research: did it advance knowledge? Did it help people? This is the standard the institution holds itself to. We hold students to the same.' },
-  },
-  {
-    num: '11', age: 'Post-Graduation', phase: 'The Forge & Innovation',
-    title: 'From Breakthrough to Venture',
-    desc: 'The Forge incubator spins research into ventures within 12 months. 5% equity flows to the endowment. Graduates can build.',
-    detail: 'The Forge is Artemis\'s translational engine. It takes breakthroughs from the Centers of Inquiry and spins them into independent ventures within 12 months. ClimatIQ from Urban Futures. NeuroBridge from Synthetic Intelligence. BioWeave from Bio-Regenerative Arts. Each venture addresses a real-world problem and carries 5% equity for the Artemis endowment. Graduates are not just prepared to join existing organizations — they are prepared to build new ones.',
-    consequence: 'Graduates can build ventures, not just join them. The institution supports their ambitions with capital, mentorship, and infrastructure.',
-    success: 'Success means the graduate can build, not just join — with the capital, mentorship, and infrastructure to launch ventures that matter.',
-    image: 'https://sfile.chatglm.cn/images-ppt/77ee5cfc9f08.jpg',
-    icon: Zap,
-    student: { role: 'The Student', perspective: 'I graduated, and instead of sending resumes, I pitched my venture to the Forge. They funded it. I am building my company. The institution did not just educate me — it invested in me.' },
-    tutor: { role: 'The Educator', perspective: 'My best student did not get a job. She built one. The Forge backed her. I am on her advisory board. This is what education should produce: builders, not just employees.' },
-  },
-  {
-    num: '12', age: 'For Life', phase: 'The Lifelong Continuum',
-    title: 'Learning Never Stops',
-    desc: 'Graduation is not the end. Alumni continue learning, teaching, and contributing through the Artemis network for life.',
-    detail: 'Because learning is an infinite continuum, graduation is not the end of the journey — it is a milestone. Artemis alumni continue to have access to the institution\'s courses, Centers, and Knowledge Core for life. They can return for a semester, audit a course, mentor a student, or contribute to a Center\'s research. The 70-year-old alumnus and the 20-year-old student are both learners, both in different stages of the same continuum.',
-    consequence: 'The institution supports its learners for life, not for four years. The wisdom of elders flows back to the young, and the energy of the young flows to the elders.',
-    success: 'Success means the graduate continues to learn, teach, and contribute for life — the continuum never ends, and neither does the impact.',
-    image: 'https://sfile.chatglm.cn/images-ppt/09ad7b45d48d.jpg',
-    icon: Heart,
-    student: { role: 'The Student', perspective: 'I graduated five years ago. I still take courses. I mentor three students. I am learning more now than I did in school. The continuum is real.' },
-    tutor: { role: 'The Educator', perspective: 'My alumni come back — to learn, to teach, to mentor. The institution is not a place they left. It is a community they belong to. For life. This is what I always hoped education could be.' },
-  },
+  { num: '01', age: 'Lifelong', phase: 'Open-Loop Learning', title: 'The Infinite Continuum', desc: 'Learning begins at birth and never ends. No "first day of school."', detail: 'Kwame has been a learner since birth. His grandmother, a retired midwife, taught him about plants and healing. At Artemis, he is part of a learning circle that includes his grandmother — she attends remotely from Accra. There is no graduation. Kwame is 19. His grandmother is 71. They are both learners.', consequence: 'No one is "too young" or "too old." Intergenerational exchange enriches everyone.', success: 'Success means the learner retains curiosity and sees themselves as a lifelong learner.', image: '/resources/img/journey/a01.jpg', icon: InfinityIcon, studentName: 'Kwame', studentQuote: 'My grandmother is in my learning circle. She teaches me traditional medicine. I teach her the platform. We are both learners.', studentExperience: 'Kwame sits in the Nairobi college common room, connected to his grandmother in Accra via the learning platform. She is explaining the medicinal properties of a plant she has used for 50 years. Kwame takes notes — not for a test, but because this knowledge matters. His grandmother is 71. At Artemis, she does not need a degree. She is a learner.', educatorName: 'Dr. Osei', educatorQuote: 'I teach a circle with a 19-year-old and a 71-year-old. The energy of youth meets the wisdom of age.', educatorExperience: 'Dr. Osei facilitates the learning circle. Kwame brings questions about AI ethics. His grandmother brings questions about who gets to decide what is ethical. The 19-year-old and the 71-year-old challenge each other in ways Dr. Osei could never engineer.' },
+  { num: '02', age: 'All Ages', phase: 'Adaptive Paced Learning', title: 'Your Rhythm, Not the Clock', desc: 'Students progress when they master the material, not when the semester ends.', detail: 'Kwame struggles with linear algebra. In the old system, he would have failed. At Artemis, he gets an extra month. He works through the concepts with his AI tutor, meets with Dr. Osei in tutorials, and eventually masters it. Nobody rushes him.', consequence: 'No student is left behind or held back by the clock. Mastery, not time.', success: 'Success means genuine mastery at your own pace, with deep understanding.', image: '/resources/img/journey/a02.jpg', icon: Clock, studentName: 'Kwame', studentQuote: 'I struggled with linear algebra. In the old system, I would have failed. Here, I got an extra month. Now I understand it deeply.', studentExperience: 'Kwame stares at the linear algebra problem. He does not get it. He feels the old panic — the fear of being "behind." But there is no "behind" at Artemis. His dashboard says "in progress." He meets with his AI tutor, which asks Socratic questions until the concept clicks. Three weeks later, the dashboard says "mastery." He owns this knowledge now.', educatorName: 'Dr. Osei', educatorQuote: 'I do not teach to a calendar. I teach to mastery. I have never seen students learn this deeply.', educatorExperience: 'Dr. Osei sees Kwame dashboard: "in progress" on linear algebra for three weeks. She does not worry. She schedules an extra tutorial. She asks questions that reveal the gap. She watches him work through it. When the dashboard flips to "mastery," she feels the satisfaction that made her become a teacher.' },
+  { num: '03', age: 'Age 17', phase: 'Purpose Learning', title: 'Declare a Mission, Not a Major', desc: 'Students declare a mission — a real-world problem they commit to.', detail: 'Kwame declares his mission: "To build AI systems that serve underserved communities." This shapes everything. He takes courses in computer science, ethics, public health, and development economics. He affiliates with the Center for Synthetic Intelligence. His mission, not a department, drives his education.', consequence: 'Graduates know what they are working toward and why.', success: 'Success means finding a mission that ignites passion and building a curriculum around it.', image: '/resources/img/journey/a03.jpg', icon: Target, studentName: 'Kwame', studentQuote: 'I do not have a major. I have a mission: AI for underserved communities. Every course serves that mission.', studentExperience: 'Kwame stands before his advising panel and declares his mission. It is not a formality. It is a commitment. His advisor asks: "What will you need?" Kwame lists: machine learning, ethics, public health, development economics, design. His curriculum is built around this list. Every course has a purpose. Every project connects to the mission.', educatorName: 'Dr. Osei', educatorQuote: 'I ask students what problem they want to solve. The answer shapes everything.', educatorExperience: 'Dr. Osei sits on Kwame advising panel. She has heard 40 mission declarations this year. Each one shapes a different curriculum. She does not prescribe courses — she asks questions. "What will you need?" "Who has tried this before?" "What will you build?" The student designs the education. She guides it.' },
+  { num: '04', age: 'Year 1', phase: 'Four-Pillar Foundation', title: 'How to Know, Compute, See, Make', desc: 'Every graduate completes a four-pillar foundation.', detail: 'Kwame first year is the four-pillar foundation. Epistemology: he learns to question evidence. Computational thinking: he learns to decompose problems. Global systems: he learns how climate, finance, and governance interlock. Creative expression: he builds a prototype in the maker space. He did not expect to love philosophy. He does.', consequence: 'Graduates can think across disciplines and approach any problem.', success: 'Success means reasoning epistemologically, computationally, systemically, and creatively.', image: '/resources/img/journey/a04.jpg', icon: BookOpen, studentName: 'Kwame', studentQuote: 'I came here to study engineering. Now I am also studying philosophy and design. I did not expect to love all four. They connect.', studentExperience: 'Kwame is in his epistemology seminar. They are debating what counts as evidence in machine learning. He never expected philosophy to change how he codes — but it does. He starts questioning the data he trains his models on. The four pillars are not separate. They are one foundation.', educatorName: 'Dr. Osei', educatorQuote: 'I teach epistemology to engineering students. At first they resist. Then they realize it changes how they engineer.', educatorExperience: 'Dr. Osei teaches the epistemology pillar. Her students are engineers, scientists, designers. At first, they resist. Then, around week 6, something shifts. A student asks: "How do I know my model is not biased?" The room goes quiet. Dr. Osei smiles. This is why the pillars exist.' },
+  { num: '05', age: 'Weekly', phase: 'The Tutorial', title: 'Three Students, One Faculty', desc: 'Weekly 75-minute tutorials in groups of three. Socratic. Accountable.', detail: 'Every Wednesday at 10am, Kwame meets with Dr. Osei and two other students for 75 minutes. Dr. Osei asks Kwame to defend his analysis of an AI ethics case. Kwame must articulate his reasoning in real-time. He cannot hide. It is terrifying. It is the best learning he has ever experienced.', consequence: 'Students learn to think on their feet and defend their ideas.', success: 'Success means articulating, defending, and refining ideas in real-time.', image: '/resources/img/journey/a05.jpg', icon: Users, studentName: 'Kwame', studentQuote: 'Three of us, one professor, 75 minutes. She asks me to defend my analysis. I cannot hide. It is the best learning I have ever had.', studentExperience: 'Kwame sits across from Dr. Osei. Two other students are there. Dr. Osei turns to him: "Kwame, you argued that AI systems should be trained on local data. Defend that." Kwame opens his mouth. He stumbles. Dr. Osei waits. He tries again. She pushes: "What about the cost?" He thinks. He argues. He refines. 75 minutes later, he understands his own argument better than when he wrote it.', educatorName: 'Dr. Osei', educatorQuote: 'I know every student by name. I can push each one individually. This is why I became a teacher.', educatorExperience: 'Dr. Osei has 10 tutorials per week — 30 students total. She knows each one strengths, gaps, and mission. She crafts questions that push each student where they need pushing. She is not delivering content. She is developing minds. This is what she loves.' },
+  { num: '06', age: '24/7', phase: 'The AI Tutor', title: 'Socratic Guidance, Anytime', desc: 'An AI tutor that asks questions, never gives answers. Available 24/7.', detail: 'It is 2am in Nairobi. Kwame is stuck on a neural network architecture. His faculty tutor is asleep. His AI tutor is not. It does not give him the answer. It asks: "What have you tried?" "What assumption are you making?" By the third question, Kwame has figured it out himself.', consequence: 'Every student has a personal tutor that never sleeps and always pushes.', success: 'Success means never being stuck, never alone with a problem.', image: '/resources/img/journey/a06.jpg', icon: Brain, studentName: 'Kwame', studentQuote: 'I was stuck at 2am. The AI did not give me the answer. It asked three questions. By the third, I figured it out myself.', studentExperience: 'Kwame stares at his screen. The neural network will not converge. It is 2am. He opens the AI tutor. It does not solve the problem. It asks: "What have you tried?" He types his attempts. It asks: "What assumption are you making about the learning rate?" He thinks. He adjusts. The network converges. He did it.', educatorName: 'Dr. Osei', educatorQuote: 'The AI handles the repetitive clarification so I can focus on the deep Socratic work.', educatorExperience: 'Dr. Osei reviews Kwame AI tutor log. She sees the 2am interaction. She did not need to be there. The AI handled the routine scaffolding. She can use tomorrow tutorial for the deep work — the questions only a human mentor can ask.' },
+  { num: '07', age: 'Year 2', phase: 'Six-City Rotation', title: 'Six Cities, Four Continents', desc: 'Kwame rotates through six cities over four years.', detail: 'Kwame is in Nairobi this semester. He works with a local health tech startup on an AI diagnostic tool for rural clinics. Next semester, he goes to Berlin. Then Singapore. He has lived in Accra, Nairobi, and Berlin so far. He speaks English, Twi, and is learning German. The world is his classroom.', consequence: 'Graduates have lived in six countries and understand the world from experience.', success: 'Success means living in six countries and understanding the world firsthand.', image: '/resources/img/journey/a07.jpg', icon: Globe, studentName: 'Kwame', studentQuote: 'I worked with a health tech startup in Nairobi on an AI diagnostic tool. I learned more about global systems in that year than in any classroom.', studentExperience: 'Kwame walks through Nairobi tech district. He is on his way to the startup he works with — they build AI tools for rural clinics. This is not an internship. It is a semester project. He is building the diagnostic model. The clinicians test it. If it works, it deploys. This is real.', educatorName: 'Dr. Osei', educatorQuote: 'I teach in Berlin this semester, Nairobi next. Students who arrive from São Paulo bring perspectives my Berlin students have never heard.', educatorExperience: 'Dr. Osei is in Berlin this semester. Next, Nairobi. She teaches the same course in both, but the discussions are different — Berlin students bring European regulatory perspectives, Nairobi students bring on-the-ground implementation challenges. The rotation is the curriculum.' },
+  { num: '08', age: 'All Years', phase: 'Centers of Inquiry', title: 'No Departments, Only Problems', desc: '19 interdisciplinary Centers replace departments.', detail: 'Kwame is affiliated with the Center for Synthetic Intelligence. His advisor is a computer scientist. But his project committee includes a philosopher and a public health expert. They are all in the same Center. There are no departmental boundaries to cross because there are no departments.', consequence: 'Research and teaching are organized around problems, not disciplines.', success: 'Success means contributing to real research at the frontier of knowledge.', image: '/resources/img/journey/a08.jpg', icon: FlaskConical, studentName: 'Kwame', studentQuote: 'My Center combines AI, ethics, and public health. No department could do this.', studentExperience: 'Kwame presents his project to the Center for Synthetic Intelligence. The room contains computer scientists, philosophers, public health experts, and designers. They are all in the same Center. They all care about the same problem. No department could convene this group. The Center does it naturally.', educatorName: 'Dr. Osei', educatorQuote: 'I am a computer scientist working alongside philosophers and doctors. Here, we share a lab.', educatorExperience: 'Dr. Osei sits in the Center weekly seminar. The speaker is a philosopher discussing algorithmic fairness. Next week, a public health expert. Dr. Osei research is directly informed by both. In her old university, she never met them. Here, they share a lab.' },
+  { num: '09', age: 'All Years', phase: 'Competency-Based Grading', title: 'Mastery, Not Ranking', desc: 'No GPA. No curve. Competency-based assessment.', detail: 'Kwame transcript does not have a GPA. It has a list of competencies: "Mastery: Neural Network Design." "Proficiency: AI Ethics Frameworks." "In Progress: Causal Inference." His transcript describes what he can do, not how he ranked.', consequence: 'Collaboration replaces competition. The transcript is a skill portfolio.', success: 'Success means a portfolio of demonstrated competencies.', image: '/resources/img/journey/a09.jpg', icon: CheckCircle2, studentName: 'Kwame', studentQuote: 'I help my classmates because it does not hurt me. My transcript says what I can do, not how I ranked.', studentExperience: 'Kwame helps his classmate Aisha debug her neural network. In the old system, this would be risky — helping a peer might curve him down. At Artemis, there is no curve. His competency is assessed against a standard, not against Aisha. He helps freely. Both are better for it.', educatorName: 'Dr. Osei', educatorQuote: 'I assess what students can do, not how they compare. A mastery designation means the same thing in 2026 and 2050.', educatorExperience: 'Dr. Osei assesses Kwame neural network project. She does not compare it to other students. She compares it to the published standard. Kwame meets it. She awards "mastery." The designation is absolute.' },
+  { num: '10', age: 'Final Year', phase: 'The Capstone', title: 'Advance Your Mission', desc: 'Every student completes a capstone that advances their declared mission.', detail: 'Kwame capstone is an AI diagnostic tool for rural clinics. It is not a paper. It is a working prototype, deployed in three clinics in rural Kenya. The dual evaluation: epistemic contribution and civic impact. Real clinicians use Kwame tool. Real patients benefit.', consequence: 'Graduates leave with a portfolio of real work, not just a transcript.', success: 'Success means advancing your mission — making a real contribution before graduating.', image: '/resources/img/journey/a10.jpg', icon: Rocket, studentName: 'Kwame', studentQuote: 'My capstone is deployed in three rural clinics. Real people use it. This is not a paper. This is impact.', studentExperience: 'Kwame stands in a rural clinic in Kenya. A nurse uses his AI diagnostic tool on a tablet. It works. It correctly identifies a condition that would have been missed. The patient gets treatment. Kwame feels something he has never felt in an educational setting: his work matters. Right now. To real people.', educatorName: 'Dr. Osei', educatorQuote: 'I do not grade capstones. I evaluate them: did it advance knowledge? Did it help people?', educatorExperience: 'Dr. Osei reviews Kwame capstone. She does not grade it. She evaluates it the way she evaluates her own research: Did it advance knowledge? Yes. Did it help people? Yes. She signs off. Kwame has made a contribution before he graduated.' },
+  { num: '11', age: 'Post-Grad', phase: 'The Forge', title: 'From Breakthrough to Venture', desc: 'The Forge spins research into ventures within 12 months.', detail: 'Kwame graduates. Instead of sending resumes, he pitches his diagnostic tool to the Forge. They fund it. He builds his company. The institution did not just educate him — it invested in him. 5% equity flows to the endowment.', consequence: 'Graduates can build ventures, not just join them.', success: 'Success means building, not just joining — with institutional backing.', image: '/resources/img/journey/a11.jpg', icon: Zap, studentName: 'Kwame', studentQuote: 'I graduated and pitched my venture to the Forge. They funded it. I am building my company. The institution invested in me.', studentExperience: 'Kwame walks into the Forge office. He pitches his diagnostic tool as a venture. The Forge team asks hard questions. Then they say yes. Seed capital. Mentorship. Office space. Kwame is not an employee. He is a founder. The institution that educated him is now his first investor.', educatorName: 'Dr. Osei', educatorQuote: 'My best student did not get a job. He built one. The Forge backed him. This is what education should produce.', educatorExperience: 'Dr. Osei sits on Kwame venture advisory board. She is not his teacher anymore — she is his advisor, his mentor, his colleague. She watches him pitch to investors, hire a team, deploy the product. This is what education should produce: builders, not just employees.' },
+  { num: '12', age: 'For Life', phase: 'The Lifelong Continuum', title: 'Learning Never Stops', desc: 'Graduation is a milestone, not an endpoint. Learning continues for life.', detail: 'Kwame graduated three years ago. He still takes Artemis courses. He mentors three students. He contributes to the Center research. His grandmother, now 74, is still in the learning circle. The continuum is real.', consequence: 'The institution supports learners for life. Wisdom flows between generations.', success: 'Success means continuing to learn, teach, and contribute for life.', image: '/resources/img/journey/a12.jpg', icon: Heart, studentName: 'Kwame', studentQuote: 'I graduated three years ago. I still take courses. I mentor three students. I am learning more now than I did in school.', studentExperience: 'Kwame is 25. His company is growing. He logs into the Artemis platform to audit a new course on quantum computing. He also has three mentees: first-year students whose missions align with his. He meets with them weekly. He is still a learner. He is also now a teacher. The continuum continues.', educatorName: 'Dr. Osei', educatorQuote: 'My alumni come back — to learn, to teach, to mentor. The institution is a community they belong to. For life.', educatorExperience: 'Dr. Osei sees Kwame name on the course roster. He is auditing quantum computing. She smiles. She also sees his name on the mentor list. The institution is not a place Kwame left. It is a community he belongs to. Dr. Osei has been part of this community for 8 years. She will be part of it for the rest of her life.' },
 ];
 
-// ═══════════════════════════════════════════════════════════
-// MAIN COMPONENT
-// ═══════════════════════════════════════════════════════════
 export default function JourneyPage({ goTo }: { goTo: (page: string) => void }) {
   const [activeTale, setActiveTale] = useState<'intro' | 'traditional' | 'bigger' | 'artemis'>('intro');
-
   return (
     <div className="w-full bg-white overflow-x-hidden">
       <AnimatePresence mode="wait">
-        {activeTale === 'intro' && (
-          <motion.div key="intro" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <Intro onChoose={setActiveTale} />
-          </motion.div>
-        )}
-        {activeTale === 'traditional' && (
-          <motion.div key="traditional" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <ScrollJourney
-              title="The Traditional Way"
-              subtitle="A system designed for the industrial age — still running on a factory clock"
-              steps={TRADITIONAL_STEPS}
-              theme="dark"
-              onContinue={() => setActiveTale('bigger')}
-              continueLabel="See the bigger picture"
-              actLabel="Act I"
-            />
-          </motion.div>
-        )}
-        {activeTale === 'bigger' && (
-          <motion.div key="bigger" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <BiggerPicture onContinue={() => setActiveTale('artemis')} />
-          </motion.div>
-        )}
-        {activeTale === 'artemis' && (
-          <motion.div key="artemis" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <ScrollJourney
-              title="The Artemis Way"
-              subtitle="A system designed for the planetary century — for the learner, for humanity"
-              steps={ARTEMIS_STEPS}
-              theme="light"
-              onContinue={() => setActiveTale('intro')}
-              continueLabel="Return to the beginning"
-              actLabel="Act II"
-            />
-          </motion.div>
-        )}
+        {activeTale === 'intro' && (<motion.div key="intro" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}><Intro onChoose={setActiveTale} /></motion.div>)}
+        {activeTale === 'traditional' && (<motion.div key="t" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}><ScrollJourney title="The Traditional Way" subtitle="A system designed for the industrial age — still running on a factory clock" steps={TRADITIONAL_STEPS} persona={T_PERSONA} theme="dark" onContinue={() => setActiveTale('bigger')} continueLabel="See the bigger picture" actLabel="Act I" /></motion.div>)}
+        {activeTale === 'bigger' && (<motion.div key="b" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}><BiggerPicture onContinue={() => setActiveTale('artemis')} /></motion.div>)}
+        {activeTale === 'artemis' && (<motion.div key="a" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}><ScrollJourney title="The Artemis Way" subtitle="A system designed for the planetary century — for the learner, for humanity" steps={ARTEMIS_STEPS} persona={A_PERSONA} theme="light" onContinue={() => setActiveTale('intro')} continueLabel="Return to the beginning" actLabel="Act II" /></motion.div>)}
       </AnimatePresence>
     </div>
   );
 }
 
-// ═══════════════════════════════════════════════════════════
-// INTRO
-// ═══════════════════════════════════════════════════════════
 function Intro({ onChoose }: { onChoose: (t: 'intro' | 'traditional' | 'bigger' | 'artemis') => void }) {
   return (
-    <div className="relative min-h-[calc(100vh-3.5rem)] flex items-center justify-center bg-[#0c0a09] text-white overflow-hidden">
-      <div className="absolute top-1/4 left-1/4 w-[50vw] h-[50vw] rounded-full bg-[#8A0000]/20 blur-[120px]" />
-      <div className="absolute bottom-1/4 right-1/4 w-[40vw] h-[40vw] rounded-full bg-[#D4A853]/10 blur-[100px]" />
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center py-20">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="flex items-center justify-center gap-3 mb-8">
-          <span className="w-10 h-[1px] bg-[#8A0000]" />
-          <span className="text-[11px] font-semibold uppercase tracking-[0.35em] text-[#ff6b6b]">A Tale of Two Ways</span>
-          <span className="w-10 h-[1px] bg-[#8A0000]" />
-        </motion.div>
-        <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1 }} className="text-[40px] sm:text-[56px] md:text-[72px] font-black leading-[0.95] tracking-tighter mb-6">
-          The Learner's<br />Journey
-        </motion.h1>
-        <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="text-[17px] sm:text-[19px] text-white/50 max-w-2xl mx-auto leading-relaxed mb-12 font-light">
-          Two paths lie before every learner. One has been walked for 200 years — a system designed for the industrial age, still running on a factory clock. The other is being built now — for the planetary century, for the learner, for humanity. This is the story of both.
-        </motion.p>
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }} className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button onClick={() => onChoose('traditional')} className="group flex items-center justify-center gap-3 px-8 py-4 bg-white/5 border border-white/15 hover:bg-white/10 hover:border-white/30 transition-all text-white text-[13px] font-bold uppercase tracking-[0.2em] rounded-full">
-            <Lock size={16} className="text-gray-400" /> The Traditional Way <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </button>
-          <button onClick={() => onChoose('artemis')} className="group flex items-center justify-center gap-3 px-8 py-4 bg-[#8A0000] hover:bg-[#6B0000] transition-all text-white text-[13px] font-bold uppercase tracking-[0.2em] rounded-full shadow-lg shadow-[#8A0000]/30">
-            <Sparkles size={16} /> The Artemis Way <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </button>
+    <div className="relative min-h-[calc(100vh-3.5rem)] flex overflow-hidden">
+      <button onClick={() => onChoose('traditional')} className="group relative w-1/2 bg-[#1a1a1a] overflow-hidden cursor-pointer">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-800/40 to-[#0c0a09]" />
+        <div className="absolute inset-0 flex flex-col justify-center items-end px-8 lg:px-16 text-right">
+          <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
+            <Lock size={32} className="text-gray-500 mb-6 ml-auto" />
+            <div className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-500 mb-3">Act I</div>
+            <h2 className="text-[32px] sm:text-[44px] lg:text-[56px] font-black leading-[0.95] tracking-tighter text-gray-300 mb-4">The<br/>Traditional<br/>Way</h2>
+            <p className="text-[13px] sm:text-[15px] text-gray-500 max-w-xs leading-relaxed mb-8 ml-auto">A system designed for the industrial age. Still running on a factory clock. Follow Amara journey through 12 stages — from sorting to stagnation.</p>
+            <div className="flex items-center gap-2 text-gray-400 group-hover:text-white transition-colors"><span className="text-[11px] font-bold uppercase tracking-[0.2em]">Enter</span><ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" /></div>
+          </motion.div>
+        </div>
+        <div className="absolute right-0 top-0 bottom-0 w-[1px] bg-white/10" />
+      </button>
+      <button onClick={() => onChoose('artemis')} className="group relative w-1/2 bg-[#8A0000] overflow-hidden cursor-pointer">
+        <div className="absolute inset-0 bg-gradient-to-tl from-[#6B0000] to-[#8A0000]" />
+        <div className="absolute -top-1/4 -right-1/4 w-[40vw] h-[40vw] rounded-full bg-white/5 blur-[80px] group-hover:bg-white/10 transition-all" />
+        <div className="absolute inset-0 flex flex-col justify-center items-start px-8 lg:px-16 text-left">
+          <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.1 }}>
+            <Sparkles size={32} className="text-white/80 mb-6" />
+            <div className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/60 mb-3">Act II</div>
+            <h2 className="text-[32px] sm:text-[44px] lg:text-[56px] font-black leading-[0.95] tracking-tighter text-white mb-4">The<br/>Artemis<br/>Way</h2>
+            <p className="text-[13px] sm:text-[15px] text-white/60 max-w-xs leading-relaxed mb-8">A system designed for the planetary century. For the learner, for humanity. Follow Kwame journey through 12 stages — from mission to momentum.</p>
+            <div className="flex items-center gap-2 text-white/80 group-hover:text-white transition-colors"><span className="text-[11px] font-bold uppercase tracking-[0.2em]">Enter</span><ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" /></div>
+          </motion.div>
+        </div>
+      </button>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none">
+        <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1, delay: 0.3 }} className="text-center">
+          <div className="text-[9px] font-bold uppercase tracking-[0.4em] text-white/40 mb-2">A Tale of Two Ways</div>
+          <div className="w-16 h-[1px] bg-white/20 mx-auto" />
         </motion.div>
       </div>
     </div>
   );
 }
 
-// ═══════════════════════════════════════════════════════════
-// SCROLL JOURNEY — full-screen step-by-step scroll
-// ═══════════════════════════════════════════════════════════
-function ScrollJourney({
-  title, subtitle, steps, theme, onContinue, continueLabel, actLabel,
-}: {
-  title: string; subtitle: string; steps: StepData[]; theme: 'dark' | 'light';
-  onContinue: () => void; continueLabel: string; actLabel: string;
-}) {
-  const isDark = theme === 'dark';
-  const bg = isDark ? 'bg-[#0c0a09]' : 'bg-white';
-  const text = isDark ? 'text-white' : 'text-[#141414]';
-  const accent = '#8A0000';
-  const containerRef = useRef<HTMLDivElement>(null);
-
+function ScrollJourney({ title, subtitle, steps, persona, theme, onContinue, continueLabel, actLabel }: { title: string; subtitle: string; steps: StepData[]; persona: { student: Persona; educator: Persona }; theme: 'dark' | 'light'; onContinue: () => void; continueLabel: string; actLabel: string }) {
+  const isDark = theme === 'dark'; const bg = isDark ? 'bg-[#0c0a09]' : 'bg-white'; const text = isDark ? 'text-white' : 'text-[#141414]'; const accent = '#8A0000';
   return (
-    <div ref={containerRef} className={`${bg} ${text}`}>
-      {/* Act Header — full screen */}
+    <div className={`${bg} ${text}`}>
       <div className="min-h-[calc(100vh-3.5rem)] flex flex-col justify-center max-w-[1400px] mx-auto px-6 lg:px-12">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="flex items-center gap-3 mb-6">
           <span className="text-[11px] font-bold uppercase tracking-[0.3em]" style={{ color: accent }}>{actLabel}</span>
           <span className="flex-1 h-[1px] opacity-20" style={{ background: accent }} />
-          <span className="text-[11px] font-bold uppercase tracking-[0.2em] opacity-40">{steps.length} steps</span>
         </motion.div>
-        <motion.h2 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }} className="text-[36px] sm:text-[48px] md:text-[64px] font-black leading-[0.95] tracking-tighter mb-4">
-          {title}
-        </motion.h2>
-        <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="text-[16px] sm:text-[18px] opacity-50 max-w-2xl leading-relaxed font-light mb-12">
-          {subtitle}
-        </motion.p>
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.5 }} className="flex items-center gap-2 opacity-40">
-          <span className="text-[11px] uppercase tracking-[0.2em]">Scroll to begin</span>
-          <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
-            <ChevronDown size={18} />
-          </motion.div>
+        <motion.h2 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }} className="text-[36px] sm:text-[52px] md:text-[68px] font-black leading-[0.95] tracking-tighter mb-4">{title}</motion.h2>
+        <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="text-[16px] sm:text-[18px] opacity-50 max-w-2xl leading-relaxed font-light mb-12">{subtitle}</motion.p>
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 }} className="grid sm:grid-cols-2 gap-6 mb-12">
+          <div className={`p-6 rounded-2xl ${isDark ? 'bg-white/[0.03] border border-white/10' : 'bg-gray-50 border border-gray-200'}`}>
+            <div className="flex items-center gap-3 mb-4"><div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: `${accent}15` }}><User size={24} style={{ color: accent }} /></div><div><div className="text-[10px] font-bold uppercase tracking-[0.15em] opacity-40">The Student</div><div className="text-[18px] font-black">{persona.student.fullName}</div></div></div>
+            <p className="text-[13px] leading-relaxed opacity-60">{persona.student.background}</p>
+          </div>
+          <div className={`p-6 rounded-2xl ${isDark ? 'bg-white/[0.03] border border-white/10' : 'bg-gray-50 border border-gray-200'}`}>
+            <div className="flex items-center gap-3 mb-4"><div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: `${accent}15` }}><Briefcase size={24} style={{ color: accent }} /></div><div><div className="text-[10px] font-bold uppercase tracking-[0.15em] opacity-40">The Educator</div><div className="text-[18px] font-black">{persona.educator.fullName}</div></div></div>
+            <p className="text-[13px] leading-relaxed opacity-60">{persona.educator.background}</p>
+          </div>
         </motion.div>
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.5 }} className="flex items-center gap-2 opacity-40"><span className="text-[11px] uppercase tracking-[0.2em]">Scroll to follow their journey</span><motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 1.5, repeat: Infinity }}><ChevronDown size={18} /></motion.div></motion.div>
       </div>
-
-      {/* Steps — each is a full-screen section */}
-      {steps.map((step, i) => (
-        <FullScreenStep key={i} step={step} index={i} isDark={isDark} accent={accent} total={steps.length} />
-      ))}
-
-      {/* Continue */}
-      <div className="min-h-[60vh] flex items-center justify-center max-w-[1400px] mx-auto px-6 lg:px-12">
-        <button onClick={onContinue} className="group inline-flex items-center gap-3 px-10 py-5 rounded-full text-[14px] font-bold uppercase tracking-[0.2em] transition-all bg-[#8A0000] hover:bg-[#6B0000] text-white shadow-xl shadow-[#8A0000]/30">
-          {continueLabel} <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-        </button>
-      </div>
+      {steps.map((step, i) => (<CinematicStep key={i} step={step} index={i} accent={accent} total={steps.length} />))}
+      <div className="min-h-[60vh] flex items-center justify-center max-w-[1400px] mx-auto px-6 lg:px-12"><button onClick={onContinue} className="group inline-flex items-center gap-3 px-10 py-5 rounded-full text-[14px] font-bold uppercase tracking-[0.2em] transition-all bg-[#8A0000] hover:bg-[#6B0000] text-white shadow-xl shadow-[#8A0000]/30">{continueLabel} <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" /></button></div>
     </div>
   );
 }
 
-// ═══════════════════════════════════════════════════════════
-// FULL SCREEN STEP — each scroll reveals a new step
-// ═══════════════════════════════════════════════════════════
-function FullScreenStep({ step, index, isDark, accent, total }: { step: StepData; index: number; isDark: boolean; accent: string; total: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  const Icon = step.icon;
-  const isEven = index % 2 === 0;
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) { setVisible(true); } }, { rootMargin: '-20% 0px -20% 0px', threshold: 0.1 });
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
+function CinematicStep({ step, index, accent, total }: { step: StepData; index: number; accent: string; total: number }) {
+  const ref = useRef<HTMLDivElement>(null); const [visible, setVisible] = useState(false); const Icon = step.icon;
+  useEffect(() => { const el = ref.current; if (!el) return; const obs = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) setVisible(true); }, { rootMargin: '-15% 0px -15% 0px', threshold: 0.05 }); obs.observe(el); return () => obs.disconnect(); }, []);
   return (
-    <div ref={ref} className={`relative min-h-[100vh] flex items-center py-20 ${isEven ? '' : ''} ${isDark ? 'border-t border-white/5' : 'border-t border-gray-100'}`}>
-      {/* Progress dots on the right */}
-      <div className="fixed right-4 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col gap-2">
-        {Array.from({ length: total }).map((_, i) => (
-          <div key={i} className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${i === index ? 'scale-150' : ''}`} style={{ background: i === index ? accent : isDark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.1)' }} />
-        ))}
-      </div>
-
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-12 w-full">
-        <div className={`grid lg:grid-cols-2 gap-8 lg:gap-16 items-center`}>
-          {/* Image */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, x: isEven ? -30 : 30 }}
-            animate={visible ? { opacity: 1, scale: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className={`relative ${isEven ? '' : 'lg:order-2'}`}
-          >
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
-              <img src={step.image} alt={step.title} className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).style.opacity = '0.3'; }} />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-              {/* Step number overlay */}
-              <div className="absolute top-5 left-5 flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-black/60 backdrop-blur-md flex items-center justify-center text-white text-[18px] font-black border border-white/20">
-                  {step.num}
-                </div>
-                <div className="px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-white/80">{step.phase}</span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Text content */}
-          <motion.div
-            initial={{ opacity: 0, x: isEven ? 30 : -30 }}
-            animate={visible ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className={isEven ? '' : 'lg:order-1'}
-          >
-            {/* Age + icon */}
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: `${accent}15` }}>
-                <Icon size={20} style={{ color: accent }} />
-              </div>
-              <div>
-                <div className="text-[10px] font-bold uppercase tracking-[0.2em] opacity-40">{step.age}</div>
-                <div className="text-[12px] font-bold" style={{ color: accent }}>{step.phase}</div>
-              </div>
-            </div>
-
-            {/* Title */}
-            <h3 className="text-[28px] sm:text-[36px] font-black tracking-tight leading-[1.05] mb-4">{step.title}</h3>
-
-            {/* Description */}
-            <p className="text-[16px] sm:text-[17px] leading-relaxed mb-4 opacity-70">{step.desc}</p>
-
-            {/* Detail */}
-            <p className="text-[14px] leading-[1.75] opacity-50 mb-6">{step.detail}</p>
-
-            {/* Consequence / Benefit */}
-            <div className="p-5 rounded-xl border-l-4 mb-4" style={{ background: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)', borderColor: accent }}>
-              <div className="flex items-start gap-3">
-                <AlertTriangle size={16} className="shrink-0 mt-0.5" style={{ color: accent }} />
-                <div>
-                  <div className="text-[10px] font-bold uppercase tracking-[0.15em] mb-1.5" style={{ color: accent }}>{index < 12 ? 'Consequence' : 'Benefit'}</div>
-                  <p className="text-[13px] leading-relaxed opacity-70">{step.consequence}</p>
-                </div>
-              </div>
-            </div>
-
-            {/* What Success Means */}
-            <div className="p-5 rounded-xl border-l-4 mb-4" style={{ background: 'rgba(212,168,83,0.08)', borderColor: '#D4A853' }}>
-              <div className="flex items-start gap-3">
-                <CheckCircle2 size={16} className="shrink-0 mt-0.5 text-[#D4A853]" />
-                <div>
-                  <div className="text-[10px] font-bold uppercase tracking-[0.15em] mb-1.5 text-[#D4A853]">What Success Means Here</div>
-                  <p className="text-[13px] leading-relaxed opacity-70">{step.success}</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Persona perspectives */}
-            <div className="grid sm:grid-cols-2 gap-3 mt-5">
-              <div className={`p-4 rounded-xl ${isDark ? 'bg-white/[0.03] border border-white/10' : 'bg-gray-50 border border-gray-200'}`}>
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-7 h-7 rounded-full flex items-center justify-center" style={{ background: `${accent}15` }}>
-                    <User size={14} style={{ color: accent }} />
-                  </div>
-                  <span className="text-[10px] font-bold uppercase tracking-[0.15em]" style={{ color: accent }}>{step.student.role}</span>
-                </div>
-                <p className="text-[12px] leading-relaxed opacity-60 italic">"{step.student.perspective}"</p>
-              </div>
-              <div className={`p-4 rounded-xl ${isDark ? 'bg-white/[0.03] border border-white/10' : 'bg-gray-50 border border-gray-200'}`}>
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-7 h-7 rounded-full flex items-center justify-center" style={{ background: `${accent}15` }}>
-                    <Briefcase size={14} style={{ color: accent }} />
-                  </div>
-                  <span className="text-[10px] font-bold uppercase tracking-[0.15em]" style={{ color: accent }}>{step.tutor.role}</span>
-                </div>
-                <p className="text-[12px] leading-relaxed opacity-60 italic">"{step.tutor.perspective}"</p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
+    <div ref={ref} className="relative min-h-[100vh] flex items-end overflow-hidden">
+      <motion.div initial={{ opacity: 0, scale: 1.05 }} animate={visible ? { opacity: 1, scale: 1 } : {}} transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }} className="absolute inset-0">
+        <img src={step.image} alt={step.title} className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).style.opacity = '0.2'; }} />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/30" />
+      </motion.div>
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-white/10 z-20"><motion.div className="h-full" style={{ background: accent, width: `${((index + 1) / total) * 100}%` }} /></div>
+      <motion.div initial={{ opacity: 0, x: -20 }} animate={visible ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.8, delay: 0.2 }} className="absolute top-8 left-6 lg:left-12 z-20"><div className="text-[80px] sm:text-[120px] lg:text-[160px] font-black leading-none text-white/10 tracking-tighter">{step.num}</div></motion.div>
+      <motion.div initial={{ opacity: 0, x: 20 }} animate={visible ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.8, delay: 0.3 }} className="absolute top-12 right-6 lg:right-12 z-20 flex items-center gap-3"><div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: `${accent}40` }}><Icon size={18} className="text-white" /></div><div className="text-right"><div className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">{step.age}</div><div className="text-[12px] font-bold text-white/80">{step.phase}</div></div></motion.div>
+      <div className="relative z-20 w-full max-w-[1400px] mx-auto px-6 lg:px-12 pb-10 lg:pb-16 pt-[40vh]">
+        <motion.h3 initial={{ opacity: 0, y: 30 }} animate={visible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, delay: 0.4 }} className="text-[28px] sm:text-[40px] lg:text-[52px] font-black tracking-tight leading-[1.0] text-white mb-4 max-w-3xl">{step.title}</motion.h3>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={visible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, delay: 0.5 }} className="max-w-2xl space-y-3 mb-6"><p className="text-[15px] sm:text-[17px] leading-relaxed text-white/80">{step.desc}</p><p className="text-[13px] leading-[1.75] text-white/50">{step.detail}</p></motion.div>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={visible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, delay: 0.6 }} className="grid lg:grid-cols-2 gap-4">
+          <div className="space-y-3">
+            <div className="p-4 rounded-xl border-l-4 bg-black/50 backdrop-blur-md" style={{ borderColor: accent }}><div className="flex items-start gap-3"><AlertTriangle size={15} className="shrink-0 mt-0.5 text-white" /><div><div className="text-[9px] font-bold uppercase tracking-[0.15em] text-white/60 mb-1">{index < 12 ? 'Consequence' : 'Benefit'}</div><p className="text-[12px] leading-relaxed text-white/70">{step.consequence}</p></div></div></div>
+            <div className="p-4 rounded-xl border-l-4 bg-black/50 backdrop-blur-md" style={{ borderColor: '#D4A853' }}><div className="flex items-start gap-3"><CheckCircle2 size={15} className="shrink-0 mt-0.5 text-[#D4A853]" /><div><div className="text-[9px] font-bold uppercase tracking-[0.15em] text-[#D4A853] mb-1">What Success Means</div><p className="text-[12px] leading-relaxed text-white/70">{step.success}</p></div></div></div>
+          </div>
+          <div className="space-y-3">
+            <div className="p-4 rounded-xl bg-black/50 backdrop-blur-md border border-white/10"><div className="flex items-center gap-2 mb-2"><User size={14} className="text-white/60" /><span className="text-[10px] font-bold uppercase tracking-[0.15em] text-white/60">{step.studentName}</span></div><p className="text-[12px] leading-relaxed text-white/50 mb-2">{step.studentExperience}</p><div className="flex items-start gap-2 pt-2 border-t border-white/10"><Quote size={12} className="shrink-0 mt-0.5 text-white/30" /><p className="text-[12px] leading-relaxed text-white/70 italic">&ldquo;{step.studentQuote}&rdquo;</p></div></div>
+            <div className="p-4 rounded-xl bg-black/50 backdrop-blur-md border border-white/10"><div className="flex items-center gap-2 mb-2"><Briefcase size={14} className="text-white/60" /><span className="text-[10px] font-bold uppercase tracking-[0.15em] text-white/60">{step.educatorName}</span></div><p className="text-[12px] leading-relaxed text-white/50 mb-2">{step.educatorExperience}</p><div className="flex items-start gap-2 pt-2 border-t border-white/10"><Quote size={12} className="shrink-0 mt-0.5 text-white/30" /><p className="text-[12px] leading-relaxed text-white/70 italic">&ldquo;{step.educatorQuote}&rdquo;</p></div></div>
+          </div>
+        </motion.div>
       </div>
     </div>
   );
 }
 
-// ═══════════════════════════════════════════════════════════
-// BIGGER PICTURE
-// ═══════════════════════════════════════════════════════════
 function BiggerPicture({ onContinue }: { onContinue: () => void }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const el = ref.current; if (!el) return;
-    const obs = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect(); } }, { threshold: 0.1 });
-    obs.observe(el); return () => obs.disconnect();
-  }, []);
-
+  const ref = useRef<HTMLDivElement>(null); const [visible, setVisible] = useState(false);
+  useEffect(() => { const el = ref.current; if (!el) return; const obs = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect(); } }, { threshold: 0.1 }); obs.observe(el); return () => obs.disconnect(); }, []);
   const stats = [
     { val: '$1.7T', label: 'US Student Debt', desc: 'A generation indentured to the system that was supposed to set them free.' },
     { val: '169%', label: 'Tuition Rise Since 1980', desc: 'Far outstripping wages. The cost of a degree has become a lifetime burden.' },
@@ -615,40 +176,20 @@ function BiggerPicture({ onContinue }: { onContinue: () => void }) {
     { val: '84%', label: 'Excluded from Higher Ed', desc: '1.4 billion university-age people; only 220 million enrolled.' },
     { val: '800yr', label: 'Same Pedagogy', desc: 'The lecture model has not changed in 800 years. The world has.' },
   ];
-
   return (
     <div className="bg-[#0c0a09] text-white min-h-screen">
       <div ref={ref} className="max-w-[1400px] mx-auto px-6 lg:px-12 py-20 lg:py-32">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={visible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8 }} className="mb-16 lg:mb-24">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="w-8 h-[1px] bg-[#8A0000]" />
-            <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#ff6b6b]">The Bigger Picture</span>
-          </div>
-          <h2 className="text-[36px] sm:text-[48px] md:text-[64px] font-black leading-[0.95] tracking-tighter mb-6 max-w-3xl">
-            It's not just one learner.<br />It's the whole species.
-          </h2>
-          <p className="text-[17px] sm:text-[19px] text-white/50 max-w-2xl leading-relaxed font-light">
-            The traditional system does not just fail individual learners. It fails humanity. The consequences scale from the personal to the planetary — and they compound across generations.
-          </p>
+          <div className="flex items-center gap-3 mb-6"><span className="w-8 h-[1px] bg-[#8A0000]" /><span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#ff6b6b]">The Bigger Picture</span></div>
+          <h2 className="text-[36px] sm:text-[52px] md:text-[68px] font-black leading-[0.95] tracking-tighter mb-6 max-w-3xl">It is not just Amara.<br/>It is the whole species.</h2>
+          <p className="text-[17px] sm:text-[19px] text-white/50 max-w-2xl leading-relaxed font-light">The traditional system does not just fail individual learners. It fails humanity. Amara story is one of millions. The consequences scale from the personal to the planetary — and they compound across generations.</p>
         </motion.div>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
-          {stats.map((stat, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 30 }} animate={visible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.1 + i * 0.08 }} className="p-6 lg:p-8 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white/[0.05] transition-colors">
-              <div className="text-[36px] sm:text-[44px] font-black text-[#ff6b6b] leading-none mb-3">{stat.val}</div>
-              <div className="text-[12px] font-bold uppercase tracking-[0.15em] text-white/40 mb-3">{stat.label}</div>
-              <p className="text-[13px] text-white/50 leading-relaxed">{stat.desc}</p>
-            </motion.div>
-          ))}
+          {stats.map((stat, i) => (<motion.div key={i} initial={{ opacity: 0, y: 30 }} animate={visible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.1 + i * 0.08 }} className="p-6 lg:p-8 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white/[0.05] transition-colors"><div className="text-[36px] sm:text-[44px] font-black text-[#ff6b6b] leading-none mb-3">{stat.val}</div><div className="text-[12px] font-bold uppercase tracking-[0.15em] text-white/40 mb-3">{stat.label}</div><p className="text-[13px] text-white/50 leading-relaxed">{stat.desc}</p></motion.div>))}
         </div>
-
         <motion.div initial={{ opacity: 0, y: 30 }} animate={visible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, delay: 0.6 }} className="text-center max-w-3xl mx-auto py-12">
-          <p className="text-[20px] sm:text-[24px] text-white/70 leading-relaxed mb-8 font-light italic">
-            "The system was not designed to fail. It was designed for a different century. The question is not whether to fix it — the question is whether we can build something better before it's too late."
-          </p>
-          <button onClick={onContinue} className="group inline-flex items-center gap-3 px-10 py-5 bg-[#8A0000] hover:bg-[#6B0000] transition-all text-white text-[14px] font-bold uppercase tracking-[0.2em] rounded-full shadow-xl shadow-[#8A0000]/30">
-            <Sparkles size={18} /> Enter the Artemis Way <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </button>
+          <p className="text-[20px] sm:text-[24px] text-white/70 leading-relaxed mb-8 font-light italic">&ldquo;The system was not designed to fail Amara. It was designed for a different century. The question is whether we can build something better — for Kwame, for his grandmother, for the billion Amaras we will never meet.&rdquo;</p>
+          <button onClick={onContinue} className="group inline-flex items-center gap-3 px-10 py-5 bg-[#8A0000] hover:bg-[#6B0000] transition-all text-white text-[14px] font-bold uppercase tracking-[0.2em] rounded-full shadow-xl shadow-[#8A0000]/30"><Sparkles size={18} /> Enter the Artemis Way <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" /></button>
         </motion.div>
       </div>
     </div>
