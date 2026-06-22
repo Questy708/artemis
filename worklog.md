@@ -433,3 +433,24 @@ Work Log:
 Stage Summary:
 - Journey page v2: 24 full-screen scroll-driven steps, unique black-dominant images, student + educator personas, success definitions, modern animations.
 - Pushed to GitHub repo Questy708/artemis.
+
+---
+Task ID: 13
+Agent: main (Z.ai Code)
+Task: Redesign Journey page v3 — AI-generated images (not web search), cinematic full-bleed layout (not side-by-side), named personas with per-step detailed experiences, better intro page.
+
+Work Log:
+- Generated 24 unique AI images via z-ai image (1344x768, black/African American dominant, cinematic): 12 traditional path + 12 Artemis path. All stored in public/resources/img/journey/ (t01-t12.jpg, a01-a12.jpg).
+- Completely redesigned JourneyPage.tsx with three major changes:
+  1. **Cinematic full-bleed layout**: Each step is a full-screen section with the image filling the entire viewport as a background. Dark gradient overlay (from-black/95 via-black/70 to-black/30). Content floats over the image at the bottom with backdrop-blur panels. Giant 160px step numbers in the top-left corner. Phase/age badge top-right. Progress bar at top.
+  2. **Named personas**: Instead of generic "The Student/The Educator", created two specific characters:
+     - Traditional: **Amara Okafor** (18, Lagos, first in family, brilliant at math) + **Mr. Chidi Okonkwo** (teacher 22 years, 60 students per class)
+     - Artemis: **Kwame Mensah** (19, Accra, mission: AI for underserved communities) + **Dr. Abena Osei** (Center investigator, renewable appointment)
+     - Each step has a detailed first-person experience paragraph for both characters — what they specifically go through at that life stage, plus a direct quote.
+  3. **Better intro page**: Split-screen design — left half dark gray (Traditional, with Amara's description), right half crimson (Artemis, with Kwame's description). Click either side to enter that tale. Centered "A Tale of Two Ways" label.
+- Persona intro screen added before steps: shows both character cards with full backgrounds so reader knows who they're following.
+- Pushed to GitHub: https://github.com/Questy708/artemis (commit a9cf6bc)
+
+Stage Summary:
+- Journey v3: cinematic full-bleed images, named personas (Amara/Mr. Okonkwo + Kwame/Dr. Osei), per-step detailed experiences with quotes, split-screen intro, 24 AI-generated images.
+- Pushed to GitHub repo Questy708/artemis.
