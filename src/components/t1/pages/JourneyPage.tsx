@@ -352,7 +352,7 @@ export default function JourneyPage({ goTo }: { goTo: (page: string) => void }) 
               title="The Traditional Way"
               subtitle="A system designed for the industrial age — still running on a factory clock"
               steps={TRADITIONAL_STEPS}
-              theme="dark"
+              theme="light"
               onContinue={() => setActiveTale('bigger')}
               continueLabel="See the bigger picture"
               actLabel="Act I"
@@ -389,7 +389,7 @@ function Intro({ onChoose }: { onChoose: (t: 'intro' | 'traditional' | 'bigger' 
   const [hovered, setHovered] = useState<'traditional' | 'artemis' | null>(null);
 
   return (
-    <div className="relative min-h-[calc(100vh-3.5rem)] bg-[#0c0a09] text-white overflow-hidden flex flex-col">
+    <div className="relative min-h-[calc(100vh-3.5rem)] bg-white text-[#141414] overflow-hidden flex flex-col">
       {/* Top: title section */}
       <div className="flex-1 flex flex-col items-center justify-center pt-16 pb-8 px-6 relative z-10">
         <motion.div
@@ -416,14 +416,14 @@ function Intro({ onChoose }: { onChoose: (t: 'intro' | 'traditional' | 'bigger' 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-[15px] sm:text-[17px] text-white/45 max-w-xl text-center leading-relaxed font-light"
+          className="text-[15px] sm:text-[17px] text-gray-500 max-w-xl text-center leading-relaxed font-light"
         >
           Two paths. One walked for 200 years. One being built now. Choose a way to follow.
         </motion.p>
       </div>
 
       {/* Bottom: two large clickable cards side by side */}
-      <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-px bg-white/5 max-h-[55vh]">
+      <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-px bg-gray-200 max-h-[55vh]">
         {/* Traditional */}
         <motion.button
           initial={{ opacity: 0, y: 30 }}
@@ -432,7 +432,7 @@ function Intro({ onChoose }: { onChoose: (t: 'intro' | 'traditional' | 'bigger' 
           onClick={() => onChoose('traditional')}
           onMouseEnter={() => setHovered('traditional')}
           onMouseLeave={() => setHovered(null)}
-          className="group relative bg-[#1a1a1a] overflow-hidden cursor-pointer flex flex-col justify-between p-8 lg:p-10 text-left transition-all duration-500"
+          className="group relative bg-[#f5f5f5] overflow-hidden cursor-pointer flex flex-col justify-between p-8 lg:p-10 text-left transition-all duration-500"
         >
           {/* Hover glow */}
           <div className={`absolute inset-0 bg-gradient-to-br from-gray-700/20 to-transparent transition-opacity duration-500 ${hovered === 'traditional' ? 'opacity-100' : 'opacity-0'}`} />
@@ -440,15 +440,15 @@ function Intro({ onChoose }: { onChoose: (t: 'intro' | 'traditional' | 'bigger' 
           {/* Top content */}
           <div className="relative z-10">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-white/5 border border-white/10">
-                <Lock size={18} className="text-gray-400" />
+              <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-black/5 border border-black/10">
+                <Lock size={18} className="text-gray-500" />
               </div>
               <div>
-                <div className="text-[9px] font-bold uppercase tracking-[0.25em] text-gray-500">Act I</div>
-                <div className="text-[11px] font-bold uppercase tracking-[0.15em] text-gray-400">12 Steps</div>
+                <div className="text-[9px] font-bold uppercase tracking-[0.25em] text-gray-400">Act I</div>
+                <div className="text-[11px] font-bold uppercase tracking-[0.15em] text-gray-500">12 Steps</div>
               </div>
             </div>
-            <h2 className="text-[26px] sm:text-[32px] lg:text-[40px] font-black tracking-tight leading-[1.0] text-gray-200 mb-3">
+            <h2 className="text-[26px] sm:text-[32px] lg:text-[40px] font-black tracking-tight leading-[1.0] text-[#141414] mb-3">
               The Traditional Way
             </h2>
             <p className="text-[13px] sm:text-[14px] text-gray-500 leading-relaxed max-w-md">
@@ -458,14 +458,14 @@ function Intro({ onChoose }: { onChoose: (t: 'intro' | 'traditional' | 'bigger' 
 
           {/* Bottom: enter prompt */}
           <div className="relative z-10 flex items-center gap-2 mt-6">
-            <span className={`text-[11px] font-bold uppercase tracking-[0.2em] transition-colors ${hovered === 'traditional' ? 'text-white' : 'text-gray-500'}`}>
+            <span className={`text-[11px] font-bold uppercase tracking-[0.2em] transition-colors ${hovered === 'traditional' ? 'text-[#8A0000]' : 'text-gray-500'}`}>
               Enter the Old Way
             </span>
-            <ArrowRight size={14} className={`text-gray-500 transition-all ${hovered === 'traditional' ? 'translate-x-1 text-white' : ''}`} />
+            <ArrowRight size={14} className={`text-gray-500 transition-all ${hovered === 'traditional' ? 'translate-x-1 text-[#8A0000]' : ''}`} />
           </div>
 
           {/* Number watermark */}
-          <div className="absolute -bottom-8 -right-4 text-[120px] font-black text-white/[0.03] leading-none pointer-events-none select-none">
+          <div className="absolute -bottom-8 -right-4 text-[120px] font-black text-black/[0.03] leading-none pointer-events-none select-none">
             01
           </div>
         </motion.button>
@@ -530,9 +530,9 @@ function ScrollJourney({
   title: string; subtitle: string; steps: StepData[]; theme: 'dark' | 'light';
   onContinue: () => void; continueLabel: string; actLabel: string;
 }) {
-  const isDark = theme === 'dark';
-  const bg = isDark ? 'bg-[#0c0a09]' : 'bg-white';
-  const text = isDark ? 'text-white' : 'text-[#141414]';
+  const isDark = false;
+  const bg = 'bg-white';
+  const text = 'text-[#141414]';
   const accent = '#8A0000';
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -723,7 +723,7 @@ function BiggerPicture({ onContinue }: { onContinue: () => void }) {
   ];
 
   return (
-    <div className="bg-[#0c0a09] text-white min-h-screen">
+    <div className="bg-white text-[#141414] min-h-screen">
       <div ref={ref} className="max-w-[1400px] mx-auto px-6 lg:px-12 py-20 lg:py-32">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={visible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8 }} className="mb-16 lg:mb-24">
           <div className="flex items-center gap-3 mb-6">
@@ -733,23 +733,23 @@ function BiggerPicture({ onContinue }: { onContinue: () => void }) {
           <h2 className="text-[36px] sm:text-[48px] md:text-[64px] font-black leading-[0.95] tracking-tighter mb-6 max-w-3xl">
             It's not just one learner.<br />It's the whole species.
           </h2>
-          <p className="text-[17px] sm:text-[19px] text-white/50 max-w-2xl leading-relaxed font-light">
+          <p className="text-[17px] sm:text-[19px] text-gray-500 max-w-2xl leading-relaxed font-light">
             The traditional system does not just fail individual learners. It fails humanity. The consequences scale from the personal to the planetary — and they compound across generations.
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
           {stats.map((stat, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 30 }} animate={visible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.1 + i * 0.08 }} className="p-6 lg:p-8 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white/[0.05] transition-colors">
-              <div className="text-[36px] sm:text-[44px] font-black text-[#ff6b6b] leading-none mb-3">{stat.val}</div>
-              <div className="text-[12px] font-bold uppercase tracking-[0.15em] text-white/40 mb-3">{stat.label}</div>
-              <p className="text-[13px] text-white/50 leading-relaxed">{stat.desc}</p>
+            <motion.div key={i} initial={{ opacity: 0, y: 30 }} animate={visible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.1 + i * 0.08 }} className="p-6 lg:p-8 rounded-2xl bg-gray-50 border border-gray-200 hover:bg-gray-100 transition-colors">
+              <div className="text-[36px] sm:text-[44px] font-black text-[#8A0000] leading-none mb-3">{stat.val}</div>
+              <div className="text-[12px] font-bold uppercase tracking-[0.15em] text-gray-400 mb-3">{stat.label}</div>
+              <p className="text-[13px] text-gray-500 leading-relaxed">{stat.desc}</p>
             </motion.div>
           ))}
         </div>
 
         <motion.div initial={{ opacity: 0, y: 30 }} animate={visible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, delay: 0.6 }} className="text-center max-w-3xl mx-auto py-12">
-          <p className="text-[20px] sm:text-[24px] text-white/70 leading-relaxed mb-8 font-light italic">
+          <p className="text-[20px] sm:text-[24px] text-gray-600 leading-relaxed mb-8 font-light italic">
             "The system was not designed to fail. It was designed for a different century. The question is not whether to fix it — the question is whether we can build something better before it's too late."
           </p>
           <button onClick={onContinue} className="group inline-flex items-center gap-3 px-10 py-5 bg-[#8A0000] hover:bg-[#6B0000] transition-all text-white text-[14px] font-bold uppercase tracking-[0.2em] rounded-full shadow-xl shadow-[#8A0000]/30">
