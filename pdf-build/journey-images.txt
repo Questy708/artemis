@@ -1,0 +1,12 @@
+traditional-lecture=https://sfile.chatglm.cn/images-ppt/98993d8336f9.jpg
+traditional-stress=https://sfile.chatglm.cn/images-ppt/f5738b8b26d7.jpg
+traditional-graduation=https://sfile.chatglm.cn/images-ppt/288b47e4a529.jpg
+traditional-cubicle=https://sfile.chatglm.cn/images-ppt/f9588bde8580.jpg
+traditional-debt=https://sfile.chatglm.cn/images-ppt/dd49aaa1d2ec.jpg
+artemis-tutorial=https://sfile.chatglm.cn/images-ppt/c31492086d3a.jpg
+artemis-research=https://sfile.chatglm.cn/images-ppt/e5ca6fbd2a3b.png
+artemis-rotation=https://sfile.chatglm.cn/images-ppt/c68c0911a2ac.jpg
+artemis-graduate=https://sfile.chatglm.cn/images-ppt/099499c66b44.jpg
+humanity-future=https://sfile.chatglm.cn/images-ppt/498b8659d855.jpg
+lifelong-learning=https://sfile.chatglm.cn/images-ppt/d96457501870.jpg
+open-loop=https://sfile.chatglm.cn/images-ppt/a3b5c9774539.jpg

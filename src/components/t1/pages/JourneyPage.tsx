@@ -2,821 +2,714 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { 
-  Compass, 
-  ChevronRight, 
-  Layers, 
-  Briefcase, 
-  Sparkles, 
-  X, 
-  CheckCircle2, 
-  TrendingUp
+import {
+  Lock, Users, Clock, TrendingDown, AlertTriangle, X,
+  Sparkles, Compass, Globe, GraduationCap, Rocket, Heart,
+  ChevronDown, ArrowRight, CheckCircle2, Infinity as InfinityIcon,
+  BookOpen, FlaskConical, MapPin, Target, Brain, Zap
 } from 'lucide-react';
 
-interface MilestoneDetail {
+interface StepData {
+  num: string;
+  age: string;
+  phase: string;
   title: string;
   desc: string;
-  skillGained: string;
-  impactAchieved: string;
-  toolsUsed: string[];
-  dayInTheLife: string;
+  detail: string;
+  consequence: string;
+  success: string;
+  image: string;
+  icon: React.ElementType;
 }
 
-interface PersonaData {
-  id: string;
-  name: string;
-  subtitle: string;
-  description: string;
-  badge: string;
-  color: string;
-  borderColor: string;
-  glowColor: string;
-  textColor: string;
-  accentBg: string;
-  steps: {
-    year: string;
-    phase: string;
-    title: string;
-    desc: string;
-    traditional: MilestoneDetail;
-    artemis: MilestoneDetail;
-  }[];
-}
-
-const PERSONAS: Record<string, PersonaData> = {
-  researcher: {
-    id: 'researcher',
-    name: 'The Scientific Researcher',
-    subtitle: 'Mitochondrial Decay & Bio-informatics',
-    description: 'Driven by deep intellectual breakthroughs, empirical discovery, and solving unmapped biological questions across continental lab networks.',
-    badge: 'Deep Science Research',
-    textColor: 'text-[#D4A853]',
-    color: '#D4A853',
-    borderColor: 'border-[#D4A853]/30',
-    glowColor: 'shadow-[0_0_20px_rgba(212,168,83,0.3)]',
-    accentBg: 'bg-[#D4A853]/10',
-    steps: [
-      {
-        year: 'Year 1',
-        phase: 'Calibrate',
-        title: 'Mentor-Led Quantum Formulation',
-        desc: 'Direct integration into the Quantum Bio-informatics lab on day one, analyzing anomalous cellular signaling pathways.',
-        traditional: {
-          title: 'Conformed Classroom Instruction',
-          desc: 'Seated in a lecture theater with 400 classmates, memorizing high-level biology textbook chapters for a standard multiple-choice exam.',
-          skillGained: 'Passive Memorization & Rote Recitation',
-          impactAchieved: 'Acquired 4 semester credits; zero contribution to any active research fields.',
-          toolsUsed: ['Generic PDF Slides', 'Optical Answer Sheets'],
-          dayInTheLife: 'Spent 3 hours copying blackboard notes, followed by 2 hours memorizing diagram pathways without ever touching a laboratory pipette or instrument.'
-        },
-        artemis: {
-          title: 'Active Lab Cohort & Formulation',
-          desc: 'Partnered with a Senior Research Fellow to explore raw mitochondrial genomic datasets to trace anomalous metabolic decays.',
-          skillGained: 'Empirical Graph Database Schematizing',
-          impactAchieved: 'Parsed and structured 2.4 million decay curves into the open-source Artemis Bio-graph model.',
-          toolsUsed: ['PyTorch Labs', 'Neo4j Graph Database', 'Sovereign Jupyter Nodes'],
-          dayInTheLife: 'Analyzed mutation graphs in the morning, lunched with your fellowship cohort discussing ethics of synthetic genomes, and verified lab results via quantum simulator in the afternoon.'
-        }
-      },
-      {
-        year: 'Year 2',
-        phase: 'Activate',
-        title: 'Node Malta-Tokyo Sea Deployment',
-        desc: 'Splitting time between Mediterranean biodiversity centers in Malta and high-throughput computational labs in Tokyo.',
-        traditional: {
-          title: 'Siloed Secondary Electives',
-          desc: 'Required to select a pre-determined subset of secondary biology electives. Locked into one physical campus.',
-          skillGained: 'Academic Conformity & Standard Essay Writing',
-          impactAchieved: 'Created a static poster board with static text diagrams about marine cellular life.',
-          toolsUsed: ['Microsoft PowerPoint', 'Campus Library Stacks'],
-          dayInTheLife: 'Attended standard lab classes with pre-washed petri dishes to replicate a 30-year-old high school experiment. Scored a B+.'
-        },
-        artemis: {
-          title: 'Decentralized High-Throughput Fieldwork',
-          desc: 'Deployed to Node Valletta for robotic sea-floor ecological sequence sampling, then flew to Node Tokyo for rapid protein synthesis folding calculations.',
-          skillGained: 'Remote Heterogeneous Data Pipelines',
-          impactAchieved: 'Identified three temperature-tolerant genetic variations in deep marine hydrotherms.',
-          toolsUsed: ['CRISPR fold simulations', 'Oceanic Autonomous Rovers', 'Tokyo High-Throughput Cluster'],
-          dayInTheLife: 'Monitored real-time telemetry from Valletta buoy networks, compiled sequence models, and synced them with cloud models running in Tokyo supercomputing nodes.'
-        }
-      },
-      {
-        year: 'Year 3',
-        phase: 'Elevate',
-        title: 'Open Monograph Co-Authoring',
-        desc: 'Writing and defending an innovative, open-science monograph detailing temperature-tolerant bio-sensors.',
-        traditional: {
-          title: 'Speculative Literature Review',
-          desc: 'Drafted a 15-page essay reviewing existing publications on genetic cellular models. No original research or publication allowed.',
-          skillGained: 'Secondary Text Collation',
-          impactAchieved: 'A static paper read only by a single grader, filed away in university local hard-drive archive.',
-          toolsUsed: ['Google Docs', 'Standard Bibliography Builders'],
-          dayInTheLife: 'Wrote citations from 9 AM to 5 PM inside a windowless library basement, adjusting formatting margins to fit strict, archaic style guidelines.'
-        },
-        artemis: {
-          title: 'Patent-Free Open IP Publication',
-          desc: 'Published an original, co-authored monograph on quantum-integrated cellular bio-sensors. Successfully peer-reviewed at Valletta Bio-Computing Symposium.',
-          skillGained: 'Synthesizing Novel Hypotheses & Public Defense',
-          impactAchieved: 'Monograph published under open-source commons; adopted by three external medical laboratories.',
-          toolsUsed: ['Collab Jupyter Hubs', 'Valletta Symposium Panel', 'Decentralized IPFS Registry'],
-          dayInTheLife: 'Addressed questions from three leading international panels via virtual links, defending the integrity of your biosynthetic structures in real-time.'
-        }
-      },
-      {
-        year: 'Year 4',
-        phase: 'Infinite',
-        title: 'Permanent Network Integration',
-        desc: 'Transitioning to an Alumni Fellow, receiving lifetime laboratory access, node residency privileges, and project acceleration resources.',
-        traditional: {
-          title: 'Graduation & Platform Eviction',
-          desc: 'Degree conferred. Lost institutional emails, library subscriptions, and lab access. Pushed out to draft applications for entry-level lab tech roles.',
-          skillGained: 'Standard Resume Structuring',
-          impactAchieved: 'Recipients are left without continuing network support or resource access as knowledge goes out-of-date.',
-          toolsUsed: ['LinkedIn Profiles', 'Indeed Listings'],
-          dayInTheLife: 'Sorted generic online job boards, realizing university credentials gave no active engineering context or modern scientific network access.'
-        },
-        artemis: {
-          title: 'Lifetime Alliance & Research Lab Anchor',
-          desc: 'Appointed as an Artemis Lifetime Fellow. Retain permanent access to supercomputers, node labs worldwide, and direct mentoring allowances.',
-          skillGained: 'Consensus Science Governance & Multi-generational Mentorship',
-          impactAchieved: 'Secured $30,000 in seed-grant capital for active research scale-ups; directly mentoring 3 incoming Year 1 research minds.',
-          toolsUsed: ['Artemis Micro-Grant Pools', 'Global Node Collaboration Suite', 'Guild Networks'],
-          dayInTheLife: 'Reviewed proposals from Year 1 applicants, onboarded them into your live scientific lab, and booked a week-long research stay at Maltese nodes for next month.'
-        }
-      }
-    ]
+// ═══════════════════════════════════════════════════════════
+// ACT 1: THE TRADITIONAL WAY — The loopholes & consequences
+// ═══════════════════════════════════════════════════════════
+const TRADITIONAL_STEPS: StepData[] = [
+  {
+    num: '01', age: 'Age 5–11', phase: 'Primary School',
+    title: 'The Sorting Begins',
+    desc: 'Children are placed into age-based cohorts and sorted by standardized tests that measure conformity over curiosity.',
+    detail: 'From the first day of primary school, children are grouped not by interest or ability but by birth year. A child fascinated by astronomy sits beside a child who cannot yet read, both taught the same curriculum at the same pace. Standardized tests begin early, sorting children into "gifted" and "regular" tracks — labels that often stick for life. The message is clear: fit the mold, or fall behind.',
+    consequence: 'Curiosity is replaced by compliance. Children who do not fit the age-based mold learn that they are "not smart," regardless of their actual potential.',
+    success: 'Success means scoring well on standardized tests and being labeled "gifted." The child learns that their worth is a number.',
+    image: 'https://sfile.chatglm.cn/images-ppt/98993d8336f9.jpg',
+    icon: Lock,
   },
-  changemaker: {
-    id: 'changemaker',
-    name: 'The Civic Changemaker',
-    subtitle: 'Decentralized Policy & Restorative Energy Grid',
-    description: 'Focused on creating active civic solutions, grassroots renewable resource models, and drafting real policy alongside municipal coalitions.',
-    badge: 'Socio-Political Design',
-    textColor: 'text-[#8A0000]',
-    color: '#8A0000',
-    borderColor: 'border-[#8A0000]/30',
-    glowColor: 'shadow-[0_0_20px_rgba(138,0,0,0.3)]',
-    accentBg: 'bg-[#8A0000]/10',
-    steps: [
-      {
-        year: 'Year 1',
-        phase: 'Calibrate',
-        title: 'Municipal Energy Asset Mapping',
-        desc: 'Engaging immediately in designing local public solar cooperatives in Valletta, modeling neighborhood energy deficits.',
-        traditional: {
-          title: 'Theoretical Civic Foundations',
-          desc: 'Listening to historical accounts of civic governance systems in abstract formats, with no local field exploration allowed.',
-          skillGained: 'Ideology Classification & Bullet-points Drafting',
-          impactAchieved: 'Completed a quiz on political theories. Had zero dialogue with any real living community.',
-          toolsUsed: ['Scantron Papers', 'Standard Textbooks'],
-          dayInTheLife: 'Spent the afternoon studying historical graphs of public services, trying to memorise definitions of municipal utilities.'
-        },
-        artemis: {
-          title: 'Cooperative Co-Design Launch',
-          desc: 'Partnered with cooperative energy engineers in Valletta to catalog and map micro-solar energy offsets across 12 neighborhood rows.',
-          skillGained: 'Systemic Asset Mapping & Direct Surveying',
-          impactAchieved: 'Successfully signed up and onboarded 120 residential households into localized solar planning algorithms.',
-          toolsUsed: ['Sovereign GIS Suites', 'Valletta Municipal Interfaces', 'Tailwind Grid Analyzers'],
-          dayInTheLife: 'Walked the narrow streets of Valletta surveying micro-grid points, and calculated optimal solar intake values alongside local elders.'
-        }
-      },
-      {
-        year: 'Year 2',
-        phase: 'Activate',
-        title: 'Node Silicon Valley Trust Design',
-        desc: 'Bridging direct community action in Valletta with financial trust modeling and venture-philanthropy workshops in Silicon Valley.',
-        traditional: {
-          title: 'Pre-Packaged Academic Internships',
-          desc: 'Unpaid internships consisting of administrative duties or generic presentation formatting at traditional governmental desks.',
-          skillGained: 'Bureaucratic Red-Tape Navigation',
-          impactAchieved: 'Completed 120 hours of administrative filing; zero impact on civic structures or energy strategies.',
-          toolsUsed: ['Microsoft Word', 'Shared Outlook Calendars'],
-          dayInTheLife: 'Spent 6 hours sorting digital mail and printing folders for department heads, learning no practical leadership or active legal mechanisms.'
-        },
-        artemis: {
-          title: 'Cross-Border Strategic Venture Engineering',
-          desc: 'Moved to Silicon Valley node to study legal trusts and decentralized capital structures, designing a micro-utility framework.',
-          skillGained: 'Cross-Jurisdictional Trust Structuring',
-          impactAchieved: 'Co-drafted a multi-stakeholder governance model legally linking California venture structures with Maltese energy cooperatives.',
-          toolsUsed: ['Global Trust Frameworks', 'Sovereign Token Models', 'Artemis Alliance Nodes'],
-          dayInTheLife: 'Collaborated with international trade attorneys in morning seminars, and coded distributed treasury voting contracts in the evening.'
-        }
-      },
-      {
-        year: 'Year 3',
-        phase: 'Elevate',
-        title: 'Deploying Active Renewable Networks',
-        desc: 'Constructing physical, solar-powered community power nodes and proving direct economic viability.',
-        traditional: {
-          title: 'Abstract Political Theses',
-          desc: 'Drafting an extensive paper summarizing literature on energy distribution. Kept entirely separate from practical implementation.',
-          skillGained: 'Bibliographical Sorting & Academic Jargon',
-          impactAchieved: 'An essay graded A- that goes directly into a closed index, never accessed by community stakeholders.',
-          toolsUsed: ['Zotero Catalogues', 'Standard Text Editors'],
-          dayInTheLife: 'Wrote and re-drafted introductory literature reviews, wondering if any real house would ever utilize the energy models studied.'
-        },
-        artemis: {
-          title: 'Sovereign Micro-Grid Activation',
-          desc: 'Built and integrated five physical solar-smart micro-grids. Presented data live to the Malta Department of Environmental Policy.',
-          skillGained: 'Sovereign Infrastructure Execution',
-          impactAchieved: 'Activated 45 kW of resilient local energy, powering 3 village plazas and reducing emissions by 40%.',
-          toolsUsed: ['Physical Micro-Grid Inverters', 'Direct Municipal Presentations', 'Real-time Grid Monitors'],
-          dayInTheLife: 'Assembled power cells with grid technicians, and monitored output data on a customized, public-facing, interactive web panel.'
-        }
-      },
-      {
-        year: 'Year 4',
-        phase: 'Infinite',
-        title: 'Strategic Expansion Residency',
-        desc: 'Entering permanent residency status supporting larger municipal power rollouts with lifetime alliance micro-grants.',
-        traditional: {
-          title: 'Degree Awarded & Resource Disconnection',
-          desc: 'Conferred with a diploma. Access to academic platforms, workspace directories, and professional networks is shut down.',
-          skillGained: 'Independent Job Scouting & Cover Letter Writing',
-          impactAchieved: 'Left seeking basic associate level employment in complex corporations, facing an isolated startup environment.',
-          toolsUsed: ['Generic Job Boards', 'Cover Letter Generators'],
-          dayInTheLife: 'Drafted standard templates for administrative consulting roles, feeling disconnected from the municipal communities.'
-        },
-        artemis: {
-          title: 'Permanent Civic Fellowship & Trust Rollout',
-          desc: 'Appointed Active Fellow with continuous access to the Artemis strategic network, mentoring newer student pods.',
-          skillGained: 'Decentralized Civic Expansion & Venture Scale Management',
-          impactAchieved: 'Onboarded 5 more municipalities into the energy grid model; scaled micro-grids to cover 600 residential households.',
-          toolsUsed: ['Civic Trust Equity Pool', 'Worldwide Node Classrooms', 'Guild Forums'],
-          dayInTheLife: 'Addressed incoming Year 1 changemakers, provided workspace modules to incoming candidates, and drafted scaling blueprints for the local government.'
-        }
-      }
-    ]
+  {
+    num: '02', age: 'Age 12–17', phase: 'Secondary School',
+    title: 'The Exam Gauntlet',
+    desc: 'Years of schooling are reduced to a single metric: exam scores. Learning becomes test preparation.',
+    detail: 'Secondary school is dominated by the exam gauntlet. Every lesson, every homework assignment, every extracurricular activity is ultimately evaluated by how it contributes to a test score. Students learn to optimize for the test, not for understanding. They memorize, regurgitate, and forget. The joy of discovery is replaced by the anxiety of performance. Teachers, themselves evaluated by test scores, have no choice but to teach to the test.',
+    consequence: 'Students develop test-taking skills, not life skills. They can pass exams but cannot think critically, solve real problems, or adapt to change.',
+    success: 'Success means a high exam score that secures a place at a selective university. The student learns that the destination matters more than the journey.',
+    image: 'https://sfile.chatglm.cn/images-ppt/f5738b8b26d7.jpg',
+    icon: AlertTriangle,
   },
-  artisan: {
-    id: 'artisan',
-    name: 'The Creative Artisan',
-    subtitle: 'Interactive Media & Generative Woodcrafting',
-    description: 'Combining traditional artisan joinery, kinetic architectural sculptures, and generative 3D algorithmic design.',
-    badge: 'Cyber-Physical Artisanry',
-    textColor: 'text-white',
-    color: '#ffffff',
-    borderColor: 'border-white/30',
-    glowColor: 'shadow-[0_0_20px_rgba(255,255,255,0.25)]',
-    accentBg: 'bg-white/10',
-    steps: [
-      {
-        year: 'Year 1',
-        phase: 'Calibrate',
-        title: 'Cyber-Physical Kinetic Sculptures',
-        desc: 'Immediate, unrestricted entry to the advanced design laboratories to build responsive structures from week 1.',
-        traditional: {
-          title: 'Abstract Form & Restricted Workshops',
-          desc: 'Required to attend 2D sketch courses. Forbidden from major workshop tools or robotics until safety clearance in Year 3.',
-          skillGained: 'Manual Drafting & Charcoal Sketching',
-          impactAchieved: 'Produced 12 hand-drawn sketches on paper; zero physical or digital architectural models built.',
-          toolsUsed: ['Graphite Pencils', 'Newsprint Pads'],
-          dayInTheLife: 'Spent 4 hours copying lines with different weights on flat surfaces, with no access to 3D printers, laser cutters, or CNC nodes.'
-        },
-        artemis: {
-          title: 'Interactive Spatial Design Launch',
-          desc: 'Designed a dynamic, kinetic pavilion segment utilizing algorithmic timber joints that reacts to real-time crowd movement.',
-          skillGained: 'Parametric CAD & Arduino Spatial Sensors',
-          impactAchieved: 'Constructed prototype sculpture displayed in the Tokyo Media Arts Cluster on week 12.',
-          toolsUsed: ['Grasshopper 3D', 'CNC Milling Nodes', 'Laser Material Slicers'],
-          dayInTheLife: 'Programmed physical micro-controllers, loaded digital designs to smart automated CNC mills, and hand-finished premium walnut timber joints.'
-        }
-      },
-      {
-        year: 'Year 2',
-        phase: 'Activate',
-        title: 'Node Tokyo Digital Craft Sprint',
-        desc: 'Spending half a year in specialized Tokyo woodshops studying traditional joinery, integrated with state-of-the-art computational modeling.',
-        traditional: {
-          title: 'Classroom History Recitations',
-          desc: 'Writing text analyses of media histories, with no multi-disciplinary connection to raw physical materials or code.',
-          skillGained: 'Historic Fact Preservation',
-          impactAchieved: 'Acquired simple course grades. Did not generate any new physical objects or code systems.',
-          toolsUsed: ['Generic Essay Apps', 'Library Slideshows'],
-          dayInTheLife: 'Memorized architectural names from slideshow projections, trying to identify style dates on theoretical papers.'
-        },
-        artemis: {
-          title: 'Hybrid Algorithmic Joinery Synthesis',
-          desc: 'Immersed in Tokyo workshop to study structural joints, writing custom code to dynamically mill joints optimized for seismic movements.',
-          skillGained: 'Seismic Structural Mathematics & Computational Tooling',
-          impactAchieved: 'Manufactured and stress-tested a structural connector module capable of withstanding 7.2 magnitude impacts.',
-          toolsUsed: ['Autodesk Fusion 360', 'Industrial Robotic arms', 'Japanese traditional hand tools'],
-          dayInTheLife: 'Practiced assembly with Japanese master carpenters, then digitized hand gestures to train adaptive kinetic models in the afternoon.'
-        }
-      },
-      {
-        year: 'Year 3',
-        phase: 'Elevate',
-        title: 'Permanent Public Pavilion Construction',
-        desc: 'Delivering a permanent, fully structural outdoor interactive civic installation in Valletta, Malta.',
-        traditional: {
-          title: 'Hypothetical Scale Models',
-          desc: 'Crafted a small paper balsa-wood miniature of an unnamed building, which remained inside the student studio to be graded.',
-          skillGained: 'Cardboard Modeling & Adhesives application',
-          impactAchieved: 'A miniature model that was ultimately discarded into recycling bins following graduation day evaluation.',
-          toolsUsed: ['Balsa Wood', 'X-Acto Knives', 'Hot Glue'],
-          dayInTheLife: 'Glued thin sticks of wood together till midnight, hoping the delicate cardboard would not break before grading tomorrow.'
-        },
-        artemis: {
-          title: 'Permanent Urban Architectural Intervention',
-          desc: 'Negotiated, co-funded, and built a permanent interactive sun-shade pavilion in Valletta utilizing parametric timber structures.',
-          skillGained: 'Civil Contracting & Parameter-driven Architecture',
-          impactAchieved: 'Constructed an installation visited by over 50,000 public users; registered in the local community property trust.',
-          toolsUsed: ['Pneumatic Joinery tools', 'Local Valletta planning permits', 'Real Wood Preservatives'],
-          dayInTheLife: 'Directed Year 1 apprentice support teams in morning builds, and finalized automated lighting sequences and waterproof sensor housings.'
-        }
-      },
-      {
-        year: 'Year 4',
-        phase: 'Infinite',
-        title: 'Lifetime Guild Studio Launch',
-        desc: 'Transitioning to active Master Resolute status with permanent studio allowances, equipment keys, and ongoing team royalties.',
-        traditional: {
-          title: 'Studio Eviction & Portfolio Dissolution',
-          desc: 'Degree conferred. Instructed to empty out university workspaces, pack personal tools, and find commercial freelance jobs.',
-          skillGained: 'Client Proposal Negotiations',
-          impactAchieved: 'Freelancer seeking basic commercial rendering contracts, lacking advanced workshop tools or direct capital reserves.',
-          toolsUsed: ['Upwork Forums', 'Portfolio PDF Compilations'],
-          dayInTheLife: 'Fitted tools into cardboard boxes, bidding farewell to the high-end industrial machinery that made work possible.'
-        },
-        artemis: {
-          title: 'Lifetime Studio Resolute & Guild Commission',
-          desc: 'Granted lifetime keys to all global workshops, automated machinery networks, and permanent project grants.',
-          skillGained: 'Creative Studio Scaling & Apprentice Leadership',
-          impactAchieved: 'Established persistent brand studio, securing first direct $40,000 architectural client contract via the alliance.',
-          toolsUsed: ['Artemis Forge Funding Pools', 'Decentralized Guild Directories', 'Node Labs'],
-          dayInTheLife: 'Reviewed proposals from Year 1 creators wanting to serve as apprentices in your Valletta studio, while configuring spatial installations in parallel.'
-        }
-      }
-    ]
-  }
-};
+  {
+    num: '03', age: 'Age 17–18', phase: 'University Applications',
+    title: 'The Gatekeeper',
+    desc: 'A single application, a single test score, a single admissions decision determines the trajectory of a lifetime.',
+    detail: 'The university admissions process is a gatekeeper of life chances. A single standardized test score — the SAT, A-Levels, Gaokao, JEE — can open or close doors to elite institutions, which in turn gatekeep access to elite careers. Students spend years preparing for a single exam that will determine their social and economic trajectory. The system claims to be meritocratic, but it rewards those who can afford test prep, private tutors, and the cultural capital of knowing how the system works.',
+    consequence: 'Talent is wasted. Brilliant students from poor backgrounds are filtered out not by lack of ability but by lack of access to test preparation and cultural knowledge.',
+    success: "Success means admission to a prestigious university — regardless of whether that university will actually serve the student's growth. The gate is the goal.",
+    image: 'https://sfile.chatglm.cn/images-ppt/98993d8336f9.jpg',
+    icon: Lock,
+  },
+  {
+    num: '04', age: 'Age 18–19', phase: 'Year 1 — Foundation',
+    title: 'The Lecture Hall',
+    desc: '200 students in a lecture hall. One professor at the front. Content that could be a YouTube video.',
+    detail: 'The first year of university is dominated by the lecture hall. Hundreds of students sit in tiered rows while a professor speaks at them for 50 minutes. The content is often identical to what is available for free on YouTube or in a textbook. Questions are discouraged by the format. Interaction is limited to a brief Q&A at the end, if there is time. The student is a passive recipient, a vessel to be filled. Attendance is taken, notes are copied, exams are crammed for, and the content is forgotten within weeks.',
+    consequence: 'Students learn to be passive consumers of information, not active creators of knowledge. The habit of passive learning persists for life.',
+    success: 'Success means passing the first-year exams with a GPA high enough to stay. The student has survived; whether they have learned is secondary.',
+    image: 'https://sfile.chatglm.cn/images-ppt/98993d8336f9.jpg',
+    icon: Users,
+  },
+  {
+    num: '05', age: 'Age 19–20', phase: 'Year 2 — Declaring a Major',
+    title: 'The Silo',
+    desc: 'Students must choose a single discipline — and are locked into it. Cross-disciplinary curiosity becomes a scheduling nightmare.',
+    detail: 'In the second year, students are forced to declare a major. This choice, made at age 19, determines the courses they will take, the faculty they will interact with, and the degree they will receive. A computer science student who discovers a passion for philosophy must navigate bureaucratic hurdles to take a philosophy course — if it fits their schedule at all. Departments are silos, with their own faculty, their own curricula, and their own cultures. The interdisciplinary connections that produce breakthroughs are structurally prevented.',
+    consequence: 'Graduates think in silos. The most consequential problems of the 21st century — climate, AI governance, pandemics — span disciplines that the silo model cannot address.',
+    success: 'Success means completing the major requirements with a competitive GPA. The student has checked the boxes; whether the boxes were worth checking is not asked.',
+    image: 'https://sfile.chatglm.cn/images-ppt/f9588bde8580.jpg',
+    icon: Lock,
+  },
+  {
+    num: '06', age: 'Age 20–21', phase: 'Year 3 — The GPA Game',
+    title: 'Grade Point Average',
+    desc: 'Learning is reduced to a number. The GPA becomes the sole metric of academic worth, driving strategic course selection.',
+    detail: 'By the third year, the GPA has become the student\'s identity. Every course is evaluated not by what it teaches but by how it affects the GPA. Students select "easy A" courses to protect their average, avoiding challenging but valuable courses that might lower it. Collaboration is discouraged — if you help a peer, you might curve yourself down. The system is a zero-sum competition: your success depends on others\' failure. The transcript, a single number, is supposed to represent four years of intellectual growth. It cannot.',
+    consequence: 'Students optimize for grades, not for learning. They avoid risk, avoid challenge, and avoid the kind of intellectual struggle that produces genuine growth.',
+    success: 'Success means a 3.8+ GPA that keeps professional school or elite employer options open. The number, not the knowledge, is the achievement.',
+    image: 'https://sfile.chatglm.cn/images-ppt/f5738b8b26d7.jpg',
+    icon: TrendingDown,
+  },
+  {
+    num: '07', age: 'Age 21–22', phase: 'Year 4 — The Job Hunt',
+    title: 'The Credential',
+    desc: 'The degree is a signal to employers, not a measure of capability. The job hunt reduces four years to a single line on a resume.',
+    detail: 'In the final year, the purpose of the degree becomes clear: it is a credential, a signal to employers. The four years of lectures, exams, and GPAs are reduced to a single line on a resume: "B.A., University X, 2026." Employers use the degree as a filter, not because it indicates capability but because it indicates conformity to the system. The actual skills the graduate has — or lacks — are invisible. A 3.9 GPA student who crammed for every exam is indistinguishable from a 3.9 student who deeply understood the material. The credential cannot tell them apart.',
+    consequence: 'Employers hire credentials, not capability. Graduates who passed through the system without acquiring real skills are employed alongside those who did, and the system cannot distinguish them.',
+    success: 'Success means a job offer from a recognized employer. The degree has been converted into income — the only metric the system recognizes.',
+    image: 'https://sfile.chatglm.cn/images-ppt/f9588bde8580.jpg',
+    icon: X,
+  },
+  {
+    num: '08', age: 'Age 22', phase: 'Graduation',
+    title: 'The Identical Caps',
+    desc: 'Hundreds of identical caps and gowns. A ceremony that celebrates conformity, not individuality.',
+    detail: 'Graduation is the culmination of the system. Hundreds of students wear identical caps and gowns, walk across a stage in identical fashion, and receive identical-looking diplomas. The ceremony celebrates the completion of a standardized process. The valedictorian, chosen by GPA, gives a speech about following your dreams — the same speech given at every graduation, every year, everywhere. The individuality, curiosity, and potential that each student brought to the institution has been processed into a uniform output. The system worked as designed.',
+    consequence: 'Graduates enter the world as standardized products, not as the unique thinkers and makers the world needs.',
+    success: 'Success means walking across the stage, receiving the diploma, and having your photo taken. The ceremony confirms you are done.',
+    image: 'https://sfile.chatglm.cn/images-ppt/288b47e4a529.jpg',
+    icon: Users,
+  },
+  {
+    num: '09', age: 'Age 22–25', phase: 'Early Career',
+    title: 'The Cubicle',
+    desc: 'The degree gets you the interview. The cubicle is the reward. The work often has nothing to do with what you studied.',
+    detail: 'The degree gets the graduate an interview. The interview gets them a job. The job, more often than not, is a cubicle — a standardized workspace in a standardized organization doing standardized work. The specific knowledge acquired over four years is rarely used. What matters is the demonstration that the graduate can survive a bureaucratic process, follow instructions, and conform to expectations. The cubicle is the physical expression of the lecture hall: a space designed for standardization, not for creativity or impact.',
+    consequence: 'Graduates spend their most energetic years in environments that do not use their talents, do not challenge them to grow, and do not connect their work to anything they care about.',
+    success: "Success means a stable salary, benefits, and a career trajectory. The cubicle is not a failure — it is the system's intended outcome.",
+    image: 'https://sfile.chatglm.cn/images-ppt/f9588bde8580.jpg',
+    icon: Lock,
+  },
+  {
+    num: '10', age: 'Age 22–30', phase: 'The Debt',
+    desc: 'The average US graduate carries $37,000 in student debt. The degree that was supposed to be an investment becomes a chain.',
+    detail: 'The financial consequence of the traditional path is debt. In the United States, the average graduate carries $37,000 in student loans; many carry $100,000 or more. This debt shapes every decision that follows: the jobs they can afford to take, the risks they can afford to take, the cities they can afford to live in, the businesses they can afford to start. The degree that was supposed to be an investment in freedom becomes a chain binding the graduate to the corporate ladder. They cannot afford to take the lower-paying but higher-impact job. They cannot afford to start the venture. They must pay the debt.',
+    consequence: 'Debt strips graduates of the freedom to take risks, pursue purpose, or change direction. The system that promised upward mobility delivers indentured servitude.',
+    success: 'Success means paying off the student loans — eventually. Financial freedom, not intellectual freedom, becomes the life goal.',
+    image: 'https://sfile.chatglm.cn/images-ppt/dd49aaa1d2ec.jpg',
+    icon: AlertTriangle,
+  },
+  {
+    num: '11', age: 'Age 30–50', phase: 'Mid-Career Stagnation',
+    title: 'The Plateau',
+    desc: 'The skills that got you the job are obsolete. The system that trained you offers no path to re-learn.',
+    detail: 'By mid-career, the skills acquired in university are obsolete. The technology has changed, the field has evolved, the problems have shifted. But the traditional system offers no path to re-learn. Continuing education is expensive, inconvenient, and disconnected from the workplace. The graduate, now 35 or 40, is stuck with a 15-year-old education in a 40-year-old world. They are too expensive to fire and too outdated to promote. The plateau sets in: the same work, the same salary, the same cubicle, year after year, until retirement. Learning has stopped. Growth has stopped. The system delivered the credential, and then it walked away.',
+    consequence: 'Millions of professionals in their peak years are intellectually stagnant, trapped by a system that educated them once and then abandoned them.',
+    success: 'Success means a promotion, a title, a corner office. The metrics of success are external, defined by the organization, not the individual.',
+    image: 'https://sfile.chatglm.cn/images-ppt/f9588bde8580.jpg',
+    icon: TrendingDown,
+  },
+  {
+    num: '12', age: 'Age 65+', phase: 'Retirement',
+    title: 'The Exit',
+    desc: 'After 40 years in the system, retirement is the exit. Learning is over. Contribution is over. The mind is left to atrophy.',
+    detail: 'Retirement is the final stage of the traditional path. After 40 years of work, the graduate — now a senior — exits the workforce. In the traditional model, this is the end of learning and contribution. The skills are obsolete, the network is retired, and the mind is left to atrophy. Society treats the senior as a former contributor, not an ongoing one. The wisdom accumulated over a lifetime has no outlet, no audience, no institution to receive it. The system that used the graduate\'s youth has no use for their elderhood. The learning that could have continued for decades simply stops.',
+    consequence: 'Society loses the wisdom, mentorship, and ongoing contribution of its elders — the very people best positioned to provide perspective, context, and intergenerational knowledge transfer.',
+    success: 'Success means a pension and a comfortable retirement. Learning is over; the goal is to rest after 40 years of the system.',
+    image: 'https://sfile.chatglm.cn/images-ppt/288b47e4a529.jpg',
+    icon: X,
+  },
+];
 
-export default function JourneyPage({ goTo }: { goTo: (p: string) => void }) {
+// ═══════════════════════════════════════════════════════════
+// ACT 2: THE ARTEMIS WAY — The new way of doing things
+// ═══════════════════════════════════════════════════════════
+const ARTEMIS_STEPS: StepData[] = [
+  {
+    num: '01', age: 'Age 5–11', phase: 'Open-Loop Learning',
+    title: 'The Infinite Continuum',
+    desc: 'Learning begins at birth and never ends. There is no "first day of school" — only the continuation of a natural process.',
+    detail: 'Artemis rejects the idea that learning has a start date and an end date. The Infinite Learning Continuum (Dimension 01) treats learning as a lifelong process that begins at birth and continues until death. There is no "first day of school" and no "graduation." Children do not wait until age 5 to begin learning — they are born learning, and the institution\'s role is to support and structure that learning, not to initiate it. The continuum means that a 7-year-old, a 17-year-old, a 37-year-old, and a 70-year-old are all learners, all in different stages of the same journey, all able to learn from and teach each other.',
+    consequence: 'No one is "too young" or "too old" to learn. The intergenerational exchange enriches everyone.',
+    success: 'Success means the child retains their curiosity, asks questions fearlessly, and sees themselves as a lifelong learner — not as a test score.',
+    image: 'https://sfile.chatglm.cn/images-ppt/a3b5c9774539.jpg',
+    icon: InfinityIcon,
+  },
+  {
+    num: '02', age: 'Age 12–17', phase: 'Adaptive Paced Learning',
+    title: 'Your Rhythm, Not the Clock',
+    desc: 'Students progress when they master the material, not when the semester ends. No one is "behind" or "ahead."',
+    detail: 'Adaptive Paced Learning (Dimension 02) replaces the factory-model clock. Students do not progress through material at a uniform pace determined by the academic calendar. They progress when they have demonstrated mastery of the current material, regardless of how long that takes. A student who masters algebra in three months moves on. A student who needs six months gets six months. No one is "behind" because there is no behind — there is only where you are and what you are mastering. The competency-based model means that every student who completes a subject has actually mastered it, not merely survived it.',
+    consequence: 'No student is left behind by the clock, and no student is held back by it. Mastery, not time, is the metric.',
+    success: 'Success means the student has genuinely mastered the material at their own pace, with deep understanding rather than superficial memorization.',
+    image: 'https://sfile.chatglm.cn/images-ppt/c31492086d3a.jpg',
+    icon: Clock,
+  },
+  {
+    num: '03', age: 'Age 17–18', phase: 'Purpose Learning',
+    title: 'Declare a Mission, Not a Major',
+    desc: 'Students do not choose a major. They declare a mission — a real-world problem they commit to advancing.',
+    detail: 'Purpose Learning (Dimension 04) replaces the major with the mission. A student does not declare "Computer Science" or "History." They declare: "To make clean water accessible across the Sahel" or "To design governance systems for autonomous AI." The mission, not a departmental curriculum, shapes the student\'s course selection, capstone project, and Center of Inquiry affiliation. The education serves the mission, not the other way around. A student whose mission is water access takes hydrology, public health, governance, and engineering — not because they are distribution requirements, but because the mission demands them.',
+    consequence: 'Graduates know what they are working toward and why. The education is not a credential but a toolkit for purpose.',
+    success: 'Success means the student has found a mission that ignites their passion — and built a curriculum that serves it, not the other way around.',
+    image: 'https://sfile.chatglm.cn/images-ppt/099499c66b44.jpg',
+    icon: Target,
+  },
+  {
+    num: '04', age: 'Age 18–19', phase: 'The Four-Pillar Foundation',
+    title: 'Epistemology, Computation, Systems, Expression',
+    desc: 'Every Artemis graduate, regardless of mission, completes a four-pillar foundation in their first two years.',
+    detail: 'The four-pillar curriculum provides the shared intellectual substrate. Epistemology: how we know what we know — logic, evidence, inference, the limits of certainty. Computational Thinking: the algorithmic decomposition of problems across every field. Global Systems: climate, finance, migration, governance — the interlocking systems of the planetary century. Creative Expression: the studio, the workshop, the stage — making as knowing. Every graduate can reason epistemologically, computationally, systemically, and creatively. This is the common language that lets a computer scientist and a historian collaborate without translation.',
+    consequence: 'Graduates can think across disciplines. They have the tools to approach any problem, in any field, with any team.',
+    success: 'Success means the student can reason epistemologically, computationally, systemically, and creatively — the foundation for any future inquiry.',
+    image: 'https://sfile.chatglm.cn/images-ppt/c31492086d3a.jpg',
+    icon: BookOpen,
+  },
+  {
+    num: '05', age: 'Age 18–22', phase: 'The Tutorial System',
+    title: 'Three Students, One Faculty Member',
+    desc: 'Weekly 75-minute tutorials in groups of three. Socratic inquiry, not passive lecture. Every student accountable every week.',
+    detail: 'The tutorial is the core of the Artemis pedagogy. Every student meets weekly in a tutorial of three students and one faculty member — a 75-minute deep discussion of the week\'s readings and problems. The tutorial is not a mini-lecture; it is a Socratic interrogation. The faculty member probes understanding, challenges assumptions, and pushes students to articulate and defend their reasoning. The 3:1 ratio means no one can hide. Every student is accountable every week. With 60,000 students, the institution runs 20,000 weekly tutorials, staffed by 2,000 faculty.',
+    consequence: 'Students learn to think on their feet, articulate their reasoning, and defend their ideas — the skills that matter in the real world.',
+    success: 'Success means the student can articulate, defend, and refine their ideas in real-time — the skill that defines leadership in every field.',
+    image: 'https://sfile.chatglm.cn/images-ppt/c31492086d3a.jpg',
+    icon: Users,
+  },
+  {
+    num: '06', age: 'Age 18–22', phase: 'The AI Tutor',
+    title: '24/7 Socratic Guidance',
+    desc: 'Every course is paired with an AI tutor that asks questions, never gives answers. Available at 2am when you are stuck.',
+    detail: 'Every Artemis course is paired with an AI assistant — a large language model fine-tuned on the Center of Inquiry\'s domain knowledge and the Socratic method. The AI tutor is available 24/7, not to deliver answers but to ask questions. When a student is stuck at 2am, the AI tutor asks: "What have you tried?" "What assumption are you making?" "How would you check that?" The AI is calibrated to the student\'s competency level, adjusting its questioning to the student\'s zone of proximal development. It is a complement to the faculty tutorial, ensuring the student is never alone with a problem.',
+    consequence: 'Every student has a personal tutor that never sleeps, never tires, and never judges — but always pushes them to think harder.',
+    success: 'Success means the student is never stuck, never alone with a problem — the AI tutor ensures thinking never stops, even at 2am.',
+    image: 'https://sfile.chatglm.cn/images-ppt/e5ca6fbd2a3b.png',
+    icon: Brain,
+  },
+  {
+    num: '07', age: 'Age 18–22', phase: 'The Six-City Rotation',
+    title: 'Six Cities, Four Continents',
+    desc: 'Undergraduate students rotate through six hostel cities — Valletta, Berlin, Nairobi, Singapore, São Paulo, Vancouver.',
+    detail: 'The Darwin Voyage (Dimension 06) is the physical expression of the planetary mandate. Undergraduate students rotate through six cities over four years — Valletta, Berlin, Nairobi, Singapore, São Paulo, Vancouver — spending two semesters in each. Each city hosts a residential college with full academic facilities, and the curriculum is synchronised so the student continues their course sequence seamlessly. A student studying global systems lives in both the Global North and the Global South. A student studying urban futures walks the streets of cities being adapted and cities being built. The rotation is the degree, and the cities are the classroom.',
+    consequence: 'Graduates have lived in six countries, speak multiple languages, and understand the world from multiple cultural perspectives — not from a textbook.',
+    success: 'Success means the student has lived in six countries, speaks multiple languages, and understands the world not from a book but from experience.',
+    image: 'https://sfile.chatglm.cn/images-ppt/c68c0911a2ac.jpg',
+    icon: Globe,
+  },
+  {
+    num: '08', age: 'Age 18–22', phase: 'Centers of Inquiry',
+    title: 'No Departments, Only Problems',
+    desc: '19 interdisciplinary Centers replace departments. Faculty are appointed to Centers, not silos. Research flows across boundaries.',
+    detail: 'The 19 Centers of Inquiry (Dimension 05) replace traditional academic departments. Each Center is an interdisciplinary hub organised around a problem domain: Synthetic Intelligence, Bio-Regenerative Arts, Cosmological Humanities, Urban Futures, Biotech & Life Sciences, Fintech & Economics, Health & Bioethics, and more. Faculty are appointed to Centers, not departments. Students affiliate with the Center whose research agenda most aligns with their mission. The Centers share infrastructure, co-advise students, and run joint projects. The boundary-crossing that produces breakthroughs is the default, not the exception.',
+    consequence: 'Research and teaching are organized around the world\'s problems, not around 19th-century disciplinary boundaries.',
+    success: 'Success means the student has contributed to real research at the frontier of human knowledge — not merely studied what others have done.',
+    image: 'https://sfile.chatglm.cn/images-ppt/e5ca6fbd2a3b.png',
+    icon: FlaskConical,
+  },
+  {
+    num: '09', age: 'Age 18–22', phase: 'Competency-Based Grading',
+    title: 'Mastery, Not Ranking',
+    desc: 'No GPA. No class rank. No curve. Students are assessed against mastery standards — "mastery," "proficiency," or "in progress."',
+    detail: 'SkillPrints (Dimension 03) replaces the GPA with competency-based assessment. Students are not ranked against each other; they are assessed against published mastery standards. A student demonstrates mastery of a competency (e.g., "can construct a valid Bayesian inference from data") through coursework, projects, and oral examinations, and receives a designation of "mastery," "proficiency," or "in progress." The transcript describes what the student can actually do, not how they ranked relative to peers. The standard is absolute, not relative — a "mastery" designation means the same thing in 2026 and 2050.',
+    consequence: 'Collaboration replaces competition. Students help each other because helping does not lower your grade. The transcript is a skill portfolio, not a ranking.',
+    success: 'Success means the student has a portfolio of demonstrated competencies — what they can do, not how they ranked.',
+    image: 'https://sfile.chatglm.cn/images-ppt/c31492086d3a.jpg',
+    icon: CheckCircle2,
+  },
+  {
+    num: '10', age: 'Age 20–22', phase: 'The Capstone',
+    title: 'Advance Your Mission',
+    desc: 'Every student completes a capstone that advances their declared mission. Evaluated on epistemic contribution and civic impact.',
+    detail: 'The capstone is the culmination of the Artemis education. Every student completes a capstone project in their final year, and the capstone must advance the student\'s declared mission. This is not a thesis — it is a contribution. A water-access student might design and prototype a low-cost filtration system deployed in a Sahel community. An AI-governance student might draft a model regulatory framework adopted by a national government. The capstone is evaluated on a dual criterion: epistemic contribution (did it advance knowledge?) and civic impact (did it advance the mission?). The standard is the same standard applied to the institution\'s own research.',
+    consequence: 'Graduates leave with a portfolio of real work, not just a transcript. They have already made a contribution before they graduate.',
+    success: 'Success means the student has advanced their mission — made a real contribution to a real problem before they even graduate.',
+    image: 'https://sfile.chatglm.cn/images-ppt/e5ca6fbd2a3b.png',
+    icon: Rocket,
+  },
+  {
+    num: '11', age: 'Age 22+', phase: 'The Forge & Innovation',
+    title: 'From Breakthrough to Venture',
+    desc: 'The Forge incubator spins research into ventures within 12 months. 5% equity flows to the endowment. Graduates can build.',
+    detail: 'The Forge is Artemis\'s translational engine. It takes breakthroughs from the Centers of Inquiry and spins them into independent ventures within 12 months. ClimatIQ from the Center for Urban Futures. NeuroBridge from Synthetic Intelligence. BioWeave from Bio-Regenerative Arts. Each venture addresses a real-world problem, was spun within twelve months of the underlying research, and carries 5% equity for the Artemis endowment. Graduates are not just prepared to join existing organizations — they are prepared to build new ones, with institutional support and an innovation infrastructure behind them.',
+    consequence: 'Graduates can build ventures, not just join them. The institution supports their ambitions with capital, mentorship, and infrastructure.',
+    success: 'Success means the graduate can build, not just join — with the capital, mentorship, and infrastructure to launch ventures that matter.',
+    image: 'https://sfile.chatglm.cn/images-ppt/099499c66b44.jpg',
+    icon: Zap,
+  },
+  {
+    num: '12', age: 'Age 22–100', phase: 'The Lifelong Continuum',
+    title: 'Learning Never Stops',
+    desc: 'Graduation is not the end. Alumni continue learning, teaching, and contributing through the Artemis network for life.',
+    detail: 'Because learning is an infinite continuum (Dimension 01), graduation is not the end of the journey — it is a milestone. Artemis alumni continue to have access to the institution\'s courses, Centers, and Knowledge Core for life. They can return for a semester, audit a course, mentor a student, or contribute to a Center\'s research. The alumni network is concentrated in the six rotation cities, producing a density of connection that amplifies every graduate\'s reach. The 70-year-old alumnus and the 20-year-old student are both learners, both in different stages of the same continuum, both able to teach and learn from each other. Learning never stops.',
+    consequence: 'The institution supports its learners for life, not for four years. The wisdom of elders flows back to the young, and the energy of the young flows to the elders.',
+    success: 'Success means the graduate continues to learn, teach, and contribute for life — the continuum never ends, and neither does the impact.',
+    image: 'https://sfile.chatglm.cn/images-ppt/d96457501870.jpg',
+    icon: Heart,
+  },
+];
+
+// ═══════════════════════════════════════════════════════════
+// COMPONENT
+// ═══════════════════════════════════════════════════════════
+export default function JourneyPage({ goTo }: { goTo: (page: string) => void }) {
+  const [activeTale, setActiveTale] = useState<'intro' | 'traditional' | 'bigger' | 'artemis'>('intro');
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Persistence block
-  const [selectedPersona, setSelectedPersona] = useState<string>('researcher');
-  
+  const { scrollYProgress } = useScroll();
+  const progressWidth = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.05], [1, 0]);
+
+  // Scroll to top when tale changes
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('artemis_journey_persona');
-      if (saved && PERSONAS[saved]) {
-        setSelectedPersona(saved);
-      }
-    }
-  }, []);
-
-  const handlePersonaSelect = (id: string) => {
-    setSelectedPersona(id);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('artemis_journey_persona', id);
-    }
-  };
-
-  // View mode
-  const [viewMode, setViewMode] = useState<'timeline' | 'split'>('split');
-
-  // Clickable milestone popup state
-  const [activeTooltip, setActiveTooltip] = useState<{
-    pathType: 'traditional' | 'artemis';
-    stepIdx: number;
-  } | null>(null);
-
-  const activePersona = PERSONAS[selectedPersona] || PERSONAS.researcher;
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-
-  // Smooth scroll parallax transforms
-  const backgroundTransform = useTransform(
-    scrollYProgress,
-    [0, 0.3, 0.6, 1],
-    [
-      "radial-gradient(circle at 50% 50%, #120808 0%, #060606 100%)",
-      "radial-gradient(circle at 10% 30%, #0a0e17 0%, #050505 100%)",
-      "radial-gradient(circle at 90% 70%, #150909 0%, #060606 100%)",
-      "radial-gradient(circle at 50% 50%, #0d0c0d 0%, #050505 100%)"
-    ]
-  );
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [activeTale]);
 
   return (
-    <div ref={containerRef} className="relative w-full bg-[#0a0a0a] min-h-[500vh] text-white selection:bg-[#8A0000] selection:text-white pb-32">
-      {/* Background Gradient responding to scroll */}
-      <motion.div 
-        className="fixed inset-0 pointer-events-none z-10"
-        style={{ background: backgroundTransform }}
+    <div ref={containerRef} className="w-full bg-white overflow-x-hidden">
+      {/* ─── Scroll Progress Bar ─── */}
+      <motion.div
+        className="fixed top-14 left-0 right-0 h-[3px] bg-gradient-to-r from-[#8A0000] via-[#dc2626] to-[#D4A853] z-[60] origin-left"
+        style={{ scaleX: progressWidth }}
       />
 
-      {/* --- Ambient Starfield / Cyber Grid Accent --- */}
-      <div className="fixed inset-0 pointer-events-none opacity-20 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] z-10" />
+      {/* ═══════════════════════════════════════════
+          INTRO: The Tale of Two Ways
+          ═══════════════════════════════════════════ */}
+      {activeTale === 'intro' && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="relative min-h-[calc(100vh-3.5rem)] flex items-center justify-center bg-[#0c0a09] text-white overflow-hidden"
+        >
+          {/* Background gradient orbs */}
+          <div className="absolute top-1/4 left-1/4 w-[50vw] h-[50vw] rounded-full bg-[#8A0000]/20 blur-[120px]" />
+          <div className="absolute bottom-1/4 right-1/4 w-[40vw] h-[40vw] rounded-full bg-[#D4A853]/10 blur-[100px]" />
 
-      {/* Intro section */}
-      <div className="h-screen sticky top-0 flex flex-col items-center justify-center text-center px-4 z-20 pointer-events-none">
-        <motion.div style={{ opacity: useTransform(scrollYProgress, [0, 0.08], [1, 0]) }}>
-          <span className="text-[#D4A853] font-mono text-[10px] sm:text-[11px] tracking-[0.4em] uppercase mb-6 block">Comparative Educational Continuum</span>
-          <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-serif text-white tracking-tighter max-w-5xl leading-[0.9] mb-8 font-extrabold">
-            The Artemis Journey
-          </h1>
-          <p className="mt-8 text-gray-500 font-mono text-xs sm:text-sm uppercase tracking-[0.25em] animate-pulse">
-            Scroll to begin divergence comparison
-          </p>
+          <div className="relative z-10 max-w-4xl mx-auto px-6 text-center py-20">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="flex items-center justify-center gap-3 mb-8"
+            >
+              <span className="w-10 h-[1px] bg-[#8A0000]" />
+              <span className="text-[11px] font-semibold uppercase tracking-[0.35em] text-[#ff6b6b]">A Tale of Two Ways</span>
+              <span className="w-10 h-[1px] bg-[#8A0000]" />
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="text-[40px] sm:text-[56px] md:text-[72px] font-black leading-[0.95] tracking-tighter mb-6"
+            >
+              The Learner's<br/>Journey
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-[17px] sm:text-[19px] text-white/50 max-w-2xl mx-auto leading-relaxed mb-12 font-light"
+            >
+              Two paths lie before every learner. One has been walked for 200 years — a system designed for the industrial age, still running on a factory clock. The other is being built now — for the planetary century, for the learner, for humanity. This is the story of both.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+            >
+              <button
+                onClick={() => setActiveTale('traditional')}
+                className="group flex items-center justify-center gap-3 px-8 py-4 bg-white/5 border border-white/15 hover:bg-white/10 hover:border-white/30 transition-all text-white text-[13px] font-bold uppercase tracking-[0.2em] rounded-full"
+              >
+                <Lock size={16} className="text-gray-400" />
+                The Traditional Way
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </button>
+              <button
+                onClick={() => setActiveTale('artemis')}
+                className="group flex items-center justify-center gap-3 px-8 py-4 bg-[#8A0000] hover:bg-[#6B0000] transition-all text-white text-[13px] font-bold uppercase tracking-[0.2em] rounded-full shadow-lg shadow-[#8A0000]/30"
+              >
+                <Sparkles size={16} />
+                The Artemis Way
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </button>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.6 }}
+              className="mt-16"
+            >
+              <p className="text-[11px] text-white/30 uppercase tracking-[0.2em] mb-2">Scroll to begin</p>
+              <motion.div
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+              >
+                <ChevronDown size={20} className="text-white/30 mx-auto" />
+              </motion.div>
+            </motion.div>
+          </div>
         </motion.div>
+      )}
+
+      {/* ═══════════════════════════════════════════
+          ACT 1: THE TRADITIONAL WAY
+          ═══════════════════════════════════════════ */}
+      {activeTale === 'traditional' && (
+        <ActSteps
+          title="The Traditional Way"
+          subtitle="A system designed for the industrial age — still running on a factory clock"
+          steps={TRADITIONAL_STEPS}
+          color="#6b7280"
+          bgColor="bg-[#1a1a1a]"
+          textColor="text-white"
+          onContinue={() => setActiveTale('bigger')}
+          continueLabel="See the bigger picture"
+          actLabel="Act I"
+        />
+      )}
+
+      {/* ═══════════════════════════════════════════
+          THE BIGGER PICTURE
+          ═══════════════════════════════════════════ */}
+      {activeTale === 'bigger' && (
+        <BiggerPicture onContinue={() => setActiveTale('artemis')} />
+      )}
+
+      {/* ═══════════════════════════════════════════
+          ACT 2: THE ARTEMIS WAY
+          ═══════════════════════════════════════════ */}
+      {activeTale === 'artemis' && (
+        <ActSteps
+          title="The Artemis Way"
+          subtitle="A system designed for the planetary century — for the learner, for humanity"
+          steps={ARTEMIS_STEPS}
+          color="#8A0000"
+          bgColor="bg-white"
+          textColor="text-[#141414]"
+          onContinue={() => setActiveTale('intro')}
+          continueLabel="Return to the beginning"
+          actLabel="Act II"
+        />
+      )}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// ACT STEPS COMPONENT
+// ═══════════════════════════════════════════════════════════
+function ActSteps({
+  title, subtitle, steps, color, bgColor, textColor, onContinue, continueLabel, actLabel,
+}: {
+  title: string;
+  subtitle: string;
+  steps: StepData[];
+  color: string;
+  bgColor: string;
+  textColor: string;
+  onContinue: () => void;
+  continueLabel: string;
+  actLabel: string;
+}) {
+  return (
+    <div className={`${bgColor} ${textColor}`}>
+      {/* Act Header */}
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-12 pt-20 pb-12">
+        <div className="flex items-center gap-3 mb-6">
+          <span className="text-[11px] font-bold uppercase tracking-[0.3em]" style={{ color }}>{actLabel}</span>
+          <span className="flex-1 h-[1px] opacity-20" style={{ background: color }} />
+          <span className="text-[11px] font-bold uppercase tracking-[0.2em] opacity-40">{steps.length} steps</span>
+        </div>
+        <h2 className="text-[36px] sm:text-[48px] md:text-[60px] font-black leading-[0.95] tracking-tighter mb-4">{title}</h2>
+        <p className="text-[16px] sm:text-[18px] opacity-50 max-w-2xl leading-relaxed font-light">{subtitle}</p>
       </div>
 
-      {/* Main Content Area */}
-      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-8 mt-[-100vh] z-30">
-        
-        {/* --- Top Command Panel (Persona Selection & View Mode Toggles) --- */}
-        <div className="sticky top-6 bg-black/80 backdrop-blur-xl border border-white/10 rounded-xl p-4 sm:p-6 mb-24 max-w-5xl mx-auto z-50 shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
-          <div className="flex flex-col lg:flex-row gap-6 justify-between items-start lg:items-center">
-            
-            {/* Persona picker label & control */}
-            <div className="w-full lg:w-auto">
-              <span className="text-gray-400 font-mono text-[9px] uppercase tracking-widest block mb-3">
-                Select Student Profile / Persisted Persona
-              </span>
-              <div className="flex flex-wrap gap-2.5">
-                {Object.values(PERSONAS).map((persona) => {
-                  const isSelected = selectedPersona === persona.id;
-                  return (
-                    <button
-                      key={persona.id}
-                      onClick={() => handlePersonaSelect(persona.id)}
-                      className={`px-4 py-2 border rounded-full transition-all duration-300 text-xs font-semibold uppercase tracking-wider flex items-center gap-2 ${
-                        isSelected 
-                          ? `${persona.borderColor} text-white bg-white/5 ${persona.glowColor}` 
-                          : 'border-white/10 text-gray-400 hover:border-white/30 hover:text-white hover:bg-white/2'
-                      }`}
-                      id={`persona-btn-${persona.id}`}
-                    >
-                      <span className={`w-1.5 h-1.5 rounded-full`} style={{ backgroundColor: persona.color }} />
-                      {persona.name.split(' ').slice(2).join(' ') || persona.name}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
+      {/* Steps */}
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-12 pb-20">
+        {steps.map((step, i) => (
+          <StepSection key={i} step={step} index={i} color={color} isDark={bgColor.includes('1a1a1a')} />
+        ))}
+      </div>
 
-            {/* View layout mode picker */}
-            <div className="flex flex-col w-full lg:w-auto">
-              <span className="text-gray-400 font-mono text-[9px] uppercase tracking-widest block mb-3">
-                Comparison Visualization Mode
-              </span>
-              <div className="flex border border-white/10 rounded-full p-0.5 bg-black/60 w-fit">
-                <button
-                  onClick={() => setViewMode('split')}
-                  className={`px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all flex items-center gap-1.5 ${
-                    viewMode === 'split' ? 'bg-white text-black' : 'text-gray-400 hover:text-white'
-                  }`}
-                  id="viewmode-split-btn"
-                >
-                  <Layers className="w-3.5 h-3.5" />
-                  Twin-Column Split
-                </button>
-                <button
-                  onClick={() => setViewMode('timeline')}
-                  className={`px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all flex items-center gap-1.5 ${
-                    viewMode === 'timeline' ? 'bg-white text-black' : 'text-gray-400 hover:text-white'
-                  }`}
-                  id="viewmode-timeline-btn"
-                >
-                  <Compass className="w-3.5 h-3.5" />
-                  Scroll Timeline
-                </button>
-              </div>
-            </div>
+      {/* Continue button */}
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-12 pb-24 text-center">
+        <button
+          onClick={onContinue}
+          className="group inline-flex items-center gap-3 px-8 py-4 rounded-full text-[13px] font-bold uppercase tracking-[0.2em] transition-all"
+          style={{
+            background: color === '#6b7280' ? '#8A0000' : '#0c0a09',
+            color: '#fff',
+          }}
+        >
+          {continueLabel}
+          <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+        </button>
+      </div>
+    </div>
+  );
+}
 
+// ═══════════════════════════════════════════════════════════
+// STEP SECTION COMPONENT
+// ═══════════════════════════════════════════════════════════
+function StepSection({ step, index, color, isDark }: { step: StepData; index: number; color: string; isDark: boolean }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  const Icon = step.icon;
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { rootMargin: '-15% 0px', threshold: 0.05 },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  const isEven = index % 2 === 0;
+
+  return (
+    <div
+      ref={ref}
+      className={`grid lg:grid-cols-2 gap-8 lg:gap-16 items-center py-16 lg:py-24 ${
+        index > 0 ? 'border-t' : ''
+      } ${isDark ? 'border-white/10' : 'border-gray-200'}`}
+    >
+      {/* Image side */}
+      <motion.div
+        initial={{ opacity: 0, x: isEven ? -40 : 40 }}
+        animate={visible ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+        className={`relative ${isEven ? '' : 'lg:order-2'}`}
+      >
+        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+          <img
+            src={step.image}
+            alt={step.title}
+            className="w-full h-full object-cover"
+            onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+          {/* Step number badge */}
+          <div className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-sm">
+            <span className="text-[10px] font-black tracking-wider text-white">{step.num}</span>
+            <span className="text-[9px] font-bold uppercase tracking-widest text-white/60">{step.phase}</span>
           </div>
+        </div>
+      </motion.div>
 
-          {/* Active Persona info card */}
-          <div className="mt-4 pt-4 border-t border-white/5 flex gap-4 items-start bg-white/2 p-3 rounded-lg">
-            <div className="shrink-0 p-2.5 rounded-md bg-white/5 border border-white/10">
-              <Compass className="w-5 h-5 text-[#D4A853]" />
-            </div>
+      {/* Text side */}
+      <motion.div
+        initial={{ opacity: 0, x: isEven ? 40 : -40 }}
+        animate={visible ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 0.8, delay: 0.15, ease: 'easeOut' }}
+        className={isEven ? '' : 'lg:order-1'}
+      >
+        {/* Age tag */}
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-9 h-9 rounded-full flex items-center justify-center" style={{ background: `${color}15` }}>
+            <Icon size={18} style={{ color }} />
+          </div>
+          <div>
+            <div className="text-[10px] font-bold uppercase tracking-[0.2em] opacity-40">{step.age}</div>
+            <div className="text-[12px] font-bold" style={{ color }}>{step.phase}</div>
+          </div>
+        </div>
+
+        {/* Title */}
+        <h3 className="text-[24px] sm:text-[30px] font-black tracking-tight leading-[1.1] mb-4">{step.title}</h3>
+
+        {/* Description */}
+        <p className="text-[15px] sm:text-[16px] leading-relaxed mb-4 opacity-70">{step.desc}</p>
+
+        {/* Detail */}
+        <p className="text-[14px] leading-[1.75] opacity-50 mb-6">{step.detail}</p>
+
+        {/* Consequence */}
+        <div
+          className="p-5 rounded-xl border-l-4 mb-4"
+          style={{ background: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)', borderColor: color }}
+        >
+          <div className="flex items-start gap-3">
+            <AlertTriangle size={16} className="shrink-0 mt-0.5" style={{ color }} />
             <div>
-              <div className="flex items-center gap-2">
-                <h4 className="text-sm font-bold text-white font-serif">{activePersona.name}</h4>
-                <span className={`text-[9px] font-mono uppercase px-2 py-0.5 rounded border ${activePersona.borderColor} ${activePersona.textColor} ${activePersona.accentBg}`}>
-                  {activePersona.badge}
-                </span>
+              <div className="text-[10px] font-bold uppercase tracking-[0.15em] mb-1.5" style={{ color }}>
+                {index < 12 ? 'Consequence' : 'Benefit'}
               </div>
-              <p className="text-xs text-gray-400 mt-1 leading-relaxed font-light">{activePersona.description}</p>
+              <p className="text-[13px] leading-relaxed opacity-70">{step.consequence}</p>
             </div>
           </div>
         </div>
 
-        {/* --- Side-by-Side TWIN COLUMN Layout Mode --- */}
-        {viewMode === 'split' && (
-          <div className="space-y-24 py-12">
-            
-            {/* Split Column Headers */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sticky top-36 z-40 bg-black/90 p-4 border border-white/5 rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.6)] backdrop-blur-md">
-              <div className="text-center p-3 border-r border-white/5 md:block hidden">
-                <span className="text-[10px] font-mono tracking-widest text-red-500 uppercase block mb-1">Traditional Framework</span>
-                <h3 className="text-xl font-serif text-gray-300">The Rigid Pipeline</h3>
+        {/* What Success Means */}
+        <div
+          className="p-5 rounded-xl border-l-4"
+          style={{ background: isDark ? 'rgba(212,168,83,0.05)' : 'rgba(212,168,83,0.08)', borderColor: '#D4A853' }}
+        >
+          <div className="flex items-start gap-3">
+            <CheckCircle2 size={16} className="shrink-0 mt-0.5 text-[#D4A853]" />
+            <div>
+              <div className="text-[10px] font-bold uppercase tracking-[0.15em] mb-1.5 text-[#D4A853]">
+                What Success Means Here
               </div>
-              <div className="text-center p-3 md:block hidden">
-                <span className="text-[10px] font-mono tracking-widest text-[#D4A853] uppercase block mb-1">Artemis Ecosystem</span>
-                <h3 className="text-xl font-serif text-white font-bold tracking-tight">The Decentralized Open Loop</h3>
-              </div>
-              {/* Mobile indicators */}
-              <div className="block md:hidden text-center">
-                 <span className="text-xs font-mono text-gray-400">Comparing Traditional vs. Artemis Model Side-by-Side</span>
-              </div>
-            </div>
-
-            {/* Split Steps / Years */}
-            {activePersona.steps.map((step, idx) => (
-              <div key={idx} className="border-b border-white/5 pb-16">
-                
-                {/* Year Badge */}
-                <div className="flex items-center justify-center gap-3 mb-10">
-                  <span className="h-px w-12 bg-white/10" />
-                  <span className="text-[11px] font-mono tracking-[0.3em] text-[#D4A853] uppercase font-bold">{step.year} — {step.phase}</span>
-                  <span className="h-px w-12 bg-white/10" />
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch relative">
-                  
-                  {/* Central Glow Divider (Divergence indicator) */}
-                  <div className="absolute left-1/2 top-4 bottom-4 w-px bg-white/10 -translate-x-1/2 md:block hidden" />
-
-                  {/* Left: Traditional Pathway */}
-                  <motion.div 
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="bg-black/45 border border-red-950/40 hover:border-red-900/50 rounded-xl p-6 relative flex flex-col justify-between transition-all group hover:bg-neutral-950/20 shadow-md"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between mb-4">
-                        <span className="text-[10px] font-mono uppercase bg-red-950/40 text-red-400 border border-red-900/30 px-2 py-0.5 rounded">
-                          Standard Traditional Node
-                        </span>
-                        <TrendingUp className="w-4 h-4 text-red-500/40 group-hover:text-red-500 transition-colors" />
-                      </div>
-                      <h4 className="text-lg md:text-xl font-bold text-gray-300 font-serif mb-2 group-hover:text-white transition-colors">{step.traditional.title}</h4>
-                      <p className="text-gray-500 text-xs md:text-sm leading-relaxed mb-6 font-light">{step.traditional.desc}</p>
-                    </div>
-
-                    <div className="pt-4 border-t border-white/5">
-                      <button
-                        onClick={() => setActiveTooltip({ pathType: 'traditional', stepIdx: idx })}
-                        className="w-full py-2 bg-red-950/[0.14] hover:bg-red-950/30 border border-red-900/30 active:scale-[0.98] transition-all text-[10px] uppercase tracking-widest text-red-400 font-bold rounded flex items-center justify-center gap-1"
-                        id={`milestone-trad-${idx}`}
-                      >
-                        <Layers className="w-3.5 h-3.5" />
-                        Explore Conformed Impact
-                      </button>
-                    </div>
-                  </motion.div>
-
-                  {/* Right: Artemis Pathway */}
-                  <motion.div 
-                    initial={{ opacity: 0, x: 30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    className="bg-black/45 border border-[#8A0000]/20 hover:border-[#8A0000]/50 rounded-xl p-6 relative flex flex-col justify-between transition-all group hover:bg-[#8A0000]/[0.02] shadow-lg shadow-[#8A0000]/5"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between mb-4">
-                        <span className="text-[10px] font-mono uppercase bg-[#8A0000]/20 text-[#D4A853] border border-[#8A0000]/30 px-2 py-0.5 rounded">
-                          Artemis Unified Module
-                        </span>
-                        <div className="w-2.5 h-2.5 rounded-full bg-[#8A0000] shadow-[0_0_10px_#8A0000] animate-pulse" />
-                      </div>
-                      <h4 className="text-lg md:text-xl font-bold text-white font-serif mb-2 group-hover:text-[#D4A853] transition-colors">{step.artemis.title}</h4>
-                      <p className="text-gray-300 text-xs md:text-sm leading-relaxed mb-6 font-light">{step.artemis.desc}</p>
-                    </div>
-
-                    <div className="pt-4 border-t border-white/5">
-                      <button
-                        onClick={() => setActiveTooltip({ pathType: 'artemis', stepIdx: idx })}
-                        className="w-full py-2 bg-[#8A0000]/30 hover:bg-[#8A0000]/50 border border-[#8A0000]/40 active:scale-[0.98] transition-all text-[10px] uppercase tracking-[0.2em] text-white font-bold rounded flex items-center justify-center gap-1 shadow-inner"
-                        id={`milestone-art-${idx}`}
-                      >
-                        <Sparkles className="w-3.5 h-3.5 text-[#D4A853]" />
-                        Examine Dynamic Impact
-                      </button>
-                    </div>
-                  </motion.div>
-
-                </div>
-              </div>
-            ))}
-
-          </div>
-        )}
-
-        {/* --- Classical SCROLL TIMELINE Mode --- */}
-        {viewMode === 'timeline' && (
-          <div className="relative pt-[100vh] pb-[60vh] max-w-5xl mx-auto">
-            {/* Vertical Flow Line */}
-            <div className="absolute left-1/2 top-[100vh] bottom-[20vh] w-px bg-white/10 -translate-x-1/2">
-              <motion.div 
-                className="absolute top-0 w-full bg-[#8A0000] origin-top shadow-[0_0_20px_#8A0000]"
-                style={{
-                  height: "100%",
-                  scaleY: useTransform(scrollYProgress, [0.1, 0.9], [0, 1]),
-                }}
-              />
-            </div>
-
-            <div className="text-center mb-32 relative z-10">
-              <h2 className="text-[#D4A853] font-mono text-[12px] uppercase tracking-[0.2em] mb-4">Unified Continuum</h2>
-              <h3 className="text-4xl md:text-5xl font-serif text-white uppercase tracking-tight">Timeline Divergence</h3>
-              <p className="text-gray-400 max-w-2xl mx-auto mt-6 text-sm">
-                Scroll to track a customized student profile diverging completely from traditional 19th-century terminal models into the lifetime open loop.
-              </p>
-            </div>
-
-            {activePersona.steps.map((step, idx) => {
-              const isEven = idx % 2 === 0;
-              return (
-                <div key={idx} className={`flex w-full items-center mb-56 relative z-10 ${isEven ? 'justify-start' : 'justify-end'}`}>
-                  
-                  {/* central connecting dot */}
-                  <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center pointer-events-auto">
-                    <button
-                      onClick={() => setActiveTooltip({ pathType: 'artemis', stepIdx: idx })}
-                      className="group cursor-pointer w-8 h-8 rounded-full bg-black border border-white/20 hover:border-[#D4A853] flex items-center justify-center transition-all hover:scale-110 active:scale-95 shadow-[0_0_15px_rgba(0,0,0,0.8)]"
-                      title="Click to view raw milestone details"
-                      id={`timeline-dot-${idx}`}
-                    >
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#D4A853] animate-pulse" />
-                    </button>
-                  </div>
-
-                  <motion.div 
-                    className={`w-[45%] relative px-6 md:px-12 ${isEven ? 'text-right' : 'text-left'}`}
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-10%" }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                  >
-                    <span className="text-gray-500 font-mono text-[10px] uppercase tracking-[0.25em]">{step.year} — {step.phase}</span>
-                    <h4 className="text-2xl md:text-3xl font-serif text-white mt-1 mb-3 font-bold">{step.artemis.title}</h4>
-                    <p className="text-gray-400 text-xs md:text-sm leading-relaxed mb-4 font-light">{step.artemis.desc}</p>
-                    
-                    <button
-                      onClick={() => setActiveTooltip({ pathType: 'artemis', stepIdx: idx })}
-                      className="inline-flex items-center gap-1 text-[10px] tracking-widest font-mono uppercase text-[#D4A853] hover:underline"
-                    >
-                      View Node Impact <ChevronRight className="w-3 h-3" />
-                    </button>
-                  </motion.div>
-                </div>
-              );
-            })}
-
-          </div>
-        )}
-
-        {/* --- Clickable Overlay Milestone Tooltip Modal --- */}
-        <AnimatePresence>
-          {activeTooltip && (() => {
-            const step = activePersona.steps[activeTooltip.stepIdx];
-            const isTrad = activeTooltip.pathType === 'traditional';
-            const detail: MilestoneDetail = isTrad ? step.traditional : step.artemis;
-            
-            return (
-              <div className="fixed inset-0 bg-black/95 backdrop-blur-md flex items-center justify-center p-4 z-[9999]">
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.95, y: 10 }}
-                  className="bg-[#0f0f11] border border-white/10 rounded-2xl p-6 sm:p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-[0_30px_70px_rgba(0,0,0,0.9)] relative"
-                >
-                  {/* Close button */}
-                  <button
-                    onClick={() => setActiveTooltip(null)}
-                    className="absolute top-4 right-4 p-2 text-gray-400 hover:text-white rounded-full bg-white/5 border border-white/10 transition-colors"
-                    id="close-tooltip-modal"
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
-
-                  {/* Header */}
-                  <div className="mb-6">
-                    <div className="flex flex-wrap items-center gap-2 mb-3">
-                      <span className="text-[10px] font-mono bg-[#D4A853]/10 text-[#D4A853] border border-[#D4A853]/30 px-2 py-0.5 rounded">
-                        {step.year} {step.phase}
-                      </span>
-                      <span className={`text-[10px] font-mono px-2 py-0.5 rounded border uppercase ${
-                        isTrad ? 'bg-red-950/20 text-red-400 border-red-900/30' : 'bg-green-950/20 text-green-400 border-green-900/30'
-                      }`}>
-                        {isTrad ? 'Traditional Path' : 'Artemis Model'}
-                      </span>
-                    </div>
-                    <h3 className="text-2xl sm:text-3xl font-serif text-white font-semibold leading-tight">
-                      {detail.title}
-                    </h3>
-                    <p className="text-gray-400 text-xs sm:text-sm leading-relaxed mt-2 font-light italic">
-                      "{activePersona.name}" pathway divergence profile.
-                    </p>
-                  </div>
-
-                  {/* Core Diverging Content */}
-                  <div className="space-y-6">
-                    
-                    {/* Synopsis */}
-                    <div className="p-4 rounded-xl bg-white/2 border border-white/5">
-                      <span className="text-[10px] font-mono uppercase tracking-wider text-gray-400 block mb-1">A Day in the Life</span>
-                      <p className="text-gray-300 text-xs sm:text-sm leading-relaxed font-light">{detail.dayInTheLife}</p>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      
-                      {/* Skill Gained */}
-                      <div className="p-4 rounded-xl border border-white/5 bg-white/1 bg-gradient-to-br from-white/2 to-transparent">
-                        <div className="flex items-center gap-2 mb-2">
-                          <CheckCircle2 className={`w-4 h-4 ${isTrad ? 'text-red-500' : 'text-green-500'}`} />
-                          <span className="text-[10px] font-mono uppercase tracking-wider text-gray-400 block">Skill Acquired</span>
-                        </div>
-                        <p className="text-white text-xs sm:text-sm font-bold">{detail.skillGained}</p>
-                      </div>
-
-                      {/* Impact Achieved */}
-                      <div className="p-4 rounded-xl border border-white/5 bg-white/1 bg-gradient-to-br from-white/2 to-transparent">
-                        <div className="flex items-center gap-2 mb-2">
-                          <Briefcase className="w-4 h-4 text-[#D4A853]" />
-                          <span className="text-[10px] font-mono uppercase tracking-wider text-gray-400 block">Socio-Economic Impact</span>
-                        </div>
-                        <p className="text-white text-xs sm:text-sm font-bold">{detail.impactAchieved}</p>
-                      </div>
-
-                    </div>
-
-                    {/* Tools / Infrastructure */}
-                    <div>
-                      <span className="text-[10px] font-mono uppercase tracking-wider text-gray-400 block mb-2">
-                        Systems, Ecosystems & Tools In-Use
-                      </span>
-                      <div className="flex flex-wrap gap-2">
-                        {detail.toolsUsed.map((tool, i) => (
-                          <span 
-                            key={i} 
-                            className="text-[10px] sm:text-[11px] font-mono bg-white/5 text-gray-300 border border-white/10 px-2.5 py-1 rounded"
-                          >
-                            {tool}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                  </div>
-
-                  {/* Back button */}
-                  <div className="mt-8 pt-4 border-t border-white/5 flex justify-end">
-                    <button
-                      onClick={() => setActiveTooltip(null)}
-                      className="px-5 py-2 bg-white text-black font-semibold text-xs uppercase tracking-widest hover:bg-neutral-200 transition-colors rounded"
-                    >
-                      Return to Comparative View
-                    </button>
-                  </div>
-
-                </motion.div>
-              </div>
-            );
-          })()}
-        </AnimatePresence>
-
-        {/* Dynamic divergence metrics callout */}
-        <div className="max-w-4xl mx-auto border border-white/10 bg-white/1 rounded-2xl p-6 sm:p-8 mb-24 z-30 relative backdrop-blur-sm">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-            <div className="p-2 border-r border-white/5 last:border-none">
-              <div className="text-3xl font-serif text-[#D4A853] font-bold">1:1</div>
-              <div className="text-[10px] font-mono text-gray-400 uppercase mt-1">Direct Mentor Relations</div>
-            </div>
-            <div className="p-2 border-r border-white/5 last:border-none">
-              <div className="text-3xl font-serif text-white font-bold">100%</div>
-              <div className="text-[10px] font-mono text-gray-400 uppercase mt-1">Open-Science IP Releases</div>
-            </div>
-            <div className="p-2 last:border-none">
-              <div className="text-3xl font-serif text-red-500 font-bold">&#8734;</div>
-              <div className="text-[10px] font-mono text-gray-400 uppercase mt-1">Continuous Loop Lifetimes</div>
+              <p className="text-[13px] leading-relaxed opacity-70">{step.success}</p>
             </div>
           </div>
         </div>
-        
-        {/* Call to action at bottom */}
-        <div className="relative py-[10vh] text-center z-10 flex flex-col items-center">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-white mb-8">Begin Your Dynamic Divergence</h2>
-            <button 
-              onClick={() => goTo('open-loop-learning')}
-              className="px-8 py-4 bg-[#8A0000] text-white text-[12px] uppercase tracking-[0.2em] font-bold hover:bg-white hover:text-black hover:scale-[1.02] active:scale-[0.98] transition-all"
-              id="cta-explore-dimensions"
+      </motion.div>
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// BIGGER PICTURE COMPONENT
+// ═══════════════════════════════════════════════════════════
+function BiggerPicture({ onContinue }: { onContinue: () => void }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { threshold: 0.1 },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  const stats = [
+    { val: '$1.7T', label: 'US Student Debt', desc: 'A generation indentured to the system that was supposed to set them free.' },
+    { val: '169%', label: 'Tuition Rise Since 1980', desc: 'Far outstripping wages. The cost of a degree has become a lifetime burden.' },
+    { val: '36%', label: 'Public Confidence in Higher Ed', desc: 'Down from 57% in 2015. The institution has lost the trust of the public it serves.' },
+    { val: '50%', label: 'Drop in Breakthrough Discovery', desc: 'More papers, more researchers, more journals — but fewer paradigm-shifting ideas.' },
+    { val: '84%', label: 'Excluded from Higher Education', desc: '1.4 billion university-age people; only 220 million enrolled. The system cannot scale.' },
+    { val: '40yr', label: 'Same Pedagogy', desc: 'The lecture model has not changed in 800 years. The world has changed beyond recognition.' },
+  ];
+
+  return (
+    <div className="bg-[#0c0a09] text-white min-h-screen">
+      <div ref={ref} className="max-w-[1400px] mx-auto px-6 lg:px-12 py-20 lg:py-32">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={visible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+          className="mb-16 lg:mb-24"
+        >
+          <div className="flex items-center gap-3 mb-6">
+            <span className="w-8 h-[1px] bg-[#8A0000]" />
+            <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#ff6b6b]">The Bigger Picture</span>
+          </div>
+          <h2 className="text-[36px] sm:text-[48px] md:text-[64px] font-black leading-[0.95] tracking-tighter mb-6 max-w-3xl">
+            It's not just one learner.<br/>It's the whole species.
+          </h2>
+          <p className="text-[17px] sm:text-[19px] text-white/50 max-w-2xl leading-relaxed font-light">
+            The traditional system does not just fail individual learners. It fails humanity. The consequences scale from the personal to the planetary — and they compound across generations.
+          </p>
+        </motion.div>
+
+        {/* Stats grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+          {stats.map((stat, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              animate={visible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.1 + i * 0.08 }}
+              className="p-6 lg:p-8 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white/[0.05] transition-colors"
             >
-              Explore Learning Dimensions
-            </button>
+              <div className="text-[36px] sm:text-[44px] font-black text-[#ff6b6b] leading-none mb-3">{stat.val}</div>
+              <div className="text-[12px] font-bold uppercase tracking-[0.15em] text-white/40 mb-3">{stat.label}</div>
+              <p className="text-[13px] text-white/50 leading-relaxed">{stat.desc}</p>
+            </motion.div>
+          ))}
         </div>
 
+        {/* The human cost */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={visible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-20"
+        >
+          <div>
+            <h3 className="text-[28px] sm:text-[36px] font-black tracking-tight mb-6 leading-tight">
+              The human cost is not abstract.
+            </h3>
+            <div className="space-y-4 text-[15px] text-white/50 leading-relaxed">
+              <p>It is the 19-year-old who tests poorly and concludes they are not smart — when the test measures conformity, not intelligence.</p>
+              <p>It is the 23-year-old who graduates with $50,000 in debt and takes the corporate job not because they want it, but because they must pay the loan.</p>
+              <p>It is the 35-year-old whose skills are obsolete, who has no path to re-learn, and who will spend the next 30 years on a plateau.</p>
+              <p>It is the 65-year-old who exits the workforce and is told their contribution is over — when their wisdom is needed more than ever.</p>
+              <p>It is the 1.2 billion university-age people in the Global South who have no institution to attend — not because they lack talent, but because the system cannot scale to reach them.</p>
+            </div>
+          </div>
+          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+            <img
+              src="https://sfile.chatglm.cn/images-ppt/498b8659d855.jpg"
+              alt="Earth from space"
+              className="w-full h-full object-cover"
+              onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0c0a09] via-transparent to-transparent" />
+          </div>
+        </motion.div>
+
+        {/* The question */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={visible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="text-center max-w-3xl mx-auto py-12"
+        >
+          <p className="text-[20px] sm:text-[24px] text-white/70 leading-relaxed mb-8 font-light italic">
+            "The system was not designed to fail. It was designed for a different century. The question is not whether to fix it — the question is whether we can build something better before it's too late."
+          </p>
+          <button
+            onClick={onContinue}
+            className="group inline-flex items-center gap-3 px-10 py-5 bg-[#8A0000] hover:bg-[#6B0000] transition-all text-white text-[14px] font-bold uppercase tracking-[0.2em] rounded-full shadow-xl shadow-[#8A0000]/30"
+          >
+            <Sparkles size={18} />
+            Enter the Artemis Way
+            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+          </button>
+        </motion.div>
       </div>
     </div>
   );
