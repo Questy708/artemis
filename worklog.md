@@ -383,3 +383,27 @@ Work Log:
 Stage Summary:
 - Manifesto layout FIXED: content fills 90.5% of the landscape page width (verified via pixel analysis). No more empty space on the right. The root cause was two-fold: CSS columns don't work with Chromium native @page, and fixed pixel widths were being constrained by Playwright's default 800px viewport. Fixed by using width: 100% throughout and single-column layout with larger fonts.
 - 73 pages, 0 blank pages, landscape, single column, 15px body text with 1.8 line-height.
+
+---
+Task ID: 11
+Agent: main (Z.ai Code)
+Task: Rebuild the 2100 microsite Journey page as a "Tale of Two Ways" — animated modern scrolling learner journey. Show loopholes in traditional education, consequences, bigger picture effect on humanity, then the Artemis way. Use real diverse images from the web (not AI-generated). Add "what success means" for each journey. Push to GitHub repo Questy708/artemis.
+
+Work Log:
+- Deleted the old JourneyPage.tsx (823 lines, persona-based comparison format) and built a completely new "Tale of Two Ways" concept.
+- New JourneyPage structure:
+  - **Intro**: Dark hero with "The Learner's Journey" title, two CTA buttons (The Traditional Way / The Artemis Way), animated scroll indicator, progress bar.
+  - **Act 1: The Traditional Way** (12 steps): The Sorting Begins (age 5-11) → The Exam Gauntlet (12-17) → The Gatekeeper (17-18) → The Lecture Hall (18-19) → The Silo (19-20) → The GPA Game (20-21) → The Credential (21-22) → The Identical Caps (22) → The Cubicle (22-25) → The Debt (22-30) → The Plateau (30-50) → The Exit (65+). Each step shows loopholes and consequences.
+  - **The Bigger Picture**: Dark section with 6 humanity-level stats ($1.7T debt, 169% tuition rise, 36% confidence, 50% breakthrough drop, 84% excluded, 40yr same pedagogy), human cost narratives, Earth from space image.
+  - **Act 2: The Artemis Way** (12 steps): The Infinite Continuum → Your Rhythm Not the Clock → Declare a Mission → Four-Pillar Foundation → The Tutorial System → The AI Tutor → Six-City Rotation → Centers of Inquiry → Competency-Based Grading → The Capstone → The Forge & Innovation → The Lifelong Continuum. Each step tied to the 6 dimensions of the 2100 microsite.
+- Each step includes: step number, age range, phase, title, description, detailed narrative, consequence/benefit callout, and a **"What Success Means Here"** gold-accented callout showing what success looks like in that system at that stage.
+- Searched for real diverse images using z-ai image-search (12 images from Unsplash/Alamy/web sources — diverse races, real photography, no AI-generated images). All images are hosted on stable OSS URLs.
+- Scroll-triggered animations using framer-motion: alternating image/text layout, intersection observer for reveal, progress bar synced to scroll.
+- Fixed two apostrophe escaping issues in success strings (student's, system's).
+- Pushed to GitHub: https://github.com/Questy708/artemis (branch: main, force push to new repo).
+
+Stage Summary:
+- New Journey page: 717 lines, 24 steps (12 traditional + 12 Artemis), bigger picture section, success definitions for every step.
+- Real diverse images from web search (not AI-generated).
+- Scroll-animated, modern layout with alternating image/text, gold success callouts.
+- Pushed to GitHub repo Questy708/artemis.
