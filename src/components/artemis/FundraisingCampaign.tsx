@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import SubPageFooter from '@/components/artemis/SubPageFooter';
 import OnThisPageNav, { useActiveSection } from '@/components/artemis/OnThisPageNav';
-import ArtemisMap from '@/components/artemis/ArtemisMap';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowRight, Shield, Zap, Star, Crown, Building2,
@@ -176,7 +175,7 @@ const RESOURCES = [
   { id: 'academic-prospectus', title: 'Academic Prospectus', desc: 'Programs of study, curriculum pillars, tutorial system, and the competency-based grading model.', icon: BookOpen, file: '/resources/artemis-academic-prospectus.pdf', pages: 22 },
   { id: 'research-portfolio', title: 'Centers of Inquiry Research Portfolio', desc: 'The 19 Centers, their research domains, current projects, and the 7-year release policy.', icon: FlaskConical, file: '/resources/artemis-research-portfolio.pdf', pages: 23 },
   { id: 'strategic-plan', title: 'Strategic Plan 2025-2030', desc: 'The full 5-year strategic roadmap: year-by-year targets, academic, financial, and infrastructure plans.', icon: Rocket, file: '/resources/artemis-strategic-plan.pdf', pages: 19 },
-  { id: 'manifesto', title: 'The Founding Manifesto', desc: 'The master document — a theory of everything Artemis. Planetary, need-blind, self-sustaining. For students, investors, and partners. The blueprint and the call to action.', icon: Sparkles, file: '/resources/artemis-manifesto.pdf', pages: 63 },
+  { id: 'manifesto', title: 'The Founding Manifesto', desc: 'The master document — a theory of everything Artemis. Planetary, need-blind, self-sustaining. For students, investors, and partners. The blueprint and the call to action.', icon: Sparkles, file: '/resources/artemis-manifesto.pdf', pages: 55 },
 ];
 
 /* ─── Helpers ─── */
@@ -457,7 +456,7 @@ function ResourceGroup({ label, items, animVisible }: { label: string; items: ty
 
 /* ─── Main Component ─── */
 export default function FundraisingCampaign({ goToPage }: Props) {
-  const activeSection = useActiveSection(['case', 'pillars', 'ask', 'phases', 'opportunities', 'circles', 'ways', 'network', 'give', 'resources', 'accountability']);
+  const activeSection = useActiveSection(['case', 'pillars', 'ask', 'phases', 'opportunities', 'circles', 'ways', 'give', 'resources', 'accountability']);
   const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
   const [customAmount, setCustomAmount] = useState('');
   const [donorName, setDonorName] = useState('');
@@ -509,7 +508,6 @@ export default function FundraisingCampaign({ goToPage }: Props) {
   const opportunitiesAnim = useInView(0);
   const circlesAnim = useInView(0);
   const waysAnim = useInView(0);
-  const mapAnim = useInView(0);
   const giveAnim = useInView(0);
   const beyondAnim = useInView(0);
   const askAnim = useInView(0);
@@ -615,7 +613,6 @@ export default function FundraisingCampaign({ goToPage }: Props) {
           { id: 'opportunities', label: 'Naming' },
           { id: 'circles', label: 'Giving Circles' },
           { id: 'ways', label: 'Ways to Give' },
-          { id: 'network', label: 'The Network' },
           { id: 'give', label: 'Give Now' },
           { id: 'resources', label: 'Resources' },
           { id: 'accountability', label: 'Accountability' },
@@ -1310,30 +1307,10 @@ export default function FundraisingCampaign({ goToPage }: Props) {
       </section>
 
       {/* ══════════════════════════════════════════
-          7.5. WHERE YOUR GIFT BUILDS — Interactive Map
-          ══════════════════════════════════════════ */}
-      <section id="network" className="scroll-mt-[110px] bg-[#0c0a09] py-16 sm:py-24 lg:py-32 border-t border-[#8A0000]/20">
-        <div ref={mapAnim.ref} className="max-w-[1400px] mx-auto w-full px-5 sm:px-8 lg:px-20">
-          <motion.div {...clipReveal(mapAnim.visible)} className="flex items-center gap-3 mb-4">
-            <span className="w-8 h-[1px] bg-[#8A0000]"></span>
-            <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#8A0000]">The Network</span>
-          </motion.div>
-          <motion.h2 {...fadeUp(mapAnim.visible, 0.05)} className="text-[28px] sm:text-[40px] md:text-[48px] font-black leading-[0.95] tracking-tighter text-white mb-4">
-            Where your gift builds
-          </motion.h2>
-          <motion.p {...fadeUp(mapAnim.visible, 0.1)} className="text-[15px] text-white/50 max-w-2xl leading-relaxed mb-10 sm:mb-14">
-            Every gift is anchored in a physical place. Explore the global network of colleges and nodes your contribution helps build — click any location to see what grows there.
-          </motion.p>
-          <motion.div {...fadeUp(mapAnim.visible, 0.15)} className="rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02]">
-            <ArtemisMap />
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════
           8. GIVE NOW — Redesigned Premium Card
           ══════════════════════════════════════════ */}
-      <section id="give" className="scroll-mt-[110px] bg-[#FAFAF8] py-16 sm:py-24 lg:py-32">
+      <section id="give" className="scroll-mt-[110px]">
+        <div className="max-w-[1600px] mx-auto bg-[#FAFAF8] py-16 sm:py-24 lg:py-32">
         <div ref={giveAnim.ref} className="max-w-[1400px] mx-auto w-full px-5 sm:px-8 lg:px-20">
           <motion.div {...clipReveal(giveAnim.visible)} className="flex items-center gap-3 mb-4">
             <span className="w-8 h-[1px] bg-[#8A0000]"></span>
@@ -1544,6 +1521,7 @@ export default function FundraisingCampaign({ goToPage }: Props) {
               </motion.div>
             )}
           </AnimatePresence>
+        </div>
         </div>
       </section>
 
@@ -1857,7 +1835,8 @@ export default function FundraisingCampaign({ goToPage }: Props) {
       {/* ══════════════════════════════════════════
           RESOURCES — Downloadable Documents
           ══════════════════════════════════════════ */}
-      <section id="resources" className="scroll-mt-[110px] py-16 sm:py-24 lg:py-32 bg-[#0c0a09] border-t border-[#8A0000]/20">
+      <section id="resources" className="scroll-mt-[110px]">
+        <div className="max-w-[1600px] mx-auto py-16 sm:py-24 lg:py-32 bg-[#0c0a09] border-t border-[#8A0000]/20">
         <div ref={resourcesAnim.ref} className="max-w-[1400px] mx-auto w-full px-5 sm:px-8 lg:px-20">
           <motion.div {...clipReveal(resourcesAnim.visible)} className="flex items-center gap-3 mb-4">
             <span className="w-8 h-[1px] bg-[#8A0000]"></span>
@@ -1941,6 +1920,7 @@ export default function FundraisingCampaign({ goToPage }: Props) {
             items={RESOURCES.filter(r => ['campus-plan','alliance-map','academic-prospectus','research-portfolio'].includes(r.id))}
             animVisible={resourcesAnim.visible}
           />
+        </div>
         </div>
       </section>
 

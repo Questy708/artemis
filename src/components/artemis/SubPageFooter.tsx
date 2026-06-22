@@ -82,8 +82,9 @@ export default function SubPageFooter({ goToPage }: FooterProps) {
   };
 
   return (
-    <footer className="bg-[#121212] text-white w-full shrink-0 relative">
-      
+    <footer className="w-full shrink-0 relative">
+      <div className="max-w-[1600px] mx-auto bg-[#121212] text-white">
+
       {/* ── Gradient line divider: Crimson to Gold ── */}
       <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-[#8A0000] via-[#D4A853] to-transparent shrink-0 opacity-80" />
 
@@ -245,6 +246,7 @@ export default function SubPageFooter({ goToPage }: FooterProps) {
             Artemis Collegium &middot; Federated World Wide
           </p>
         </div>
+      </div>
       </div>
     </footer>
   );

@@ -308,3 +308,31 @@ Stage Summary:
 - Give page: interactive map added as "Where Your Gift Builds" section (between Ways to Give and Give Now). Give Now section redesigned as modern split layout (sticky dark impact panel + 3 numbered form steps).
 - Footer alignment: SubPageFooter and Blog subscribe bar now use max-w-[1600px] matching the header image width — applies everywhere the footer appears (20+ pages).
 - All verified in browser: map renders with clickable locations, Give Now shows 3 steps, Journal page subscribe bar + footer align with header.
+
+---
+Task ID: 8
+Agent: main (Z.ai Code)
+Task: Fix three issues that were misunderstood in the previous attempt: (1) manifesto still had column imbalance after removing black space — content must fill both columns evenly; (2) interactive map goes IN the manifesto document, NOT the Give page; (3) footer and colored sections must NOT be full viewport width — they must match the header image width (1600px centered), including the background.
+
+Work Log:
+- Manifesto 2-column imbalance fix:
+  - Root cause: `column-span: all` on figures, tables, stat-rows, pullquotes, callouts, abstract-box, epigraphs was breaking the column flow, causing one column to be shorter than the other (the "imbalance where the black space was").
+  - Fix: removed `column-span: all` from ALL elements except part-dividers (which start on a new page via `break-before: page` and need to span both columns). Now figures, tables, and other elements flow within a single column, letting the browser balance both columns evenly.
+  - Result: 55 pages, 0 blank pages, content fills both columns with no imbalance.
+- Interactive map added to the manifesto document (NOT the Give page):
+  - Added a full-page "The Artemis Network" visual map section between the Physical Network chapter and the Research Model chapter.
+  - The map uses the world-night image as a base with 18 CSS-positioned location pins (color-coded: crimson for Central Nodes, red for Tier A, gold for Tier B, green for Tier C), a legend with tier descriptions, and a stats sidebar (50 colleges, 60,000 students, 35 countries, 6 continents, 2,000 faculty).
+  - This is a static visual representation of the interactive map, appropriate for a PDF document.
+  - Removed the wrongly-added interactive map from the Give page (removed ArtemisMap import, mapAnim ref, 'network' nav entry, and the entire "Where Your Gift Builds" section).
+- Footer/section width alignment fixed:
+  - SubPageFooter: the dark background (`bg-[#121212]`) was spanning the full viewport width (`w-full`). Wrapped the entire visual footer (including background) in `<div className="max-w-[1600px] mx-auto bg-[#121212]">` so the dark background matches the header image width (1600px centered). This fix applies to ALL 20+ pages that use SubPageFooter.
+  - Blog "Stay in the loop": the crimson background was full viewport width. Wrapped in `max-w-[1600px] mx-auto` with no outer padding so the crimson bar spans exactly 1600px (matching the header image), with text padding on the inner element.
+  - Give page Resources/Library section: the dark background (`bg-[#0c0a09]`) was full viewport width. Wrapped in `max-w-[1600px] mx-auto` so the dark background matches the header image width.
+  - Give page Give Now section: the cream background (`bg-[#FAFAF8]`) was full viewport width. Wrapped in `max-w-[1600px] mx-auto` similarly.
+- Fixed a JSX syntax error (mismatched div) caused by the section wrapping changes.
+- Updated manifesto page count 63→55 in the RESOURCES array.
+
+Stage Summary:
+- Manifesto: 55 pages landscape, 0 blank pages, 2-column layout with content filling both columns evenly (no imbalance). Visual map section included in the document. 36 figures, 10 tables, ~21K words.
+- Interactive map: in the manifesto document (not the Give page). Removed from Give page.
+- Footer/section width: SubPageFooter, Blog "Stay in the loop", Give page Resources, and Give page Give Now all now have backgrounds constrained to max-w-[1600px] mx-auto (matching the header image width). Not full viewport width.
