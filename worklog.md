@@ -220,3 +220,29 @@ Stage Summary:
 - Content depth: Bitcoin-paper-style abstract, full Nakamoto parallel, the 4-crisis problem framing, the 4-property integrated-whole model, the complete financial model with endowment trajectory to $1B+ by 2040, the 19-Center full roster, 12-jurisdiction tax summary, glossary, and 8-question FAQ.
 - Browser-verified: appears in Give > Resources as "The Founding Manifesto... PDF 49 pages", downloads correctly (200, 2.2MB).
 - Note: The document is 49 pages (not 100) because Chromium native pagination packs content densely and Paged.js (which paginates more generously) could not complete on the 145KB HTML within the sandbox's timeout limits. The content is comprehensive — 19K words across 10 parts — and reads as a complete master document.
+
+---
+Task ID: 5
+Agent: main (Z.ai Code)
+Task: Change the manifesto PDF from portrait to landscape. Redesign the Resources section layout on the Give page with a better visual hierarchy.
+
+Work Log:
+- Manifesto landscape conversion:
+  - Updated pdf-build/artemis-manifesto.html: @page size 720×1020 → 1020×720; cover/ending dimensions to 1020×720; body width to 1020px.
+  - Enhanced for landscape: cover title 52px → 72px; cover sub max-width 480→620px; body main-content now 2-column (column-count: 2, gap 40px) to use the wider page; part-divider uses column-span: all and bigger numeral (80→120px), title (36→44px); ending-big 38→48px.
+  - Converted via html2pdf-next.js --nopaged with --width 1020px --height 720px → 46 pages, 2.2MB, landscape confirmed (765×540pt = 1020×720px @72dpi).
+  - Reapplied metadata (Title/Author/Subject/Creator).
+  - Updated RESOURCES array page count 49 → 46.
+- Resources section redesign (FundraisingCampaign.tsx):
+  - Replaced the flat 3-column grid of equal cards with a hierarchical layout:
+    1. Dark section background (#0c0a09) with crimson border-top — visual distinction from the rest of the page.
+    2. Eyebrow label "Library" + white "Resources" headline (was gray-50 bg with dark text).
+    3. Featured Founding Manifesto banner: full-width gradient card with crimson glow, "MASTER DOCUMENT · 46 PAGES · LANDSCAPE" badge, large title, description, crimson "Download Manifesto" CTA button, and a rotated cover-preview image on the right (hidden on mobile).
+    4. Three categorized ResourceGroup sub-sections: "Strategy & Campaign" (4 docs), "Financial & Legal" (5 docs), "Campus & Academic" (4 docs) — each with a crimson label, document count, and a 4-column grid of dark cards (bg-white/3%, border-white/10%) with crimson hover states.
+  - Added ResourceGroup helper component (defined above the main component) that renders the category label + 4-col grid of resource cards.
+- Browser-verified: new layout renders with the featured manifesto banner, all 3 category groups, and all 13 resource cards. Screenshot saved to resources-new-layout.png (2.9MB).
+- Dev server compiles cleanly (200s). Landscape PDF downloads correctly (200, 2.25MB).
+
+Stage Summary:
+- Manifesto is now landscape (1020×720px, 46 pages) with a 2-column body layout and larger cover/part-divider/ending typography suited to the wider format.
+- Resources section redesigned: dark themed, featured manifesto banner, categorized 4-column grids (Strategy & Campaign / Financial & Legal / Campus & Academic), crimson accent system, hover states. Visual hierarchy now leads with the master document and organizes the 13 resources by purpose rather than a flat list.

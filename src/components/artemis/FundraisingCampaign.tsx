@@ -175,7 +175,7 @@ const RESOURCES = [
   { id: 'academic-prospectus', title: 'Academic Prospectus', desc: 'Programs of study, curriculum pillars, tutorial system, and the competency-based grading model.', icon: BookOpen, file: '/resources/artemis-academic-prospectus.pdf', pages: 22 },
   { id: 'research-portfolio', title: 'Centers of Inquiry Research Portfolio', desc: 'The 19 Centers, their research domains, current projects, and the 7-year release policy.', icon: FlaskConical, file: '/resources/artemis-research-portfolio.pdf', pages: 23 },
   { id: 'strategic-plan', title: 'Strategic Plan 2025-2030', desc: 'The full 5-year strategic roadmap: year-by-year targets, academic, financial, and infrastructure plans.', icon: Rocket, file: '/resources/artemis-strategic-plan.pdf', pages: 19 },
-  { id: 'manifesto', title: 'The Founding Manifesto', desc: 'The master document — a theory of everything Artemis. Planetary, need-blind, self-sustaining. For students, investors, and partners. The blueprint and the call to action.', icon: Sparkles, file: '/resources/artemis-manifesto.pdf', pages: 49 },
+  { id: 'manifesto', title: 'The Founding Manifesto', desc: 'The master document — a theory of everything Artemis. Planetary, need-blind, self-sustaining. For students, investors, and partners. The blueprint and the call to action.', icon: Sparkles, file: '/resources/artemis-manifesto.pdf', pages: 46 },
 ];
 
 /* ─── Helpers ─── */
@@ -399,6 +399,56 @@ function PhaseSlider() {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
           </button>
         </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Resource Group (category sub-section) ─── */
+function ResourceGroup({ label, items, animVisible }: { label: string; items: typeof RESOURCES; animVisible: boolean }) {
+  if (!items.length) return null;
+  return (
+    <div className="mt-10 sm:mt-12">
+      <motion.div
+        initial={{ opacity: 0, x: -16 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.4 }}
+        viewport={{ once: true }}
+        className="flex items-center gap-3 mb-5"
+      >
+        <span className="w-6 h-[1px] bg-[#8A0000]/60"></span>
+        <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#8A0000]/90">{label}</span>
+        <span className="text-[11px] text-white/25">{items.length} document{items.length !== 1 ? 's' : ''}</span>
+      </motion.div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {items.map((res, i) => {
+          const Icon = res.icon;
+          return (
+            <motion.a
+              key={res.id}
+              href={res.file}
+              download
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35, delay: Math.min(i * 0.04, 0.2) }}
+              viewport={{ once: true }}
+              className="group relative bg-white/[0.03] border border-white/10 hover:border-[#8A0000]/50 hover:bg-white/[0.06] transition-all rounded-xl p-5 flex flex-col"
+            >
+              <div className="flex items-start justify-between mb-4">
+                <div className="w-9 h-9 rounded-lg flex items-center justify-center bg-[#8A0000]/10 shrink-0 group-hover:bg-[#8A0000]/20 transition-colors">
+                  <Icon size={16} className="text-[#ff6b6b]" />
+                </div>
+                <Download size={15} className="text-white/20 group-hover:text-[#ff6b6b] transition-colors" />
+              </div>
+              <h4 className="text-[14px] font-bold text-white mb-1.5 group-hover:text-[#ff6b6b] transition-colors leading-tight">{res.title}</h4>
+              <p className="text-[11px] text-white/45 leading-relaxed flex-1 mb-4">{res.desc}</p>
+              <div className="pt-3 border-t border-white/10 flex items-center justify-between">
+                <span className="text-[9px] font-bold uppercase tracking-[0.15em] text-white/30">PDF</span>
+                <span className="text-[10px] font-semibold text-white/40">{res.pages} pages</span>
+              </div>
+            </motion.a>
+          );
+        })}
       </div>
     </div>
   );
@@ -1769,45 +1819,90 @@ export default function FundraisingCampaign({ goToPage }: Props) {
       {/* ══════════════════════════════════════════
           RESOURCES — Downloadable Documents
           ══════════════════════════════════════════ */}
-      <section id="resources" className="scroll-mt-[110px] py-16 sm:py-24 lg:py-36 bg-gray-50 border-t border-gray-100">
+      <section id="resources" className="scroll-mt-[110px] py-16 sm:py-24 lg:py-32 bg-[#0c0a09] border-t border-[#8A0000]/20">
         <div ref={resourcesAnim.ref} className="max-w-[1400px] mx-auto w-full px-5 sm:px-8 lg:px-20">
-          <motion.h2 {...clipReveal(resourcesAnim.visible)} className="text-[32px] sm:text-[44px] md:text-[56px] font-black leading-[0.92] tracking-tighter text-[#141414] mb-4">
+          <motion.div {...clipReveal(resourcesAnim.visible)} className="flex items-center gap-3 mb-4">
+            <span className="w-8 h-[1px] bg-[#8A0000]"></span>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#8A0000]">Library</span>
+          </motion.div>
+          <motion.h2 {...fadeUp(resourcesAnim.visible, 0.05)} className="text-[32px] sm:text-[44px] md:text-[56px] font-black leading-[0.92] tracking-tighter text-white mb-4">
             Resources
           </motion.h2>
-          <motion.p {...fadeUp(resourcesAnim.visible, 0.1)} className="text-[16px] text-gray-600 max-w-2xl leading-relaxed mb-10 sm:mb-16">
+          <motion.p {...fadeUp(resourcesAnim.visible, 0.1)} className="text-[16px] text-white/50 max-w-2xl leading-relaxed mb-10 sm:mb-14">
             Everything you need to evaluate, share, and decide. Download, print, or forward to your advisors.
           </motion.p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {RESOURCES.map((res, i) => {
-              const Icon = res.icon;
-              return (
-                <motion.a
-                  key={res.id}
-                  href={res.file}
-                  download
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: Math.min(i * 0.05, 0.4) }}
-                  viewport={{ once: true }}
-                  className="group bg-white border border-gray-200 p-5 sm:p-6 hover:border-[#8A0000]/30 hover:shadow-sm transition-all flex flex-col"
-                >
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="w-10 h-10 flex items-center justify-center bg-[#8A0000]/5 shrink-0">
-                      <Icon size={18} className="text-[#8A0000]" />
+          {/* ─── Featured: The Founding Manifesto ─── */}
+          {(() => {
+            const manifesto = RESOURCES.find(r => r.id === 'manifesto');
+            if (!manifesto) return null;
+            const MIcon = manifesto.icon;
+            return (
+              <motion.a
+                href={manifesto.file}
+                download
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="group relative block mb-6 overflow-hidden rounded-2xl bg-gradient-to-br from-[#8A0000]/30 via-[#0c0a09] to-[#0c0a09] border border-[#8A0000]/30 hover:border-[#8A0000]/60 transition-all"
+              >
+                <div className="absolute -top-1/4 -right-1/4 w-[40vw] h-[40vw] rounded-full bg-[#8A0000]/20 blur-[100px] group-hover:bg-[#8A0000]/30 transition-colors"></div>
+                <div className="relative grid lg:grid-cols-12 gap-6 p-8 sm:p-10 lg:p-12 items-center">
+                  <div className="lg:col-span-8">
+                    <div className="flex items-center gap-3 mb-5">
+                      <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8A0000]/20 border border-[#8A0000]/40">
+                        <MIcon size={12} className="text-[#ff6b6b]" />
+                        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#ff6b6b]">Master Document</span>
+                      </span>
+                      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30">{manifesto.pages} pages · Landscape</span>
                     </div>
-                    <Download size={16} className="text-gray-300 group-hover:text-[#8A0000] transition-colors" />
+                    <h3 className="text-[28px] sm:text-[36px] lg:text-[44px] font-black tracking-tight text-white mb-3 leading-[1.05]">
+                      {manifesto.title}
+                    </h3>
+                    <p className="text-[14px] sm:text-[15px] text-white/55 leading-relaxed max-w-xl mb-6">
+                      {manifesto.desc}
+                    </p>
+                    <div className="inline-flex items-center gap-3 px-6 py-3 bg-[#8A0000] group-hover:bg-[#6B0000] transition-colors text-white text-[12px] font-bold uppercase tracking-[0.2em]">
+                      <Download size={15} />
+                      Download Manifesto
+                    </div>
                   </div>
-                  <h4 className="text-[14px] sm:text-[15px] font-bold text-[#141414] mb-1.5 group-hover:text-[#8A0000] transition-colors">{res.title}</h4>
-                  <p className="text-[12px] sm:text-[13px] text-gray-500 leading-relaxed flex-1">{res.desc}</p>
-                  <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">PDF</span>
-                    <span className="text-[10px] text-gray-400">{res.pages} page{res.pages !== 1 ? 's' : ''}</span>
+                  <div className="lg:col-span-4 hidden lg:flex justify-end">
+                    <div className="relative w-[200px] h-[140px] rounded-lg overflow-hidden shadow-2xl rotate-3 group-hover:rotate-0 transition-transform duration-500">
+                      <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=600" alt="" className="w-full h-full object-cover" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#8A0000]/80 via-[#0c0a09]/40 to-transparent"></div>
+                      <div className="absolute bottom-3 left-3 right-3">
+                        <div className="text-[8px] font-bold uppercase tracking-[0.25em] text-[#ff6b6b] mb-1">Vol. I · MMXXV</div>
+                        <div className="text-[13px] font-black text-white leading-tight">The Artemis Manifesto</div>
+                      </div>
+                    </div>
                   </div>
-                </motion.a>
-              );
-            })}
-          </div>
+                </div>
+              </motion.a>
+            );
+          })()}
+
+          {/* ─── Category Group: Strategy & Campaign ─── */}
+          <ResourceGroup
+            label="Strategy & Campaign"
+            items={RESOURCES.filter(r => ['founding-prospectus','campaign-overview','case-for-support','strategic-plan'].includes(r.id))}
+            animVisible={resourcesAnim.visible}
+          />
+
+          {/* ─── Category Group: Financial & Legal ─── */}
+          <ResourceGroup
+            label="Financial & Legal"
+            items={RESOURCES.filter(r => ['financial-model','tax-guide','legal-entities','giving-circles','naming-booklet'].includes(r.id))}
+            animVisible={resourcesAnim.visible}
+          />
+
+          {/* ─── Category Group: Campus & Academic ─── */}
+          <ResourceGroup
+            label="Campus & Academic"
+            items={RESOURCES.filter(r => ['campus-plan','alliance-map','academic-prospectus','research-portfolio'].includes(r.id))}
+            animVisible={resourcesAnim.visible}
+          />
         </div>
       </section>
 

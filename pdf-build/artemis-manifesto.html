@@ -36,14 +36,14 @@
 }
 
 @page {
-  size: 720px 1020px;
+  size: 1020px 720px;
   margin: 0;
 }
 
 html, body {
   margin: 0;
   padding: 0;
-  width: 720px;
+  width: 1020px;
   background: var(--bg-dark);
   color: var(--ink);
   font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
@@ -59,7 +59,7 @@ html, body {
 
 /* COVER */
 .cover {
-  width: 720px; height: 1020px; box-sizing: border-box;
+  width: 1020px; height: 720px; box-sizing: border-box;
   break-after: page; overflow: hidden; position: relative;
   background: var(--bg-dark); color: #fff;
   display: flex; flex-direction: column; justify-content: center; padding: 64px;
@@ -69,13 +69,13 @@ html, body {
 .cover .cover-content { position: relative; z-index: 2; }
 .cover .cover-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase; color: var(--crimson-soft); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
 .cover .cover-tag::before { content: ""; width: 28px; height: 1px; background: var(--crimson); }
-.cover h1 { font-family: 'Noto Serif SC', Georgia, serif; font-size: 52px; font-weight: 900; line-height: 1.02; letter-spacing: -0.02em; margin: 0 0 24px; }
-.cover .cover-sub { font-size: 15px; color: rgba(255,255,255,0.65); font-weight: 300; line-height: 1.6; max-width: 480px; }
+.cover h1 { font-family: 'Noto Serif SC', Georgia, serif; font-size: 72px; font-weight: 900; line-height: 1.0; letter-spacing: -0.02em; margin: 0 0 24px; }
+.cover .cover-sub { font-size: 16px; color: rgba(255,255,255,0.65); font-weight: 300; line-height: 1.6; max-width: 620px; }
 .cover .cover-footer { position: absolute; bottom: 48px; left: 64px; right: 64px; display: flex; justify-content: space-between; align-items: flex-end; z-index: 2; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
 .cover .cover-footer .crest { font-family: 'Noto Serif SC', serif; font-size: 14px; color: rgba(255,255,255,0.7); letter-spacing: 0.15em; }
 
 /* CONTENT */
-.main-content { background: var(--bg); padding: 64px 64px 48px 64px; }
+.main-content { background: var(--bg); padding: 56px 80px 48px 80px; column-count: 2; column-gap: 40px; column-fill: auto; }
 
 .chapter-header { break-after: avoid; break-inside: avoid; margin-top: 28px; margin-bottom: 20px; }
 .chapter-header:first-child { margin-top: 0; }
@@ -119,18 +119,18 @@ html, body {
 .bullets li::before { content: ""; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; background: var(--crimson); border-radius: 50%; }
 
 /* ENDING */
-.ending { width: 720px; height: 1020px; box-sizing: border-box; break-before: page; overflow: hidden; background: var(--bg-dark); color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 64px; text-align: center; }
+.ending { width: 1020px; height: 720px; box-sizing: border-box; break-before: page; overflow: hidden; background: var(--bg-dark); color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 64px; text-align: center; }
 .ending .ending-tag { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--crimson-soft); margin-bottom: 28px; }
-.ending .ending-big { font-family: 'Noto Serif SC', Georgia, serif; font-size: 38px; font-weight: 800; line-height: 1.15; letter-spacing: -0.015em; max-width: 540px; margin-bottom: 32px; }
+.ending .ending-big { font-family: 'Noto Serif SC', Georgia, serif; font-size: 48px; font-weight: 800; line-height: 1.15; letter-spacing: -0.015em; max-width: 720px; margin-bottom: 32px; }
 .ending .ending-sub { font-size: 14px; color: rgba(255,255,255,0.5); max-width: 440px; line-height: 1.65; font-weight: 300; }
 .ending .ending-contact { margin-top: 40px; font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; }
 
 /* MANIFESTO-SPECIFIC */
-.part-divider { break-before: page; break-after: avoid; padding: 80px 0 40px; text-align: center; }
-.part-divider .pd-num { font-family: 'Noto Serif SC', serif; font-size: 80px; font-weight: 900; color: var(--crimson); line-height: 1; margin-bottom: 16px; opacity: 0.9; }
+.part-divider { break-before: page; break-after: avoid; padding: 100px 0 60px; text-align: center; column-span: all; }
+.part-divider .pd-num { font-family: 'Noto Serif SC', serif; font-size: 120px; font-weight: 900; color: var(--crimson); line-height: 1; margin-bottom: 20px; opacity: 0.9; }
 .part-divider .pd-label { font-size: 11px; font-weight: 700; letter-spacing: 0.4em; text-transform: uppercase; color: var(--crimson); margin-bottom: 20px; }
-.part-divider .pd-title { font-family: 'Noto Serif SC', serif; font-size: 36px; font-weight: 800; color: var(--ink); line-height: 1.1; max-width: 500px; margin: 0 auto 20px; letter-spacing: -0.015em; }
-.part-divider .pd-sub { font-size: 14px; color: var(--muted); max-width: 440px; margin: 0 auto; line-height: 1.6; font-weight: 300; }
+.part-divider .pd-title { font-family: 'Noto Serif SC', serif; font-size: 44px; font-weight: 800; color: var(--ink); line-height: 1.1; max-width: 640px; margin: 0 auto 24px; letter-spacing: -0.015em; }
+.part-divider .pd-sub { font-size: 16px; color: var(--muted); max-width: 560px; margin: 0 auto; line-height: 1.6; font-weight: 300; }
 
 .abstract-box { break-inside: avoid; background: var(--bg-cream); border-left: 4px solid var(--crimson); padding: 28px 32px; margin: 24px 0; }
 .abstract-box .ab-label { font-size: 10px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--crimson); margin-bottom: 12px; }
