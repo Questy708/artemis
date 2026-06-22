@@ -54,7 +54,7 @@ export default function T1Site({ onExit }: T1SiteProps) {
   return (
     <div className="w-full min-h-screen flex flex-col bg-white">
       <NavBar currentPage={activePage} goTo={goTo} onExit={onExit} />
-      <div className="pt-14 flex-1">
+      <div className="pt-14 flex-1 max-w-[1600px] mx-auto w-full">
         <T1PageContent page={activePage} goTo={goTo} />
       </div>
       <Footer />
