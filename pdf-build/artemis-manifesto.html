@@ -44,11 +44,11 @@ html, body {
   margin: 0;
   padding: 0;
   width: 1020px;
-  background: var(--bg-dark);
+  background: var(--bg);
   color: var(--ink);
   font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
-  font-size: 13px;
-  line-height: 1.65;
+  font-size: 14px;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -75,18 +75,18 @@ html, body {
 .cover .cover-footer .crest { font-family: 'Noto Serif SC', serif; font-size: 14px; color: rgba(255,255,255,0.7); letter-spacing: 0.15em; }
 
 /* CONTENT */
-.main-content { background: var(--bg); padding: 56px 80px 48px 80px; column-count: 2; column-gap: 40px; column-fill: auto; }
+.main-content { background: var(--bg); padding: 56px 100px 48px 100px; max-width: 1020px; margin: 0 auto; }
 
 .chapter-header { break-after: avoid; break-inside: avoid; margin-top: 28px; margin-bottom: 20px; }
 .chapter-header:first-child { margin-top: 0; }
 .chapter-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--crimson); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
 .chapter-tag::before { content: ""; width: 22px; height: 1px; background: var(--crimson); }
-.chapter-title { font-family: 'Noto Serif SC', Georgia, serif; font-size: 30px; font-weight: 800; line-height: 1.12; letter-spacing: -0.015em; color: var(--ink); margin: 0 0 12px; }
+.chapter-title { font-family: 'Noto Serif SC', Georgia, serif; font-size: 34px; font-weight: 800; line-height: 1.12; letter-spacing: -0.015em; color: var(--ink); margin: 0 0 12px; }
 .chapter-divider { width: 40px; height: 2px; background: var(--crimson); margin-bottom: 18px; }
 
-.body-text { font-size: 13px; line-height: 1.72; color: var(--ink-soft); margin: 0 0 12px; }
+.body-text { font-size: 14px; line-height: 1.75; color: var(--ink-soft); margin: 0 0 14px; }
 .body-text strong { color: var(--ink); font-weight: 600; }
-.lead { font-size: 15px; line-height: 1.65; color: var(--ink); font-weight: 400; margin-bottom: 18px; }
+.lead { font-size: 17px; line-height: 1.6; color: var(--ink); font-weight: 400; margin-bottom: 20px; }
 
 .pullquote { break-inside: avoid; border-left: 3px solid var(--crimson); padding: 16px 24px; margin: 20px 0; font-family: 'Noto Serif SC', Georgia, serif; font-size: 16px; font-style: italic; line-height: 1.5; color: var(--ink); background: var(--bg-cream); }
 .pullquote .attribution { font-size: 11px; font-style: normal; color: var(--muted); margin-top: 10px; letter-spacing: 0.05em; }
@@ -126,7 +126,7 @@ html, body {
 .ending .ending-contact { margin-top: 40px; font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; }
 
 /* MANIFESTO-SPECIFIC */
-.part-divider { break-before: page; break-after: avoid; padding: 100px 0 60px; text-align: center; column-span: all; }
+.part-divider { break-before: page; break-after: avoid; padding: 100px 0 60px; text-align: center; }
 .part-divider .pd-num { font-family: 'Noto Serif SC', serif; font-size: 120px; font-weight: 900; color: var(--crimson); line-height: 1; margin-bottom: 20px; opacity: 0.9; }
 .part-divider .pd-label { font-size: 11px; font-weight: 700; letter-spacing: 0.4em; text-transform: uppercase; color: var(--crimson); margin-bottom: 20px; }
 .part-divider .pd-title { font-family: 'Noto Serif SC', serif; font-size: 44px; font-weight: 800; color: var(--ink); line-height: 1.1; max-width: 640px; margin: 0 auto 24px; letter-spacing: -0.015em; }
@@ -220,41 +220,43 @@ html, body {
 <div class="toc-part">Part IV — For Students</div>
 <div class="toc-item"><span>13. Purpose Learning</span><span class="ti-page">—</span></div>
 <div class="toc-item"><span>14. The Four-Pillar Curriculum</span><span class="ti-page">—</span></div>
-<div class="toc-item"><span>15. The Six-City Rotation</span><span class="ti-page">—</span></div>
-<div class="toc-item"><span>16. Competency, Not Competition</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>15. The Catalogue — What You Learn</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>16. The New Learning — How You Learn</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>17. The Six-City Rotation</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>18. Competency, Not Competition</span><span class="ti-page">—</span></div>
 
 <div class="toc-part">Part V — For Investors & Donors</div>
-<div class="toc-item"><span>17. The Financial Engine</span><span class="ti-page">—</span></div>
-<div class="toc-item"><span>18. The $100M Founding Campaign</span><span class="ti-page">—</span></div>
-<div class="toc-item"><span>19. Naming Opportunities</span><span class="ti-page">—</span></div>
-<div class="toc-item"><span>20. The Giving Circles</span><span class="ti-page">—</span></div>
-<div class="toc-item"><span>21. Returns: Financial and Impact</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>19. The Financial Engine</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>20. The $100M Founding Campaign</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>21. Naming Opportunities</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>22. The Giving Circles</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>23. Returns: Financial and Impact</span><span class="ti-page">—</span></div>
 
 <div class="toc-part">Part VI — For Partners</div>
-<div class="toc-item"><span>22. Academic Consortia</span><span class="ti-page">—</span></div>
-<div class="toc-item"><span>23. Industry & The Forge</span><span class="ti-page">—</span></div>
-<div class="toc-item"><span>24. Government Relations</span><span class="ti-page">—</span></div>
-<div class="toc-item"><span>25. The Open Knowledge Commons</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>24. Academic Consortia</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>25. Industry & The Forge</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>26. Government Relations</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>27. The Open Knowledge Commons</span><span class="ti-page">—</span></div>
 
 <div class="toc-part">Part VII — The Architecture</div>
-<div class="toc-item"><span>26. The Physical Network</span><span class="ti-page">—</span></div>
-<div class="toc-item"><span>27. The Research Model</span><span class="ti-page">—</span></div>
-<div class="toc-item"><span>28. Governance & Legal</span><span class="ti-page">—</span></div>
-<div class="toc-item"><span>29. Technology Infrastructure</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>28. The Physical Network</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>29. The Research Model</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>30. Governance & Legal</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>31. Technology Infrastructure</span><span class="ti-page">—</span></div>
 
 <div class="toc-part">Part VIII — The Plan</div>
-<div class="toc-item"><span>30. The 2025–2030 Roadmap</span><span class="ti-page">—</span></div>
-<div class="toc-item"><span>31. Risks & Mitigations</span><span class="ti-page">—</span></div>
-<div class="toc-item"><span>32. Measuring Success</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>32. The 2025–2030 Roadmap</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>33. Risks & Mitigations</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>34. Measuring Success</span><span class="ti-page">—</span></div>
 
 <div class="toc-part">Part IX — The Ethos</div>
-<div class="toc-item"><span>33. Diversity, Equity, Access</span><span class="ti-page">—</span></div>
-<div class="toc-item"><span>34. The Climate Commitment</span><span class="ti-page">—</span></div>
-<div class="toc-item"><span>35. The Artemis Oath</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>35. Diversity, Equity, Access</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>36. The Climate Commitment</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>37. The Artemis Oath</span><span class="ti-page">—</span></div>
 
 <div class="toc-part">Part X — The Blueprint</div>
-<div class="toc-item"><span>36. Replication</span><span class="ti-page">—</span></div>
-<div class="toc-item"><span>37. The Call to Action</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>38. Replication</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>39. The Call to Action</span><span class="ti-page">—</span></div>
 
 <div class="section-break">· · ·</div>
 
@@ -467,6 +469,49 @@ html, body {
 
 <div class="chapter-header">
   <div class="chapter-tag">Chapter Fifteen</div>
+  <div class="chapter-title">The Catalogue — What You Learn <span class="audience-tag tag-students">for students</span></div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="lead">Artemis offers nine undergraduate degree programs, each designed to bridge the four-pillar foundation with the interdisciplinary research of the Centers of Inquiry. The catalogue is not a fixed list of courses frozen for a generation — it is a living document, revised annually by the University Senate as the Centers' research agendas evolve and as the world's problems shift. What follows is the catalogue as it stands at founding.</p>
+<p class="body-text">The nine undergraduate programs are: <strong>B.S. Computer Science</strong> (integrating deep software systems, data science, AI/ML, and computational theory with the epistemic foundations of intelligence); <strong>B.S. International Business</strong> (global finance, cross-cultural leadership, and the political economy of interconnected markets); <strong>B.S. Environmental Science</strong> (complex global ecosystems, climate systems, and biodiversity with fieldwork across six continents); <strong>B.A. Philosophy, Politics & Economics</strong> (the integrated study of governance, markets, and ethics — the classical tripos reimagined for a planetary century); <strong>B.S. Biotechnology</strong> (from gene editing to synthetic biology, with deep integration of bioethics and translational innovation); <strong>B.A. Architecture & Urban Design</strong> (adaptive, regenerative built environments, with studios in six rotating hostel cities); <strong>B.S. Data Science & Statistics</strong> (the mathematical, computational, and ethical foundations of inference at scale); <strong>B.A. Global History</strong> (world history as an integrated discipline — not Western civilization plus electives, but a genuinely planetary curriculum); and <strong>B.S. Cognitive Science</strong> (the mind — computational, biological, philosophical — studied as the central mystery of the century).</p>
+<p class="body-text">Each program is structured in three layers. The <strong>foundation layer</strong> (Year 1–2) is shared across all programs: the four-pillar curriculum, plus introductory courses in the program's core discipline. Every Artemis graduate, regardless of program, can reason epistemologically, computationally, systemically, and creatively. The foundation is the common language of the institution — the intellectual substrate that lets a computer scientist and a historian collaborate on the same project without translation.</p>
+<p class="body-text">The <strong>core layer</strong> (Year 2–3) is program-specific: the deep disciplinary content that a Computer Science student must know (algorithms, systems, machine learning, distributed computing) or that a Global History student must know (historiography, archival methods, comparative civilizational studies). The core is taught not by a department but by the Center of Inquiry most aligned with the program — Computer Science is taught by the Center for Synthetic Intelligence, Architecture by the Center for Urban Futures, Biotechnology by the Center for Biotech & Life Sciences. This means the core courses are continuously refreshed by the research happening in the Centers, not by a textbook that was current a decade ago.</p>
+<p class="body-text">The <strong>mission layer</strong> (Year 3–4) is where Purpose Learning and the catalogue intersect. In consultation with a faculty advisor, you select electives — from any program, any Center — that serve your mission. A Computer Science student whose mission is AI governance might take constitutional law (from PPE), democratic theory (from Global History), and algorithmic fairness (from Cognitive Science). The mission layer is not a free-for-all; it is a curated path, approved by the advisor, that ensures intellectual rigour while serving the mission. The result is a transcript that tells a coherent story: here is what this graduate knows, here is why, and here is what they are prepared to do with it.</p>
+<table class="tbl">
+  <thead><tr><th>Program</th><th>Degree</th><th>Center Affiliation</th><th>Key Courses (samples)</th></tr></thead>
+  <tbody>
+    <tr><td>Computer Science</td><td>B.S.</td><td>Synthetic Intelligence</td><td>Algorithms, ML, Distributed Systems, AI Ethics</td></tr>
+    <tr><td>International Business</td><td>B.S.</td><td>Fintech, DeFi & Economics</td><td>Global Finance, Market Design, Political Economy</td></tr>
+    <tr><td>Environmental Science</td><td>B.S.</td><td>Climate Systems</td><td>Earth Systems, Climate Modeling, Field Ecology</td></tr>
+    <tr><td>Philosophy, Politics & Economics</td><td>B.A.</td><td>Democratic Governance</td><td>Constitutional Design, Game Theory, Ethics</td></tr>
+    <tr><td>Biotechnology</td><td>B.S.</td><td>Biotech & Life Sciences</td><td>Genetics, Synthetic Biology, Bioethics</td></tr>
+    <tr><td>Architecture & Urban Design</td><td>B.A.</td><td>Urban Futures</td><td>Adaptive Design, Urban Ecology, Bio-Materials</td></tr>
+    <tr><td>Data Science & Statistics</td><td>B.S.</td><td>Synthetic Intelligence</td><td>Statistical Inference, Causal Methods, Data Ethics</td></tr>
+    <tr><td>Global History</td><td>B.A.</td><td>Arts, Humanities & Civilization</td><td>Historiography, Comparative Civ., Digital Humanities</td></tr>
+    <tr><td>Cognitive Science</td><td>B.S.</td><td>Cognitive Science & Consciousness</td><td>Neural Foundations, Computational Cognition, Phil. of Mind</td></tr>
+  </tbody>
+</table>
+<p class="body-text">Graduate programs launch in 2028, integrated into the Centers of Inquiry rather than operating as separate professional schools. Master's and doctoral students work as junior fellows on the same research agendas as the undergraduates, blurring the boundary between learning and discovery. The catalogue at the graduate level is even more dynamic — it is essentially the research agenda of the Center, structured into a degree pathway. A PhD in Synthetic Intelligence is not a fixed set of courses plus a thesis; it is a five-year participation in the Center's inquiry, with milestones that demonstrate the student's growing capacity to define and pursue original questions.</p>
+<p class="body-text">The catalogue is published openly, updated each academic year, and available to any prospective student before they apply. You can see exactly what you will learn, who will teach it, and how it connects to the Center's research before you commit. This transparency is deliberate: an institution that asks students to trust it with four years and $12,000 owes them a clear view of what they will receive in return.</p>
+
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Sixteen</div>
+  <div class="chapter-title">The New Learning — How You Learn <span class="audience-tag tag-students">for students</span></div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="lead">The legacy university teaches by lecture: an expert at the front of a room talks for fifty minutes, students take notes, and learning is measured by how well the notes reproduce the expert's content on an exam. This model has not changed in 800 years. Artemis replaces it with a pedagogy designed for the century we actually live in — active, collaborative, AI-augmented, and project-grounded.</p>
+<p class="body-text">The <strong>tutorial system</strong> is the core of the Artemis pedagogy, adapted from the Oxford model but redesigned for planetary scale. Every student meets weekly in a tutorial of three students and one faculty member — a 75-minute deep discussion of the week's readings and problems. The tutorial is not a mini-lecture; it is a Socratic interrogation in which the faculty member probes each student's understanding, challenges their assumptions, and pushes them to articulate and defend their reasoning. The 3:1 ratio means no one can hide — every student is accountable every week. With 60,000 students, the institution runs 20,000 weekly tutorials, staffed by the 2,000 faculty (each handling 10 tutorials per week). This is the single largest line item in the operating budget, and it is the most important: the tutorial is where learning actually happens.</p>
+<p class="body-text">The <strong>AI tutor</strong> is the second pillar of the new learning. Every course at Artemis is paired with an AI assistant — a large language model fine-tuned on the Center of Inquiry's domain knowledge, the course materials, and the Socratic method. The AI tutor is available 24/7, not to deliver answers but to ask questions. When a student is stuck on a problem at 2am, the AI tutor does not solve it for them — it asks "What have you tried?" and "What assumption are you making?" and "How would you check that?" The AI tutor is calibrated to the student's competency level, adjusting its questioning to the student's zone of proximal development. It is not a replacement for the faculty tutorial; it is a complement that ensures the student is never alone with a problem, and that the limited faculty time is spent on the highest-value interactions rather than on repetitive clarification.</p>
+<p class="body-text">The <strong>Active Learning Forum</strong> is the seminar format that replaces the large lecture. Courses meet in cohorts of 20–30 students for facilitated discussion, problem-solving, and collaborative work. The Forum is "flipped" — content absorption (reading, watching, problem sets) happens independently before the session, and class time is devoted entirely to active engagement: debate, analysis, synthesis, application. The faculty member facilitates rather than lectures, and the AI tutor participates as a silent participant that can be queried for data, definitions, or counter-arguments. The Forum is designed around the pedagogical research showing that active learning doubles retention and comprehension compared to passive lecture — a finding that has been replicated dozens of times and that legacy universities have largely ignored for decades.</p>
+<p class="body-text">The <strong>studio</strong> is the fourth mode of learning, borrowed from architecture and design education. In studio courses, students make things: prototypes, designs, essays, models, performances, code, experiments. The studio is a workspace where students work alongside each other and alongside faculty, receiving real-time critique and iteration. The Creative Expression pillar guarantees that every graduate has studio experience — because the ability to make, not just to analyze, is what distinguishes a graduate who can implement an idea from one who can only describe it. Studios run in every college, with facilities calibrated to the local context: a fabrication lab in San Francisco, a textiles workshop in Venice, a code studio in Bangalore.</p>
+<div class="figure"><img src="../public/resources/img/students-global.png" alt="Active learning in a tutorial"><div class="caption">The tutorial — three students, one faculty member, 75 minutes of Socratic inquiry. The core of the Artemis pedagogy, and the largest single line item in the operating budget.</div></div>
+<p class="body-text">The <strong>project</strong> is the fifth mode, and it is where the learning connects to the world. Every semester includes a project — either a city-based project (connected to the rotation), a Center-based project (connected to the research), or a mission-based project (connected to the student's Purpose Learning mission). Projects are evaluated on the dual criterion of epistemic contribution and civic impact — the same standard applied to the capstone. The project mode ensures that learning is never abstract: every concept is tested against reality, every skill is deployed on a real problem, and every student graduates with a portfolio of work they have done, not just a list of courses they have passed.</p>
+<p class="body-text">The combination — tutorial, AI tutor, Active Learning Forum, studio, project — is the new learning. It is more expensive per student than the lecture model (the 3:1 tutorial ratio is the reason), but it is also dramatically more effective. The lecture model produces graduates who can recall content; the Artemis model produces graduates who can think, make, and act. The difference matters because the 21st century does not reward the ability to recall content — that is now a commodity, available for free from any search engine. It rewards the ability to define problems, collaborate across disciplines, build prototypes, and communicate persuasively. The new learning is designed to produce those capacities, and the $3,000 tuition (which funds the tutorial system at scale) is what makes it accessible to the 90%.</p>
+<div class="pullquote">The lecture model has not changed in 800 years. Artemis replaces it with a pedagogy designed for the century we actually live in — active, collaborative, AI-augmented, and project-grounded.<div class="attribution">— The Artemis Founding Manifesto</div></div>
+<p class="body-text">There is a final mode of learning at Artemis that does not appear on any transcript but that may be the most consequential: the peer learning that happens in the residential colleges. Every student lives in a college with 1,000–2,500 peers from dozens of countries, and the college is designed to be an intellectual community, not just a dormitory. Common rooms, dining halls, and late-night study spaces are the settings where a computer science student explains an algorithm to a history student, where a Nairobi student teaches a Berlin student about colonial history, where a debate over dinner ranges from epistemology to urban planning. This peer learning is not graded, but it is the context in which the formal learning becomes real — where ideas are tested in conversation, where perspectives are broadened by encounter, and where the planetary mandate is lived rather than merely studied.</p>
+
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Seventeen</div>
   <div class="chapter-title">The Six-City Rotation <span class="audience-tag tag-students">for students</span></div>
   <div class="chapter-divider"></div>
 </div>
@@ -478,7 +523,7 @@ html, body {
 <p class="body-text">The rotation is demanding. Moving cities every year requires adaptability, resilience, and a willingness to be uncomfortable. The institution provides extensive support — housing, visa coordination, orientation programs, mental-health resources — but the experience is inherently harder than four years in one place. This is intentional. The graduates the 21st century needs are not those who have been comfortable; they are those who have learned to operate across contexts, cultures, and continents. The rotation produces them.</p>
 
 <div class="chapter-header">
-  <div class="chapter-tag">Chapter Sixteen</div>
+  <div class="chapter-tag">Chapter Eighteen</div>
   <div class="chapter-title">Competency, Not Competition <span class="audience-tag tag-students">for students</span></div>
   <div class="chapter-divider"></div>
 </div>
@@ -497,7 +542,7 @@ html, body {
 </div>
 
 <div class="chapter-header">
-  <div class="chapter-tag">Chapter Seventeen</div>
+  <div class="chapter-tag">Chapter Nineteen</div>
   <div class="chapter-title">The Financial Engine <span class="audience-tag tag-investors">for investors</span></div>
   <div class="chapter-divider"></div>
 </div>
@@ -519,7 +564,7 @@ html, body {
 <p class="body-text">The surplus is not profit — it is mission fuel. Every dollar is allocated, audited, and published. By 2030: $60M to endowment growth, $40M to scholarships, $80M to expansion (new colleges), $40M to research, $42M to the innovation fund. The surplus is the mechanism by which the institution becomes permanent (endowment growth), expands its access (scholarships), grows its footprint (expansion), deepens its inquiry (research), and translates its discoveries (innovation). It is the financial expression of the mission, and its publication is the accountability mechanism that ensures the mission is honoured.</p>
 
 <div class="chapter-header">
-  <div class="chapter-tag">Chapter Eighteen</div>
+  <div class="chapter-tag">Chapter Twenty</div>
   <div class="chapter-title">The $100M Founding Campaign <span class="audience-tag tag-investors">for investors</span></div>
   <div class="chapter-divider"></div>
 </div>
@@ -530,7 +575,7 @@ html, body {
 <div class="figure"><img src="../public/resources/img/abstract-crimson.png" alt="Campaign structure"><div class="caption">The $100M founding campaign — five pillars, four phases, twelve months. The last capital raise the institution will ever need.</div></div>
 
 <div class="chapter-header">
-  <div class="chapter-tag">Chapter Nineteen</div>
+  <div class="chapter-tag">Chapter Twenty-One</div>
   <div class="chapter-title">Naming Opportunities <span class="audience-tag tag-investors">for investors</span></div>
   <div class="chapter-divider"></div>
 </div>
@@ -553,7 +598,7 @@ html, body {
 </table>
 
 <div class="chapter-header">
-  <div class="chapter-tag">Chapter Twenty</div>
+  <div class="chapter-tag">Chapter Twenty-Two</div>
   <div class="chapter-title">The Giving Circles <span class="audience-tag tag-investors">for investors</span></div>
   <div class="chapter-divider"></div>
 </div>
@@ -564,7 +609,7 @@ html, body {
 <div class="pullquote">The giving circles are not transactional — they are the institutional structure through which donors engage with the university they founded, for the rest of their lives and beyond.<div class="attribution">— The Artemis Founding Manifesto</div></div>
 
 <div class="chapter-header">
-  <div class="chapter-tag">Chapter Twenty-One</div>
+  <div class="chapter-tag">Chapter Twenty-Three</div>
   <div class="chapter-title">Returns: Financial and Impact <span class="audience-tag tag-investors">for investors</span></div>
   <div class="chapter-divider"></div>
 </div>
@@ -586,7 +631,7 @@ html, body {
 </div>
 
 <div class="chapter-header">
-  <div class="chapter-tag">Chapter Twenty-Two</div>
+  <div class="chapter-tag">Chapter Twenty-Four</div>
   <div class="chapter-title">Academic Consortia <span class="audience-tag tag-partners">for partners</span></div>
   <div class="chapter-divider"></div>
 </div>
@@ -596,7 +641,7 @@ html, body {
 <p class="body-text">The consortium strategy also serves the replication mission. When Artemis publishes its blueprint in 2030, the consortium partners are the natural first adopters — institutions that already know the model, have relationships with the faculty, and can adapt the blueprint to their local context with Artemis's support. The consortium is not just a credibility bridge for the founding institution; it is the seeding network for the replication phase. A partner university in Brazil that has hosted Artemis exchange students for five years is well-positioned to launch its own Artemis-type college in 2032, using the published blueprint and the relationship built through the consortium.</p>
 
 <div class="chapter-header">
-  <div class="chapter-tag">Chapter Twenty-Three</div>
+  <div class="chapter-tag">Chapter Twenty-Five</div>
   <div class="chapter-title">Industry & The Forge <span class="audience-tag tag-partners">for partners</span></div>
   <div class="chapter-divider"></div>
 </div>
@@ -607,7 +652,7 @@ html, body {
 <div class="figure"><img src="../public/resources/img/research-lab.png" alt="The Forge"><div class="caption">The translational pipeline — Centers of Inquiry feed the Forge incubator, which spins ventures that return equity to the endowment.</div></div>
 
 <div class="chapter-header">
-  <div class="chapter-tag">Chapter Twenty-Four</div>
+  <div class="chapter-tag">Chapter Twenty-Six</div>
   <div class="chapter-title">Government Relations <span class="audience-tag tag-partners">for partners</span></div>
   <div class="chapter-divider"></div>
 </div>
@@ -617,7 +662,7 @@ html, body {
 <p class="body-text">The accreditation track is the longest government-relations commitment. Most accrediting bodies require several years of operating history before granting full recognition, so the first accreditations arrive in 2027 (the earliest feasible timeline) and the last by 2030. During the interim, Artemis relies on the consortium partnerships (Chapter 22) to provide credential portability for its graduates. By 2030, the institution is fully accredited across all operating jurisdictions, and the standalone Artemis credential is globally recognised.</p>
 
 <div class="chapter-header">
-  <div class="chapter-tag">Chapter Twenty-Five</div>
+  <div class="chapter-tag">Chapter Twenty-Seven</div>
   <div class="chapter-title">The Open Knowledge Commons <span class="audience-tag tag-partners">for partners</span></div>
   <div class="chapter-divider"></div>
 </div>
@@ -636,7 +681,7 @@ html, body {
 </div>
 
 <div class="chapter-header">
-  <div class="chapter-tag">Chapter Twenty-Six</div>
+  <div class="chapter-tag">Chapter Twenty-Eight</div>
   <div class="chapter-title">The Physical Network <span class="audience-tag tag-all">for all</span></div>
   <div class="chapter-divider"></div>
 </div>
@@ -647,7 +692,7 @@ html, body {
 <div class="figure"><img src="../public/resources/img/campus-architecture.png" alt="Repurposed campus"><div class="caption">A repurposed college — converted warehouse with arched windows, the physical expression of the "do not build new" strategy. Faster, cheaper, lower-carbon.</div></div>
 
 <div class="chapter-header">
-  <div class="chapter-tag">Chapter Twenty-Seven</div>
+  <div class="chapter-tag">Chapter Twenty-Nine</div>
   <div class="chapter-title">The Research Model <span class="audience-tag tag-all">for all</span></div>
   <div class="chapter-divider"></div>
 </div>
@@ -657,7 +702,7 @@ html, body {
 <p class="body-text">The 7-year release policy (Chapter 25) is the research model's commitment to the world. Every output — datasets, methods, software, papers, designs — is deposited in the Knowledge Core with provenance tracking, version control, and a scheduled release date. Seven years after deposit, the output is published to the public domain under a remix-permissive license, with no manual intervention required. The policy is enforced automatically, which means it cannot be quietly weakened by future administrations. The 7-year window gives the institution time to capitalise (through ventures and partnerships) without hoarding knowledge permanently. It is the balance between institutional interest and public benefit, and it is the reason Artemis's research will accumulate for humanity rather than for journal publishers.</p>
 
 <div class="chapter-header">
-  <div class="chapter-tag">Chapter Twenty-Eight</div>
+  <div class="chapter-tag">Chapter Thirty</div>
   <div class="chapter-title">Governance & Legal <span class="audience-tag tag-all">for all</span></div>
   <div class="chapter-divider"></div>
 </div>
@@ -673,7 +718,7 @@ html, body {
 </div>
 
 <div class="chapter-header">
-  <div class="chapter-tag">Chapter Twenty-Nine</div>
+  <div class="chapter-tag">Chapter Thirty-One</div>
   <div class="chapter-title">Technology Infrastructure <span class="audience-tag tag-all">for all</span></div>
   <div class="chapter-divider"></div>
 </div>
@@ -691,7 +736,7 @@ html, body {
 </div>
 
 <div class="chapter-header">
-  <div class="chapter-tag">Chapter Thirty</div>
+  <div class="chapter-tag">Chapter Thirty-Two</div>
   <div class="chapter-title">The 2025–2030 Roadmap <span class="audience-tag tag-all">for all</span></div>
   <div class="chapter-divider"></div>
 </div>
@@ -715,7 +760,7 @@ html, body {
 </table>
 
 <div class="chapter-header">
-  <div class="chapter-tag">Chapter Thirty-One</div>
+  <div class="chapter-tag">Chapter Thirty-Three</div>
   <div class="chapter-title">Risks & Mitigations <span class="audience-tag tag-all">for all</span></div>
   <div class="chapter-divider"></div>
 </div>
@@ -726,7 +771,7 @@ html, body {
 <p class="body-text">The risks are real but bounded. The model is designed so that no single risk, realised, destroys the institution — it delays or degrades, but does not destroy. The combination of all three risks, realised simultaneously, would be existential, which is why the plan monitors all three continuously and triggers mitigations early. The annual report's candour about performance against targets is the early-warning system; the public commitment is the forcing function that ensures mitigations are implemented rather than deferred.</p>
 
 <div class="chapter-header">
-  <div class="chapter-tag">Chapter Thirty-Two</div>
+  <div class="chapter-tag">Chapter Thirty-Four</div>
   <div class="chapter-title">Measuring Success <span class="audience-tag tag-all">for all</span></div>
   <div class="chapter-divider"></div>
 </div>
@@ -760,7 +805,7 @@ html, body {
 </div>
 
 <div class="chapter-header">
-  <div class="chapter-tag">Chapter Thirty-Three</div>
+  <div class="chapter-tag">Chapter Thirty-Five</div>
   <div class="chapter-title">Diversity, Equity, Access <span class="audience-tag tag-all">for all</span></div>
   <div class="chapter-divider"></div>
 </div>
@@ -770,7 +815,7 @@ html, body {
 <div class="stat-row"><div class="stat"><div class="stat-val">90%</div><div class="stat-label">Tuition-Accessible</div></div><div class="stat"><div class="stat-val">13.3K</div><div class="stat-label">Scholarships/Yr</div></div><div class="stat"><div class="stat-val">34</div><div class="stat-label">Founding Countries</div></div><div class="stat"><div class="stat-val">40%</div><div class="stat-label">Non-Global-North Faculty</div></div></div>
 
 <div class="chapter-header">
-  <div class="chapter-tag">Chapter Thirty-Four</div>
+  <div class="chapter-tag">Chapter Thirty-Six</div>
   <div class="chapter-title">The Climate Commitment <span class="audience-tag tag-all">for all</span></div>
   <div class="chapter-divider"></div>
 </div>
@@ -779,7 +824,7 @@ html, body {
 <p class="body-text">The commitment extends to the supply chain. Every contract above $100K requires a carbon disclosure from the supplier, and procurement decisions weight carbon footprint alongside cost and quality. The dining services source at least 60% of food from within 500km of each college. Construction materials prioritise bio-based and low-carbon alternatives where structurally feasible. These choices add 8–12% to supply costs, funded by the operating surplus — a price the institution pays willingly, because a university that asks the world to address climate change cannot itself be a major emitter.</p>
 
 <div class="chapter-header">
-  <div class="chapter-tag">Chapter Thirty-Five</div>
+  <div class="chapter-tag">Chapter Thirty-Seven</div>
   <div class="chapter-title">The Artemis Oath <span class="audience-tag tag-all">for all</span></div>
   <div class="chapter-divider"></div>
 </div>
@@ -804,7 +849,7 @@ html, body {
 </div>
 
 <div class="chapter-header">
-  <div class="chapter-tag">Chapter Thirty-Six</div>
+  <div class="chapter-tag">Chapter Thirty-Eight</div>
   <div class="chapter-title">Replication <span class="audience-tag tag-all">for all</span></div>
   <div class="chapter-divider"></div>
 </div>
@@ -815,7 +860,7 @@ html, body {
 <div class="figure"><img src="../public/resources/img/world-night.png" alt="The global network"><div class="caption">The goal is not one Artemis but a world in which an Artemis-type institution is an option available to any community that wants one. The blueprint is the invitation.</div></div>
 
 <div class="chapter-header">
-  <div class="chapter-tag">Chapter Thirty-Seven</div>
+  <div class="chapter-tag">Chapter Thirty-Nine</div>
   <div class="chapter-title">The Call to Action <span class="audience-tag tag-all">for all</span></div>
   <div class="chapter-divider"></div>
 </div>

@@ -246,3 +246,27 @@ Work Log:
 Stage Summary:
 - Manifesto is now landscape (1020×720px, 46 pages) with a 2-column body layout and larger cover/part-divider/ending typography suited to the wider format.
 - Resources section redesigned: dark themed, featured manifesto banner, categorized 4-column grids (Strategy & Campaign / Financial & Legal / Campus & Academic), crimson accent system, hover states. Visual hierarchy now leads with the master document and organizes the 13 resources by purpose rather than a flat list.
+
+---
+Task ID: 6
+Agent: main (Z.ai Code)
+Task: Fix the black column taking up space in the landscape manifesto PDF. Add "what they learn" (catalogue) and "how they learn" (new way of learning) chapters to the For Students section.
+
+Work Log:
+- Black column diagnosis: the 2-column CSS layout (`column-count: 2; column-fill: auto`) combined with the dark body background (`var(--bg-dark)` = #0c0a09) caused empty column space to show through as a large black area on pages where content didn't fill both columns evenly.
+- Fix applied:
+  - Changed `html, body { background }` from `var(--bg-dark)` (near-black) to `var(--bg)` (cream #FAFAF8) — any gaps now show cream, not black.
+  - Removed `column-count: 2; column-gap: 40px; column-fill: auto` from `.main-content` — switched to single-column with wider padding (100px L/R) and larger fonts (body 13→14px, lead 15→17px, chapter-title 30→34px) suited to the landscape format.
+  - Removed `column-span: all` from `.part-divider` (no longer needed without columns).
+- Added two new chapters to Part IV (For Students):
+  - **Chapter Fifteen: The Catalogue — What You Learn** — the 9 undergraduate programs (CS, International Business, Environmental Science, PPE, Biotechnology, Architecture & Urban Design, Data Science, Global History, Cognitive Science), the 3-layer structure (foundation / core / mission layers), the Center-of-Inquiry affiliation for each program, a full program table (9 rows × 4 columns: program, degree, center, key courses), graduate programs, and the open-catalogue commitment.
+  - **Chapter Sixteen: The New Learning — How You Learn** — the 5 modes of learning: (1) tutorial system (3:1, weekly, Socratic, adapted from Oxford), (2) AI tutor (24/7 Socratic questioning, not answer-giving), (3) Active Learning Forum (flipped classroom, 20-30 students), (4) studio (making as knowing), (5) project (city/Center/mission-based). Plus peer learning in residential colleges. Includes a figure and a pullquote.
+- Renumbered all chapters 15→37 to 17→39 (shifted by 2) via a Python script. Fixed a regex bug that had consumed `</div>` closing tags during the renumber. Updated the Table of Contents to include the two new entries and shift all Part V-X entries by +2. Total chapters: 39 (was 37).
+- Regenerated PDF: 68 pages (up from 46), 2.3MB, 21,124 words, 27 figures, 10 tables. Verified with pymupdf: 0 blank pages (black column fixed), both new chapters present (Ch 15 on page 24, Ch 16 on page 25), landscape confirmed (765×540pt).
+- Reapplied metadata. Updated Give page RESOURCES array page count 46→68.
+- Browser-verified: Resources section shows "MASTER DOCUMENT · 68 PAGES · LANDSCAPE".
+
+Stage Summary:
+- Black column: FIXED (0 blank pages, body background now cream, single-column layout).
+- For Students section: expanded from 4 to 6 chapters — added "The Catalogue — What You Learn" (9 programs, 3-layer curriculum structure, program table) and "The New Learning — How You Learn" (tutorial system, AI tutor, Active Learning Forum, studio, project mode, peer learning).
+- Manifesto: 68 pages landscape, 39 chapters, 21K words. Much closer to the ~100 page target.
