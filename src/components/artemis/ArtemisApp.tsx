@@ -576,7 +576,7 @@ export default function ArtemisApp() {
             />
           )}
 
-          <main className="flex-1 flex flex-col w-full max-w-[1600px] mx-auto">
+          <main className="flex-1 flex flex-col w-full max-w-[1600px] mx-auto pb-16 lg:pb-0">
             <PageTransition pageKey={pageKey}>
               {renderPage()}
             </PageTransition>
@@ -590,7 +590,7 @@ export default function ArtemisApp() {
       {showBackToTop && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-6 right-6 z-40 w-12 h-12 bg-[#121212] hover:bg-[#8A0000] text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all lg:bottom-8 lg:right-8 group"
+          className="fixed bottom-20 right-4 z-40 w-12 h-12 bg-[#121212] hover:bg-[#8A0000] text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all lg:bottom-8 lg:right-8 group"
           aria-label="Back to top"
         >
           {/* Progress Ring Outline */}
@@ -622,8 +622,8 @@ export default function ArtemisApp() {
       )}
 
       {/* Mobile Bottom Tab Bar — only on small screens */}
-      <nav className="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-200 lg:hidden safe-area-bottom">
-        <div className="flex items-center justify-around h-14">
+      <nav className="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-200 lg:hidden safe-area-bottom max-w-[1600px] mx-auto">
+        <div className="flex items-center justify-around h-16">
           {[
             { label: 'Home', page: 'home', icon: (
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>

@@ -147,7 +147,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-[#0a0a0a] text-white w-full mt-auto">
+    <footer className="bg-[#0a0a0a] text-white w-full mt-auto max-w-[1600px] mx-auto">
       <div className="max-w-[1400px] mx-auto w-full px-5 sm:px-8 lg:px-20">
         {/* Top: Logo + tagline */}
         <div className="py-12 border-b border-white/10 flex flex-col md:flex-row md:items-end md:justify-between gap-6">

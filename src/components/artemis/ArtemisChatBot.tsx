@@ -210,7 +210,7 @@ export default function ArtemisChatBot() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 8 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-5 left-1/2 -translate-x-1/2 z-40"
+            className="fixed bottom-20 lg:bottom-5 left-1/2 -translate-x-1/2 z-40"
           >
             <button
               onClick={() => setChatState('compact')}
@@ -233,7 +233,7 @@ export default function ArtemisChatBot() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 16 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="fixed bottom-3 left-1/2 -translate-x-1/2 z-40 w-[35%] min-w-[340px] max-w-[520px]"
+            className="fixed bottom-20 lg:bottom-3 left-1/2 -translate-x-1/2 z-40 w-[35%] min-w-[340px] max-w-[520px]"
           >
             <div className="bg-[#f0f0f0] rounded-xl p-2.5 shadow-lg space-y-1.5">
               {SUGGESTED_QUESTIONS.map((q, i) => (
