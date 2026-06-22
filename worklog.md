@@ -407,3 +407,29 @@ Stage Summary:
 - Real diverse images from web search (not AI-generated).
 - Scroll-animated, modern layout with alternating image/text, gold success callouts.
 - Pushed to GitHub repo Questy708/artemis.
+
+---
+Task ID: 12
+Agent: main (Z.ai Code)
+Task: Redesign Journey page as scroll-driven step-by-step flow (each scroll reveals next step). Use unique black-dominant real images (no repeats, no AI-generated). Add persona perspectives (student + tutor/educator) for each step. Push to GitHub.
+
+Work Log:
+- Searched for 24 unique black/African American dominant real images using z-ai image-search — one per step, no repeats. All from diverse web sources (Unsplash, Alamy, etc.).
+- Completely rebuilt JourneyPage.tsx with new scroll-driven architecture:
+  - Each step is a **full-screen section** (min-h-[100vh]) — scrolling reveals one step at a time
+  - **Progress dots** on the right side showing current position in the journey
+  - Modern scroll animations: image scales in from the side, text slides in from the opposite side, staggered timing
+  - Alternating image/text layout (left/right swap each step)
+  - Act header is also full-screen with scroll-to-begin indicator
+- Added **persona perspectives** for every step:
+  - **The Student**: first-person quote from the learner's perspective at that life stage
+  - **The Educator**: first-person quote from the tutor/faculty perspective
+  - Both displayed in side-by-side cards with role icons (User / Briefcase)
+- Each step now has 6 content blocks: description, detail, consequence/benefit, what success means, student perspective, educator perspective
+- All 24 steps have unique images (verified no repeats — each URL is different)
+- Verified in browser: "WHAT SUCCESS MEANS", "THE STUDENT", "THE EDUCATOR" all render
+- Pushed to GitHub: https://github.com/Questy708/artemis (commit e9d577f)
+
+Stage Summary:
+- Journey page v2: 24 full-screen scroll-driven steps, unique black-dominant images, student + educator personas, success definitions, modern animations.
+- Pushed to GitHub repo Questy708/artemis.
