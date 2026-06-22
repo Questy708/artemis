@@ -576,7 +576,7 @@ export default function ArtemisApp() {
             />
           )}
 
-          <main className="flex-1 flex flex-col w-full">
+          <main className="flex-1 flex flex-col w-full max-w-[1600px] mx-auto">
             <PageTransition pageKey={pageKey}>
               {renderPage()}
             </PageTransition>

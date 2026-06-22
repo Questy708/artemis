@@ -336,3 +336,25 @@ Stage Summary:
 - Manifesto: 55 pages landscape, 0 blank pages, 2-column layout with content filling both columns evenly (no imbalance). Visual map section included in the document. 36 figures, 10 tables, ~21K words.
 - Interactive map: in the manifesto document (not the Give page). Removed from Give page.
 - Footer/section width: SubPageFooter, Blog "Stay in the loop", Give page Resources, and Give page Give Now all now have backgrounds constrained to max-w-[1600px] mx-auto (matching the header image width). Not full viewport width.
+
+---
+Task ID: 9
+Agent: main (Z.ai Code)
+Task: Fix manifesto column imbalance (user showed screenshot of uneven columns with large empty space). Fix section alignment across ALL pages — colored section backgrounds must match header image width (1600px), not full viewport. User reported specific sections still broken: Library on Give page, "Come see it for yourself" on Campus Life, "Find the school that fits your ambition" on Colleges, "Ready to begin your journey?" on Undergraduate Study, and potentially all others.
+
+Work Log:
+- Manifesto layout rebuilt from scratch (single column):
+  - Analyzed user's screenshot with VLM: confirmed the 2-column layout had severe column imbalance — left column dramatically shorter than right, leaving 30-40% empty space. Root cause: Chromium's `column-fill: balance` doesn't balance reliably across page breaks, and `break-inside: avoid` elements jump columns leaving gaps.
+  - Removed ALL column CSS (`column-count`, `column-gap`, `column-fill`, `column-rule`, `column-span`) from the manifesto. Switched to single-column with 120px left/right padding (780px reading width) — comfortable for landscape and eliminates ALL column balancing issues.
+  - Result: 71 pages, 0 blank pages, no imbalance, no empty space. Content fills each page top-to-bottom.
+  - Reapplied metadata. Updated Give page page count to 71.
+- Section alignment fixed globally (one-line fix in ArtemisApp):
+  - Root cause of ALL alignment issues: the subpage `<main>` element was `w-full` (full viewport width), so all section backgrounds inside it spanned the full viewport. The header image is constrained to `max-w-[1600px] mx-auto`, so sections didn't match.
+  - Fix: Added `max-w-[1600px] mx-auto` to the subpage `<main>` element in ArtemisApp.tsx. This constrains ALL subpage content — including every section background, the footer, and all colored CTA bars — to 1600px centered, matching the header image width.
+  - This is a systemic fix that affects ALL subpages automatically: Give page (Library, Give Now, all sections), Journal (Stay in the loop, footer), Campus Life (Come see it for yourself, all sections), Colleges (Find the school, all sections), Undergraduate Study (Ready to begin, all sections), Research, Innovation, Admissions, About, Education, and every other subpage.
+  - Reverted the redundant per-section wrappers I added in previous attempts (SubPageFooter wrapper, Blog subscribe bar wrapper, Give page Resources/Give Now wrappers) since the parent main now handles the constraint. These were causing JSX nesting issues.
+- Browser-verified: On all checked pages (Give, Campus Life, Colleges, Undergraduate Study, Journal), the main element width equals the section widths equals the footer width — all constrained to max-w-[1600px] (1265px on the test viewport, 1600px on wider screens). No section extends beyond the header image width.
+
+Stage Summary:
+- Manifesto: 71 pages, single-column landscape, 0 blank pages, 0 imbalance. Content fills every page properly.
+- Alignment: ONE fix in ArtemisApp.tsx (adding `max-w-[1600px] mx-auto` to the subpage main) constrains ALL colored section backgrounds across ALL pages to match the header image width. Verified on Give, Campus Life, Colleges, Undergraduate Study, and Journal pages.

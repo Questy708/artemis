@@ -82,13 +82,12 @@ export default function SubPageFooter({ goToPage }: FooterProps) {
   };
 
   return (
-    <footer className="w-full shrink-0 relative">
-      <div className="max-w-[1600px] mx-auto bg-[#121212] text-white">
+    <footer className="bg-[#121212] text-white w-full shrink-0 relative">
 
       {/* ── Gradient line divider: Crimson to Gold ── */}
       <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-[#8A0000] via-[#D4A853] to-transparent shrink-0 opacity-80" />
 
-      <div className="max-w-[1600px] mx-auto w-full px-5 sm:px-8 lg:px-20">
+      <div className="max-w-[1400px] mx-auto w-full px-5 sm:px-8 lg:px-20">
 
         {/* ── Top: Brand identity & Newsletter Card ── */}
         <div className="pt-16 pb-12 border-b border-white/[0.06] grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
@@ -246,7 +245,6 @@ export default function SubPageFooter({ goToPage }: FooterProps) {
             Artemis Collegium &middot; Federated World Wide
           </p>
         </div>
-      </div>
       </div>
     </footer>
   );

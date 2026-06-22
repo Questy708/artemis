@@ -175,7 +175,7 @@ const RESOURCES = [
   { id: 'academic-prospectus', title: 'Academic Prospectus', desc: 'Programs of study, curriculum pillars, tutorial system, and the competency-based grading model.', icon: BookOpen, file: '/resources/artemis-academic-prospectus.pdf', pages: 22 },
   { id: 'research-portfolio', title: 'Centers of Inquiry Research Portfolio', desc: 'The 19 Centers, their research domains, current projects, and the 7-year release policy.', icon: FlaskConical, file: '/resources/artemis-research-portfolio.pdf', pages: 23 },
   { id: 'strategic-plan', title: 'Strategic Plan 2025-2030', desc: 'The full 5-year strategic roadmap: year-by-year targets, academic, financial, and infrastructure plans.', icon: Rocket, file: '/resources/artemis-strategic-plan.pdf', pages: 19 },
-  { id: 'manifesto', title: 'The Founding Manifesto', desc: 'The master document — a theory of everything Artemis. Planetary, need-blind, self-sustaining. For students, investors, and partners. The blueprint and the call to action.', icon: Sparkles, file: '/resources/artemis-manifesto.pdf', pages: 55 },
+  { id: 'manifesto', title: 'The Founding Manifesto', desc: 'The master document — a theory of everything Artemis. Planetary, need-blind, self-sustaining. For students, investors, and partners. The blueprint and the call to action.', icon: Sparkles, file: '/resources/artemis-manifesto.pdf', pages: 71 },
 ];
 
 /* ─── Helpers ─── */
@@ -1309,8 +1309,7 @@ export default function FundraisingCampaign({ goToPage }: Props) {
       {/* ══════════════════════════════════════════
           8. GIVE NOW — Redesigned Premium Card
           ══════════════════════════════════════════ */}
-      <section id="give" className="scroll-mt-[110px]">
-        <div className="max-w-[1600px] mx-auto bg-[#FAFAF8] py-16 sm:py-24 lg:py-32">
+      <section id="give" className="scroll-mt-[110px] bg-[#FAFAF8] py-16 sm:py-24 lg:py-32">
         <div ref={giveAnim.ref} className="max-w-[1400px] mx-auto w-full px-5 sm:px-8 lg:px-20">
           <motion.div {...clipReveal(giveAnim.visible)} className="flex items-center gap-3 mb-4">
             <span className="w-8 h-[1px] bg-[#8A0000]"></span>
@@ -1521,7 +1520,6 @@ export default function FundraisingCampaign({ goToPage }: Props) {
               </motion.div>
             )}
           </AnimatePresence>
-        </div>
         </div>
       </section>
 
@@ -1835,8 +1833,7 @@ export default function FundraisingCampaign({ goToPage }: Props) {
       {/* ══════════════════════════════════════════
           RESOURCES — Downloadable Documents
           ══════════════════════════════════════════ */}
-      <section id="resources" className="scroll-mt-[110px]">
-        <div className="max-w-[1600px] mx-auto py-16 sm:py-24 lg:py-32 bg-[#0c0a09] border-t border-[#8A0000]/20">
+      <section id="resources" className="scroll-mt-[110px] py-16 sm:py-24 lg:py-32 bg-[#0c0a09] border-t border-[#8A0000]/20">
         <div ref={resourcesAnim.ref} className="max-w-[1400px] mx-auto w-full px-5 sm:px-8 lg:px-20">
           <motion.div {...clipReveal(resourcesAnim.visible)} className="flex items-center gap-3 mb-4">
             <span className="w-8 h-[1px] bg-[#8A0000]"></span>
@@ -1920,7 +1917,6 @@ export default function FundraisingCampaign({ goToPage }: Props) {
             items={RESOURCES.filter(r => ['campus-plan','alliance-map','academic-prospectus','research-portfolio'].includes(r.id))}
             animVisible={resourcesAnim.visible}
           />
-        </div>
         </div>
       </section>
 
