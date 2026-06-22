@@ -386,30 +386,136 @@ export default function JourneyPage({ goTo }: { goTo: (page: string) => void }) 
 // INTRO
 // ═══════════════════════════════════════════════════════════
 function Intro({ onChoose }: { onChoose: (t: 'intro' | 'traditional' | 'bigger' | 'artemis') => void }) {
+  const [hovered, setHovered] = useState<'traditional' | 'artemis' | null>(null);
+
   return (
-    <div className="relative min-h-[calc(100vh-3.5rem)] flex items-center justify-center bg-[#0c0a09] text-white overflow-hidden">
-      <div className="absolute top-1/4 left-1/4 w-[50vw] h-[50vw] rounded-full bg-[#8A0000]/20 blur-[120px]" />
-      <div className="absolute bottom-1/4 right-1/4 w-[40vw] h-[40vw] rounded-full bg-[#D4A853]/10 blur-[100px]" />
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center py-20">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="flex items-center justify-center gap-3 mb-8">
-          <span className="w-10 h-[1px] bg-[#8A0000]" />
+    <div className="relative min-h-[calc(100vh-3.5rem)] bg-[#0c0a09] text-white overflow-hidden flex flex-col">
+      {/* Top: title section */}
+      <div className="flex-1 flex flex-col items-center justify-center pt-16 pb-8 px-6 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="flex items-center gap-3 mb-6"
+        >
+          <span className="w-8 h-[1px] bg-[#8A0000]" />
           <span className="text-[11px] font-semibold uppercase tracking-[0.35em] text-[#ff6b6b]">A Tale of Two Ways</span>
-          <span className="w-10 h-[1px] bg-[#8A0000]" />
+          <span className="w-8 h-[1px] bg-[#8A0000]" />
         </motion.div>
-        <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1 }} className="text-[40px] sm:text-[56px] md:text-[72px] font-black leading-[0.95] tracking-tighter mb-6">
-          The Learner's<br />Journey
+
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="text-[36px] sm:text-[52px] md:text-[68px] font-black leading-[0.9] tracking-tighter text-center mb-5"
+        >
+          The Learner's Journey
         </motion.h1>
-        <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="text-[17px] sm:text-[19px] text-white/50 max-w-2xl mx-auto leading-relaxed mb-12 font-light">
-          Two paths lie before every learner. One has been walked for 200 years — a system designed for the industrial age, still running on a factory clock. The other is being built now — for the planetary century, for the learner, for humanity. This is the story of both.
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-[15px] sm:text-[17px] text-white/45 max-w-xl text-center leading-relaxed font-light"
+        >
+          Two paths. One walked for 200 years. One being built now. Choose a way to follow.
         </motion.p>
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }} className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button onClick={() => onChoose('traditional')} className="group flex items-center justify-center gap-3 px-8 py-4 bg-white/5 border border-white/15 hover:bg-white/10 hover:border-white/30 transition-all text-white text-[13px] font-bold uppercase tracking-[0.2em] rounded-full">
-            <Lock size={16} className="text-gray-400" /> The Traditional Way <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </button>
-          <button onClick={() => onChoose('artemis')} className="group flex items-center justify-center gap-3 px-8 py-4 bg-[#8A0000] hover:bg-[#6B0000] transition-all text-white text-[13px] font-bold uppercase tracking-[0.2em] rounded-full shadow-lg shadow-[#8A0000]/30">
-            <Sparkles size={16} /> The Artemis Way <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </button>
-        </motion.div>
+      </div>
+
+      {/* Bottom: two large clickable cards side by side */}
+      <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-px bg-white/5 max-h-[55vh]">
+        {/* Traditional */}
+        <motion.button
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          onClick={() => onChoose('traditional')}
+          onMouseEnter={() => setHovered('traditional')}
+          onMouseLeave={() => setHovered(null)}
+          className="group relative bg-[#1a1a1a] overflow-hidden cursor-pointer flex flex-col justify-between p-8 lg:p-10 text-left transition-all duration-500"
+        >
+          {/* Hover glow */}
+          <div className={`absolute inset-0 bg-gradient-to-br from-gray-700/20 to-transparent transition-opacity duration-500 ${hovered === 'traditional' ? 'opacity-100' : 'opacity-0'}`} />
+
+          {/* Top content */}
+          <div className="relative z-10">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-white/5 border border-white/10">
+                <Lock size={18} className="text-gray-400" />
+              </div>
+              <div>
+                <div className="text-[9px] font-bold uppercase tracking-[0.25em] text-gray-500">Act I</div>
+                <div className="text-[11px] font-bold uppercase tracking-[0.15em] text-gray-400">12 Steps</div>
+              </div>
+            </div>
+            <h2 className="text-[26px] sm:text-[32px] lg:text-[40px] font-black tracking-tight leading-[1.0] text-gray-200 mb-3">
+              The Traditional Way
+            </h2>
+            <p className="text-[13px] sm:text-[14px] text-gray-500 leading-relaxed max-w-md">
+              A system designed for the industrial age. Still running on a factory clock. Follow the loopholes, the consequences, and the human cost — from age 5 to retirement.
+            </p>
+          </div>
+
+          {/* Bottom: enter prompt */}
+          <div className="relative z-10 flex items-center gap-2 mt-6">
+            <span className={`text-[11px] font-bold uppercase tracking-[0.2em] transition-colors ${hovered === 'traditional' ? 'text-white' : 'text-gray-500'}`}>
+              Enter the Old Way
+            </span>
+            <ArrowRight size={14} className={`text-gray-500 transition-all ${hovered === 'traditional' ? 'translate-x-1 text-white' : ''}`} />
+          </div>
+
+          {/* Number watermark */}
+          <div className="absolute -bottom-8 -right-4 text-[120px] font-black text-white/[0.03] leading-none pointer-events-none select-none">
+            01
+          </div>
+        </motion.button>
+
+        {/* Artemis */}
+        <motion.button
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          onClick={() => onChoose('artemis')}
+          onMouseEnter={() => setHovered('artemis')}
+          onMouseLeave={() => setHovered(null)}
+          className="group relative bg-[#8A0000] overflow-hidden cursor-pointer flex flex-col justify-between p-8 lg:p-10 text-left transition-all duration-500"
+        >
+          {/* Hover glow */}
+          <div className={`absolute inset-0 bg-gradient-to-br from-[#ff3333]/20 to-transparent transition-opacity duration-500 ${hovered === 'artemis' ? 'opacity-100' : 'opacity-0'}`} />
+          <div className="absolute -top-1/4 -right-1/4 w-[30vw] h-[30vw] rounded-full bg-white/5 blur-[60px] pointer-events-none" />
+
+          {/* Top content */}
+          <div className="relative z-10">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-white/10 border border-white/20">
+                <Sparkles size={18} className="text-white/80" />
+              </div>
+              <div>
+                <div className="text-[9px] font-bold uppercase tracking-[0.25em] text-white/50">Act II</div>
+                <div className="text-[11px] font-bold uppercase tracking-[0.15em] text-white/50">12 Steps</div>
+              </div>
+            </div>
+            <h2 className="text-[26px] sm:text-[32px] lg:text-[40px] font-black tracking-tight leading-[1.0] text-white mb-3">
+              The Artemis Way
+            </h2>
+            <p className="text-[13px] sm:text-[14px] text-white/60 leading-relaxed max-w-md">
+              A system designed for the planetary century. For the learner, for humanity. Follow the new way — missions, tutorials, rotation, Centers, and lifelong learning.
+            </p>
+          </div>
+
+          {/* Bottom: enter prompt */}
+          <div className="relative z-10 flex items-center gap-2 mt-6">
+            <span className={`text-[11px] font-bold uppercase tracking-[0.2em] transition-colors ${hovered === 'artemis' ? 'text-white' : 'text-white/70'}`}>
+              Enter the New Way
+            </span>
+            <ArrowRight size={14} className={`text-white/70 transition-all ${hovered === 'artemis' ? 'translate-x-1 text-white' : ''}`} />
+          </div>
+
+          {/* Number watermark */}
+          <div className="absolute -bottom-8 -right-4 text-[120px] font-black text-white/[0.05] leading-none pointer-events-none select-none">
+            02
+          </div>
+        </motion.button>
       </div>
     </div>
   );
