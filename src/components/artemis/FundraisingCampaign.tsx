@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import SubPageFooter from '@/components/artemis/SubPageFooter';
 import OnThisPageNav, { useActiveSection } from '@/components/artemis/OnThisPageNav';
+import ArtemisMap from '@/components/artemis/ArtemisMap';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowRight, Shield, Zap, Star, Crown, Building2,
@@ -175,7 +176,7 @@ const RESOURCES = [
   { id: 'academic-prospectus', title: 'Academic Prospectus', desc: 'Programs of study, curriculum pillars, tutorial system, and the competency-based grading model.', icon: BookOpen, file: '/resources/artemis-academic-prospectus.pdf', pages: 22 },
   { id: 'research-portfolio', title: 'Centers of Inquiry Research Portfolio', desc: 'The 19 Centers, their research domains, current projects, and the 7-year release policy.', icon: FlaskConical, file: '/resources/artemis-research-portfolio.pdf', pages: 23 },
   { id: 'strategic-plan', title: 'Strategic Plan 2025-2030', desc: 'The full 5-year strategic roadmap: year-by-year targets, academic, financial, and infrastructure plans.', icon: Rocket, file: '/resources/artemis-strategic-plan.pdf', pages: 19 },
-  { id: 'manifesto', title: 'The Founding Manifesto', desc: 'The master document — a theory of everything Artemis. Planetary, need-blind, self-sustaining. For students, investors, and partners. The blueprint and the call to action.', icon: Sparkles, file: '/resources/artemis-manifesto.pdf', pages: 68 },
+  { id: 'manifesto', title: 'The Founding Manifesto', desc: 'The master document — a theory of everything Artemis. Planetary, need-blind, self-sustaining. For students, investors, and partners. The blueprint and the call to action.', icon: Sparkles, file: '/resources/artemis-manifesto.pdf', pages: 63 },
 ];
 
 /* ─── Helpers ─── */
@@ -456,7 +457,7 @@ function ResourceGroup({ label, items, animVisible }: { label: string; items: ty
 
 /* ─── Main Component ─── */
 export default function FundraisingCampaign({ goToPage }: Props) {
-  const activeSection = useActiveSection(['case', 'pillars', 'ask', 'phases', 'opportunities', 'circles', 'ways', 'give', 'resources', 'accountability']);
+  const activeSection = useActiveSection(['case', 'pillars', 'ask', 'phases', 'opportunities', 'circles', 'ways', 'network', 'give', 'resources', 'accountability']);
   const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
   const [customAmount, setCustomAmount] = useState('');
   const [donorName, setDonorName] = useState('');
@@ -508,6 +509,7 @@ export default function FundraisingCampaign({ goToPage }: Props) {
   const opportunitiesAnim = useInView(0);
   const circlesAnim = useInView(0);
   const waysAnim = useInView(0);
+  const mapAnim = useInView(0);
   const giveAnim = useInView(0);
   const beyondAnim = useInView(0);
   const askAnim = useInView(0);
@@ -613,6 +615,7 @@ export default function FundraisingCampaign({ goToPage }: Props) {
           { id: 'opportunities', label: 'Naming' },
           { id: 'circles', label: 'Giving Circles' },
           { id: 'ways', label: 'Ways to Give' },
+          { id: 'network', label: 'The Network' },
           { id: 'give', label: 'Give Now' },
           { id: 'resources', label: 'Resources' },
           { id: 'accountability', label: 'Accountability' },
@@ -1307,144 +1310,181 @@ export default function FundraisingCampaign({ goToPage }: Props) {
       </section>
 
       {/* ══════════════════════════════════════════
+          7.5. WHERE YOUR GIFT BUILDS — Interactive Map
+          ══════════════════════════════════════════ */}
+      <section id="network" className="scroll-mt-[110px] bg-[#0c0a09] py-16 sm:py-24 lg:py-32 border-t border-[#8A0000]/20">
+        <div ref={mapAnim.ref} className="max-w-[1400px] mx-auto w-full px-5 sm:px-8 lg:px-20">
+          <motion.div {...clipReveal(mapAnim.visible)} className="flex items-center gap-3 mb-4">
+            <span className="w-8 h-[1px] bg-[#8A0000]"></span>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#8A0000]">The Network</span>
+          </motion.div>
+          <motion.h2 {...fadeUp(mapAnim.visible, 0.05)} className="text-[28px] sm:text-[40px] md:text-[48px] font-black leading-[0.95] tracking-tighter text-white mb-4">
+            Where your gift builds
+          </motion.h2>
+          <motion.p {...fadeUp(mapAnim.visible, 0.1)} className="text-[15px] text-white/50 max-w-2xl leading-relaxed mb-10 sm:mb-14">
+            Every gift is anchored in a physical place. Explore the global network of colleges and nodes your contribution helps build — click any location to see what grows there.
+          </motion.p>
+          <motion.div {...fadeUp(mapAnim.visible, 0.15)} className="rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02]">
+            <ArtemisMap />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
           8. GIVE NOW — Redesigned Premium Card
           ══════════════════════════════════════════ */}
-      <section id="give" className="scroll-mt-[110px] bg-white py-16 sm:py-24 lg:py-36">
+      <section id="give" className="scroll-mt-[110px] bg-[#FAFAF8] py-16 sm:py-24 lg:py-32">
         <div ref={giveAnim.ref} className="max-w-[1400px] mx-auto w-full px-5 sm:px-8 lg:px-20">
-          <motion.h2 {...clipReveal(giveAnim.visible)} className="text-[32px] sm:text-[44px] md:text-[56px] font-black leading-[0.92] tracking-tighter text-[#141414] mb-4">
+          <motion.div {...clipReveal(giveAnim.visible)} className="flex items-center gap-3 mb-4">
+            <span className="w-8 h-[1px] bg-[#8A0000]"></span>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#8A0000]">Join the Founding</span>
+          </motion.div>
+          <motion.h2 {...fadeUp(giveAnim.visible, 0.05)} className="text-[32px] sm:text-[44px] md:text-[56px] font-black leading-[0.92] tracking-tighter text-[#141414] mb-4">
             Give now
           </motion.h2>
-          <motion.p {...fadeUp(giveAnim.visible, 0.1)} className="text-[14px] sm:text-[16px] text-gray-600 max-w-2xl leading-relaxed mb-8 sm:mb-12">Choose your amount, select your payment method, and join the founding. For major gifts and naming opportunities, contact <a href="mailto:donate@artemisui.org" className="text-[#8A0000] font-bold hover:underline">donate@artemisui.org</a>.</motion.p>
+          <motion.p {...fadeUp(giveAnim.visible, 0.1)} className="text-[14px] sm:text-[16px] text-gray-600 max-w-2xl leading-relaxed mb-10 sm:mb-14">Choose your amount, select your payment method, and join the founding. For major gifts and naming opportunities, contact <a href="mailto:donate@artemisui.org" className="text-[#8A0000] font-bold hover:underline">donate@artemisui.org</a>.</motion.p>
 
-          {/* Premium Card Layout */}
-          <motion.div {...fadeUp(giveAnim.visible, 0.15)} className="border border-gray-200 bg-white overflow-hidden">
-            {/* Crimson top accent border */}
-            <div className="h-1.5 bg-[#8A0000]" />
+          {/* Modern split layout: sticky impact panel + form */}
+          <motion.div {...fadeUp(giveAnim.visible, 0.15)} className="grid lg:grid-cols-12 gap-6 lg:gap-8">
+            {/* Left: sticky impact summary */}
+            <div className="lg:col-span-5">
+              <div className="lg:sticky lg:top-24 rounded-2xl bg-[#0c0a09] text-white overflow-hidden">
+                <div className="absolute inset-0 opacity-30">
+                  <div className="absolute -top-1/3 -right-1/4 w-[300px] h-[300px] rounded-full bg-[#8A0000]/30 blur-[80px]"></div>
+                </div>
+                <div className="relative p-8 sm:p-10">
+                  <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#ff6b6b] mb-6">Your Impact</div>
+                  {effectiveAmount > 0 ? (
+                    <>
+                      <div className="mb-6">
+                        <span className="text-[48px] sm:text-[56px] font-black text-white leading-none tracking-tighter">
+                          {sym}{effectiveAmount.toLocaleString()}
+                        </span>
+                        {isRecurring && (
+                          <span className="text-[13px] text-[#ff6b6b] font-bold ml-3">{recurringFreq} &middot; {sym}{fmtShort(effectiveAmount * (recurringFreq === 'monthly' ? 12 : recurringFreq === 'quarterly' ? 4 : 1))}/yr</span>
+                        )}
+                      </div>
+                      {(() => {
+                        const circle = getGivingCircle(effectiveAmount);
+                        if (!circle) return null;
+                        const CircleIcon = circle.icon;
+                        return (
+                          <div className="flex items-center gap-3 mb-6 pb-6 border-b border-white/10">
+                            <CircleIcon size={20} style={{ color: circle.color }} />
+                            <span className="text-[16px] font-black text-white">{circle.name}</span>
+                            <span className="text-[12px] text-white/40">&mdash; {circle.range}</span>
+                          </div>
+                        );
+                      })()}
+                      <p className="text-[18px] sm:text-[20px] font-bold text-white/90 leading-snug mb-8">
+                        {getImpactText(effectiveAmount)}
+                      </p>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="bg-white/[0.05] rounded-lg p-4">
+                          <div className="text-[20px] font-black text-[#ff6b6b]">{fmtShort(effectiveAmount)}</div>
+                          <div className="text-[9px] font-bold uppercase tracking-widest text-white/40 mt-1">Your Gift</div>
+                        </div>
+                        <div className="bg-white/[0.05] rounded-lg p-4">
+                          <div className="text-[20px] font-black text-[#ff6b6b]">{isRecurring ? 'Recurring' : 'One-time'}</div>
+                          <div className="text-[9px] font-bold uppercase tracking-widest text-white/40 mt-1">Frequency</div>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <p className="text-[18px] text-white/30 italic py-8">Select an amount to see your impact</p>
+                  )}
+                  <div className="mt-8 pt-6 border-t border-white/10 flex items-center gap-2">
+                    <Lock size={11} className="text-white/30" />
+                    <span className="text-[10px] text-white/30">Secure payment — redirected to complete your donation</span>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-            <div className="p-6 sm:p-10 lg:p-16">
-              {/* Amount Selection — Elegant large tap targets */}
-              <div className="mb-10 sm:mb-14">
-                <h3 className="text-[11px] font-bold uppercase tracking-widest text-[#8A0000] mb-6">Select your amount</h3>
-                <div className="flex flex-wrap gap-3 sm:gap-4 mb-6">
+            {/* Right: form steps */}
+            <div className="lg:col-span-7 space-y-6">
+              {/* Step 1: Amount */}
+              <div className="bg-white rounded-2xl border border-gray-200 p-6 sm:p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="w-7 h-7 rounded-full bg-[#8A0000] text-white text-[12px] font-bold flex items-center justify-center">1</span>
+                  <h3 className="text-[15px] font-bold text-[#141414]">Select your amount</h3>
+                </div>
+                <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-4">
                   {PRESETS.map(amt => (
-                    <button key={amt} onClick={() => { setSelectedAmount(amt); setCustomAmount(''); }} className={`px-6 sm:px-8 py-4 text-[15px] sm:text-[17px] font-black border-2 transition-all duration-200 ${selectedAmount === amt ? 'bg-[#8A0000] text-white border-[#8A0000] shadow-lg shadow-[#8A0000]/20' : 'bg-white text-gray-700 border-gray-200 hover:border-[#8A0000] hover:text-[#8A0000]'}`}>
+                    <button key={amt} onClick={() => { setSelectedAmount(amt); setCustomAmount(''); }} className={`py-4 text-[15px] sm:text-[16px] font-black border-2 rounded-lg transition-all duration-200 ${selectedAmount === amt ? 'bg-[#8A0000] text-white border-[#8A0000] shadow-md shadow-[#8A0000]/20' : 'bg-white text-gray-700 border-gray-200 hover:border-[#8A0000] hover:text-[#8A0000]'}`}>
                       {sym}{fmtShort(amt)}
                     </button>
                   ))}
                 </div>
-                <div className="relative max-w-md">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[18px] font-bold text-gray-300">{sym}</span>
-                  <input type="number" value={customAmount} onChange={(e) => { setCustomAmount(e.target.value); setSelectedAmount(null); }} placeholder="Custom amount" className="w-full pl-8 pr-4 py-4 bg-white border-2 border-gray-200 focus:border-[#8A0000] focus:outline-none focus:shadow-sm focus:shadow-[#8A0000]/10 text-[18px] font-bold text-[#141414] placeholder:text-gray-300 transition-all" />
+                <div className="relative">
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[16px] font-bold text-gray-300">{sym}</span>
+                  <input type="number" value={customAmount} onChange={(e) => { setCustomAmount(e.target.value); setSelectedAmount(null); }} placeholder="Custom amount" className="w-full pl-8 pr-4 py-3.5 bg-gray-50 border-2 border-gray-200 focus:border-[#8A0000] focus:outline-none focus:bg-white text-[16px] font-bold text-[#141414] placeholder:text-gray-300 placeholder:font-normal transition-all rounded-lg" />
                 </div>
-
-                {/* Recurring toggle */}
-                <div className="mt-6 pt-6 border-t border-gray-100 max-w-md">
+                <div className="mt-4 pt-4 border-t border-gray-100">
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <Repeat size={16} className="text-[#8A0000]" />
-                      <span className="text-[14px] font-bold text-[#141414]">Make it recurring</span>
+                    <div className="flex items-center gap-2">
+                      <Repeat size={15} className="text-[#8A0000]" />
+                      <span className="text-[13px] font-bold text-[#141414]">Make it recurring</span>
                     </div>
                     <button onClick={() => setIsRecurring(!isRecurring)} className={`w-11 h-5 rounded-full transition-colors relative ${isRecurring ? 'bg-[#8A0000]' : 'bg-gray-300'}`}>
                       <div className={`w-4 h-4 bg-white rounded-full absolute top-0.5 transition-all shadow-sm ${isRecurring ? 'left-[24px]' : 'left-0.5'}`} />
                     </button>
                   </div>
                   {isRecurring && (
-                    <div className="flex gap-2 mt-4">
+                    <div className="flex gap-2 mt-3">
                       {['monthly', 'quarterly', 'annual'].map(f => (
-                        <button key={f} onClick={() => setRecurringFreq(f)} className={`px-4 py-2 text-[10px] font-bold uppercase tracking-widest border-2 transition-all ${recurringFreq === f ? 'bg-[#8A0000] text-white border-[#8A0000]' : 'bg-white text-gray-500 border-gray-200 hover:border-[#8A0000]'}`}>{f}</button>
+                        <button key={f} onClick={() => setRecurringFreq(f)} className={`px-4 py-2 text-[10px] font-bold uppercase tracking-widest border-2 rounded-lg transition-all ${recurringFreq === f ? 'bg-[#8A0000] text-white border-[#8A0000]' : 'bg-white text-gray-500 border-gray-200 hover:border-[#8A0000]'}`}>{f}</button>
                       ))}
                     </div>
                   )}
                 </div>
               </div>
 
-              {/* Divider */}
-              <div className="h-[1px] bg-gray-100 mb-10 sm:mb-14" />
-
-              {/* Your Impact — Elegant typographic statements */}
-              <div className="mb-10 sm:mb-14">
-                <h3 className="text-[11px] font-bold uppercase tracking-widest text-[#8A0000] mb-8">Your Impact</h3>
-
-                {effectiveAmount > 0 ? (
-                  <div className="space-y-6">
-                    {/* Amount display */}
-                    <div>
-                      <span className="text-[48px] sm:text-[64px] md:text-[80px] font-black text-[#141414] leading-none tracking-tighter">
-                        {sym}{effectiveAmount.toLocaleString()}
-                      </span>
-                      {isRecurring && (
-                        <span className="text-[14px] text-[#8A0000] font-bold ml-3">{recurringFreq} &middot; {sym}{fmtShort(effectiveAmount * (recurringFreq === 'monthly' ? 12 : recurringFreq === 'quarterly' ? 4 : 1))}/yr</span>
-                      )}
-                    </div>
-
-                    {/* Giving Circle */}
-                    {(() => {
-                      const circle = getGivingCircle(effectiveAmount);
-                      if (!circle) return null;
-                      const CircleIcon = circle.icon;
-                      return (
-                        <div className="flex items-center gap-3">
-                          <CircleIcon size={20} style={{ color: circle.color }} />
-                          <span className="text-[16px] font-black text-[#141414]">{circle.name}</span>
-                          <span className="text-[13px] text-gray-500">&mdash; {circle.range}</span>
-                        </div>
-                      );
-                    })()}
-
-                    {/* Impact statement — elegant typographic */}
-                    <p className="text-[20px] sm:text-[24px] md:text-[28px] font-bold text-[#141414] leading-snug max-w-2xl">
-                      {getImpactText(effectiveAmount)}
-                    </p>
-                  </div>
-                ) : (
-                  <p className="text-[18px] sm:text-[20px] text-gray-300 italic">Select an amount to see your impact</p>
-                )}
-              </div>
-
-              {/* Divider */}
-              <div className="h-[1px] bg-gray-100 mb-10 sm:mb-14" />
-
-              {/* Payment Method — Icon-only strip */}
-              <div className="mb-10 sm:mb-14">
-                <h3 className="text-[11px] font-bold uppercase tracking-widest text-[#8A0000] mb-6">Payment method</h3>
-                <div className="flex gap-3 sm:gap-4 mb-6">
+              {/* Step 2: Payment Method */}
+              <div className="bg-white rounded-2xl border border-gray-200 p-6 sm:p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="w-7 h-7 rounded-full bg-[#8A0000] text-white text-[12px] font-bold flex items-center justify-center">2</span>
+                  <h3 className="text-[15px] font-bold text-[#141414]">Payment method</h3>
+                </div>
+                <div className="grid grid-cols-4 gap-2 sm:gap-3 mb-4">
                   {[
-                    { key: 'card' as const, icon: CreditCard },
-                    { key: 'bank' as const, icon: Banknote },
-                    { key: 'crypto' as const, icon: Bitcoin },
-                    { key: 'paypal' as const, icon: Wallet },
+                    { key: 'card' as const, icon: CreditCard, label: 'Card' },
+                    { key: 'bank' as const, icon: Banknote, label: 'Bank' },
+                    { key: 'crypto' as const, icon: Bitcoin, label: 'Crypto' },
+                    { key: 'paypal' as const, icon: Wallet, label: 'PayPal' },
                   ].map(m => (
-                    <button key={m.key} onClick={() => setPaymentMethod(m.key)} className={`w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center border-2 transition-all duration-200 ${paymentMethod === m.key ? 'bg-[#8A0000] border-[#8A0000] text-white shadow-lg shadow-[#8A0000]/20' : 'bg-white border-gray-200 text-gray-400 hover:border-[#8A0000] hover:text-[#8A0000]'}`}>
-                      <m.icon size={22} />
+                    <button key={m.key} onClick={() => setPaymentMethod(m.key)} className={`flex flex-col items-center gap-2 py-4 border-2 rounded-lg transition-all duration-200 ${paymentMethod === m.key ? 'bg-[#8A0000] border-[#8A0000] text-white shadow-md shadow-[#8A0000]/20' : 'bg-white border-gray-200 text-gray-400 hover:border-[#8A0000] hover:text-[#8A0000]'}`}>
+                      <m.icon size={20} />
+                      <span className="text-[10px] font-bold uppercase tracking-wider">{m.label}</span>
                     </button>
                   ))}
                 </div>
 
                 {paymentMethod === 'crypto' && (
-                  <div className="mb-6 p-5 bg-gray-50 border border-gray-100">
-                    <div className="flex items-center gap-3 mb-4"><Bitcoin size={18} className="text-[#8A0000]" /><span className="text-[14px] font-bold text-[#141414]">Cryptocurrency</span></div>
-                    <div className="flex gap-2 mb-4">
+                  <div className="p-4 bg-gray-50 rounded-lg border border-gray-100">
+                    <div className="flex items-center gap-3 mb-3"><Bitcoin size={16} className="text-[#8A0000]" /><span className="text-[13px] font-bold text-[#141414]">Cryptocurrency</span></div>
+                    <div className="flex gap-2 mb-3">
                       {(['BTC', 'ETH'] as const).map(coin => (
-                        <button key={coin} onClick={() => setCryptoCoin(coin)} className={`px-4 py-2 text-[11px] font-bold uppercase tracking-widest border-2 transition-all ${cryptoCoin === coin ? 'bg-[#8A0000] text-white border-[#8A0000]' : 'bg-white text-gray-500 border-gray-200'}`}>{coin}</button>
+                        <button key={coin} onClick={() => setCryptoCoin(coin)} className={`px-4 py-2 text-[11px] font-bold uppercase tracking-widest border-2 rounded-lg transition-all ${cryptoCoin === coin ? 'bg-[#8A0000] text-white border-[#8A0000]' : 'bg-white text-gray-500 border-gray-200'}`}>{coin}</button>
                       ))}
                     </div>
                     <div className="flex items-center gap-2">
-                      <code className="text-[12px] text-gray-600 bg-white px-3 py-2 flex-1 break-all font-mono border border-gray-100">{CRYPTO[cryptoCoin]}</code>
-                      <button onClick={() => navigator.clipboard?.writeText(CRYPTO[cryptoCoin])} className="px-3 py-2 bg-gray-100 text-gray-600 text-[9px] font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors">Copy</button>
+                      <code className="text-[11px] text-gray-600 bg-white px-3 py-2 flex-1 break-all font-mono border border-gray-100 rounded">{CRYPTO[cryptoCoin]}</code>
+                      <button onClick={() => navigator.clipboard?.writeText(CRYPTO[cryptoCoin])} className="px-3 py-2 bg-gray-100 text-gray-600 text-[9px] font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors rounded">Copy</button>
                     </div>
-                    <p className="text-[12px] text-gray-400 mt-3">After sending, email crypto@artemisui.org with your transaction hash.</p>
+                    <p className="text-[11px] text-gray-400 mt-2">After sending, email crypto@artemisui.org with your transaction hash.</p>
                   </div>
                 )}
 
                 {paymentMethod === 'bank' && (
-                  <div className="mb-6 p-5 bg-gray-50 border border-gray-100">
-                    <div className="flex items-center gap-3 mb-4"><Banknote size={18} className="text-[#8A0000]" /><span className="text-[14px] font-bold text-[#141414]">Bank Transfer</span></div>
+                  <div className="p-4 bg-gray-50 rounded-lg border border-gray-100">
+                    <div className="flex items-center gap-3 mb-3"><Banknote size={16} className="text-[#8A0000]" /><span className="text-[13px] font-bold text-[#141414]">Bank Transfer</span></div>
                     <div className="space-y-0">
                       {[['Account', 'Artemis University Founding Fund'],['Sort Code', '20-45-78'],['Account No', '73128945'],['IBAN', 'GB29 BARC 2045 7873 1289 45'],['Reference', 'ARTEMIS-FOUNDING']].map(([label, value], i) => (
-                        <div key={i} className="flex justify-between items-center py-3 border-b border-gray-100 last:border-0">
-                          <span className="text-[12px] text-gray-500">{label}</span>
+                        <div key={i} className="flex justify-between items-center py-2.5 border-b border-gray-100 last:border-0">
+                          <span className="text-[11px] text-gray-500">{label}</span>
                           <div className="flex items-center gap-2">
-                            <code className="text-[12px] font-bold text-[#141414] font-mono">{value}</code>
+                            <code className="text-[11px] font-bold text-[#141414] font-mono">{value}</code>
                             <button onClick={() => navigator.clipboard?.writeText(value)} className="text-[9px] text-[#8A0000] font-bold uppercase tracking-widest hover:underline">Copy</button>
                           </div>
                         </div>
@@ -1454,46 +1494,44 @@ export default function FundraisingCampaign({ goToPage }: Props) {
                 )}
               </div>
 
-              {/* Divider */}
-              <div className="h-[1px] bg-gray-100 mb-10 sm:mb-14" />
-
-              {/* Donor Details */}
-              <div className="mb-10 sm:mb-14">
-                <h3 className="text-[11px] font-bold uppercase tracking-widest text-[#8A0000] mb-6">Your Details</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl">
+              {/* Step 3: Your Details */}
+              <div className="bg-white rounded-2xl border border-gray-200 p-6 sm:p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="w-7 h-7 rounded-full bg-[#8A0000] text-white text-[12px] font-bold flex items-center justify-center">3</span>
+                  <h3 className="text-[15px] font-bold text-[#141414]">Your details</h3>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[11px] font-bold text-gray-900 uppercase tracking-[0.15em] mb-2">Name</label>
-                    <input type="text" value={donorName} onChange={(e) => setDonorName(e.target.value)} disabled={isAnonymous} placeholder={isAnonymous ? 'Anonymous' : 'Your name'} className={`w-full border border-gray-200 bg-gray-50 px-4 py-3 text-[15px] text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#8A0000]/20 focus:border-[#8A0000] transition-all ${isAnonymous ? 'opacity-40' : ''}`} />
+                    <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-[0.15em] mb-2">Name</label>
+                    <input type="text" value={donorName} onChange={(e) => setDonorName(e.target.value)} disabled={isAnonymous} placeholder={isAnonymous ? 'Anonymous' : 'Your name'} className={`w-full border border-gray-200 bg-gray-50 px-4 py-3 text-[14px] text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#8A0000]/20 focus:border-[#8A0000] focus:bg-white transition-all rounded-lg ${isAnonymous ? 'opacity-40' : ''}`} />
                   </div>
                   <div>
-                    <label className="block text-[11px] font-bold text-gray-900 uppercase tracking-[0.15em] mb-2">Email *</label>
-                    <input type="email" value={donorEmail} onChange={(e) => setDonorEmail(e.target.value)} placeholder="you@email.com" className="w-full border border-gray-200 bg-gray-50 px-4 py-3 text-[15px] text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#8A0000]/20 focus:border-[#8A0000] transition-all" />
+                    <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-[0.15em] mb-2">Email *</label>
+                    <input type="email" value={donorEmail} onChange={(e) => setDonorEmail(e.target.value)} placeholder="you@email.com" className="w-full border border-gray-200 bg-gray-50 px-4 py-3 text-[14px] text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#8A0000]/20 focus:border-[#8A0000] focus:bg-white transition-all rounded-lg" />
                   </div>
                 </div>
                 <div className="flex items-center gap-3 mt-4">
-                  <button onClick={() => setIsAnonymous(!isAnonymous)} className={`w-5 h-5 border-2 flex items-center justify-center transition-colors ${isAnonymous ? 'bg-[#8A0000] border-[#8A0000]' : 'bg-white border-gray-300'}`}>
+                  <button onClick={() => setIsAnonymous(!isAnonymous)} className={`w-5 h-5 border-2 rounded flex items-center justify-center transition-colors ${isAnonymous ? 'bg-[#8A0000] border-[#8A0000]' : 'bg-white border-gray-300'}`}>
                     {isAnonymous && <Check size={12} className="text-white" />}
                   </button>
                   <span className="text-[13px] text-gray-600">Give anonymously</span>
                 </div>
-                <div className="mt-4 max-w-2xl">
-                  <label className="block text-[11px] font-bold text-gray-900 uppercase tracking-[0.15em] mb-2">Message (optional)</label>
-                  <textarea value={donorMessage} onChange={(e) => setDonorMessage(e.target.value)} placeholder="Why you're supporting Artemis..." rows={3} className="w-full border border-gray-200 bg-gray-50 px-4 py-3 text-[15px] text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#8A0000]/20 focus:border-[#8A0000] transition-all resize-none" />
+                <div className="mt-4">
+                  <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-[0.15em] mb-2">Message (optional)</label>
+                  <textarea value={donorMessage} onChange={(e) => setDonorMessage(e.target.value)} placeholder="Why you're supporting Artemis..." rows={2} className="w-full border border-gray-200 bg-gray-50 px-4 py-3 text-[14px] text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#8A0000]/20 focus:border-[#8A0000] focus:bg-white transition-all resize-none rounded-lg" />
                 </div>
               </div>
 
-              {/* Give Now Button — Full width, prominent */}
+              {/* Submit */}
               <motion.button
                 onClick={handleDonate}
                 disabled={submitting || !donorEmail || effectiveAmount <= 0}
                 whileHover={!submitting && donorEmail && effectiveAmount > 0 ? { scale: 1.01 } : {}}
                 whileTap={!submitting && donorEmail && effectiveAmount > 0 ? { scale: 0.99 } : {}}
-                className={`w-full py-6 text-[16px] font-black uppercase tracking-[0.25em] flex items-center justify-center gap-4 transition-all duration-200 ${submitting || !donorEmail || effectiveAmount <= 0 ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-[#8A0000] text-white hover:bg-[#6B0000] shadow-xl shadow-[#8A0000]/25'}`}
+                className={`w-full py-5 rounded-xl text-[15px] font-black uppercase tracking-[0.25em] flex items-center justify-center gap-4 transition-all duration-200 ${submitting || !donorEmail || effectiveAmount <= 0 ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-[#8A0000] text-white hover:bg-[#6B0000] shadow-xl shadow-[#8A0000]/25'}`}
               >
                 {submitting ? 'Processing...' : 'Give Now'} {!submitting && <ArrowRight size={20} />}
               </motion.button>
-
-              <div className="flex items-center gap-2 mt-4 justify-center"><Lock size={10} className="text-gray-300" /><span className="text-[10px] text-gray-400">Secure payment — you&apos;ll be redirected to complete your donation</span></div>
             </div>
           </motion.div>
 

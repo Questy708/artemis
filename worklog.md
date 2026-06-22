@@ -270,3 +270,41 @@ Stage Summary:
 - Black column: FIXED (0 blank pages, body background now cream, single-column layout).
 - For Students section: expanded from 4 to 6 chapters — added "The Catalogue — What You Learn" (9 programs, 3-layer curriculum structure, program table) and "The New Learning — How You Learn" (tutorial system, AI tutor, Active Learning Forum, studio, project mode, peer learning).
 - Manifesto: 68 pages landscape, 39 chapters, 21K words. Much closer to the ~100 page target.
+
+---
+Task ID: 7
+Agent: main (Z.ai Code)
+Task: Fix the big empty space left after removing the black column (restore proper 2-column layout). Add more images to the manifesto. Add the interactive map (from homepage) to a fitting section. Redesign the Give Now section with a modern layout. Fix the footer width on the Journal page (and everywhere) to match the header image width — the "Stay in the loop" section and footer should not be full width.
+
+Work Log:
+- Manifesto 2-column layout restored properly:
+  - Root cause of black column: `column-fill: auto` left the second column short, and the dark body background (`#0c0a09`) showed through the empty space.
+  - Fix: changed body background to cream (`#FAFAF8`), used `column-fill: balance` (fills both columns evenly), added `column-rule: 1px solid var(--line)` for a subtle divider. Set full-width elements (figures, tables, stat-rows, pullquotes, callouts, abstract-box, epigraphs, section-breaks, part-dividers) to `column-span: all` so they break across both columns cleanly without leaving gaps.
+  - Removed a stray section-break before Part I that was causing a blank page 4.
+  - Result: 63 pages, 0 blank pages (verified with pymupdf), 2-column layout fills properly with no empty space.
+- Added 8 more images throughout the manifesto (total now 35 figures, up from 27):
+  - Chapter 9 (Need-Blind): graduation image
+  - Chapter 26 (Physical Network): added world-night map alongside campus-architecture
+  - Chapter 22 (Academic Consortia): governance-building image
+  - Chapter 29 (Technology Infrastructure): network-topology image
+- Interactive map added to the Give page:
+  - Imported ArtemisMap component into FundraisingCampaign.tsx.
+  - Added a new "Where Your Gift Builds" section (id="network") between Ways to Give and Give Now — dark themed (#0c0a09), crimson eyebrow, white headline, the interactive map in a rounded bordered container.
+  - Added 'network' to the OnThisPageNav sections list and the activeSection hook so it appears in the sidebar nav.
+  - The map is fully interactive — clickable location buttons (Valletta, Kigali, Berlin, San Francisco, Tokyo, etc.) with detail panels.
+- Give Now section redesigned with modern split layout:
+  - Replaced the single tall vertical card with a 12-column grid: sticky left panel (5 cols) + form steps (7 cols).
+  - Left panel: dark (#0c0a09) sticky impact summary with crimson glow, showing the live amount, giving circle, impact text, and two stat cells (gift + frequency). Stays visible as the user scrolls the form.
+  - Right panel: 3 numbered step cards (1. Select your amount, 2. Payment method, 3. Your details) with rounded corners, crimson step badges, and clean white backgrounds. Submit button at the bottom.
+  - Payment method buttons now include labels (Card/Bank/Crypto/PayPal) below the icons, in a 4-column grid.
+  - All inputs use rounded-lg, focus states with white background, consistent padding.
+- Footer width fixed (applies to ALL pages using SubPageFooter — 20+ pages):
+  - SubPageFooter inner container: max-w-[1400px] → max-w-[1600px] to match the header image width (max-w-[1600px]) used on Blog and other pages.
+  - Blog "Stay in the loop" subscribe bar: was full-width crimson (bg-[#8A0000] w-full with 1400px inner). Wrapped it in a max-w-[1600px] container so the crimson bar no longer spans full viewport width — it now matches the header image width.
+- Reapplied manifesto metadata. Updated Give page manifesto page count 68→63.
+
+Stage Summary:
+- Manifesto: 63 pages landscape, 0 blank pages, 2-column layout with no empty space, 35 figures, 10 tables. Black column issue fully resolved.
+- Give page: interactive map added as "Where Your Gift Builds" section (between Ways to Give and Give Now). Give Now section redesigned as modern split layout (sticky dark impact panel + 3 numbered form steps).
+- Footer alignment: SubPageFooter and Blog subscribe bar now use max-w-[1600px] matching the header image width — applies everywhere the footer appears (20+ pages).
+- All verified in browser: map renders with clickable locations, Give Now shows 3 steps, Journal page subscribe bar + footer align with header.

@@ -75,7 +75,7 @@ html, body {
 .cover .cover-footer .crest { font-family: 'Noto Serif SC', serif; font-size: 14px; color: rgba(255,255,255,0.7); letter-spacing: 0.15em; }
 
 /* CONTENT */
-.main-content { background: var(--bg); padding: 56px 100px 48px 100px; max-width: 1020px; margin: 0 auto; }
+.main-content { background: var(--bg); padding: 48px 80px 40px 80px; max-width: 1020px; margin: 0 auto; column-count: 2; column-gap: 44px; column-fill: balance; column-rule: 1px solid var(--line); }
 
 .chapter-header { break-after: avoid; break-inside: avoid; margin-top: 28px; margin-bottom: 20px; }
 .chapter-header:first-child { margin-top: 0; }
@@ -88,7 +88,7 @@ html, body {
 .body-text strong { color: var(--ink); font-weight: 600; }
 .lead { font-size: 17px; line-height: 1.6; color: var(--ink); font-weight: 400; margin-bottom: 20px; }
 
-.pullquote { break-inside: avoid; border-left: 3px solid var(--crimson); padding: 16px 24px; margin: 20px 0; font-family: 'Noto Serif SC', Georgia, serif; font-size: 16px; font-style: italic; line-height: 1.5; color: var(--ink); background: var(--bg-cream); }
+.pullquote { break-inside: avoid; border-left: 3px solid var(--crimson); padding: 16px 24px; margin: 20px 0; font-family: 'Noto Serif SC', Georgia, serif; font-size: 16px; font-style: italic; line-height: 1.5; color: var(--ink); background: var(--bg-cream); column-span: all; }
 .pullquote .attribution { font-size: 11px; font-style: normal; color: var(--muted); margin-top: 10px; letter-spacing: 0.05em; }
 
 .card { break-inside: avoid; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 20px 22px; margin-bottom: 14px; }
@@ -96,22 +96,22 @@ html, body {
 .card-sub { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
 .card-body { font-size: 12px; line-height: 1.6; color: var(--ink-soft); }
 
-.stat-row { display: flex; gap: 16px; margin: 18px 0; break-inside: avoid; }
+.stat-row { display: flex; gap: 16px; margin: 18px 0; break-inside: avoid; column-span: all; }
 .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 18px; }
 .stat .stat-val { font-family: 'Noto Serif SC', serif; font-size: 28px; font-weight: 900; color: var(--crimson); line-height: 1; }
 .stat .stat-label { font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
 
-.tbl { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 11px; break-inside: avoid; }
+.tbl { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 11px; break-inside: avoid; column-span: all; }
 .tbl th { text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--ink); padding: 8px 10px; }
 .tbl td { padding: 9px 10px; border-bottom: 1px solid var(--line); color: var(--ink-soft); vertical-align: top; }
 .tbl tr:last-child td { border-bottom: none; }
 .tbl .num { font-family: 'Noto Serif SC', serif; font-weight: 700; color: var(--crimson); text-align: right; white-space: nowrap; }
 
-.figure { break-inside: avoid; margin: 18px 0; }
+.figure { break-inside: avoid; margin: 16px 0; column-span: all; }
 .figure img { width: 100%; border-radius: 6px; display: block; }
 .figure .caption { font-size: 10px; color: var(--muted); margin-top: 8px; letter-spacing: 0.03em; line-height: 1.5; }
 
-.callout { break-inside: avoid; background: var(--bg-cream); border-radius: 8px; padding: 20px 24px; margin: 16px 0; }
+.callout { break-inside: avoid; background: var(--bg-cream); border-radius: 8px; padding: 20px 24px; margin: 16px 0; column-span: all; }
 .callout .callout-label { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
 
 .bullets { margin: 10px 0 14px; padding: 0; list-style: none; }
@@ -126,17 +126,17 @@ html, body {
 .ending .ending-contact { margin-top: 40px; font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; }
 
 /* MANIFESTO-SPECIFIC */
-.part-divider { break-before: page; break-after: avoid; padding: 100px 0 60px; text-align: center; }
+.part-divider { break-before: page; break-after: avoid; padding: 80px 0 50px; text-align: center; column-span: all; }
 .part-divider .pd-num { font-family: 'Noto Serif SC', serif; font-size: 120px; font-weight: 900; color: var(--crimson); line-height: 1; margin-bottom: 20px; opacity: 0.9; }
 .part-divider .pd-label { font-size: 11px; font-weight: 700; letter-spacing: 0.4em; text-transform: uppercase; color: var(--crimson); margin-bottom: 20px; }
 .part-divider .pd-title { font-family: 'Noto Serif SC', serif; font-size: 44px; font-weight: 800; color: var(--ink); line-height: 1.1; max-width: 640px; margin: 0 auto 24px; letter-spacing: -0.015em; }
 .part-divider .pd-sub { font-size: 16px; color: var(--muted); max-width: 560px; margin: 0 auto; line-height: 1.6; font-weight: 300; }
 
-.abstract-box { break-inside: avoid; background: var(--bg-cream); border-left: 4px solid var(--crimson); padding: 28px 32px; margin: 24px 0; }
+.abstract-box { break-inside: avoid; background: var(--bg-cream); border-left: 4px solid var(--crimson); padding: 28px 32px; margin: 24px 0; column-span: all; }
 .abstract-box .ab-label { font-size: 10px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--crimson); margin-bottom: 12px; }
 .abstract-box .ab-body { font-family: 'Noto Serif SC', Georgia, serif; font-size: 14px; line-height: 1.7; color: var(--ink); font-style: italic; }
 
-.epigraph { break-inside: avoid; text-align: center; padding: 40px 20px; margin: 20px 0; }
+.epigraph { break-inside: avoid; text-align: center; padding: 32px 20px; margin: 20px 0; column-span: all; }
 .epigraph .ep-text { font-family: 'Noto Serif SC', Georgia, serif; font-size: 16px; font-style: italic; color: var(--ink-soft); line-height: 1.6; max-width: 460px; margin: 0 auto 14px; }
 .epigraph .ep-attr { font-size: 11px; color: var(--muted); letter-spacing: 0.1em; }
 
@@ -150,7 +150,7 @@ html, body {
 .tag-partners { background: #dbeafe; color: #1e40af; }
 .tag-all { background: var(--bg-cream); color: var(--crimson); }
 
-.section-break { text-align: center; margin: 32px 0; color: var(--line); letter-spacing: 1em; font-size: 14px; }
+.section-break { text-align: center; margin: 28px 0; color: var(--line); letter-spacing: 1em; font-size: 14px; column-span: all; }
 </style>
 </head>
 <body>
@@ -257,8 +257,6 @@ html, body {
 <div class="toc-part">Part X — The Blueprint</div>
 <div class="toc-item"><span>38. Replication</span><span class="ti-page">—</span></div>
 <div class="toc-item"><span>39. The Call to Action</span><span class="ti-page">—</span></div>
-
-<div class="section-break">· · ·</div>
 
 <!-- ═══════════ PART I — THE THESIS ═══════════ -->
 <div class="part-divider">
@@ -386,6 +384,7 @@ html, body {
 <p class="body-text">The reason so few institutions are need-blind is that it is expensive. A need-blind university must fund, from its own resources, the gap between what an admitted student can pay and what the education costs. At a US university with $60,000 annual cost of attendance, the average need-based aid per student is approximately $40,000. With 6,000 undergraduates and 60% receiving aid, the annual financial aid budget exceeds $140 million. Only endowments above $10 billion generate enough payout to cover this, which is why the need-blind club is so small.</p>
 <p class="body-text">Artemis makes need-blind admission affordable by lowering the cost of attendance to $3,000 — a figure accessible to 90% of qualified students worldwide. The 10% who cannot pay receive full scholarships from the fund capitalised by operating surplus. With 60,000 students and 10% on full scholarship, the annual scholarship budget is approximately $18 million — a figure easily covered by the $262M annual surplus the model generates by 2030. Need-blind admission, at Artemis scale, costs less than 7% of the annual surplus. It is not a stretch goal; it is a structural feature.</p>
 <p class="body-text">The need-blind commitment is also a recruiting advantage. The most talented students in the world are disproportionately concentrated in the Global South, where $3,000 is a meaningful but achievable sum and where the scholarship pathway is a lifeline. A university that can credibly promise admission based on merit, not means, and that has colleges in the regions where these students live, will attract an applicant pool that legacy universities cannot reach. The founding cohort of 120 came from 34 countries; the 2030 target of 60,000 students from 80+ countries is not aspirational — it is the natural consequence of being the only need-blind planetary university in existence.</p>
+<div class="figure"><img src="../public/resources/img/graduation.png" alt="Graduation ceremony"><div class="caption">Need-blind admission means merit alone decides entry — never the ability to pay. By 2030, 13,300 scholarship students per year are funded from operating surplus.</div></div>
 <div class="callout">
   <div class="callout-label">The Need-Blind Commitment</div>
   <p class="body-text" style="margin:0;">Every qualified applicant is evaluated on merit alone. Financial background is never considered in admission. Every admitted student who cannot pay receives a full scholarship from the operating surplus. This is not a policy — it is encoded in the institution's constitution and cannot be amended without a supermajority of the Board and the Senate.</p>
@@ -638,6 +637,7 @@ html, body {
 <p class="lead">Artemis is a new institution, and its credibility depends in part on the relationships it builds with established universities. The academic consortium strategy targets relationships with institutions that share Artemis's commitment to interdisciplinary, mission-driven education but lack the planetary scale — partnerships that give Artemis students access to the academic credibility of centuries-old institutions while the new university builds its own reputation.</p>
 <p class="body-text">The founding consortium partnership is with the University of London, whose federal structure enables credit recognition and joint degree programs from Day 1. A student enrolled at Artemis can, through the partnership, receive a degree jointly validated by the University of London — a credential recognised worldwide and immediately credible to employers and graduate programs. This is not a branding exercise; it is a structural bridge that lets the founding cohort enter the professional world with a credential the world already trusts, while Artemis builds the track record that will make its standalone credential equally trusted within a decade.</p>
 <p class="body-text">Beyond London, Artemis is building partnerships with the African Research Universities Alliance (ARUA), the Association of Pacific Rim Universities (APRU), and the League of European Research Universities (LERU). These are not mergers or acquisitions — they are mutual-recognition agreements that let students move between institutions, faculty hold joint appointments, and research flow across boundaries. A student at the Artemis Nairobi college might spend a semester at the University of Cape Town (an ARUA member); a faculty member at the Center for Synthetic Intelligence might hold a joint appointment with the National University of Singapore (an APRU member). The consortium network amplifies every Artemis asset without requiring Artemis to build or buy the partner institutions.</p>
+<div class="figure"><img src="../public/resources/img/governance-building.png" alt="Academic consortium"><div class="caption">The consortium network — mutual-recognition agreements with established universities provide credential portability while the new institution builds its own reputation.</div></div>
 <p class="body-text">The consortium strategy also serves the replication mission. When Artemis publishes its blueprint in 2030, the consortium partners are the natural first adopters — institutions that already know the model, have relationships with the faculty, and can adapt the blueprint to their local context with Artemis's support. The consortium is not just a credibility bridge for the founding institution; it is the seeding network for the replication phase. A partner university in Brazil that has hosted Artemis exchange students for five years is well-positioned to launch its own Artemis-type college in 2032, using the published blueprint and the relationship built through the consortium.</p>
 
 <div class="chapter-header">
@@ -690,6 +690,7 @@ html, body {
 <p class="body-text">The network is structured in three tiers radiating from three Central Nodes. The <strong>Central Nodes</strong> — Venice, San Francisco, Singapore — each host approximately 5,000 students and serve as regional headquarters. Venice is the founding seat: governance, convocation, the founding document archive. San Francisco is the technology hub: proximity to Silicon Valley, the Forge incubator, biotech and computational research. Singapore is the Asia-Pacific convening point: a neutral city at the intersection of East and South. The <strong>Tier A colleges</strong> (8 colleges, 2,500 students each) occupy flagship positions in London, Tokyo, Berlin, Paris, Toronto, Sydney, Seoul, and New York. The <strong>Tier B colleges</strong> (16 colleges, 2,000 students each) occupy major global cities — Nairobi, Mumbai, São Paulo, Cairo, Istanbul, Buenos Aires, Jakarta, Mexico City. The <strong>Tier C colleges</strong> (23 colleges, 1,100 students each) occupy regional access cities — Kigali, Dhaka, Kampala, Karachi, Tashkent, Quito.</p>
 <p class="body-text">Each college is a self-contained academic unit: residential housing, classrooms, labs, library, dining, faculty offices, and social spaces. The colleges are designed to a common standard — the "Artemis college specification" — that ensures any student rotating through the network finds equivalent facilities in every city. The specification is part of the published blueprint, so that sister institutions can replicate the physical model without redesigning it. The colleges are not identical — each reflects the architectural character of its host city — but they are functionally equivalent, which is what the synchronous curriculum requires.</p>
 <div class="figure"><img src="../public/resources/img/campus-architecture.png" alt="Repurposed campus"><div class="caption">A repurposed college — converted warehouse with arched windows, the physical expression of the "do not build new" strategy. Faster, cheaper, lower-carbon.</div></div>
+<div class="figure"><img src="../public/resources/img/world-night.png" alt="Global network at night"><div class="caption">The 50-college network — 3 Central Nodes, 8 Tier A, 16 Tier B, 23 Tier C colleges across 35 countries. Each dot is a self-contained academic community.</div></div>
 
 <div class="chapter-header">
   <div class="chapter-tag">Chapter Twenty-Nine</div>
@@ -726,6 +727,7 @@ html, body {
 <p class="body-text">The <strong>Learning Management System</strong> is the academic nervous system. It synchronises curriculum across all 50 colleges so that a student rotating from Berlin to Nairobi continues their course sequence without interruption. It supports the competency-based grading model (tracking mastery against defined standards rather than accumulating points), the Purpose Learning mission-tracking (each student's mission statement, progress, and capstone alignment are visible to advisors and the student), and the AI tutor integration (every course has an AI assistant trained on the Center of Inquiry's domain knowledge, available 24/7 for Socratic guidance). The LMS is built to work in low-bandwidth environments — a non-negotiable requirement given the Tier C colleges in regions with limited connectivity.</p>
 <p class="body-text">The <strong>Knowledge Core</strong> is the institutional memory. Every research output is deposited with provenance tracking, version control, and a scheduled release date. The 7-year release policy is enforced automatically: seven years after deposit, the output is published to the public domain, with no manual intervention required. The Knowledge Core also serves as the API-driven interface for the Commons Nodes — the archival layer that enables global collaboration and remix of Artemis outputs by subsequent cohorts and external researchers. It is the technical substrate of the open-knowledge commitment.</p>
 <p class="body-text">The <strong>Operations Platform</strong> manages the institutional plumbing: enrollment and financial aid across 35 countries, faculty payroll in multiple currencies, facilities management for 50 buildings, and compliance reporting for 25 legal jurisdictions. It is the least glamorous but most essential system — without it, the institution cannot function at planetary scale. The platform is built with a single source of truth for every student, faculty member, donor, and facility, enabling the annual impact report to be generated from live data rather than retrospective reconciliation. The openness of the platform is what makes the blueprint replicable: a sister institution can deploy the same systems without rebuilding them.</p>
+<div class="figure"><img src="../public/resources/img/network-topology.png" alt="Technology infrastructure"><div class="caption">The three-layer technology stack — LMS, Knowledge Core, Operations Platform — synchronises 50 colleges across 35 countries as a single institution.</div></div>
 
 <!-- ═══════════ PART VIII — THE PLAN ═══════════ -->
 <div class="part-divider">

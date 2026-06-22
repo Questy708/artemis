@@ -195,8 +195,8 @@ export default function Blog({ goToPage }: BlogProps) {
       </section>
 
       {/* ── 4. SUBSCRIBE BAR ── */}
-      <div className="bg-[#8A0000] text-white py-12">
-        <div className="max-w-[1400px] mx-auto w-full px-5 sm:px-8 lg:px-20 flex flex-col md:flex-row justify-between items-center gap-6">
+      <div className="max-w-[1600px] mx-auto w-full px-5 sm:px-8 lg:px-20">
+        <div className="bg-[#8A0000] text-white py-12 px-5 sm:px-8 lg:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="max-w-lg text-center md:text-left">
             <h4 className="text-[20px] font-bold mb-2">Stay in the loop</h4>
             <p className="text-[15px] font-medium leading-relaxed text-white/80">
