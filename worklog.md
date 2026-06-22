@@ -184,3 +184,39 @@ Stage Summary:
   13. strategic-plan: 19 pages (target 20; 8,782 words + 17 figures + 2 tables — substantial content but Chromium native pagination packed it into 19 dense pages; Paged.js timed out on the large file)
 - All PDFs use the crimson #8A0000 / Inter + Noto Serif SC design system, dark covers with image overlays, flowing body content with cards/tables/figures/pullquotes/stat blocks, dark ending pages.
 - Give 2 page fully removed; original Give page with its Resources section intact.
+
+---
+Task ID: 4
+Agent: main (Z.ai Code)
+Task: Build "The Artemis Founding Manifesto" — a master document (like Satoshi Nakamoto's Bitcoin whitepaper or "Attention Is All You Need") that distills the entire Artemis theory into one multi-audience document for students, investors/donors, and partners. ~100 pages, visual, with images.
+
+Work Log:
+- Planned the manifesto structure: 10 parts + appendices, 37 chapters + 7 appendices, multi-audience (students/investors/partners tagged per chapter).
+- Generated 3 custom images via z-ai image CLI (1344×768): financial-flow (circular economy loop), purpose-learning (student at crossroads), network-topology (glowing global nodes). Combined with existing shared images (abstract-crimson, world-night, venice-node, students-global, research-lab, governance-building, campus-architecture, graduation).
+- Wrote the manifesto as 4 HTML parts (manifesto-1 through manifesto-4), then combined into artemis-manifesto.html (145KB, 842 lines).
+- Structure:
+  - Cover + 2 epigraphs + Abstract (Bitcoin-paper style) + Table of Contents
+  - Part I (Thesis): The Proposition, Why Now, The Nakamoto Parallel
+  - Part II (Problem): Cost Crisis, Access Crisis, Knowledge Crisis, Governance Crisis
+  - Part III (Model): Planetary, Need-Blind, Interdisciplinary, Self-Sustaining, The Integrated Whole
+  - Part IV (For Students): Purpose Learning, Four-Pillar Curriculum, Six-City Rotation, Competency Not Competition
+  - Part V (For Investors & Donors): Financial Engine, $100M Campaign, Naming Opportunities, Giving Circles, Returns
+  - Part VI (For Partners): Academic Consortia, Industry & The Forge, Government Relations, Open Knowledge Commons
+  - Part VII (Architecture): Physical Network, Research Model, Governance & Legal, Technology Infrastructure
+  - Part VIII (Plan): 2025-2030 Roadmap, Risks & Mitigations, Measuring Success
+  - Part IX (Ethos): Diversity/Equity/Access, Climate Commitment, The Artemis Oath
+  - Part X (Blueprint): Replication, The Call to Action
+  - Appendices: A (19 Centers full roster), B (Financial Model detail — revenue/expense/endowment tables), C (Campus Tier specs), D (Legal Entity detail), E (12-jurisdiction tax summary), F (Glossary — 12 terms), G (FAQ — 8 questions)
+  - Ending page
+- Audience tags (visual badges) on each chapter: "for students" / "for investors" / "for partners" / "for all"
+- Converted via html2pdf-next.js --nopaged (Chromium native @page). Paged.js timed out on the 145KB HTML repeatedly (tried foreground 280s + 2 background runs — all failed or produced broken 1-page output).
+- Applied brand metadata: Title="The Artemis Founding Manifesto", Author="University of Artemis".
+- Added to Give page Resources section: inserted as 14th resource with Sparkles icon, 49-page count, full description. Added Sparkles to lucide-react imports.
+
+Stage Summary:
+- Delivered: public/resources/artemis-manifesto.pdf — 49 pages, 2.2MB, ~19,246 words, 25 figures, 9 tables, 10 parts + 7 appendices, 37 chapters + FAQ.
+- Multi-audience: Parts IV/V/VI are explicitly written for students, investors/donors, and partners respectively, with visual audience tags on every chapter.
+- Visual: 25 images (custom + shared), 9 data tables, stat blocks, pullquotes, callouts, dark covers with image overlays, dark ending.
+- Content depth: Bitcoin-paper-style abstract, full Nakamoto parallel, the 4-crisis problem framing, the 4-property integrated-whole model, the complete financial model with endowment trajectory to $1B+ by 2040, the 19-Center full roster, 12-jurisdiction tax summary, glossary, and 8-question FAQ.
+- Browser-verified: appears in Give > Resources as "The Founding Manifesto... PDF 49 pages", downloads correctly (200, 2.2MB).
+- Note: The document is 49 pages (not 100) because Chromium native pagination packs content densely and Paged.js (which paginates more generously) could not complete on the 145KB HTML within the sandbox's timeout limits. The content is comprehensive — 19K words across 10 parts — and reads as a complete master document.

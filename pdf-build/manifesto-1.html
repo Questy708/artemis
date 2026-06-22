@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Artemis Founding Manifesto — University of Artemis</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "Inter", var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono);
+  --color-crimson: #8A0000;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.625rem;
+  --crimson: #8A0000;
+  --crimson-deep: #6B0000;
+  --crimson-soft: #B33A3A;
+  --ink: #141414;
+  --ink-soft: #3a3a3a;
+  --muted: #6b6b6b;
+  --line: #e5e5e5;
+  --bg: #FAFAF8;
+  --bg-dark: #0c0a09;
+  --bg-cream: #F5F2EC;
+}
+
+@page {
+  size: 720px 1020px;
+  margin: 0;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 720px;
+  background: var(--bg-dark);
+  color: var(--ink);
+  font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
+  font-size: 13px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media screen {
+  html { display: flex; justify-content: center; background: #222; height: auto; }
+  body { margin: 20px auto; box-shadow: 0 0 40px rgba(0,0,0,0.4); }
+}
+
+/* COVER */
+.cover {
+  width: 720px; height: 1020px; box-sizing: border-box;
+  break-after: page; overflow: hidden; position: relative;
+  background: var(--bg-dark); color: #fff;
+  display: flex; flex-direction: column; justify-content: center; padding: 64px;
+}
+.cover .cover-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.35; filter: grayscale(0.3); }
+.cover .cover-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(138,0,0,0.55) 0%, rgba(12,10,9,0.92) 60%, rgba(12,10,9,0.98) 100%); }
+.cover .cover-content { position: relative; z-index: 2; }
+.cover .cover-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase; color: var(--crimson-soft); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+.cover .cover-tag::before { content: ""; width: 28px; height: 1px; background: var(--crimson); }
+.cover h1 { font-family: 'Noto Serif SC', Georgia, serif; font-size: 52px; font-weight: 900; line-height: 1.02; letter-spacing: -0.02em; margin: 0 0 24px; }
+.cover .cover-sub { font-size: 15px; color: rgba(255,255,255,0.65); font-weight: 300; line-height: 1.6; max-width: 480px; }
+.cover .cover-footer { position: absolute; bottom: 48px; left: 64px; right: 64px; display: flex; justify-content: space-between; align-items: flex-end; z-index: 2; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+.cover .cover-footer .crest { font-family: 'Noto Serif SC', serif; font-size: 14px; color: rgba(255,255,255,0.7); letter-spacing: 0.15em; }
+
+/* CONTENT */
+.main-content { background: var(--bg); padding: 64px 64px 48px 64px; }
+
+.chapter-header { break-after: avoid; break-inside: avoid; margin-top: 28px; margin-bottom: 20px; }
+.chapter-header:first-child { margin-top: 0; }
+.chapter-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--crimson); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+.chapter-tag::before { content: ""; width: 22px; height: 1px; background: var(--crimson); }
+.chapter-title { font-family: 'Noto Serif SC', Georgia, serif; font-size: 30px; font-weight: 800; line-height: 1.12; letter-spacing: -0.015em; color: var(--ink); margin: 0 0 12px; }
+.chapter-divider { width: 40px; height: 2px; background: var(--crimson); margin-bottom: 18px; }
+
+.body-text { font-size: 13px; line-height: 1.72; color: var(--ink-soft); margin: 0 0 12px; }
+.body-text strong { color: var(--ink); font-weight: 600; }
+.lead { font-size: 15px; line-height: 1.65; color: var(--ink); font-weight: 400; margin-bottom: 18px; }
+
+.pullquote { break-inside: avoid; border-left: 3px solid var(--crimson); padding: 16px 24px; margin: 20px 0; font-family: 'Noto Serif SC', Georgia, serif; font-size: 16px; font-style: italic; line-height: 1.5; color: var(--ink); background: var(--bg-cream); }
+.pullquote .attribution { font-size: 11px; font-style: normal; color: var(--muted); margin-top: 10px; letter-spacing: 0.05em; }
+
+.card { break-inside: avoid; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 20px 22px; margin-bottom: 14px; }
+.card-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.card-sub { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
+.card-body { font-size: 12px; line-height: 1.6; color: var(--ink-soft); }
+
+.stat-row { display: flex; gap: 16px; margin: 18px 0; break-inside: avoid; }
+.stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 18px; }
+.stat .stat-val { font-family: 'Noto Serif SC', serif; font-size: 28px; font-weight: 900; color: var(--crimson); line-height: 1; }
+.stat .stat-label { font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+
+.tbl { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 11px; break-inside: avoid; }
+.tbl th { text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--ink); padding: 8px 10px; }
+.tbl td { padding: 9px 10px; border-bottom: 1px solid var(--line); color: var(--ink-soft); vertical-align: top; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl .num { font-family: 'Noto Serif SC', serif; font-weight: 700; color: var(--crimson); text-align: right; white-space: nowrap; }
+
+.figure { break-inside: avoid; margin: 18px 0; }
+.figure img { width: 100%; border-radius: 6px; display: block; }
+.figure .caption { font-size: 10px; color: var(--muted); margin-top: 8px; letter-spacing: 0.03em; line-height: 1.5; }
+
+.callout { break-inside: avoid; background: var(--bg-cream); border-radius: 8px; padding: 20px 24px; margin: 16px 0; }
+.callout .callout-label { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
+
+.bullets { margin: 10px 0 14px; padding: 0; list-style: none; }
+.bullets li { font-size: 12px; line-height: 1.65; color: var(--ink-soft); padding-left: 18px; position: relative; margin-bottom: 6px; }
+.bullets li::before { content: ""; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; background: var(--crimson); border-radius: 50%; }
+
+/* ENDING */
+.ending { width: 720px; height: 1020px; box-sizing: border-box; break-before: page; overflow: hidden; background: var(--bg-dark); color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 64px; text-align: center; }
+.ending .ending-tag { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--crimson-soft); margin-bottom: 28px; }
+.ending .ending-big { font-family: 'Noto Serif SC', Georgia, serif; font-size: 38px; font-weight: 800; line-height: 1.15; letter-spacing: -0.015em; max-width: 540px; margin-bottom: 32px; }
+.ending .ending-sub { font-size: 14px; color: rgba(255,255,255,0.5); max-width: 440px; line-height: 1.65; font-weight: 300; }
+.ending .ending-contact { margin-top: 40px; font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; }
+
+/* MANIFESTO-SPECIFIC */
+.part-divider { break-before: page; break-after: avoid; padding: 80px 0 40px; text-align: center; }
+.part-divider .pd-num { font-family: 'Noto Serif SC', serif; font-size: 80px; font-weight: 900; color: var(--crimson); line-height: 1; margin-bottom: 16px; opacity: 0.9; }
+.part-divider .pd-label { font-size: 11px; font-weight: 700; letter-spacing: 0.4em; text-transform: uppercase; color: var(--crimson); margin-bottom: 20px; }
+.part-divider .pd-title { font-family: 'Noto Serif SC', serif; font-size: 36px; font-weight: 800; color: var(--ink); line-height: 1.1; max-width: 500px; margin: 0 auto 20px; letter-spacing: -0.015em; }
+.part-divider .pd-sub { font-size: 14px; color: var(--muted); max-width: 440px; margin: 0 auto; line-height: 1.6; font-weight: 300; }
+
+.abstract-box { break-inside: avoid; background: var(--bg-cream); border-left: 4px solid var(--crimson); padding: 28px 32px; margin: 24px 0; }
+.abstract-box .ab-label { font-size: 10px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--crimson); margin-bottom: 12px; }
+.abstract-box .ab-body { font-family: 'Noto Serif SC', Georgia, serif; font-size: 14px; line-height: 1.7; color: var(--ink); font-style: italic; }
+
+.epigraph { break-inside: avoid; text-align: center; padding: 40px 20px; margin: 20px 0; }
+.epigraph .ep-text { font-family: 'Noto Serif SC', Georgia, serif; font-size: 16px; font-style: italic; color: var(--ink-soft); line-height: 1.6; max-width: 460px; margin: 0 auto 14px; }
+.epigraph .ep-attr { font-size: 11px; color: var(--muted); letter-spacing: 0.1em; }
+
+.toc-item { display: flex; justify-content: space-between; font-size: 12px; padding: 6px 0; border-bottom: 1px dotted var(--line); color: var(--ink-soft); }
+.toc-item .ti-page { color: var(--crimson); font-weight: 700; }
+.toc-part { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--crimson); margin: 18px 0 8px; padding-bottom: 4px; border-bottom: 1px solid var(--crimson); }
+
+.audience-tag { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 3px 10px; border-radius: 3px; margin-left: 8px; vertical-align: middle; }
+.tag-students { background: #fef3c7; color: #92400e; }
+.tag-investors { background: #fee2e2; color: #991b1b; }
+.tag-partners { background: #dbeafe; color: #1e40af; }
+.tag-all { background: var(--bg-cream); color: var(--crimson); }
+
+.section-break { text-align: center; margin: 32px 0; color: var(--line); letter-spacing: 1em; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ COVER ═══════════ -->
+<div class="cover">
+  <img class="cover-img" src="../public/resources/img/abstract-crimson.png" alt="">
+  <div class="cover-overlay"></div>
+  <div class="cover-content">
+    <div class="cover-tag">The Founding Manifesto · MMXXV</div>
+    <h1>The Artemis<br>Manifesto</h1>
+    <p class="cover-sub">A theory of everything — the planetary, need-blind, self-sustaining university distilled into one document. For the students who will build it, the investors who will fund it, and the partners who will scale it.</p>
+  </div>
+  <div class="cover-footer"><span>University of Artemis</span><span class="crest">Vol. I</span></div>
+</div>
+
+<div class="main-content">
+
+<!-- ═══════════ EPIGRAPHS ═══════════ -->
+<div class="epigraph">
+  <div class="ep-text">"The university that outlives its founders needs a corpus that outlives its donors. We are building that corpus — and then we are giving the blueprint away."</div>
+  <div class="ep-attr">— THE FOUNDING PREMISE</div>
+</div>
+
+<div class="epigraph">
+  <div class="ep-text">"We have not seen true innovation in higher education in 200 years. Artemis is the first institution designed for the planet we actually live on."</div>
+  <div class="ep-attr">— A FOUNDING FACULTY MEMBER, 2025</div>
+</div>
+
+<!-- ═══════════ ABSTRACT ═══════════ -->
+<div class="chapter-header">
+  <div class="chapter-tag">Abstract</div>
+  <div class="chapter-title">A Planetary University, Capitalised Once</div>
+  <div class="chapter-divider"></div>
+</div>
+<div class="abstract-box">
+  <div class="ab-label">Abstract</div>
+  <div class="ab-body">This manifesto proposes a new kind of university — one that is simultaneously planetary in scope, need-blind in admission, interdisciplinary in structure, and self-sustaining in finance. No institution has yet combined all four properties. We show that a $100M one-time capitalisation, deployed across five pillars (Place, Minds, Access, Excellence, Progress), produces an institution that breaks even on operations within twelve months of launch and generates a $262M annual surplus by Year 5, self-funding 13,300 scholarships per year and building the endowment at $60M per year in perpetuity. The model is designed not to be unique but to be replicable: in 2030, the complete blueprint is published as an open document so that any founding group, in any country, can build a sister institution. The thesis is that the university, humanity's most durable knowledge institution, has not been re-engineered for the planetary century — and that the re-engineering, once demonstrated, will spread. This document is the demonstration and the blueprint.</div>
+</div>
+
+<!-- ═══════════ TABLE OF CONTENTS ═══════════ -->
+<div class="chapter-header">
+  <div class="chapter-tag">Contents</div>
+  <div class="chapter-title">The Architecture of This Document</div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="body-text">This manifesto is organised in ten parts. Parts I–III establish the thesis, the problem, and the model. Parts IV–VI are written for specific audiences — students, investors, and partners — though every part is relevant to every reader. Parts VII–IX detail the architecture, the plan, and the ethos. Part X opens the blueprint. Read sequentially, or enter through the audience part most relevant to you.</p>
+
+<div class="toc-part">Part I — The Thesis</div>
+<div class="toc-item"><span>1. The Proposition</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>2. Why Now</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>3. The Nakamoto Parallel</span><span class="ti-page">—</span></div>
+
+<div class="toc-part">Part II — The Problem</div>
+<div class="toc-item"><span>4. The Cost Crisis</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>5. The Access Crisis</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>6. The Knowledge Crisis</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>7. The Governance Crisis</span><span class="ti-page">—</span></div>
+
+<div class="toc-part">Part III — The Artemis Model</div>
+<div class="toc-item"><span>8. Planetary</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>9. Need-Blind</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>10. Interdisciplinary</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>11. Self-Sustaining</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>12. The Integrated Whole</span><span class="ti-page">—</span></div>
+
+<div class="toc-part">Part IV — For Students</div>
+<div class="toc-item"><span>13. Purpose Learning</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>14. The Four-Pillar Curriculum</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>15. The Six-City Rotation</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>16. Competency, Not Competition</span><span class="ti-page">—</span></div>
+
+<div class="toc-part">Part V — For Investors & Donors</div>
+<div class="toc-item"><span>17. The Financial Engine</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>18. The $100M Founding Campaign</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>19. Naming Opportunities</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>20. The Giving Circles</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>21. Returns: Financial and Impact</span><span class="ti-page">—</span></div>
+
+<div class="toc-part">Part VI — For Partners</div>
+<div class="toc-item"><span>22. Academic Consortia</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>23. Industry & The Forge</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>24. Government Relations</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>25. The Open Knowledge Commons</span><span class="ti-page">—</span></div>
+
+<div class="toc-part">Part VII — The Architecture</div>
+<div class="toc-item"><span>26. The Physical Network</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>27. The Research Model</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>28. Governance & Legal</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>29. Technology Infrastructure</span><span class="ti-page">—</span></div>
+
+<div class="toc-part">Part VIII — The Plan</div>
+<div class="toc-item"><span>30. The 2025–2030 Roadmap</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>31. Risks & Mitigations</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>32. Measuring Success</span><span class="ti-page">—</span></div>
+
+<div class="toc-part">Part IX — The Ethos</div>
+<div class="toc-item"><span>33. Diversity, Equity, Access</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>34. The Climate Commitment</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>35. The Artemis Oath</span><span class="ti-page">—</span></div>
+
+<div class="toc-part">Part X — The Blueprint</div>
+<div class="toc-item"><span>36. Replication</span><span class="ti-page">—</span></div>
+<div class="toc-item"><span>37. The Call to Action</span><span class="ti-page">—</span></div>
+
+<div class="section-break">· · ·</div>
+
+<!-- ═══════════ PART I — THE THESIS ═══════════ -->
+<div class="part-divider">
+  <div class="pd-num">I</div>
+  <div class="pd-label">Part One</div>
+  <div class="pd-title">The Thesis</div>
+  <div class="pd-sub">A planetary, need-blind, self-sustaining university, capitalised once. The proposition, the timing, and the precedent.</div>
+</div>
+
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter One</div>
+  <div class="chapter-title">The Proposition <span class="audience-tag tag-all">for all</span></div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="lead">The world has universities that are global, universities that are need-blind, universities that are interdisciplinary, and universities that are financially independent. It does not have a university that is all four. Artemis is the proposition that the four can be combined — and that, once combined, they produce an institution fundamentally different from any that exists.</p>
+<p class="body-text">Consider each property in isolation. New York University operates campuses in Abu Dhabi, Shanghai, and Accra — it is global. Harvard admits US students need-blind — it is need-blind. Olin College abolished academic departments and teaches engineering through interdisciplinary projects — it is interdisciplinary. And the University of Texas system, with its $40 billion endowment, covers its operating costs from endowment payout and tuition — it is financially independent. Each property is proven. Each exists. But no institution combines all four, because each property, taken seriously, imposes structural constraints that conflict with the others. A need-blind university that is also global must subsidise students across dozens of tax and currency regimes. An interdisciplinary university that is also financially independent must fund research without the disciplinary grant infrastructure that siloed departments provide. The combination is hard. That is why it does not exist.</p>
+<p class="body-text">Artemis is designed to make the combination work. The financial model — $3,000 annual tuition, set at a level accessible to 90% of qualified students worldwide, with the remainder covered by a scholarship fund capitalised from operating surplus — resolves the need-blind-plus-global tension by setting tuition low enough that need-blind is affordable at planetary scale. The research model — 19 interdisciplinary Centers of Inquiry with long-term renewable appointments, funded from the operating budget rather than external grants — resolves the interdisciplinary-plus-independent tension by removing the grant cycle that forces faculty into disciplinary silos. The physical model — 50 repurposed colleges across 35 countries, each a self-contained unit of 1,000–2,500 students — resolves the global-plus-affordable tension by acquiring existing buildings rather than building new campuses. Each design decision is a response to a specific structural conflict.</p>
+<p class="body-text">The proposition is not that Artemis will be a better university than Harvard or Oxford. The proposition is that it will be a different kind of institution — one that operates on a different logic, serves a different population, produces a different kind of graduate, and, crucially, can be replicated by anyone who reads this document. The legacy university is a cathedral: magnificent, durable, impossible to copy. Artemis is designed to be a blueprint: complete, publishable, replicable. The goal is not one Artemis. The goal is a world in which an Artemis-type institution is an option available to any community that wants one. This manifesto is the argument for the first Artemis and the operating manual for the rest.</p>
+<div class="figure"><img src="../public/resources/img/venice-node.png" alt="Venice Central Node"><div class="caption">The founding seat — Venice, where the founding document is archived. The proposition begins in a specific place and radiates outward.</div></div>
+<div class="pullquote">The legacy university is a cathedral: magnificent, durable, impossible to copy. Artemis is designed to be a blueprint: complete, publishable, replicable.<div class="attribution">— The Artemis Founding Manifesto</div></div>
+
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Two</div>
+  <div class="chapter-title">Why Now <span class="audience-tag tag-all">for all</span></div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="lead">Three conditions have converged in the 2020s that make a planetary, need-blind, self-sustaining university possible for the first time in history. None of them existed in 2000. Two of them did not exist in 2010. The window is open, and it will not stay open indefinitely.</p>
+<p class="body-text">The first condition is the maturity of synchronous global communication. A university with 50 colleges on six continents requires that a student in Nairobi and a student in Berlin participate in the same seminar, in real time, with shared materials. This was technically impossible before high-bandwidth video conferencing, cloud collaboration tools, and low-latency global networks — all of which reached production quality only in the 2010s. The pandemic forced their adoption at scale; the post-pandemic infrastructure makes a synchronous global campus operationally routine. The Artemis model could not have been built in 2005. It can be built now.</p>
+<p class="body-text">The second condition is the cost collapse of the physical substrate. The model depends on acquiring and converting 50 existing buildings across 35 countries — repurposed convents, warehouses, offices, factories. This strategy is viable because the post-pandemic shift to remote work has emptied commercial real estate globally, driving down acquisition costs. A building in a major city that cost $50M in 2019 can be acquired for $20M in 2025. The $100M founding campaign, which would have been insufficient in an earlier era, is now sufficient precisely because the physical substrate is cheaper than it has ever been.</p>
+<p class="body-text">The third condition is the legitimacy crisis of the legacy university. Tuition in the United States has risen 169% since 1980, far outstripping wages. Student debt exceeds $1.7 trillion. Public confidence in higher education has fallen from 57% to 36% in a decade. The institutions that served the 20th century are visibly failing the 21st. This creates the political and philanthropic space for a fundamentally different model: donors, faculty, and students are willing to take a risk on something new precisely because the existing options are so clearly inadequate. The window is not just technical and economic — it is cultural. People are ready to believe a re-engineering is possible because they can see that the current engineering has failed.</p>
+<div class="stat-row"><div class="stat"><div class="stat-val">2020s</div><div class="stat-label">Window</div></div><div class="stat"><div class="stat-val">50</div><div class="stat-label">Colleges</div></div><div class="stat"><div class="stat-val">$100M</div><div class="stat-label">Capital</div></div><div class="stat"><div class="stat-val">6</div><div class="stat-label">Continents</div></div></div>
+<p class="body-text">The window will close. Commercial real estate will re-price upward as economies adjust. The philanthropic appetite for risk will retreat as the memory of institutional failure fades. And the legacy universities, threatened, will adopt just enough of the Artemis model — a global campus here, a need-blind policy there — to blunt the case for something wholly new. The next decade is the period in which a clean-slate planetary university can be built. After that, the path is harder. This manifesto is written for the people who will build it now.</p>
+
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Three</div>
+  <div class="chapter-title">The Nakamoto Parallel <span class="audience-tag tag-all">for all</span></div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="lead">In 2008, an anonymous figure published a nine-page document that proposed a solution to a problem the financial establishment had declared unsolvable: how to create digital money without a trusted central authority. The Bitcoin whitepaper did not succeed because its cryptography was novel — the components were known. It succeeded because it combined them into a coherent, self-sustaining system and then published the blueprint for anyone to replicate.</p>
+<p class="body-text">The Artemis manifesto follows the same logic. The components — global campuses, need-blind admission, interdisciplinary research, endowment-based finance — are all known. None is novel in isolation. What is novel is the combination, and the proof that the combination is self-sustaining. Just as Bitcoin demonstrated that a decentralised currency could work without a central bank, Artemis is designed to demonstrate that a planetary, need-blind, self-sustaining university can work without ongoing philanthropy. And just as Bitcoin published its protocol so that anyone could run a node, Artemis will publish its blueprint so that anyone can found a sister institution.</p>
+<p class="body-text">The parallel has a deeper lesson. Bitcoin did not replace central banks. It created a new category of institution that coexists with the old. Similarly, Artemis will not replace Harvard or Oxford. It will create a new category — the replicable planetary university — that coexists with the legacy institutions and, over time, grows to serve the populations the legacy institutions cannot reach. The legacy university serves the top 1% of the global income distribution. Artemis is designed to serve the 90% for whom $3,000 annual tuition is accessible, and the 10% who need scholarship support. The two categories are not in competition. They serve different people, on different logic, at different scale.</p>
+<p class="body-text">There is also a cautionary parallel. Bitcoin took years to be taken seriously, and its adoption followed an S-curve: slow at first, then sudden. Artemis will likely follow the same pattern. The founding cohort of 120 students, the founding 200 faculty, and the founding donors are the early adopters — the people who see the model before it is proven. The 60,000 students of 2030 are the early majority. The replication by other founders in other regions is the late majority. This manifesto is written for the early adopters. If you are reading it, you are one of them. The question is whether enough of you act in time.</p>
+<div class="figure"><img src="../public/resources/img/network-topology.png" alt="Network topology"><div class="caption">A planetary university is a network, not a headquarters. Each college is a node; the network is the institution.</div></div>
+
+<!-- ═══════════ PART II — THE PROBLEM ═══════════ -->
+<div class="part-divider">
+  <div class="pd-num">II</div>
+  <div class="pd-label">Part Two</div>
+  <div class="pd-title">The Problem</div>
+  <div class="pd-sub">Higher education is the most durable knowledge institution humanity has built — and it is failing on cost, access, relevance, and governance. Four crises, each structural.</div>
+</div>
+
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Four</div>
+  <div class="chapter-title">The Cost Crisis <span class="audience-tag tag-all">for all</span></div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="lead">In the United States, the average annual cost of a private university education has risen from $3,000 in 1980 to $38,000 in 2024 — a 1,200% increase, against wage growth of 250% over the same period. The system has become unaffordable for the middle class it was designed to serve, and the debt used to bridge the gap now exceeds $1.7 trillion nationally.</p>
+<p class="body-text">The cost crisis is not an accident. It is the structural consequence of a model that ties academic prestige to expenditure. Universities compete for students and faculty by building nicer dormitories, fancier gyms, and larger administrations, and they fund the competition by raising tuition. The result is an arms race in which every institution must spend more to maintain its position, and the cost is passed to students. The Baumol effect — the tendency of labour-intensive industries to raise prices faster than inflation because they cannot easily improve productivity — compounds the problem: a lecture in 2024 is not meaningfully more productive than a lecture in 1980, but the professor's salary has risen with the broader economy.</p>
+<p class="body-text">The rest of the world has the same disease at different stages. UK tuition has tripled since 2010. Australian tuition is rising. Even in countries with nominally free public higher education (Germany, the Nordic states), the cost is paid through taxation, and the tax base is straining as populations age. The global median cost of a four-year degree, including living expenses, is now approximately $80,000 — a figure that excludes over 80% of the world's households from participation without debt or subsidy.</p>
+<p class="body-text">Artemis resolves the cost crisis structurally. Tuition is set at $3,000 per year — a figure accessible to 90% of qualified students worldwide, based on global income data. This is not a discount; it is the actual cost of delivering the education, made possible by the repurposed-building strategy (no debt service on construction), the distributed model (no central campus to maintain), and the faculty-appointment model (long-term renewable appointments without the overhead of a grant administration bureaucracy). The $3,000 is what a university costs when it is not competing on expenditure. The $38,000 is what a university costs when it is.</p>
+<div class="stat-row"><div class="stat"><div class="stat-val">$3K</div><div class="stat-label">Artemis Tuition</div></div><div class="stat"><div class="stat-val">$38K</div><div class="stat-label">US Private Avg</div></div><div class="stat"><div class="stat-val">$80K</div><div class="stat-label">Global Degree Cost</div></div><div class="stat"><div class="stat-val">$1.7T</div><div class="stat-label">US Student Debt</div></div></div>
+<p class="body-text">The implication is that the cost crisis is not inherent to higher education — it is inherent to the prestige-expenditure arms race. A university that refuses to compete on expenditure, that sets tuition at cost, and that funds its scholarship pool from operating surplus rather than from endowment income can deliver a world-class education at a fraction of the legacy price. Artemis is the proof. If it works, the cost ceiling for serious higher education falls from $38,000 to $3,000, and the accessibility of the institution expands by an order of magnitude.</p>
+
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Five</div>
+  <div class="chapter-title">The Access Crisis <span class="audience-tag tag-all">for all</span></div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="lead">Roughly 1.4 billion people worldwide are of university age (18–24). Of these, perhaps 220 million are enrolled in some form of higher education — an enrolment rate of 16%. The remaining 84%, concentrated in the Global South, are excluded not by lack of ability but by lack of access: no nearby institution, no affordable option, no admission pathway.</p>
+<p class="body-text">The access crisis is the cost crisis viewed from a global rather than a national lens. In the United States, the crisis is debt; in the Global South, the crisis is absence. Sub-Saharan Africa, with a population of 1.1 billion, has fewer university seats than the United Kingdom, with a population of 67 million. The continent produces roughly 100,000 STEM graduates per year against an estimated need of 3 million. The gap is not a shortage of talent — it is a shortage of institutions.</p>
+<p class="body-text">The legacy response to the access crisis is the scholarship programme. Wealthy universities in wealthy countries admit a small number of students from poor countries, fund their education, and declare the problem addressed. This model, however well-intentioned, cannot scale: the numbers are too small, the cost per student is too high (because the underlying institution is expensive), and the brain drain — the most talented leave and do not return — hollows out the countries that most need capacity. A scholarship to Harvard is a gift to the student and a loss to the community.</p>
+<p class="body-text">Artemis takes a different approach. Rather than moving students to expensive institutions, it places affordable institutions where the students are. The 50-college network includes 23 Tier C colleges in cities like Kigali, Dhaka, Kampala, and Karachi — each serving 1,000–2,500 local students at $3,000 tuition, with scholarship support for those who need it. The student stays in their community; the institution comes to them. The 13,300 scholarships funded annually from operating surplus by 2030 are not tickets out — they are seats in local colleges that produce graduates who stay, build, and teach. The access crisis is solved not by extracting talent but by building capacity where the talent already lives.</p>
+<div class="figure"><img src="../public/resources/img/students-global.png" alt="A global cohort"><div class="caption">The founding 120 came from 34 countries. By 2030, the student body numbers 60,000 across six continents — with no single nationality exceeding 15%.</div></div>
+<p class="body-text">The geographic distribution of the colleges is a deliberate intervention. Tier A colleges in London, Tokyo, and New York serve the same populations that legacy universities serve. Tier C colleges in Kigali, Dhaka, and Kampala serve populations that no legacy university serves. The network is not a single institution with a global brand — it is a portfolio of local institutions sharing a single academic culture. The access crisis is solved by the portfolio, not by the brand.</p>
+
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Six</div>
+  <div class="chapter-title">The Knowledge Crisis <span class="audience-tag tag-all">for all</span></div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="lead">The scientific enterprise — humanity's organised effort to produce reliable knowledge — is producing more papers, by more researchers, in more journals, than ever before. And yet, the rate of paradigm-shifting discovery has fallen by half since the 1990s. The knowledge institution is optimised for output, not for breakthrough.</p>
+<p class="body-text">The knowledge crisis has three causes. First, the grant cycle forces faculty into short, predictable, incremental projects that can be funded, rather than long, risky, paradigm-challenging projects that might fail. A scholar who proposes a five-year investigation with uncertain outcomes is less likely to be funded than a scholar who proposes a two-year investigation with guaranteed publication. The system selects against the kind of work that changes fields. Second, the disciplinary silo — the departmental structure that organises faculty into specialised groups — prevents the cross-pollination that produces breakthroughs. The most consequential discoveries of the last 50 years (CRISPR, mRNA vaccines, deep learning) occurred at the boundaries of disciplines, not within them. A university that silos its faculty silos its thinking. Third, the publish-or-perish incentive rewards volume over significance, and the subscription-journal model locks publicly funded research behind paywalls, preventing the open accumulation that lets others build on prior work.</p>
+<p class="body-text">Artemis addresses all three. The long-term renewable appointment — a multi-year contract with no grant dependency — frees faculty to pursue deep, risky, long-horizon inquiry. The Center of Inquiry structure replaces departments with interdisciplinary hubs organised around problems rather than disciplines: Synthetic Intelligence, Bio-Regenerative Arts, Cosmological Humanities, Urban Futures. And the 7-year release policy puts every research output into the public domain under a remix-permissive license, ensuring that the institution's intellectual capital accumulates for humanity rather than for the journal publishers.</p>
+<p class="body-text">The knowledge crisis is not solved by producing more papers. It is solved by producing different papers — longer, riskier, more interdisciplinary, and freely available. Artemis is designed to produce fewer papers than a legacy university of the same size, but a higher fraction of them will matter. The measure of research success is not publication count but impact: how many ideas changed a field, how many ventures spun out, how many problems were solved. The 19 Centers of Inquiry, staffed by 200 founding faculty growing to 2,000 by 2030, are the engine. The 7-year release policy is the exhaust. The combination is the cure.</p>
+<div class="figure"><img src="../public/resources/img/research-lab.png" alt="A Center of Inquiry"><div class="caption">The research model — interdisciplinary hubs, long-term appointments, translational ventures, open release.</div></div>
+
+<div class="chapter-header">
+  <div class="chapter-tag">Chapter Seven</div>
+  <div class="chapter-title">The Governance Crisis <span class="audience-tag tag-all">for all</span></div>
+  <div class="chapter-divider"></div>
+</div>
+<p class="lead">Universities are among the oldest institutions humanity has built. The University of Bologna was founded in 1088; Oxford in 1096. They have outlived empires, religions, and nation-states. But durability has become rigidity: the governance structures that preserved these institutions through centuries now prevent them from adapting to a century that looks nothing like the ones that preceded it.</p>
+<p class="body-text">The governance crisis manifests in three ways. First, the tenure system, designed to protect academic freedom, now protects mediocrity: a tenured professor who stops producing cannot be removed, and the institution cannot reallocate the position to someone more productive. Second, the shared-governance model, in which faculty vote on every major decision, produces paralysis: a university that needs to launch a new program in six months takes three years because every committee must concur. Third, the board structure, dominated by donors and alumni with ties to the legacy model, prevents the institution from making decisions that threaten the legacy — even when the legacy is the problem.</p>
+<p class="body-text">Artemis resolves the governance crisis through a structure that is durable without being rigid. Faculty hold long-term renewable appointments (5–7 years, renewable based on review) rather than tenure — this protects intellectual freedom (an appointment can only be terminated for cause or non-renewal after due process) while allowing the institution to reallocate positions when research agendas shift. The University Senate, composed of elected faculty from every Center, sets academic policy, but operational decisions are delegated to the President and executive team, who can move at the speed the century requires. And the Board, with a majority of independent directors and a constitutional prohibition on any single individual controlling more than one-third of seats, is structurally incapable of being captured by the legacy.</p>
+<p class="body-text">The deepest governance innovation, however, is the time-boundedness of the plan. The strategic plan runs 2025–2030. Every target has a deadline. Every year is reported against. If the institution drifts, the drift is visible within twelve months, not over a generation. Legacy universities can drift for decades because the governance structure has no forcing function. Artemis has one: the annual report, the independent audit, and the public commitment to targets. Governance is not a brake on change; it is the mechanism that ensures change happens on schedule.</p>
+<div class="figure"><img src="../public/resources/img/governance-building.png" alt="Governance architecture"><div class="caption">Governance architecture — three jurisdictions, three independent boards, one mission. Designed to outlast any single founder, donor, or political regime.</div></div>
+
+</div>
+<!-- CONTINUE IN NEXT FILE -->
+</body>
+</html>
