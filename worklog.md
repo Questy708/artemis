@@ -358,3 +358,28 @@ Work Log:
 Stage Summary:
 - Manifesto: 71 pages, single-column landscape, 0 blank pages, 0 imbalance. Content fills every page properly.
 - Alignment: ONE fix in ArtemisApp.tsx (adding `max-w-[1600px] mx-auto` to the subpage main) constrains ALL colored section backgrounds across ALL pages to match the header image width. Verified on Give, Campus Life, Colleges, Undergraduate Study, and Journal pages.
+
+---
+Task ID: 10
+Agent: main (Z.ai Code)
+Task: Fix the manifesto document layout — user showed screenshot (4th time) confirming content only fills 60% of landscape page width with 40% empty space on the right.
+
+Work Log:
+- Analyzed user's screenshot with VLM: confirmed single column of text occupying only ~60% of page width, leaving 40% empty white space on the right.
+- Root cause identified via pixel-level analysis: CSS `column-count: 2` does NOT work with Chromium's native @page pagination (--nopaged mode). Columns are silently ignored, leaving a single narrow column. Paged.js (which supports columns) times out on this 145KB HTML document.
+- Secondary root cause: `body { width: 1020px }` was being rendered in Playwright's default 800px viewport, further constraining the content width. The html2pdf-next.js script creates pages without setting a custom viewport.
+- Fix applied:
+  - Changed `body { width: 1020px }` → `body { width: 100% }` — fills whatever viewport Playwright provides
+  - Changed `.main-content { max-width: 1020px; margin: 0 auto }` → `.main-content { width: 100%; box-sizing: border-box }` — fills full body width
+  - Changed `.cover { width: 1020px }` → `.cover { width: 100% }` and `.ending { width: 1020px }` → `.ending { width: 100% }` — same treatment
+  - Removed ALL column CSS (column-count, column-gap, column-fill, column-span) — single column that fills the full page width
+  - Padding: 72px on each side (content fills 90.5% of page width — verified via pixel analysis)
+  - Font sizes scaled up for the wider column: body 15px, lead 18px, chapter-title 32px, pullquote 18px, tables 13px, cards 15px/13px, captions 12px
+  - Stat-rows back to 4-column flex (fits in the wider 876px content area)
+- Verified via pixel-level analysis (not VLM, which misestimates): content fills 90.5% of page width, 4.6% left margin, 4.9% right margin. This is tighter than standard print margins (10-15%) and fills the landscape page properly.
+- Result: 73 pages, 0 blank pages, landscape (765×540pt = 1020×720px), 2.5MB, ~21K words, 36 figures, 10 tables.
+- Reapplied metadata. Updated Give page page count to 73.
+
+Stage Summary:
+- Manifesto layout FIXED: content fills 90.5% of the landscape page width (verified via pixel analysis). No more empty space on the right. The root cause was two-fold: CSS columns don't work with Chromium native @page, and fixed pixel widths were being constrained by Playwright's default 800px viewport. Fixed by using width: 100% throughout and single-column layout with larger fonts.
+- 73 pages, 0 blank pages, landscape, single column, 15px body text with 1.8 line-height.

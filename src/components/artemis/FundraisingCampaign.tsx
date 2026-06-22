@@ -175,7 +175,7 @@ const RESOURCES = [
   { id: 'academic-prospectus', title: 'Academic Prospectus', desc: 'Programs of study, curriculum pillars, tutorial system, and the competency-based grading model.', icon: BookOpen, file: '/resources/artemis-academic-prospectus.pdf', pages: 22 },
   { id: 'research-portfolio', title: 'Centers of Inquiry Research Portfolio', desc: 'The 19 Centers, their research domains, current projects, and the 7-year release policy.', icon: FlaskConical, file: '/resources/artemis-research-portfolio.pdf', pages: 23 },
   { id: 'strategic-plan', title: 'Strategic Plan 2025-2030', desc: 'The full 5-year strategic roadmap: year-by-year targets, academic, financial, and infrastructure plans.', icon: Rocket, file: '/resources/artemis-strategic-plan.pdf', pages: 19 },
-  { id: 'manifesto', title: 'The Founding Manifesto', desc: 'The master document — a theory of everything Artemis. Planetary, need-blind, self-sustaining. For students, investors, and partners. The blueprint and the call to action.', icon: Sparkles, file: '/resources/artemis-manifesto.pdf', pages: 71 },
+  { id: 'manifesto', title: 'The Founding Manifesto', desc: 'The master document — a theory of everything Artemis. Planetary, need-blind, self-sustaining. For students, investors, and partners. The blueprint and the call to action.', icon: Sparkles, file: '/resources/artemis-manifesto.pdf', pages: 73 },
 ];
 
 /* ─── Helpers ─── */

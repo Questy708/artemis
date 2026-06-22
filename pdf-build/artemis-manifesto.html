@@ -43,12 +43,12 @@
 html, body {
   margin: 0;
   padding: 0;
-  width: 1020px;
+  width: 100%;
   background: var(--bg);
   color: var(--ink);
   font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
-  font-size: 14px;
-  line-height: 1.7;
+  font-size: 15px;
+  line-height: 1.8;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -59,7 +59,7 @@ html, body {
 
 /* COVER */
 .cover {
-  width: 1020px; height: 720px; box-sizing: border-box;
+  width: 100%; height: 720px; box-sizing: border-box;
   break-after: page; overflow: hidden; position: relative;
   background: var(--bg-dark); color: #fff;
   display: flex; flex-direction: column; justify-content: center; padding: 64px;
@@ -75,51 +75,51 @@ html, body {
 .cover .cover-footer .crest { font-family: 'Noto Serif SC', serif; font-size: 14px; color: rgba(255,255,255,0.7); letter-spacing: 0.15em; }
 
 /* CONTENT */
-.main-content { background: var(--bg); padding: 56px 120px 48px 120px; max-width: 1020px; margin: 0 auto; }
+.main-content { background: var(--bg); padding: 48px 72px 40px 72px; width: 100%; box-sizing: border-box; }
 
 .chapter-header { break-after: avoid; break-inside: avoid; margin-top: 28px; margin-bottom: 20px; }
 .chapter-header:first-child { margin-top: 0; }
 .chapter-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--crimson); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
 .chapter-tag::before { content: ""; width: 22px; height: 1px; background: var(--crimson); }
-.chapter-title { font-family: 'Noto Serif SC', Georgia, serif; font-size: 34px; font-weight: 800; line-height: 1.12; letter-spacing: -0.015em; color: var(--ink); margin: 0 0 12px; }
+.chapter-title { font-family: 'Noto Serif SC', Georgia, serif; font-size: 32px; font-weight: 800; line-height: 1.12; letter-spacing: -0.015em; color: var(--ink); margin: 0 0 12px; }
 .chapter-divider { width: 40px; height: 2px; background: var(--crimson); margin-bottom: 18px; }
 
-.body-text { font-size: 14px; line-height: 1.75; color: var(--ink-soft); margin: 0 0 14px; }
+.body-text { font-size: 15px; line-height: 1.8; color: var(--ink-soft); margin: 0 0 16px; }
 .body-text strong { color: var(--ink); font-weight: 600; }
-.lead { font-size: 17px; line-height: 1.6; color: var(--ink); font-weight: 400; margin-bottom: 20px; }
+.lead { font-size: 18px; line-height: 1.65; color: var(--ink); font-weight: 400; margin-bottom: 20px; }
 
-.pullquote { break-inside: avoid; border-left: 3px solid var(--crimson); padding: 16px 24px; margin: 20px 0; font-family: 'Noto Serif SC', Georgia, serif; font-size: 16px; font-style: italic; line-height: 1.5; color: var(--ink); background: var(--bg-cream); }
+.pullquote { break-inside: avoid; border-left: 4px solid var(--crimson); padding: 20px 28px; margin: 24px 0; font-family: 'Noto Serif SC', Georgia, serif; font-size: 18px; font-style: italic; line-height: 1.5; color: var(--ink); background: var(--bg-cream); }
 .pullquote .attribution { font-size: 11px; font-style: normal; color: var(--muted); margin-top: 10px; letter-spacing: 0.05em; }
 
-.card { break-inside: avoid; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 20px 22px; margin-bottom: 14px; }
-.card-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.card { break-inside: avoid; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 20px 24px; margin-bottom: 14px; }
+.card-title { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
 .card-sub { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
-.card-body { font-size: 12px; line-height: 1.6; color: var(--ink-soft); }
+.card-body { font-size: 13px; line-height: 1.6; color: var(--ink-soft); }
 
-.stat-row { display: flex; gap: 16px; margin: 18px 0; break-inside: avoid; }
+.stat-row { display: flex; gap: 16px; margin: 20px 0; break-inside: avoid; }
 .stat { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 18px; }
 .stat .stat-val { font-family: 'Noto Serif SC', serif; font-size: 28px; font-weight: 900; color: var(--crimson); line-height: 1; }
 .stat .stat-label { font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
 
-.tbl { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 11px; break-inside: avoid; }
-.tbl th { text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--ink); padding: 8px 10px; }
-.tbl td { padding: 9px 10px; border-bottom: 1px solid var(--line); color: var(--ink-soft); vertical-align: top; }
+.tbl { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; break-inside: avoid; }
+.tbl th { text-align: left; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--ink); padding: 10px 12px; }
+.tbl td { padding: 10px 12px; border-bottom: 1px solid var(--line); color: var(--ink-soft); vertical-align: top; }
 .tbl tr:last-child td { border-bottom: none; }
 .tbl .num { font-family: 'Noto Serif SC', serif; font-weight: 700; color: var(--crimson); text-align: right; white-space: nowrap; }
 
-.figure { break-inside: avoid; margin: 16px 0; }
-.figure img { width: 100%; border-radius: 6px; display: block; }
-.figure .caption { font-size: 10px; color: var(--muted); margin-top: 8px; letter-spacing: 0.03em; line-height: 1.5; }
+.figure { break-inside: avoid; margin: 20px 0; }
+.figure img { width: 100%; border-radius: 8px; display: block; }
+.figure .caption { font-size: 12px; color: var(--muted); margin-top: 10px; letter-spacing: 0.03em; line-height: 1.5; }
 
-.callout { break-inside: avoid; background: var(--bg-cream); border-radius: 8px; padding: 20px 24px; margin: 16px 0; }
-.callout .callout-label { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--crimson); margin-bottom: 8px; }
+.callout { break-inside: avoid; background: var(--bg-cream); border-radius: 8px; padding: 24px 28px; margin: 20px 0; }
+.callout .callout-label { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--crimson); margin-bottom: 10px; }
 
 .bullets { margin: 10px 0 14px; padding: 0; list-style: none; }
 .bullets li { font-size: 12px; line-height: 1.65; color: var(--ink-soft); padding-left: 18px; position: relative; margin-bottom: 6px; }
 .bullets li::before { content: ""; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; background: var(--crimson); border-radius: 50%; }
 
 /* ENDING */
-.ending { width: 1020px; height: 720px; box-sizing: border-box; break-before: page; overflow: hidden; background: var(--bg-dark); color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 64px; text-align: center; }
+.ending { width: 100%; height: 720px; box-sizing: border-box; break-before: page; overflow: hidden; background: var(--bg-dark); color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 64px; text-align: center; }
 .ending .ending-tag { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--crimson-soft); margin-bottom: 28px; }
 .ending .ending-big { font-family: 'Noto Serif SC', Georgia, serif; font-size: 48px; font-weight: 800; line-height: 1.15; letter-spacing: -0.015em; max-width: 720px; margin-bottom: 32px; }
 .ending .ending-sub { font-size: 14px; color: rgba(255,255,255,0.5); max-width: 440px; line-height: 1.65; font-weight: 300; }
@@ -136,7 +136,7 @@ html, body {
 .abstract-box .ab-label { font-size: 10px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--crimson); margin-bottom: 12px; }
 .abstract-box .ab-body { font-family: 'Noto Serif SC', Georgia, serif; font-size: 14px; line-height: 1.7; color: var(--ink); font-style: italic; }
 
-.epigraph { break-inside: avoid; text-align: center; padding: 32px 20px; margin: 20px 0; }
+.epigraph { break-inside: avoid; text-align: center; padding: 40px 20px; margin: 24px 0; }
 .epigraph .ep-text { font-family: 'Noto Serif SC', Georgia, serif; font-size: 16px; font-style: italic; color: var(--ink-soft); line-height: 1.6; max-width: 460px; margin: 0 auto 14px; }
 .epigraph .ep-attr { font-size: 11px; color: var(--muted); letter-spacing: 0.1em; }
 
